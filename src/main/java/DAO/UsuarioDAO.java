@@ -9,9 +9,9 @@ import exceptions.UsuarioInvalidoException;
 import exceptions.PessoaInvalidaException;
 import model.Usuario;
 
-public class DAOUsuario extends ExecutaSQL{
+public class UsuarioDAO extends ExecutaSQL{
 
-	public DAOUsuario(Connection connection) {
+	public UsuarioDAO(Connection connection) {
 		super(connection);
 	}
 	

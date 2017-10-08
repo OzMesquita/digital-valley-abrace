@@ -3,7 +3,7 @@ package facade;
 import java.sql.SQLException;
 
 import DAO.ConnectionFactory;
-import DAO.DAOUsuario;
+import DAO.UsuarioDAO;
 import exceptions.UsuarioInvalidoException;
 import exceptions.PessoaInvalidaException;
 import model.Usuario;
@@ -12,7 +12,7 @@ public class LoginFachada {
 
 	public Usuario loga(String login, String senha) throws UsuarioInvalidoException, PessoaInvalidaException {
 		Usuario func = null;
-		DAOUsuario dao = new DAOUsuario(new ConnectionFactory().abreConexao());
+		UsuarioDAO dao = new UsuarioDAO(new ConnectionFactory().getConnection());
 		func = dao.getFuncionario(login, senha);
 		try {
 			dao.getConexao().close();

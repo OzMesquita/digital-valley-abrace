@@ -14,6 +14,7 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.graphics.Image;
 
 public class LoginView {
 
@@ -76,7 +77,7 @@ public class LoginView {
 	 */
 	protected void createContents() {
 		shlOngRussasTransformando = new Shell();
-		shlOngRussasTransformando.setImage(SWTResourceManager.getImage("C:\\Users\\Thiago Hellen\\git\\digital-valley-abrace\\src\\main\\java\\view\\img\\ABRACE.png"));
+		shlOngRussasTransformando.setImage(SWTResourceManager.getImage("\\img\\ABRACE.png"));
 		shlOngRussasTransformando.setSize(530, 513);
 		shlOngRussasTransformando.setText("ONG Russas Transformando Vidas - ABRACE");
 		

@@ -3,30 +3,35 @@ package DAO;
 import java.sql.*;
 
 public class ConnectionFactory {
-    private Connection connection;
-    public Connection abreConexao(){
-        if(connection != null) fechaConexao();
-        try{
-            Class.forName("driver");
-            String caminhoServidor = "servidor";
-            connection = DriverManager.getConnection(caminhoServidor, "", "");
-            return connection;
-        }catch(SQLException e){
-            throw new RuntimeException(e);
-        } catch (ClassNotFoundException ex) {
-            System.out.println("Erro com o driver do JDBC");
-        }
-        return null;
-    }
-    
-    public void fechaConexao(){
-        if(connection != null){
-            try {
-                connection.close();
-            } catch (SQLException e) {
-               throw new RuntimeException(e);
-            }            
-        }
+	private static String driver = "org.apache.derby.jdbc.EmbeddedDriver";
+	private String dbName = "localhost";// Lembre-se de mudar o nome do banco
+										// caso o seu seja diferente
+	private Connection connection;
 
-    }
+	public Connection getConnection() {
+		if (connection != null)
+			closeConnection();
+		try {
+			Class.forName(driver);
+			connection = DriverManager.getConnection("jdbc:derby:" + dbName + ";create=true", "abrace", "abrace");
+			return connection;
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		} catch (ClassNotFoundException e) {
+			System.out.println(e.getMessage());
+		}
+		return connection;
+	}
+
+	public void closeConnection() {
+		if (connection != null) {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new RuntimeException(e);
+			}
+		}
+
+	}
+
 }
