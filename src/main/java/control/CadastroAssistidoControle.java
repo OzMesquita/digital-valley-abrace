@@ -12,7 +12,7 @@ import model.Assistido;
 import view.CadastroAssistidoView;
 
 public class CadastroAssistidoControle {
-	private CadastroAssistidoView view;
+	private CadastroAssistidoView view; 
 	private AssistidoFachada fachada;
 
 	public CadastroAssistidoControle(CadastroAssistidoView view) throws ClassNotFoundException {

@@ -7,7 +7,7 @@ import exceptions.PessoaFisicaException;
 import exceptions.PessoaInvalidaException;
 
 public class Assistido extends PessoaFisica {
-	private String apelido;
+	private String apelido; 
     private String tipoDeCancer;
     private boolean situacao;
 

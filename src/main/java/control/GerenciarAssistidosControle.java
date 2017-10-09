@@ -10,7 +10,7 @@ import model.Assistido;
 import view.GerenciarAssistidosView;
 
 public class GerenciarAssistidosControle {
-	private GerenciarAssistidosView view;
+	private GerenciarAssistidosView view; 
 	private AssistidoFachada fachada;
 	
 	public GerenciarAssistidosView getView() {

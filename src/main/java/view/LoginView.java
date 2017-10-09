@@ -119,6 +119,7 @@ public class LoginView {
 		lblBemVindo.setBounds(194, 133, 125, 32);
 		lblBemVindo.setText("Bem Vindo!");
 		
+		
 		Label lblDigiteSeusDados = new Label(shlOngRussasTransformando, SWT.NONE);
 		lblDigiteSeusDados.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		lblDigiteSeusDados.setBounds(125, 225, 261, 30);

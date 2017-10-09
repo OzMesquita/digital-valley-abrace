@@ -38,6 +38,7 @@ public class CadastroDoadorView {
 	
 	public Text getTfNome() {
 		return tfNome;
+		
 	}
 
 	public void setTfNome(Text tfNome) {

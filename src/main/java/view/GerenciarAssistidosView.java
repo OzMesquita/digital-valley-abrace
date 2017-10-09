@@ -32,6 +32,7 @@ public class GerenciarAssistidosView {
 	private Text tfPesquisa;
 	private Button btnCadastrar;
 	private Button btnEditar;
+	
 	private Button btnExcluir;
 	private Button btnCancelar;
 	

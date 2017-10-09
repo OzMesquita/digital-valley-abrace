@@ -277,6 +277,7 @@ public class CadastroAssistidoView {
 		label_6.setFont(SWTResourceManager.getFont("Segoe UI Emoji", 16, SWT.NORMAL));
 		label_6.setBounds(206, 266, 32, 28);
 		
+		
 		Label label_7 = new Label(shlCadastroAssistido, SWT.NONE);
 		label_7.setText("CPF:");
 		label_7.setFont(SWTResourceManager.getFont("Segoe UI Emoji", 16, SWT.NORMAL));

@@ -12,7 +12,7 @@ import view.CadastroDoadorView;
 
 public class CadastroDoadorControle {
 	private CadastroDoadorView view;
-	private DoadorFachada facade;
+	private DoadorFachada facade; 
 	
 	public void getEvent(SelectionEvent event) throws PessoaInvalidaException, PessoaFisicaException{
 		if (event.getSource().toString().equals("Button {Cadastrar}")){

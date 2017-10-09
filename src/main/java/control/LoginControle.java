@@ -12,7 +12,7 @@ import view.LoginView;
 
 public class LoginControle {
 	private LoginView view;
-	private LoginFachada facade;
+	private LoginFachada facade; 
 		
 	public void getEvent(SelectionEvent event){
 		if (event.getSource().toString().equals("Button {Entrar}")){

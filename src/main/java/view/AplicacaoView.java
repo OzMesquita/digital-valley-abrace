@@ -21,6 +21,7 @@ public class AplicacaoView {
 	public static void main(String[] args) {
 		try {
 			AplicacaoView window = new AplicacaoView();
+			
 			window.open();
 		} catch (Exception e) {
 			e.printStackTrace();

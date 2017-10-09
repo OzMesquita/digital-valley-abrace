@@ -210,6 +210,7 @@ public class EditarAssistidoView {
 	}
 
 	public Text getTfNome() {
+		
 		return tfNome;
 	}
 
