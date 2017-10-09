@@ -211,6 +211,12 @@ public class GerenciarAssistidosView {
 		btnPesquisar.setText("Pesquisar");
 		
 		btnEditar = new Button(shlGerenciarAssistidos, SWT.NONE);
+		btnEditar.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent arg0) {
+			}
+		});
+		btnEditar.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/editar.png").getAbsolutePath()));
 		btnEditar.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
 		btnEditar.setBounds(132, 551, 208, 54);
 		btnEditar.setText("Editar Assistido");
@@ -238,6 +244,10 @@ public class GerenciarAssistidosView {
 		btnCancelar.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
 		btnCancelar.setBounds(132, 615, 208, 54);
 		btnCancelar.setText("Cancelar");
+		
+		Label label = new Label(shlGerenciarAssistidos, SWT.NONE);
+		label.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/assistidos.png").getAbsolutePath()));
+		label.setBounds(567, 10, 137, 109);
 		
 		controle.listarTodosAssistidos();
 		

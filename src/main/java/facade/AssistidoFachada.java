@@ -10,8 +10,7 @@ public class AssistidoFachada {
 	}
 	
 	public ArrayList<Assistido> listarTodosAssistidos(){
-		//Aqui deve-se encaminhar a requisisão para o metodo DAO que obtem uma lista de todos os assistidos
-		return null;
+		return new ArrayList<Assistido>();
 	}
 	
 }
