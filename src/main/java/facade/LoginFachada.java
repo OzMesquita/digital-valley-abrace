@@ -10,7 +10,7 @@ import model.Usuario;
 
 public class LoginFachada {
 
-	public Usuario loga(String login, String senha) throws UsuarioInvalidoException, PessoaInvalidaException {
+	public Usuario loga(String login, String senha) throws UsuarioInvalidoException, PessoaInvalidaException, SQLException {
 		Usuario func = null;
 		UsuarioDAO dao = new UsuarioDAO(new ConnectionFactory().getConnection());
 		func = dao.getFuncionario(login, senha);
@@ -19,6 +19,7 @@ public class LoginFachada {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		dao.getConexao().close();
 		return func;
 	}
 }
