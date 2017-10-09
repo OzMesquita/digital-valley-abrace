@@ -106,11 +106,8 @@ public class LoginView {
 		btnEntrar.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				try {
 					controle.getEvent(e);
-				} catch (PessoaInvalidaException e1) {
-					mensagemErro(e1);
-				}
+				
 			}
 		});
 		btnEntrar.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));

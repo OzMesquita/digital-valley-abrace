@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 import exceptions.PessoaInvalidaException;
 
-public abstract class Pessoa {
+public class Pessoa {
 	private int id;
     private String nome;
     private String endereco;
