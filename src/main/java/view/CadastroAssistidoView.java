@@ -3,6 +3,9 @@ package view;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
+
+import java.io.File;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.wb.swt.SWTResourceManager;
 
@@ -183,7 +186,7 @@ public class CadastroAssistidoView {
 	 */
 	protected void createContents() {
 		shlCadastroAssistido = new Shell();
-		shlCadastroAssistido.setImage(SWTResourceManager.getImage("C:\\Users\\Thiago Hellen\\git\\digital-valley-abrace\\src\\main\\java\\view\\img\\ABRACE.png"));
+		shlCadastroAssistido.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/ABRACE.png").getAbsolutePath()));
 		shlCadastroAssistido.setSize(715, 748);
 		shlCadastroAssistido.setText("Cadastro Assistido - ABRACE");
 		
@@ -290,7 +293,7 @@ public class CadastroAssistidoView {
 		lblCadastroDeAssistido.setBounds(114, 42, 382, 54);
 		
 		Label label_10 = new Label(shlCadastroAssistido, SWT.NONE);
-		label_10.setImage(SWTResourceManager.getImage("C:\\Users\\Thiago Hellen\\git\\digital-valley-abrace\\src\\main\\java\\view\\img\\assistido.png"));
+		label_10.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/assistido.png").getAbsolutePath()));
 		label_10.setBounds(531, 10, 75, 119);
 		
 		Label lblApelido = new Label(shlCadastroAssistido, SWT.NONE);
@@ -316,7 +319,7 @@ public class CadastroAssistidoView {
 			}
 		});
 		button.setText("Cancelar");
-		button.setImage(SWTResourceManager.getImage("C:\\Users\\Thiago Hellen\\git\\digital-valley-abrace\\src\\main\\java\\view\\img\\cancelar.png"));
+		button.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/cancelar.png").getAbsolutePath()));
 		button.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		button.setBounds(176, 619, 184, 60);
 		
@@ -334,7 +337,7 @@ public class CadastroAssistidoView {
 			}
 		});
 		button_1.setText("Cadastrar");
-		button_1.setImage(SWTResourceManager.getImage("C:\\Users\\Thiago Hellen\\git\\digital-valley-abrace\\src\\main\\java\\view\\img\\ok.png"));
+		button_1.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/ok.png").getAbsolutePath()));
 		button_1.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		button_1.setBounds(377, 619, 184, 60);
 	}

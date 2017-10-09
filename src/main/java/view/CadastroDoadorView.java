@@ -11,6 +11,9 @@ import model.PessoaFisica;
 
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.MessageBox;
+
+import java.io.File;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.DateTime;
@@ -154,7 +157,7 @@ public class CadastroDoadorView {
 	 */
 	protected void createContents() {
 		shlCadastroDoador = new Shell();
-		shlCadastroDoador.setImage(SWTResourceManager.getImage("C:\\Users\\Thiago Hellen\\git\\digital-valley-abrace\\src\\main\\java\\view\\img\\ABRACE.png"));
+		shlCadastroDoador.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/ABRACE.png").getAbsolutePath()));
 		shlCadastroDoador.setSize(715, 662);
 		shlCadastroDoador.setText("Cadastro Doador - ABRACE");
 		
@@ -253,7 +256,7 @@ public class CadastroDoadorView {
 				}
 			}
 		});
-		btnCadastrar.setImage(SWTResourceManager.getImage("C:\\Users\\Thiago Hellen\\git\\digital-valley-abrace\\src\\main\\java\\view\\img\\ok.png"));
+		btnCadastrar.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/ok.png").getAbsolutePath()));
 		btnCadastrar.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		btnCadastrar.setBounds(391, 530, 184, 60);
 		btnCadastrar.setText("Cadastrar");
@@ -265,13 +268,13 @@ public class CadastroDoadorView {
 				shlCadastroDoador.dispose();
 			}
 		});
-		btnCancelar.setImage(SWTResourceManager.getImage("C:\\Users\\Thiago Hellen\\git\\digital-valley-abrace\\src\\main\\java\\view\\img\\cancelar.png"));
+		btnCancelar.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/cancelar.png").getAbsolutePath()));
 		btnCancelar.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		btnCancelar.setBounds(190, 530, 184, 60);
 		btnCancelar.setText("Cancelar");
 		
 		Label label_9 = new Label(shlCadastroDoador, SWT.NONE);
-		label_9.setImage(SWTResourceManager.getImage("C:\\Users\\Thiago Hellen\\git\\digital-valley-abrace\\src\\main\\java\\view\\img\\doadores.png"));
+		label_9.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/doadores.png").getAbsolutePath()));
 		label_9.setBounds(511, 23, 109, 114);
 	}
 	

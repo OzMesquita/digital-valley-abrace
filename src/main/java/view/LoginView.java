@@ -4,6 +4,9 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.MessageBox;
+
+import java.io.File;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.wb.swt.SWTResourceManager;
 
@@ -77,7 +80,7 @@ public class LoginView {
 	 */
 	protected void createContents() {
 		shlOngRussasTransformando = new Shell();
-		shlOngRussasTransformando.setImage(SWTResourceManager.getImage("\\img\\ABRACE.png"));
+		shlOngRussasTransformando.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/ABRACE.png").getAbsolutePath()));
 		shlOngRussasTransformando.setSize(530, 513);
 		shlOngRussasTransformando.setText("ONG Russas Transformando Vidas - ABRACE");
 		
@@ -125,7 +128,7 @@ public class LoginView {
 		lblDigiteSeusDados.setText("Digite seus dados de acesso");
 		
 		Label label = new Label(shlOngRussasTransformando, SWT.NONE);
-		label.setImage(SWTResourceManager.getImage("C:\\Users\\Thiago Hellen\\git\\digital-valley-abrace\\src\\main\\java\\view\\img\\ABRACE.png"));
+		label.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/ABRACE.png").getAbsolutePath()));
 		label.setBounds(225, 57, 64, 64);
 
 	}

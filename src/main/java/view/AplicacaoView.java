@@ -1,5 +1,7 @@
 package view;
 
+import java.io.File;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -32,6 +34,26 @@ public class AplicacaoView {
 		Display display = Display.getDefault();
 		createContents();
 		Centralize.centralize(shlOngRussasTransformando);
+		
+		Button btnNewButton = new Button(shlOngRussasTransformando, SWT.NONE);
+		btnNewButton.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent arg0) {
+				EditarAssistidoView.main();
+			}
+		});
+		btnNewButton.setBounds(92, 222, 224, 68);
+		btnNewButton.setText("Editar Assistido");
+		
+		Button btnListarAssistidos = new Button(shlOngRussasTransformando, SWT.NONE);
+		btnListarAssistidos.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent arg0) {
+				GerenciarAssistidosView.main();
+			}
+		});
+		btnListarAssistidos.setBounds(92, 148, 224, 68);
+		btnListarAssistidos.setText("Gerenciar Assistidos");
 		shlOngRussasTransformando.open();
 		shlOngRussasTransformando.layout();
 		while (!shlOngRussasTransformando.isDisposed()) {
@@ -46,8 +68,8 @@ public class AplicacaoView {
 	 */
 	protected void createContents() {
 		shlOngRussasTransformando = new Shell();
-		shlOngRussasTransformando.setImage(SWTResourceManager.getImage("C:\\Users\\Thiago Hellen\\git\\digital-valley-abrace\\src\\main\\java\\view\\img\\ABRACE.png"));
-		shlOngRussasTransformando.setSize(570, 491);
+		shlOngRussasTransformando.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/ABRACE.png").getAbsolutePath()));
+		shlOngRussasTransformando.setSize(657, 491);
 		shlOngRussasTransformando.setText("ONG Russas Transformando Vidas - ABRACE");
 		
 		Button btnCadastrarAssistido = new Button(shlOngRussasTransformando, SWT.NONE);
@@ -57,7 +79,7 @@ public class AplicacaoView {
 				CadastroAssistidoView.main();
 			}
 		});
-		btnCadastrarAssistido.setBounds(165, 72, 224, 68);
+		btnCadastrarAssistido.setBounds(92, 74, 224, 68);
 		btnCadastrarAssistido.setText("Cadastrar Assistido");
 		
 		Button btnCadastrarDoador = new Button(shlOngRussasTransformando, SWT.NONE);
@@ -68,8 +90,7 @@ public class AplicacaoView {
 			}
 		});
 		btnCadastrarDoador.setText("Cadastrar Doador");
-		btnCadastrarDoador.setBounds(165, 154, 224, 68);
+		btnCadastrarDoador.setBounds(334, 74, 224, 68);
 
 	}
-
 }
