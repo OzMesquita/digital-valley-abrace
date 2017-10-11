@@ -16,6 +16,7 @@ public class PessoaDAOTest {
 		p.setEndereco("Rua de teste");
 		p.setTelefone("78965412");
 		p.setTelefone2("78945612");
+		
 		p.setDataCadastro(LocalDate.now());
 		p.setEmail("mm@gmail.com");
 		p.setAtivo(true);

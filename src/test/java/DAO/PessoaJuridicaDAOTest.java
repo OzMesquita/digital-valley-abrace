@@ -10,6 +10,7 @@ public class PessoaJuridicaDAOTest {
 		PessoaJuridica pj = new PessoaJuridica();
 		
 		pj.setNomeFantasia("M M LTDA");
+		
 		pj.setCnpj("99.999.999/9999-99");
 		
 		
