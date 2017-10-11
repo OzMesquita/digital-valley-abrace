@@ -94,8 +94,8 @@ public class AssistidoDAO extends ExecutaSQL {
 	}
 
 	public void excluirAssistido(Assistido assistido) throws SQLException {
-		String sql1 = "UPDATE ABRACE.PESSOA SET ativo=false WHERE idPessoa="+assistido.getId();
-		PreparedStatement stmt = getConexao().prepareStatement(sql1);
+		String sql = "UPDATE ABRACE.PESSOA SET ativo=false WHERE idPessoa="+assistido.getId();
+		PreparedStatement stmt = getConexao().prepareStatement(sql);
 		stmt.executeQuery();
 		
 	}

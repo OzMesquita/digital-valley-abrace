@@ -63,6 +63,12 @@ public class UsuarioDAO extends ExecutaSQL{
 			return false;
 		}
 		
+		public void excluirUsuario(Usuario usuario) throws SQLException{
+			String sql = "UPDATE ABRACE.PESSOA SET ativo=false WHERE idPessoa="+usuario.getId();
+			PreparedStatement stmt = getConexao().prepareStatement(sql);
+			stmt.executeQuery();
+		}
+		
 
 
 	}
