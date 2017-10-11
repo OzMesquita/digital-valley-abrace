@@ -169,6 +169,13 @@ public class GerenciarAssistidosView {
 		lblSelecioneUmAssistido.setText("Selecione ou pesquise um assistido");
 		
 		table = new Table(shlGerenciarAssistidos, SWT.BORDER | SWT.FULL_SELECTION);
+		table.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent arg0) {
+				btnEditar.setEnabled(true);
+				btnExcluir.setEnabled(true);
+			}
+		});
 		table.setLinesVisible(true);
 		table.setToolTipText("");
 		table.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
@@ -205,15 +212,23 @@ public class GerenciarAssistidosView {
 		tfPesquisa.setBounds(196, 133, 360, 36);
 		
 		Button btnPesquisar = new Button(shlGerenciarAssistidos, SWT.NONE);
+		btnPesquisar.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent arg0) {
+				controle.getEvent(arg0);
+			}
+		});
 		btnPesquisar.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
 		btnPesquisar.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/pesquisar.png").getAbsolutePath()));
 		btnPesquisar.setBounds(560, 133, 144, 36);
 		btnPesquisar.setText("Pesquisar");
 		
 		btnEditar = new Button(shlGerenciarAssistidos, SWT.NONE);
+		btnEditar.setEnabled(false);
 		btnEditar.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
+				controle.getEvent(arg0);
 			}
 		});
 		btnEditar.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/editar.png").getAbsolutePath()));
@@ -222,6 +237,7 @@ public class GerenciarAssistidosView {
 		btnEditar.setText("Editar Assistido");
 		
 		btnExcluir = new Button(shlGerenciarAssistidos, SWT.NONE);
+		btnExcluir.setEnabled(false);
 		btnExcluir.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
 		btnExcluir.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/lixeira.png").getAbsolutePath()));
 		btnExcluir.setBounds(346, 551, 208, 54);
@@ -247,9 +263,9 @@ public class GerenciarAssistidosView {
 		
 		Label label = new Label(shlGerenciarAssistidos, SWT.NONE);
 		label.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/assistidos.png").getAbsolutePath()));
-		label.setBounds(567, 10, 137, 109);
+		label.setBounds(560, 10, 137, 109);
 		
-		controle.listarTodosAssistidos();
+		controle.preencherTabelaAssistidos(controle.obterTodosAssistidos());
 		
 		shlGerenciarAssistidos.open();
 		shlGerenciarAssistidos.layout();

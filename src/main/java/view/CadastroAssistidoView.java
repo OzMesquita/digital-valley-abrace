@@ -5,7 +5,6 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
 import java.io.File;
-import java.sql.SQLException;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.wb.swt.SWTResourceManager;
@@ -39,12 +38,6 @@ public class CadastroAssistidoView {
 	private Text tfTipoCancer;
 	private Combo tfStatus;
 	private Combo tfSituacao;
-	
-	
-
-	public CadastroAssistidoView() throws ClassNotFoundException {
-		controle = new CadastroAssistidoControle(this);
-	}
 
 	public Text getTfRG() {
 		return tfRG;
@@ -179,6 +172,11 @@ public class CadastroAssistidoView {
 		Display display = Display.getDefault();
 		createContents();
 		Centralize.centralize(shlCadastroAssistido);
+		
+		Label lblPessoaFsica = new Label(shlCadastroAssistido, SWT.NONE);
+		lblPessoaFsica.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
+		lblPessoaFsica.setBounds(251, 100, 108, 25);
+		lblPessoaFsica.setText("Pessoa F\u00EDsica");
 		shlCadastroAssistido.open();
 		shlCadastroAssistido.layout();
 		while (!shlCadastroAssistido.isDisposed()) {
@@ -194,7 +192,7 @@ public class CadastroAssistidoView {
 	protected void createContents() {
 		shlCadastroAssistido = new Shell();
 		shlCadastroAssistido.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/ABRACE.png").getAbsolutePath()));
-		shlCadastroAssistido.setSize(715, 748);
+		shlCadastroAssistido.setSize(715, 710);
 		shlCadastroAssistido.setText("Cadastro Assistido - ABRACE");
 		
 		tfNome = new Text(shlCadastroAssistido, SWT.BORDER);
@@ -329,7 +327,7 @@ public class CadastroAssistidoView {
 		button.setText("Cancelar");
 		button.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/cancelar.png").getAbsolutePath()));
 		button.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
-		button.setBounds(176, 619, 184, 60);
+		button.setBounds(176, 586, 184, 60);
 		
 		Button button_1 = new Button(shlCadastroAssistido, SWT.NONE);
 		button_1.addSelectionListener(new SelectionAdapter() {
@@ -341,16 +339,13 @@ public class CadastroAssistidoView {
 					mensagemErro(e1);
 				} catch (PessoaFisicaException e) {
 					mensagemErro(e);
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
 				}
 			}
 		});
 		button_1.setText("Cadastrar");
 		button_1.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/ok.png").getAbsolutePath()));
 		button_1.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
-		button_1.setBounds(377, 619, 184, 60);
+		button_1.setBounds(377, 586, 184, 60);
 	}
 	
 	public void mensagemErro(Exception e){
@@ -366,5 +361,4 @@ public class CadastroAssistidoView {
 		messageBox.setMessage("Cadastro realizado com sucesso!\n" + p.getNome()+", agora é um de nossos assistidos! :)");
 		messageBox.open();
 	}
-
 }
