@@ -48,8 +48,8 @@ public class AssistidoDAO extends ExecutaSQL {
 			getConexao().commit();
 		} catch (SQLException e) {
 			if (getConexao() != null) {
-				System.out.println(e.getMessage() + " Transação está retornando ao estado anterior");
 				getConexao().rollback();
+				throw new SQLException(e.getMessage()+ "Transação está retornando ao estado anterior");
 			}
 			throw new RuntimeException(e);
 		} finally {
@@ -73,7 +73,6 @@ public class AssistidoDAO extends ExecutaSQL {
 		stmt.setBoolean(7, assistido.isAtivo());
 
 		stmt.execute();
-		stmt.close();
 
 		String sql2 = "UPDATE ABRACE.PESSOA_FISICA SET cpf=?, rg=?, dataNascimento=? WHERE idPessoa=?";
 		stmt = getConexao().prepareStatement(sql2);
@@ -83,7 +82,6 @@ public class AssistidoDAO extends ExecutaSQL {
 		stmt.setDate(3, Date.valueOf(assistido.getDataNasc()));
 
 		stmt.execute();
-		stmt.close();
 
 		String sql3 = "UPDATE ABRACE.ASSISTIDO SET tipoCancer=?, apelido=?, status=? WHERE idPessoa=?";
 		stmt = getConexao().prepareStatement(sql3);
@@ -91,6 +89,9 @@ public class AssistidoDAO extends ExecutaSQL {
 		stmt.setString(1, assistido.getTipoDeCancer());
 		stmt.setString(2, assistido.getApelido());
 		stmt.setBoolean(3, assistido.getSituacao());
+		
+		stmt.execute();
+		stmt.close();
 	}
 
 	public void excluirAssistido(Assistido assistido) throws SQLException {

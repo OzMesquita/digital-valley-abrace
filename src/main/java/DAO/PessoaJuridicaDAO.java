@@ -21,42 +21,34 @@ public class PessoaJuridicaDAO extends ExecutaSQL{
 	}
 	@SuppressWarnings("deprecation")
 	//INSERÇÃO DE DOADOR JURIDICO
-	public void inserirDoadorJuridico(PessoaJuridica pessoaJ) {
+	public boolean inserirDoadorJuridico(PessoaJuridica pessoaJ) throws SQLException{
+		PreparedStatement stmt = null;
+		String sql = "insert into ABRACE.Pessoa_Juridica (cnpj, fantasia)" + "values(?, ?)"; 
 		
 		try {
-			String sql1 = "insert into ABRACE.Pessoa (nome, endereco, telefone1, telefone2, dataCadastro, email, ativo)" + "values(?, ?, ?, ?, ?, ?, ?)";
-			String sql2 = "insert into ABRACE.Pessoa_Juridica (cnpj, fantasia)" + "values(?, ?)"; 
+			getConexao().setAutoCommit(false);
+			stmt = getConexao().prepareStatement(sql);
 			
-			PreparedStatement stmt = getConexao().prepareStatement(sql1, Statement.RETURN_GENERATED_KEYS);
-
-			stmt.setString(1, pessoaJ.getNome());
-			stmt.setString(2, pessoaJ.getEndereco());
-			stmt.setString(3, pessoaJ.getTelefone());
-			stmt.setString(4, pessoaJ.getTelefone2());
-			stmt.setDate(5, new Date(pessoaJ.getDataCadastro().getYear(), pessoaJ.getDataCadastro().getMonthValue(), pessoaJ.getDataCadastro().getDayOfMonth()));//ajeitar
-			stmt.setString(6, pessoaJ.getEmail());
-			stmt.setBoolean(7, pessoaJ.isAtivo());
+			stmt.setString(1, pessoaJ.getCnpj());
+			stmt.setString(2, pessoaJ.getNomeFantasia());
 			
-			stmt.execute();
-			
-			 // Recupera a id
-	        ResultSet rs = stmt.getGeneratedKeys();
-	        int id = 0;
-	        if(rs.next()){
-	            id = rs.getInt(1);
-	        }
-	        stmt = getConexao().prepareStatement(sql2);
-	        
-	        stmt.setString(1, pessoaJ.getCnpj());
-	        stmt.setString(2, pessoaJ.getNomeFantasia());
-	        stmt.setInt(3, id);
-	        
-			stmt.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-			throw new RuntimeException("Erro ao inserir um Doador Juridico", e);
-		}
-		
+			if(stmt.execute()) {
+				return true;
+			}
+				getConexao().commit();
+			}catch (SQLException e) {
+				if (getConexao() != null) {
+					getConexao().rollback();
+					throw new SQLException(e.getMessage()+ "Transação está retornando ao estado anterior");
+				}
+				throw new RuntimeException(e);
+			}finally {
+				if (stmt != null) {
+					stmt.close();
+				}
+				getConexao().setAutoCommit(true);
+			}
+			return false;
 	}
 	//BUSCA PELO CNPJ
 	public PessoaJuridica buscarDoadorJuridico(String cnpj) {
