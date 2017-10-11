@@ -17,6 +17,12 @@ public class Assistido extends PessoaFisica {
         setSituacao(situacao);
         setTipoDeCancer(tipoDeCancer);
     }
+    
+    public Assistido(String apelido, String tipoDeCancer, boolean situacao) throws PessoaInvalidaException, PessoaFisicaException, AssistidoInvalidoException {
+    	setApelido(apelido);
+        setSituacao(situacao);
+        setTipoDeCancer(tipoDeCancer);
+    }
 
     public Assistido() {
 		// TODO Auto-generated constructor stub

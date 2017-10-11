@@ -79,27 +79,4 @@ public class PessoaDAO extends ExecutaSQL {
 		return idpessoa;
 	}
 
-	public ArrayList<Pessoa> listaPessoasAtivas() throws PessoaInvalidaException {
-		ArrayList<Pessoa> listaPessoas = new ArrayList<Pessoa>();
-		String sql = "SELECT (idPessoa, nome, endereco, telefone1, telefone2, email, dataCadastro, ativo) FROM ABRACE.Pessoa where ativo = True";
-		try {
-			PreparedStatement stmt = getConexao().prepareStatement(sql);
-			Pessoa p;
-			ResultSet rs = stmt.executeQuery();
-			while (rs.next()) {
-				int id = rs.getInt(1);
-				String nome = rs.getString(2);
-				String endereco = rs.getString(3);
-				String telefone1 = rs.getString(4);
-				String telefone2 = rs.getString(5);
-				String email = rs.getString(6);
-				LocalDate dataCadastro = rs.getDate(7).toLocalDate();
-				listaPessoas.add(new Pessoa(id, nome, endereco, dataCadastro, telefone1, telefone2, email, true));
-			}
-			stmt.close();
-		} catch (SQLException ex) {
-			throw new RuntimeException(ex.getMessage());
-		}
-		return listaPessoas;
-	}
 }

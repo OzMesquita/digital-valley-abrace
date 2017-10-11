@@ -31,7 +31,7 @@ public class AssistidoDAO extends ExecutaSQL {
 
 	public boolean cadastrarAssistido(Assistido assistido) throws PessoaInvalidaException, SQLException {
 		PreparedStatement stmt = null;
-		String sql = "insert into ABRACE.ASSISTIDO" + "(idpessoa, status, apelido, tipodecancer)" + "(?, ?, ?, ?";
+		String sql = "insert into ABRACE.ASSISTIDO" + "(idpessoa, status, apelido, tipodecancer) values (?, ?, ?, ?)";
 		try {
 			// prepared statement para inserção
 			getConexao().setAutoCommit(false);
@@ -60,43 +60,6 @@ public class AssistidoDAO extends ExecutaSQL {
 		}
 		return false;
 	}
-
-	public ArrayList<Assistido> listaAssistido()
-			throws PessoaInvalidaException, PessoaFisicaException, AssistidoInvalidoException {
-		ArrayList<Assistido> listaAssistidos = new ArrayList<Assistido>();
-		ArrayList<PessoaFisica> listaPF = new PessoaFisicaDAO(getConexao()).listaDoadorFisico();
-		String sql = "SELECT (tipoCancer, apelido, status) FROM ABRACE.Assistido WHERE idPessoa = ?";
-		try {
-			for (PessoaFisica p : listaPF) {
-				PreparedStatement ps = getConexao().prepareStatement(sql);
-				ps.setInt(1, p.getId());
-				ResultSet rs = ps.executeQuery();
-				if (rs.next()) {
-					int id = p.getId();
-					String nome = p.getNome();
-					String endereco = p.getEndereco();
-					LocalDate dataCadastro = p.getDataCadastro();
-					String telefone = p.getTelefone();
-					String telefone2 = p.getTelefone2();
-					String email = p.getEmail();
-					boolean ativo = p.isAtivo();
-					String cpf = p.getCpf();
-					String rg = p.getRg();
-					LocalDate dataNasc = p.getDataNasc();
-					String tipoDeCancer = rs.getString(1);
-					String apelido = rs.getString(2);
-					boolean situacao = rs.getBoolean(3);
-					listaAssistidos.add(new Assistido(id, nome, endereco, dataCadastro, telefone, telefone2, email,
-							ativo, cpf, rg, dataNasc, apelido, tipoDeCancer, situacao));
-				}
-
-			}
-		} catch (SQLException e) {
-			throw new RuntimeException(e.getMessage());
-		}
-		return listaAssistidos;
-	}
-
 	public void editarAssistido(Assistido assistido) throws SQLException {
 		String sql1 = "UPDATE ABRACE.PESSOA SET nome=?, endereco=?, telefone1=?, telefone2=?, email=?, dataCadastro=?, ativo=? WHERE idPessoa=?";
 		PreparedStatement stmt = getConexao().prepareStatement(sql1);
@@ -163,23 +126,46 @@ public class AssistidoDAO extends ExecutaSQL {
 		stmt.setBoolean(3, assistido.getSituacao());
 	}
 	
-	public void listaPessoas() {
-        String sql = "SELECT ABRACE.Pessoa.nome, ABRACE.Pessoa.idPessoa FROM ABRACE.Pessoa";
-        try {
-            PreparedStatement ps = getConexao().prepareStatement(sql);
-            ResultSet rs = ps.executeQuery();
-            while(rs.next()) {
-                System.out.println("Nome: "+rs.getString(1));
-                System.out.println("ID: "+rs.getInt(2));
-            }
-        }catch(SQLException e) {
-            throw new RuntimeException(e.getMessage());
-        }
+	public ArrayList<Assistido> listaAssistido() {
+    	ArrayList<Assistido> assistidos = new ArrayList<Assistido>();
+    	String informacaoPessoa = "ABRACE.Pessoa.idPessoa, ABRACE.Pessoa.nome, ABRACE.Pessoa.endereco, ABRACE.Pessoa.telefone1,"
+    			                + "ABRACE.Pessoa.telefone2, ABRACE.Pessoa.email, ABRACE.Pessoa.dataCadastro,";
+    	String informacaoPessoaFisica = "ABRACE.Pessoa_Fisica.cpf, ABRACE.Pessoa_Fisica.rg, ABRACE.Pessoa_Fisica.dataNascimento,";
+    	//Vou pegar essas duas Strings que são necessárias para pegar os assistidos e usar no SELECT do sql para pegar os dados de todas essas tabelas.
+    	String sql = "SELECT "+informacaoPessoa+informacaoPessoaFisica+" ABRACE.Assistido.tipoCancer, ABRACE.Assistido.apelido, ABRACE.Assistido.status"
+    			   +" FROM ABRACE.Assistido, ABRACE.Pessoa, ABRACE.Pessoa_Fisica"
+    			   +" WHERE ABRACE.Pessoa.ativo = True AND ABRACE.Pessoa.idPessoa = ABRACE.Pessoa_Fisica.idPessoa "
+    			   +" AND ABRACE.Pessoa_Fisica.idPessoa = ABRACE.Assistido.idPessoa";
+    	try {
+    		PreparedStatement ps = getConexao().prepareStatement(sql);
+    		ResultSet rs = ps.executeQuery();
+    		while(rs.next()) {
+				int id = rs.getInt(1);
+				String nome = rs.getString(2);
+				String endereco = rs.getString(3);
+				String telefone = rs.getString(4);
+				String telefone2 = rs.getString(5);
+				String email = rs.getString(6);
+				LocalDate dataCadastro = rs.getDate(7).toLocalDate();
+				String cpf = rs.getString(8);
+				String rg = rs.getString(9);
+				LocalDate dataNasc = rs.getDate(10).toLocalDate();
+				String tipoDeCancer = rs.getString(11);
+				String apelido = rs.getString(12);
+				boolean situacao = rs.getBoolean(13);
+				assistidos.add(new Assistido(id, nome, endereco, dataCadastro, telefone, telefone2, email, true, cpf, rg, dataNasc, apelido, tipoDeCancer, situacao));
+    		}
+    	}catch(SQLException e){
+    		throw new RuntimeException(e.getMessage());
+    	} catch (PessoaInvalidaException e) {
+			e.printStackTrace();
+		} catch (PessoaFisicaException e) {
+			e.printStackTrace();
+		} catch (AssistidoInvalidoException e) {
+			e.printStackTrace();
+		}
+    	return assistidos;
     }
-
-	public static void main(String[] args) {
-		AssistidoDAO assistido = new AssistidoDAO(new ConnectionFactory().getConnection());
-		assistido.listaPessoas();
-	}
-
+	
+	
 }

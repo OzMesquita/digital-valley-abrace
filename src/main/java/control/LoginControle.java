@@ -21,7 +21,7 @@ public class LoginControle {
 				if(usuario == null) {
 					throw new UsuarioNaoEncontradoException();
 				}else {
-					System.out.println("Acertô");
+					
 				}
 			} catch (UsuarioInvalidoException e) {
 				view.mensagemErro(e);
@@ -29,9 +29,9 @@ public class LoginControle {
 				view.mensagemErro(e);
 			}catch(UsuarioNaoEncontradoException e) {
 				view.mensagemErro(e);
-			} catch (SQLException e) {
-				view.mensagemErro(e);;
 			}
+		}else {
+			view.mensagemErro(new UsuarioNaoEncontradoException());
 		}
 	}
 	

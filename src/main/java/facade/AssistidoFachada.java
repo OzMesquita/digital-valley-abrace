@@ -13,7 +13,6 @@ public class AssistidoFachada {
 		AssistidoDAO assistido = new AssistidoDAO(new ConnectionFactory().getConnection());
 		if(assistido.inserirAssistido(a)) {
 			assistido.getConexao().close();
-			System.out.println("Deu Certo!!!");
 			return true;
 		}
 		return false;
