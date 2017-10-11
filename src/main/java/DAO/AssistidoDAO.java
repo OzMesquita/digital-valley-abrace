@@ -48,7 +48,7 @@ public class AssistidoDAO extends ExecutaSQL {
 			getConexao().commit();
 		} catch (SQLException e) {
 			if (getConexao() != null) {
-				System.out.println("Transação está retornando ao estado anterior");
+				System.out.println(e.getMessage() + " Transação está retornando ao estado anterior");
 				getConexao().rollback();
 			}
 			throw new RuntimeException(e);

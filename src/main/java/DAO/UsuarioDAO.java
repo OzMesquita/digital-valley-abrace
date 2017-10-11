@@ -33,6 +33,36 @@ public class UsuarioDAO extends ExecutaSQL{
 	        return null;
 	    }
 		
+		public boolean cadastrarUsuario (Usuario usuario) throws UsuarioInvalidoException, PessoaInvalidaException, SQLException {
+			PreparedStatement stmt = null;
+			String sql = "INSERT INTO ABRACE.USUARIO(login, senha) values(?, ?)";
+			
+			try {
+				getConexao().setAutoCommit(false);
+				stmt = getConexao().prepareStatement(sql);
+				
+				stmt.setString(1, usuario.getUsuario());
+				stmt.setString(2, usuario.getSenha());
+				
+				if(stmt.execute()) {
+					return true;
+				}
+				getConexao().commit();
+			}catch(SQLException e) {
+				if (getConexao() != null) {
+					System.out.println(e.getMessage() + " Transação está retornando ao estado anterior");
+					getConexao().rollback();
+				}
+				throw new RuntimeException(e);
+			}finally {
+				if (stmt != null) {
+					stmt.close();
+				}
+				getConexao().setAutoCommit(true);
+			}
+			return false;
+		}
+		
 
 
 	}
