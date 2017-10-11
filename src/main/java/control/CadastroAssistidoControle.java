@@ -1,5 +1,6 @@
 package control;
 
+import java.sql.SQLException;
 import java.time.LocalDate;
 
 import org.eclipse.swt.events.SelectionEvent;
@@ -12,7 +13,7 @@ import model.Assistido;
 import view.CadastroAssistidoView;
 
 public class CadastroAssistidoControle {
-	private CadastroAssistidoView view; 
+	private CadastroAssistidoView view;
 	private AssistidoFachada fachada;
 
 	public CadastroAssistidoControle(CadastroAssistidoView view) throws ClassNotFoundException {
@@ -36,8 +37,8 @@ public class CadastroAssistidoControle {
 		this.fachada = fachada;
 	}
 
-	public void getEvent(SelectionEvent event) throws PessoaInvalidaException, PessoaFisicaException {
-		if (event.toString().equals("Button {Cadastrar}")) {
+	public void getEvent(SelectionEvent event) throws PessoaInvalidaException, PessoaFisicaException, SQLException {
+		if (event.getSource().toString().equals("Button {Cadastrar}")) {
 			Assistido assistido = new Assistido();
 			try {
 				assistido.setNome(view.getTfNome().getText());
@@ -46,7 +47,7 @@ public class CadastroAssistidoControle {
 				assistido.setRg(view.getTfRG().getText());
 				assistido.setEndereco(view.getTfEndereco().getText());
 				assistido.setDataNasc(LocalDate.of(view.getTfDataNascimento().getYear(),
-						view.getTfDataNascimento().getMonth(), view.getTfDataNascimento().getDay()));
+						view.getTfDataNascimento().getMonth() + 1, view.getTfDataNascimento().getDay()));
 				assistido.setTelefone(view.getTfTelefone1().getText());
 				assistido.setTelefone2(view.getTfTelefone2().getText());
 				assistido.setEmail(view.getTfEmail().getText());
