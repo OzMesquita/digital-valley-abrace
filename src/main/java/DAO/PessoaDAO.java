@@ -2,6 +2,7 @@ package DAO;
 
 import java.sql.Connection;
 
+
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,7 +12,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 import exceptions.PessoaInvalidaException;
-import model.Assistido;
 import model.Pessoa;
 
 public class PessoaDAO extends ExecutaSQL{
@@ -20,7 +20,7 @@ public class PessoaDAO extends ExecutaSQL{
 		super(connection);
 	}
 	
-	public int cadastrarPessoa(Pessoa pessoa) throws SQLException {
+	public int cadastrarPessoa(Pessoa pessoa) throws SQLException  {
 		PreparedStatement stmt = null;
         String sql = "insert into ABRACE.PESSOA (ativo, datacadastro, email, telefone2, telefone1, endereco, nome) values (?, ?, ?, ?, ?, ?, ?)";
         int id = 0;
@@ -45,15 +45,9 @@ public class PessoaDAO extends ExecutaSQL{
 	            id = rs.getInt(1);
 	        }
         } catch (SQLException e) {
-            if (getConexao() != null) {
-                System.out.println(e.getMessage() + " Transação está retornando ao estado anterior");
-				getConexao().rollback();
-            }
+        	rollBack(e);
         } finally {
-            if (stmt != null) {
-                stmt.close();
-            }
-            getConexao().setAutoCommit(true);
+            verificaConexão(stmt);
         }
         return id;
 			
@@ -85,26 +79,33 @@ public class PessoaDAO extends ExecutaSQL{
 	public void editarPessoa(Pessoa pessoa) throws SQLException {
 		String sql= "UPDATE ABRACE.PESSOA SET nome=?, endereco=?, telefone1=?, telefone2=?, email=?, dataCadastro=?, ativo=? WHERE idPessoa="+pessoa.getId();
 		PreparedStatement stmt = getConexao().prepareStatement(sql);
-		   
-		stmt.setString (1, pessoa.getNome());
-		stmt.setString (2, pessoa.getEndereco());
-		stmt.setString (3, pessoa.getTelefone());
-		stmt.setString (4, pessoa.getTelefone2());
-		stmt.setString (5, pessoa.getEmail());
-		stmt.setDate   (6, Date  .valueOf(pessoa.getDataCadastro()));
-		stmt.setBoolean(7, pessoa.isAtivo());
-		    	
-		stmt.execute();
-		stmt.close();
+		try {
+
+			stmt.setString(1, pessoa.getNome());
+			stmt.setString(2, pessoa.getEndereco());
+			stmt.setString(3, pessoa.getTelefone());
+			stmt.setString(4, pessoa.getTelefone2());
+			stmt.setString(5, pessoa.getEmail());
+			stmt.setDate(6, Date.valueOf(pessoa.getDataCadastro()));
+			stmt.setBoolean(7, pessoa.isAtivo());
+
+			stmt.execute();
+			stmt.close();
+		} catch (SQLException e) {
+			rollBack(e);
+		} finally {
+			verificaConexão(stmt);
+		}
 	}
 	public void excluirPessoa(Pessoa pessoa) throws SQLException{
 		String sql= "UPDATE ABRACE.PESSOA SET ativo=false WHERE idPessoa="+pessoa.getId();
 	    PreparedStatement stmt = getConexao().prepareStatement(sql);
-   
+	    
 	    stmt.setBoolean(1, pessoa.isAtivo());
 	    	
 	    stmt.execute();
 	    stmt.close();
 	}
+	
 	   
 }

@@ -1,6 +1,8 @@
 package DAO;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 public class ExecutaSQL {
 	private Connection connection;
@@ -16,4 +18,19 @@ public class ExecutaSQL {
 		 if(connection != null)
 			 this.connection = connection;
 	 }
+	 
+	public void rollBack(SQLException e) throws SQLException {
+		if (getConexao() != null) {
+			getConexao().rollback();
+			throw new SQLException(e.getMessage() + " Transação está retornando ao estado anterior");
+		}
+	}
+	
+	public void verificaConexão(PreparedStatement stmt) throws SQLException {
+		if (stmt != null) {
+			stmt.close();
+		}
+		getConexao().setAutoCommit(true);
+
+	}
 }
