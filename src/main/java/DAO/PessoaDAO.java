@@ -20,7 +20,7 @@ public class PessoaDAO extends ExecutaSQL{
 		super(connection);
 	}
 	
-	public int cadastrarPessoa(Pessoa pessoa) throws SQLException  {
+	public int cadastrarPessoa(Pessoa pessoa) throws SQLException, PessoaInvalidaException  {
 		PreparedStatement stmt = null;
         String sql = "insert into ABRACE.PESSOA (ativo, datacadastro, email, telefone2, telefone1, endereco, nome) values (?, ?, ?, ?, ?, ?, ?)";
         int id = 0;
@@ -29,6 +29,7 @@ public class PessoaDAO extends ExecutaSQL{
             getConexao().setAutoCommit(false);
             stmt = getConexao().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             // set values
+            pessoa.setDataCadastro(LocalDate.now());
             stmt.setBoolean(1, pessoa.isAtivo());
             stmt.setDate(2, Date.valueOf(pessoa.getDataCadastro()));
             stmt.setString(3, pessoa.getEmail());
@@ -55,9 +56,10 @@ public class PessoaDAO extends ExecutaSQL{
 	
 	public ArrayList<Pessoa> listarPessoas(Boolean situacao) throws PessoaInvalidaException{
 		ArrayList<Pessoa> listaPessoas = new ArrayList<Pessoa>();
-		String sql = "SELECT * FROM ABRACE.Pessoa where ativo = "+situacao;
+		String sql = "SELECT * FROM ABRACE.Pessoa where ativo = ?";
 		try {
 			PreparedStatement stmt = getConexao().prepareStatement(sql);
+			stmt.setBoolean(1, situacao);
 			ResultSet rs = stmt.executeQuery();
 			while(rs.next()) {
 				int id = rs.getInt(1);
@@ -106,6 +108,11 @@ public class PessoaDAO extends ExecutaSQL{
 	    stmt.execute();
 	    stmt.close();
 	}
-	
+	public static void main(String[] args) throws PessoaInvalidaException {
+		ArrayList<Pessoa> pessoas = new PessoaDAO(new ConnectionFactory().getConnection()).listarPessoas(true);
+		for (int i=0;i<pessoas.size();i++) {
+			System.out.println(pessoas.get(i).getId());
+		}
+	}
 	   
 }

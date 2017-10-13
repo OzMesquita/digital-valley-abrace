@@ -1,12 +1,14 @@
 package DAO;
 
+import java.sql.SQLException;
+
 import exceptions.PessoaInvalidaException;
 import exceptions.PessoaJuridicaInvalidaException;
 import model.PessoaJuridica;
 
 public class PessoaJuridicaDAOTest {
 
-	public static void main(String[] args) throws PessoaInvalidaException, PessoaJuridicaInvalidaException {
+	public static void main(String[] args) throws PessoaInvalidaException, PessoaJuridicaInvalidaException, SQLException {
 		PessoaJuridica pj = new PessoaJuridica();
 		
 		pj.setNomeFantasia("M M LTDA");

@@ -1,5 +1,6 @@
 package control;
 
+import java.sql.SQLException;
 import java.time.LocalDate;
 
 import org.eclipse.swt.events.SelectionEvent;
@@ -36,7 +37,7 @@ public class CadastroAssistidoControle {
 		this.fachada = fachada;
 	}
 
-	public void getEvent(SelectionEvent event) throws PessoaInvalidaException, PessoaFisicaException {
+	public void getEvent(SelectionEvent event) throws PessoaInvalidaException, PessoaFisicaException, SQLException {
 		if (event.getSource().toString().equals("Button {Cadastrar}")) {
 			Assistido assistido = new Assistido();
 			try {

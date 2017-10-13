@@ -1,14 +1,22 @@
 package facade;
 
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+import DAO.AssistidoDAO;
+import DAO.ConnectionFactory;
 import exceptions.PessoaFisicaException;
 import exceptions.PessoaInvalidaException;
 import model.Assistido;
 
 public class AssistidoFachada {
-	public boolean cadastrarAssistido(Assistido a){
+	public boolean cadastrarAssistido(Assistido a) throws PessoaInvalidaException, SQLException{
+		AssistidoDAO assistido = new AssistidoDAO(new ConnectionFactory().getConnection());
+		if (assistido.inserirAssistido(a)) {
+			System.out.println("Deu Certo!!!");
+			return true;
+		}
 		return false;
 	}
 	

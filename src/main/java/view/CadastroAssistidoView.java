@@ -5,6 +5,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
 import java.io.File;
+import java.sql.SQLException;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.wb.swt.SWTResourceManager;
@@ -38,6 +39,12 @@ public class CadastroAssistidoView {
 	private Text tfTipoCancer;
 	private Combo tfStatus;
 	private Combo tfSituacao;
+	
+	
+
+	public CadastroAssistidoView() throws ClassNotFoundException {
+		this.controle= new CadastroAssistidoControle(this);
+	}
 
 	public Text getTfRG() {
 		return tfRG;
@@ -339,6 +346,9 @@ public class CadastroAssistidoView {
 					mensagemErro(e1);
 				} catch (PessoaFisicaException e) {
 					mensagemErro(e);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
 			}
 		});

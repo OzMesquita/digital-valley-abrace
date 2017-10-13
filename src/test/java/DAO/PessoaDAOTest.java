@@ -21,6 +21,6 @@ public class PessoaDAOTest {
 		p.setEmail("mm@gmail.com");
 		p.setAtivo(true);
 		
-		new PessoaDAO(new ConnectionFactory().getConnection()).cadastrarPessoa(p);
+		System.out.println(new PessoaDAO(new ConnectionFactory().getConnection()).cadastrarPessoa(p));
 	}
 }
