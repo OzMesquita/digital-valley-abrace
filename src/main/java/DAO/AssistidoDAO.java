@@ -68,10 +68,16 @@ public class AssistidoDAO extends ExecutaSQL {
 			stmt.setInt(4, assistido.getId());
 			
 			stmt.executeUpdate();
-			stmt.close();
+			
 			return true;
 		}catch(SQLException e) {
-			rollBack(e);
+			try {
+				rollBack(e);
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			return false;
 		}finally {
 			try {
 				verificaConexao(stmt);
@@ -79,7 +85,7 @@ public class AssistidoDAO extends ExecutaSQL {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			return false;
+			
 		}
 		
 		
