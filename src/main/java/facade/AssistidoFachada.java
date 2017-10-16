@@ -14,7 +14,6 @@ public class AssistidoFachada {
 	public boolean cadastrarAssistido(Assistido a) throws PessoaInvalidaException, SQLException{
 		AssistidoDAO assistido = new AssistidoDAO(new ConnectionFactory().getConnection());
 		if (assistido.inserirAssistido(a)) {
-			System.out.println("Deu Certo!!!");
 			return true;
 		}
 		return false;

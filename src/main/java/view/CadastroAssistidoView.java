@@ -347,7 +347,6 @@ public class CadastroAssistidoView {
 				} catch (PessoaFisicaException e) {
 					mensagemErro(e);
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}

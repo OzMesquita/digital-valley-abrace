@@ -244,6 +244,13 @@ public class GerenciarAssistidosView {
 		btnExcluir.setText("Excluir Assistido");
 		
 		btnCadastrar = new Button(shlGerenciarAssistidos, SWT.NONE);
+		btnCadastrar.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent arg0) {
+				shlGerenciarAssistidos.dispose();
+				CadastroAssistidoView.main();
+			}
+		});
 		btnCadastrar.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
 		btnCadastrar.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/assistido-small.png").getAbsolutePath()));
 		btnCadastrar.setBounds(346, 615, 208, 54);
