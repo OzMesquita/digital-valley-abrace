@@ -24,6 +24,7 @@ public class AssistidoDAO extends ExecutaSQL {
 		return cadastrarAssistido(assistido);
 	}
 
+	
 	public boolean cadastrarAssistido(Assistido assistido) throws PessoaInvalidaException, SQLException {
         PreparedStatement stmt = null;
         String sql = "insert into ABRACE.ASSISTIDO" + "(idpessoa, status, apelido, tipocancer) values (?, ?, ?, ?)";
@@ -43,19 +44,15 @@ public class AssistidoDAO extends ExecutaSQL {
             getConexao().commit();
             return true;
         } catch (SQLException e) {
-            if (getConexao() != null) {
-                getConexao().rollback();
-                throw new SQLException(e.getMessage() + "Transação está retornando ao estado anterior");
-            }
-            throw new RuntimeException(e);
-        } finally {
-            if (stmt != null) {
-                stmt.close();
-            }
-            getConexao().setAutoCommit(true);
+            rollBack(e);
+            return false;
+            }finally {
+            verificaConexao(stmt);
             
         }
-    }
+}
+
+    
 	
 	public boolean editarAssistido(Assistido assistido) {
 		String sql3 = "UPDATE ABRACE.ASSISTIDO SET tipoCancer=?, apelido=?, status=? WHERE idPessoa=" + assistido.getId();
