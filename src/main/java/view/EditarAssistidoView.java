@@ -3,13 +3,16 @@ package view;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.MessageBox;
 
 import java.io.File;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.wb.swt.SWTResourceManager;
 
+import control.EditarAssistidoControle;
 import model.Assistido;
+import model.PessoaFisica;
 
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.DateTime;
@@ -21,7 +24,6 @@ import org.eclipse.swt.events.SelectionEvent;
 public class EditarAssistidoView {
 
 	protected Shell shlEditarAssistido;
-	
 	private Text tfNome;
 	private Text tfApelido;
 	private Text tfCPF;
@@ -33,29 +35,155 @@ public class EditarAssistidoView {
 	private Text tfTipoCancer;
 	private Combo tfStatus;
 	private Combo tfSituacao;
-	private Assistido a;
-	public EditarAssistidoView(Assistido a) {
-		if(a != null) {
-			this.a = a;
+	private Assistido assistido;
+	private DateTime tfDataNascimento;
+	private EditarAssistidoControle controle;
+	
+public Text getTfNome() {
+		
+		return tfNome;
+	}
+
+	public void setTfNome(String tfNome) {
+		this.tfNome.setText(tfNome);
+	}
+
+	public Text getTfApelido() {
+		return tfApelido;
+	}
+
+	public void setTfApelido(String tfApelido) {
+		this.tfApelido.setText(tfApelido);
+	}
+
+	public Text getTfCPF() {
+		return tfCPF;
+	}
+
+	public void setTfCPF(String tfCPF) {
+		this.tfCPF.setText(tfCPF);
+	}
+
+	public Text getTfRG() {
+		return tfRG;
+	}
+
+	public void setTfRG(String tfRG) {
+		this.tfRG.setText(tfRG);
+	}
+
+	public Text getTfEndereco() {
+		return tfEndereco;
+	}
+
+	public void setTfEndereco(String tfEndereco) {
+		this.tfEndereco.setText(tfEndereco);
+	}
+
+	public Text getTfTelefone1() {
+		return tfTelefone1;
+	}
+
+	public void setTfTelefone1(String tfTelefone1) {
+		this.tfTelefone1.setText(tfTelefone1);
+	}
+
+	public Text getTfTelefone2() {
+		return tfTelefone2;
+	}
+
+	public void setTfTelefone2(String tfTelefone2) {
+		this.tfTelefone2.setText(tfTelefone2);
+	}
+
+	public Text getTfEmail() {
+		return tfEmail;
+	}
+
+	public void setTfEmail(String tfEmail) {
+		this.tfEmail.setText(tfEmail);
+	}
+
+	public Text getTfTipoCancer() {
+		return tfTipoCancer;
+	}
+
+	public void setTfTipoCancer(String tfTipoCancer) {
+		this.tfTipoCancer.setText(tfTipoCancer);
+	}
+	
+	public boolean getTfSituacao() {
+		if(tfSituacao.getSelectionIndex() == 0) {
+			return true;
+		}
+		return false;
+	}
+	
+	public void setTfSituacao(boolean situacao) {
+		if(situacao) {
+			tfSituacao.select(0);
+		} else {
+			tfSituacao.select(1);
 		}
 	}
 	
-	public EditarAssistidoView() {
+	public boolean getTfStatus() {
+		if(tfStatus.getSelectionIndex() == 0) {
+			return true;
+		}
+		return false;
 	}
-
-	/**
-	 * Launch the application.
-	 * @param args
-	 * @wbp.parser.entryPoint
-	 */
-	public static void main() {
-		try {
-			EditarAssistidoView window = new EditarAssistidoView();
-			window.open();
-		} catch (Exception e) {
-			e.printStackTrace();
+	
+	public void setTfStatus(boolean status) {
+		if(status) {
+			tfStatus.select(0);
+		} else {
+			tfStatus.select(1);
 		}
 	}
+
+	public Assistido getAssistido() {
+		return assistido;
+	}
+
+	public void setAssistido(Assistido a) {
+		this.assistido = a;
+	}
+	
+    public EditarAssistidoControle getControle() {
+		return controle;
+	}
+
+	public void setControle(EditarAssistidoControle controle) {
+		this.controle = controle;
+	}
+
+	public DateTime getTfDataNascimento() {
+		return tfDataNascimento;
+	}
+
+	public void setTfDataNascimento(DateTime tfDataNascimento) {
+		this.tfDataNascimento = tfDataNascimento;
+	}
+
+	public Shell getShlEditarAssistido() {
+		return shlEditarAssistido;
+	}
+
+	public void setShlEditarAssistido(Shell shlEditarAssistido) {
+		this.shlEditarAssistido = shlEditarAssistido;
+	}
+
+	public EditarAssistidoView(Assistido a) {
+        if(a != null) {
+            this.setAssistido(a);
+        }
+        this.setControle(new EditarAssistidoControle(this));
+    }
+    
+    public EditarAssistidoView() {
+    	this.setControle(new EditarAssistidoControle(this));
+    }
 
 	/**
 	 * Open the window.
@@ -141,7 +269,7 @@ public class EditarAssistidoView {
 		label_7.setFont(SWTResourceManager.getFont("Segoe UI Emoji", 16, SWT.NORMAL));
 		label_7.setBounds(60, 343, 195, 28);
 		
-		DateTime tfDataNascimento = new DateTime(shlEditarAssistido, SWT.BORDER);
+		tfDataNascimento = new DateTime(shlEditarAssistido, SWT.BORDER);
 		tfDataNascimento.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfDataNascimento.setBounds(261, 341, 369, 32);
 		
@@ -203,7 +331,41 @@ public class EditarAssistidoView {
 		tfSituacao.setBounds(531, 530, 99, 38);
 		tfSituacao.select(0);
 		
+
+		tfNome.setText(getAssistido().getNome());
+		tfApelido.setText(getAssistido().getApelido());
+		tfCPF.setText(getAssistido().getCpf());
+		tfRG.setText(getAssistido().getRg());
+		tfEndereco.setText(getAssistido().getEndereco());
+		tfTelefone1.setText(getAssistido().getTelefone());
+		tfTelefone2.setText(getAssistido().getTelefone2());
+		tfEmail.setText(getAssistido().getEmail());
+		tfTipoCancer.setText(getAssistido().getTipoDeCancer());
+		if(getAssistido().getSituacao()) {
+			tfSituacao.select(0);
+		} else {
+			tfSituacao.select(1);
+		}
+		if(getAssistido().isAtivo()) {
+			tfStatus.select(0);
+		} else {
+			tfStatus.select(1);
+		}
+		
+		tfDataNascimento.setDay(getAssistido().getDataNasc().getDayOfMonth());
+		tfDataNascimento.setMonth(getAssistido().getDataNasc().getMonthValue());
+		tfDataNascimento.setYear(getAssistido().getDataNasc().getYear());
+		
+		
+		
 		Button btnSalvarAlteraes = new Button(shlEditarAssistido, SWT.NONE);
+		btnSalvarAlteraes.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent arg0) {
+				controle.getEvent(arg0);
+				GerenciarAssistidosView.main();
+			}
+		});
 		btnSalvarAlteraes.setText("Salvar altera\u00E7\u00F5es");
 		btnSalvarAlteraes.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/ok.png").getAbsolutePath()));
 		btnSalvarAlteraes.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
@@ -214,6 +376,7 @@ public class EditarAssistidoView {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
 				shlEditarAssistido.dispose();
+				GerenciarAssistidosView.main();
 			}
 		});
 		button_1.setText("Cancelar");
@@ -221,108 +384,32 @@ public class EditarAssistidoView {
 		button_1.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		button_1.setBounds(179, 620, 184, 60);
 	}
-
-	public Text getTfNome() {
-		
-		return tfNome;
-	}
-
-	public void setTfNome(Text tfNome) {
-		this.tfNome = tfNome;
-	}
-
-	public Text getTfApelido() {
-		return tfApelido;
-	}
-
-	public void setTfApelido(Text tfApelido) {
-		this.tfApelido = tfApelido;
-	}
-
-	public Text getTfCPF() {
-		return tfCPF;
-	}
-
-	public void setTfCPF(Text tfCPF) {
-		this.tfCPF = tfCPF;
-	}
-
-	public Text getTfRG() {
-		return tfRG;
-	}
-
-	public void setTfRG(Text tfRG) {
-		this.tfRG = tfRG;
-	}
-
-	public Text getTfEndereco() {
-		return tfEndereco;
-	}
-
-	public void setTfEndereco(Text tfEndereco) {
-		this.tfEndereco = tfEndereco;
-	}
-
-	public Text getTfTelefone1() {
-		return tfTelefone1;
-	}
-
-	public void setTfTelefone1(Text tfTelefone1) {
-		this.tfTelefone1 = tfTelefone1;
-	}
-
-	public Text getTfTelefone2() {
-		return tfTelefone2;
-	}
-
-	public void setTfTelefone2(Text tfTelefone2) {
-		this.tfTelefone2 = tfTelefone2;
-	}
-
-	public Text getTfEmail() {
-		return tfEmail;
-	}
-
-	public void setTfEmail(Text tfEmail) {
-		this.tfEmail = tfEmail;
-	}
-
-	public Text getTfTipoCancer() {
-		return tfTipoCancer;
-	}
-
-	public void setTfTipoCancer(Text tfTipoCancer) {
-		this.tfTipoCancer = tfTipoCancer;
-	}
 	
-	public boolean getTfSituacao() {
-		if(tfSituacao.getSelectionIndex() == 0) {
-			return true;
-		}
-		return false;
-	}
-	
-	public void setTfSituacao(boolean situacao) {
-		if(situacao) {
-			tfSituacao.select(0);
-		} else {
-			tfSituacao.select(1);
+	/**
+	 * Launch the application.
+	 * @param args
+	 * @wbp.parser.entryPoint
+	 */
+	public static void main() {
+		try {
+			EditarAssistidoView window = new EditarAssistidoView();
+			window.open();
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 	
-	public boolean getTfStatus() {
-		if(tfStatus.getSelectionIndex() == 0) {
-			return true;
-		}
-		return false;
+	public void mensagemErro(Exception e){
+		 MessageBox messageBox = new MessageBox(shlEditarAssistido,SWT.ICON_ERROR | SWT.OK); 
+      messageBox.setText("Problemas ao editar dados do assistido");
+      messageBox.setMessage(e.getMessage()+"\nTente novamente");
+      messageBox.open();
 	}
 	
-	public void setTfStatus(boolean status) {
-		if(status) {
-			tfStatus.select(0);
-		} else {
-			tfStatus.select(1);
-		}
+	public void mensagemSucesso(PessoaFisica p){
+		MessageBox messageBox = new MessageBox(shlEditarAssistido,SWT.ICON_WORKING | SWT.OK); 
+		messageBox.setText("Operação realizada com sucesso!");
+		messageBox.setMessage("Os dados do assitido foram alterados com sucesso!");
+		messageBox.open();
 	}
-
 }

@@ -1,6 +1,5 @@
 package control;
 
-import java.sql.SQLException;
 import java.time.LocalDate;
 
 import org.eclipse.swt.events.SelectionEvent;
@@ -10,35 +9,39 @@ import exceptions.PessoaFisicaException;
 import exceptions.PessoaInvalidaException;
 import facade.AssistidoFachada;
 import model.Assistido;
-import view.CadastroAssistidoView;
+import view.EditarAssistidoView;
 
-public class CadastroAssistidoControle {
-	private CadastroAssistidoView view;
+public class EditarAssistidoControle {
+	private EditarAssistidoView view;
 	private AssistidoFachada fachada;
-
-	public CadastroAssistidoControle(CadastroAssistidoView view) throws ClassNotFoundException {
+	
+	public EditarAssistidoControle (EditarAssistidoView view){
 		setView(view);
 		setFachada(new AssistidoFachada());
 	}
-
-	public CadastroAssistidoView getView() {
+	
+	public EditarAssistidoView getView() {
 		return view;
 	}
 
-	public void setView(CadastroAssistidoView view) {
+
+	public void setView(EditarAssistidoView view) {
 		this.view = view;
 	}
+
 
 	public AssistidoFachada getFachada() {
 		return fachada;
 	}
 
+
 	public void setFachada(AssistidoFachada fachada) {
 		this.fachada = fachada;
 	}
 
-	public void getEvent(SelectionEvent event) throws PessoaInvalidaException, PessoaFisicaException, SQLException {
-		if (event.getSource().toString().equals("Button {Cadastrar}")) {
+	
+	public void getEvent(SelectionEvent event) {
+		if (event.getSource().toString().equals("Button {Salvar alterações}")){
 			Assistido assistido = new Assistido();
 			try {
 				assistido.setNome(view.getTfNome().getText());
@@ -55,9 +58,9 @@ public class CadastroAssistidoControle {
 				assistido.setAtivo(view.getTfStatus());
 				assistido.setSituacao(view.getTfSituacao());
 
-				if (fachada.cadastrarAssistido(assistido)) {
+				if (fachada.editarAssistido(assistido)) {
 					view.mensagemSucesso(assistido);
-					view.getShlCadastroAssistido().dispose();
+					view.getShlEditarAssistido().dispose();
 				}
 			} catch (PessoaInvalidaException e) {
 				view.mensagemErro(e);
@@ -66,7 +69,7 @@ public class CadastroAssistidoControle {
 			} catch (PessoaFisicaException e) {
 				view.mensagemErro(e);
 			}
-
 		}
 	}
+	
 }

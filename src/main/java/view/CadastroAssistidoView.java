@@ -158,6 +158,14 @@ public class CadastroAssistidoView {
 		}
 	}
 
+	public Shell getShlCadastroAssistido() {
+		return shlCadastroAssistido;
+	}
+
+	public void setShlCadastroAssistido(Shell shlCadastroAssistido) {
+		this.shlCadastroAssistido = shlCadastroAssistido;
+	}
+
 	/**
 	 * Launch the application.
 	 * @param args

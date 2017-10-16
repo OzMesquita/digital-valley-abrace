@@ -17,6 +17,7 @@ public class AplicacaoView {
 	/**
 	 * Launch the application.
 	 * @param args
+	 * @wbp.parser.entryPoint
 	 */
 	public static void main() {
 		try {
@@ -35,16 +36,6 @@ public class AplicacaoView {
 		Display display = Display.getDefault();
 		createContents();
 		Centralize.centralize(shlOngRussasTransformando);
-		
-		Button btnNewButton = new Button(shlOngRussasTransformando, SWT.NONE);
-		btnNewButton.addSelectionListener(new SelectionAdapter() {
-			@Override
-			public void widgetSelected(SelectionEvent arg0) {
-				EditarAssistidoView.main();
-			}
-		});
-		btnNewButton.setBounds(92, 222, 224, 68);
-		btnNewButton.setText("Editar Assistido");
 		
 		Button btnListarAssistidos = new Button(shlOngRussasTransformando, SWT.NONE);
 		btnListarAssistidos.addSelectionListener(new SelectionAdapter() {

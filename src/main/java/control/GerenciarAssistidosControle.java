@@ -89,7 +89,8 @@ public class GerenciarAssistidosControle {
 		}
 		if (event.getSource().toString().equals("Button {Editar Assistido}")) {
 			Assistido a = fachada.obterAssistido(listaExibidaNaTabela.get(view.getTable().getSelectionIndex()).getId());
-			EditarAssistidoView novaView = new EditarAssistidoView(a);
+			this.view.getShlGerenciarAssistidos().dispose();
+			new EditarAssistidoView(a).open();
 		}
 	}
 }

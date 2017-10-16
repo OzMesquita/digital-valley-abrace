@@ -135,6 +135,14 @@ public class GerenciarAssistidosView {
 	public void setBtnCancelar(Button btnCancelar) {
 		this.btnCancelar = btnCancelar;
 	}
+	
+	public Shell getShlGerenciarAssistidos() {
+		return shlGerenciarAssistidos;
+	}
+
+	public void setShlGerenciarAssistidos(Shell shlGerenciarAssistidos) {
+		this.shlGerenciarAssistidos = shlGerenciarAssistidos;
+	}
 
 	/**
 	 * Launch the application.
