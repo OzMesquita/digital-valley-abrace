@@ -57,40 +57,34 @@ public class AssistidoDAO extends ExecutaSQL {
         }
     }
 	
-	public void editarAssistido(Assistido assistido) throws SQLException {
-		String sql1 = "UPDATE ABRACE.PESSOA SET nome=?, endereco=?, telefone1=?, telefone2=?, email=?, dataCadastro=?, ativo=? WHERE idPessoa=?";
-		PreparedStatement stmt = getConexao().prepareStatement(sql1);
-
-		stmt.setString(1, assistido.getNome());
-		stmt.setString(2, assistido.getEndereco());
-		stmt.setString(3, assistido.getTelefone());
-		stmt.setString(4, assistido.getTelefone2());
-		stmt.setString(5, assistido.getEmail());
-		stmt.setDate(6, Date.valueOf(assistido.getDataCadastro()));
-		stmt.setBoolean(7, assistido.isAtivo());
-		stmt.setInt(8, assistido.getId());
-
-		stmt.executeUpdate();
-
-		String sql2 = "UPDATE ABRACE.PESSOA_FISICA SET cpf=?, rg=?, dataNascimento=? WHERE idPessoa=?";
-		stmt = getConexao().prepareStatement(sql2);
-
-		stmt.setString(1, assistido.getCpf());
-		stmt.setString(2, assistido.getRg());
-		stmt.setDate(3, Date.valueOf(assistido.getDataNasc()));
-		stmt.setInt(4, assistido.getId());
-		stmt.executeUpdate();
-
+	public boolean editarAssistido(Assistido assistido) {
 		String sql3 = "UPDATE ABRACE.ASSISTIDO SET tipoCancer=?, apelido=?, status=? WHERE idPessoa=?";
-		stmt = getConexao().prepareStatement(sql3);
-
-		stmt.setString(1, assistido.getTipoDeCancer());
-		stmt.setString(2, assistido.getApelido());
-		stmt.setBoolean(3, assistido.getSituacao());
-		stmt.setInt(4, assistido.getId());
-		stmt.executeUpdate();
-		stmt.close();
+		PreparedStatement stmt = null;
+		try {
+			stmt = getConexao().prepareStatement(sql3);
+			stmt.setString(1, assistido.getTipoDeCancer());
+			stmt.setString(2, assistido.getApelido());
+			stmt.setBoolean(3, assistido.getSituacao());
+			stmt.setInt(4, assistido.getId());
+			
+			stmt.executeUpdate();
+			stmt.close();
+			return true;
+		}catch(SQLException e) {
+			rollBack(e);
+		}finally {
+			try {
+				verificaConexao(stmt);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return false;
+		}
+		
+		
 	}
+	
 
 	public void excluirAssistido(Assistido assistido) throws SQLException {
 		String sql = "UPDATE ABRACE.PESSOA SET ativo=false WHERE idPessoa="+assistido.getId();

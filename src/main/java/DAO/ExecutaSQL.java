@@ -26,7 +26,7 @@ public class ExecutaSQL {
 		}
 	}
 	
-	public void verificaConexão(PreparedStatement stmt) throws SQLException {
+	public void verificaConexao(PreparedStatement stmt) throws SQLException {
 		if (stmt != null) {
 			stmt.close();
 		}
