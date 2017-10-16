@@ -92,5 +92,8 @@ public class GerenciarAssistidosControle {
 			this.view.getShlGerenciarAssistidos().dispose();
 			new EditarAssistidoView(a).open();
 		}
+		if(event.getSource().toString().equals("Button {Excluir Assistido}")) {
+			fachada.excluirAssistido(listaExibidaNaTabela.get(view.getTable().getSelectionIndex()).getId());
+		}
 	}
 }

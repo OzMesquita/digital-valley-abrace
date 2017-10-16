@@ -245,6 +245,12 @@ public class GerenciarAssistidosView {
 		btnEditar.setText("Editar Assistido");
 		
 		btnExcluir = new Button(shlGerenciarAssistidos, SWT.NONE);
+		btnExcluir.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent arg0) {
+				controle.getEvent(arg0);
+			}
+		});
 		btnExcluir.setEnabled(false);
 		btnExcluir.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
 		btnExcluir.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/lixeira.png").getAbsolutePath()));
