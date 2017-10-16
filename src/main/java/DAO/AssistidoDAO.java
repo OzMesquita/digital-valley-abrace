@@ -58,7 +58,7 @@ public class AssistidoDAO extends ExecutaSQL {
     }
 	
 	public boolean editarAssistido(Assistido assistido) {
-		String sql3 = "UPDATE ABRACE.ASSISTIDO SET tipoCancer=?, apelido=?, status=? WHERE idPessoa=?";
+		String sql3 = "UPDATE ABRACE.ASSISTIDO SET tipoCancer=?, apelido=?, status=? WHERE idPessoa=" + assistido.getId();
 		PreparedStatement stmt = null;
 		try {
 			stmt = getConexao().prepareStatement(sql3);
