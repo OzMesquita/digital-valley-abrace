@@ -102,7 +102,7 @@ public class LoginView {
 		lblSenha.setBounds(108, 323, 62, 30);
 		lblSenha.setText("Senha:");
 		
-		tfSenha = new Text(shlOngRussasTransformando, SWT.BORDER);
+		tfSenha = new Text(shlOngRussasTransformando, SWT.BORDER | SWT.PASSWORD);
 		tfSenha.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfSenha.setBounds(176, 320, 230, 36);
 		

@@ -29,38 +29,37 @@ public class AssistidoDAO extends ExecutaSQL {
 	}
 
 	public boolean cadastrarAssistido(Assistido assistido) throws PessoaInvalidaException, SQLException {
-		PreparedStatement stmt = null;
-		String sql = "insert into ABRACE.ASSISTIDO" + "(idpessoa, status, apelido, tipocancer) values (?, ?, ?, ?)";
-		try {
-			// prepared statement para inserção
-			getConexao().setAutoCommit(false);
-			stmt = getConexao().prepareStatement(sql);
-			
-			int id = new PessoaFisicaDAO(getConexao()).cadastrarPessoaFisica(assistido);
-			// seta os valores
-			stmt.setInt(1, id);
-			stmt.setBoolean(2, assistido.getSituacao());
-			stmt.setString(3, assistido.getApelido());
-			stmt.setString(4, assistido.getTipoDeCancer());
-			// executa
-			if (stmt.execute()) {
-				return true;
-			}
-			getConexao().commit();
-		} catch (SQLException e) {
-			if (getConexao() != null) {
-				getConexao().rollback();
-				throw new SQLException(e.getMessage() + "Transação está retornando ao estado anterior");
-			}
-			throw new RuntimeException(e);
-		} finally {
-			if (stmt != null) {
-				stmt.close();
-			}
-			getConexao().setAutoCommit(true);
-		}
-		return false;
-	}
+        PreparedStatement stmt = null;
+        String sql = "insert into ABRACE.ASSISTIDO" + "(idpessoa, status, apelido, tipocancer) values (?, ?, ?, ?)";
+        try {
+            // prepared statement para inserção
+            getConexao().setAutoCommit(false);
+            stmt = getConexao().prepareStatement(sql);
+            
+            int id = new PessoaFisicaDAO(getConexao()).cadastrarPessoaFisica(assistido);
+            // seta os valores
+            stmt.setInt(1, id);
+            stmt.setBoolean(2, assistido.getSituacao());
+            stmt.setString(3, assistido.getApelido());
+            stmt.setString(4, assistido.getTipoDeCancer());
+            // executa
+            stmt.execute();
+            getConexao().commit();
+            return true;
+        } catch (SQLException e) {
+            if (getConexao() != null) {
+                getConexao().rollback();
+                throw new SQLException(e.getMessage() + "Transação está retornando ao estado anterior");
+            }
+            throw new RuntimeException(e);
+        } finally {
+            if (stmt != null) {
+                stmt.close();
+            }
+            getConexao().setAutoCommit(true);
+            
+        }
+    }
 	
 	public void editarAssistido(Assistido assistido) throws SQLException {
 		String sql1 = "UPDATE ABRACE.PESSOA SET nome=?, endereco=?, telefone1=?, telefone2=?, email=?, dataCadastro=?, ativo=? WHERE idPessoa=?";
