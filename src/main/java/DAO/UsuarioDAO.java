@@ -33,7 +33,8 @@ public class UsuarioDAO extends ExecutaSQL{
 	        return null;
 	    }
 		
-		public boolean cadastrarUsuario (Usuario usuario) throws UsuarioInvalidoException, PessoaInvalidaException, SQLException {
+		public boolean cadastrarUsuario (Usuario usuario) {
+			boolean executou = true;
 			PreparedStatement stmt = null;
 			String sql = "INSERT INTO ABRACE.USUARIO(login, senha) values(?, ?)";
 			
@@ -44,23 +45,56 @@ public class UsuarioDAO extends ExecutaSQL{
 				stmt.setString(1, usuario.getUsuario());
 				stmt.setString(2, usuario.getSenha());
 				
-				if(stmt.execute()) {
-					return true;
-				}
+				stmt.execute(); 
 				getConexao().commit();
 			}catch(SQLException e) {
-				if (getConexao() != null) {
-					System.out.println(e.getMessage() + " Transação está retornando ao estado anterior");
-					getConexao().rollback();
+				try {
+					rollBack(e);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
 				}
-				throw new RuntimeException(e);
+				executou = false;
 			}finally {
-				if (stmt != null) {
-					stmt.close();
+				try {
+					verificaConexao(stmt);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
-				getConexao().setAutoCommit(true);
 			}
-			return false;
+			return executou;
+		}
+		
+		public boolean editarUsuario(Usuario usuario) {
+			boolean executou = true;
+			String sql = "UPDATE ABRACE.USUARIO SET login=?, senha=? WHERE idPessoa="+usuario.getId();
+			PreparedStatement stmt = null;
+			
+			try {
+				stmt = getConexao().prepareStatement(sql);
+				
+				stmt.setString(1, usuario.getUsuario());
+				stmt.setString(2, usuario.getSenha());
+				
+				stmt.executeUpdate();
+			}catch(SQLException e) {
+				try {
+					rollBack(e);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				executou = false;
+			}finally {
+				try {
+					verificaConexao(stmt);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			return executou;
 		}
 		
 		public void excluirUsuario(Usuario usuario) throws SQLException{
