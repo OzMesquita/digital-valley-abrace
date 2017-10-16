@@ -15,7 +15,7 @@ public class UsuarioDAO extends ExecutaSQL{
 			super(connection);
 		}
 		
-		public Usuario getFuncionario(String login, String senha) throws UsuarioInvalidoException, PessoaInvalidaException {
+		public Usuario getUsuario(String login, String senha) throws UsuarioInvalidoException, PessoaInvalidaException {
 	        try {
 	        	String sql = "SELECT idPessoa FROM ABRACE.Usuario WHERE login=? AND senha=?";
 	        	PreparedStatement ps = getConexao().prepareStatement(sql);

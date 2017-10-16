@@ -13,7 +13,7 @@ public class LoginFachada {
 	public Usuario loga(String login, String senha) throws UsuarioInvalidoException, PessoaInvalidaException, SQLException {
 		Usuario func = null;
 		UsuarioDAO dao = new UsuarioDAO(new ConnectionFactory().getConnection());
-		func = dao.getFuncionario(login, senha);
+		func = dao.getUsuario(login, senha);
 		dao.getConexao().close();
 		
 		return func;
