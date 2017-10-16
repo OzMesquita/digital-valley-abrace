@@ -1,5 +1,6 @@
 package control;
 
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import org.eclipse.swt.SWT;
@@ -58,12 +59,13 @@ public class GerenciarAssistidosControle {
 	
 	public void preencherTabelaAssistidos(ArrayList<Assistido> assistidos) {
 		excluirLinhasDaTabela();
+		DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		listaExibidaNaTabela = assistidos;
 		for(int i = 0; i < assistidos.size(); i++) {
 			TableItem item = new TableItem(view.getTable(), SWT.NONE);
 			item.setText(0, Integer.toString(assistidos.get(i).getId()));
 			item.setText(1, assistidos.get(i).getNome());
-			item.setText(2, assistidos.get(i).getDataNasc().toString());
+			item.setText(2, assistidos.get(i).getDataNasc().format(formatador));
 			item.setText(3, assistidos.get(i).getCpf());
 		}	
 	}

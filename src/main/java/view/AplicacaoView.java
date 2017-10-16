@@ -18,7 +18,7 @@ public class AplicacaoView {
 	 * Launch the application.
 	 * @param args
 	 */
-	public static void main(String[] args) {
+	public static void main() {
 		try {
 			AplicacaoView window = new AplicacaoView();
 			

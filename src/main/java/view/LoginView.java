@@ -46,6 +46,10 @@ public class LoginView {
 		this.tfSenha = tfSenha;
 	}
 
+	public Shell getShlOngRussasTransformando() {
+		return shlOngRussasTransformando;
+		
+	}
 	/**
 	 * Launch the application.
 	 * @param args
@@ -137,4 +141,6 @@ public class LoginView {
          messageBox.setMessage(e.getMessage()+".\nTente novamente");
          messageBox.open();
 	}
+	
+	
 }

@@ -8,6 +8,7 @@ import exceptions.UsuarioInvalidoException;
 import exceptions.UsuarioNaoEncontradoException;
 import facade.LoginFachada;
 import model.Usuario;
+import view.AplicacaoView;
 import view.LoginView;
 
 public class LoginControle {
@@ -21,13 +22,16 @@ public class LoginControle {
 				if(usuario == null) {
 					throw new UsuarioNaoEncontradoException();
 				}else {
-					
+					this.view.getShlOngRussasTransformando().dispose();
+					new AplicacaoView().main();;
 				}
 			} catch (UsuarioInvalidoException e) {
 				view.mensagemErro(e);
 			} catch (PessoaInvalidaException e) {
 				view.mensagemErro(e);
 			}catch(UsuarioNaoEncontradoException e) {
+				view.mensagemErro(e);
+			} catch (SQLException e) {
 				view.mensagemErro(e);
 			}
 		}else {

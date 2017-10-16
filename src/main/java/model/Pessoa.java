@@ -25,6 +25,7 @@ public class Pessoa {
     	setEndereco(endereco);
     	setDataCadastro(dataCadastro);
     	setEmail(email);
+    	setAtivo(ativo);
      }
     
 	public Pessoa(int id, String nome, String endereco,  LocalDate dataCadastro, String telefone, String telefone2, String email, boolean ativo) throws PessoaInvalidaException{

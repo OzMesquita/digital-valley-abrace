@@ -58,4 +58,16 @@ public class Assistido extends PessoaFisica {
         this.situacao = status;
     }
 
+	@Override
+	public String toString() {
+		return "Assistido [apelido=" + apelido + ", tipoDeCancer=" + tipoDeCancer + ", situacao=" + situacao
+				+ ", getCpf()=" + getCpf() + ", getRg()=" + getRg() + ", getDataNasc()=" + getDataNasc() + ", getId()="
+				+ getId() + ", getNome()=" + getNome() + ", getEndereco()=" + getEndereco() + ", getDataCadastro()="
+				+ getDataCadastro() + ", getTelefone()=" + getTelefone() + ", getTelefone2()=" + getTelefone2()
+				+ ", getEmail()=" + getEmail() + ", isAtivo()=" + isAtivo() + ", getClass()=" + getClass()
+				+ ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
+	}
+    
+    
+
 }
