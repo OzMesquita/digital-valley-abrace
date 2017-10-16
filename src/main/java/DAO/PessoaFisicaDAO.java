@@ -41,7 +41,7 @@ public class PessoaFisicaDAO extends ExecutaSQL {
 		} catch (SQLException e) {
 			rollBack(e);
 		} finally {
-			verificaConexão(stmt);
+			verificaConexao(stmt);
 		}
 		return id;
 	}
@@ -61,7 +61,7 @@ public class PessoaFisicaDAO extends ExecutaSQL {
 		} catch (SQLException e) {
 			rollBack(e);
 		} finally {
-			verificaConexão(stmt);
+			verificaConexao(stmt);
 		}
 	}
 
