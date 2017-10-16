@@ -19,17 +19,25 @@ public class ExecutaSQL {
 			 this.connection = connection;
 	 }
 	 
-	public void rollBack(SQLException e) throws SQLException {
+	public void rollBack(SQLException e) {
 		if (getConexao() != null) {
-			getConexao().rollback();
-			throw new SQLException(e.getMessage() + " Transação está retornando ao estado anterior");
+			try {
+				getConexao().rollback();
+				System.out.println(e.getMessage() + " Transação está retornando ao estado anterior");
+			} catch (SQLException e1) {
+				System.out.println(e1.getMessage());
+			}
 		}
 	}
 	
-	public void verificaConexao(PreparedStatement stmt) throws SQLException {
-		if (stmt != null) {
-			stmt.close();
+	public void verificaConexao(PreparedStatement stmt) {
+		try {
+			if (stmt != null) {
+				stmt.close();
 		}
 		getConexao().setAutoCommit(true);
+		} catch (SQLException e1) {
+			System.out.println(e1.getMessage());
+		}
 	}
 }
