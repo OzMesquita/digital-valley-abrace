@@ -41,6 +41,10 @@ public class AssistidoFachada {
 		return assistido.editarAssistido(a);
 	}
 	
+	public boolean excluirAssistido(int id) {
+		return false;
+	}
+	
 	
 	
 }
