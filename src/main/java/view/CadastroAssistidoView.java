@@ -342,6 +342,7 @@ public class CadastroAssistidoView {
 			public void widgetSelected(SelectionEvent arg0) {
 				try {
 					controle.getEvent(arg0);
+					shlCadastroAssistido.dispose();
 				} catch (PessoaInvalidaException e1) {
 					mensagemErro(e1);
 				} catch (PessoaFisicaException e) {
