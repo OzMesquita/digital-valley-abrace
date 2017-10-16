@@ -31,6 +31,5 @@ public class ExecutaSQL {
 			stmt.close();
 		}
 		getConexao().setAutoCommit(true);
-
 	}
 }
