@@ -8,6 +8,9 @@ import java.io.File;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.wb.swt.SWTResourceManager;
+
+import model.Assistido;
+
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.DateTime;
 import org.eclipse.swt.widgets.Combo;
@@ -18,6 +21,7 @@ import org.eclipse.swt.events.SelectionEvent;
 public class EditarAssistidoView {
 
 	protected Shell shlEditarAssistido;
+	
 	private Text tfNome;
 	private Text tfApelido;
 	private Text tfCPF;
@@ -29,6 +33,15 @@ public class EditarAssistidoView {
 	private Text tfTipoCancer;
 	private Combo tfStatus;
 	private Combo tfSituacao;
+	private Assistido a;
+	public EditarAssistidoView(Assistido a) {
+		if(a != null) {
+			this.a = a;
+		}
+	}
+	
+	public EditarAssistidoView() {
+	}
 
 	/**
 	 * Launch the application.

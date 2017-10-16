@@ -19,8 +19,16 @@ public class AssistidoFachada {
 		return false;
 	}
 	
-	public ArrayList<Assistido> obterAssistido(int id) {
-		return null;
+	public Assistido obterAssistido(int id) {
+		AssistidoDAO dao = new AssistidoDAO(new ConnectionFactory().getConnection());
+		Assistido assistido = dao.getAssistido(id);
+		try {
+			dao.getConexao().close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return assistido;
 	}
 	
 	public ArrayList<Assistido> listarTodosAssistidos(){

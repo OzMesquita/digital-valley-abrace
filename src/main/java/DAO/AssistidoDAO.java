@@ -21,10 +21,6 @@ public class AssistidoDAO extends ExecutaSQL {
 	}
 
 	public boolean inserirAssistido(Assistido assistido) throws PessoaInvalidaException, SQLException {
-		PessoaDAO pessoa = new PessoaDAO(this.getConexao());
-		PessoaFisicaDAO pessoafisica = new PessoaFisicaDAO(this.getConexao());
-		pessoa.cadastrarPessoa(assistido);
-		pessoafisica.cadastrarPessoaFisica(assistido);
 		return cadastrarAssistido(assistido);
 	}
 
@@ -102,6 +98,46 @@ public class AssistidoDAO extends ExecutaSQL {
 		stmt.executeUpdate();
 		
 	}
+	
+	public Assistido getAssistido(int id) {
+		String informacaoPessoa = "ABRACE.Pessoa.ativo, ABRACE.Pessoa.nome, ABRACE.Pessoa.endereco, ABRACE.Pessoa.telefone1,"
+    			                + "ABRACE.Pessoa.telefone2, ABRACE.Pessoa.email, ABRACE.Pessoa.dataCadastro,";
+    	String informacaoPessoaFisica = " ABRACE.Pessoa_Fisica.cpf, ABRACE.Pessoa_Fisica.rg, ABRACE.Pessoa_Fisica.dataNascimento,";
+    	String sql = "SELECT "+informacaoPessoa+informacaoPessoaFisica+" ABRACE.Assistido.tipoCancer, ABRACE.Assistido.apelido, ABRACE.Assistido.status"
+    			   +" FROM ABRACE.Assistido, ABRACE.Pessoa, ABRACE.Pessoa_Fisica"
+    			   +" WHERE ABRACE.Pessoa.idPessoa = ? AND ABRACE.Pessoa.idPessoa = ABRACE.Pessoa_Fisica.idPessoa "
+    			   +" AND ABRACE.Pessoa_Fisica.idPessoa = ABRACE.Assistido.idPessoa";
+    	try {
+    		PreparedStatement ps = getConexao().prepareStatement(sql);
+    		ps.setInt(1, id);
+    		ResultSet rs = ps.executeQuery();
+    		if(rs.next()) {
+    			boolean ativo = rs.getBoolean(1);
+				String nome = rs.getString(2);
+				String endereco = rs.getString(3);
+				String telefone = rs.getString(4);
+				String telefone2 = rs.getString(5);
+				String email = rs.getString(6);
+				LocalDate dataCadastro = rs.getDate(7).toLocalDate();
+				String cpf = rs.getString(8);
+				String rg = rs.getString(9);
+				LocalDate dataNasc = rs.getDate(10).toLocalDate();
+				String tipoDeCancer = rs.getString(11);
+				String apelido = rs.getString(12);
+				boolean situacao = rs.getBoolean(13);
+				return new Assistido(id, nome, endereco, dataCadastro, telefone, telefone2, email, ativo, cpf, rg, dataNasc, apelido, tipoDeCancer, situacao);
+    		}
+    	}catch(SQLException e){
+    		throw new RuntimeException(e.getMessage());
+    	} catch (PessoaInvalidaException e) {
+			e.printStackTrace();
+		} catch (PessoaFisicaException e) {
+			e.printStackTrace();
+		} catch (AssistidoInvalidoException e) {
+			e.printStackTrace();
+		}
+    	return null;
+    }
 	
 	public ArrayList<Assistido> listaAssistido() {
     	ArrayList<Assistido> assistidos = new ArrayList<Assistido>();

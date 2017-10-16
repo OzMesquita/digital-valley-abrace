@@ -9,6 +9,7 @@ import org.eclipse.swt.widgets.TableItem;
 
 import facade.AssistidoFachada;
 import model.Assistido;
+import view.EditarAssistidoView;
 import view.GerenciarAssistidosView;
 
 public class GerenciarAssistidosControle {
@@ -87,8 +88,8 @@ public class GerenciarAssistidosControle {
 			preencherTabelaAssistidos(pesquisarAssistidos(listaTodosAssistidos, view.getTfPesquisa().getText()));
 		}
 		if (event.getSource().toString().equals("Button {Editar Assistido}")) {
-			fachada.obterAssistido(listaExibidaNaTabela.get(view.getTable().getSelectionIndex()).getId());
-			//Falta referenciar a tela para Editar
+			Assistido a = fachada.obterAssistido(listaExibidaNaTabela.get(view.getTable().getSelectionIndex()).getId());
+			EditarAssistidoView novaView = new EditarAssistidoView(a);
 		}
 	}
 }
