@@ -48,20 +48,10 @@ public class UsuarioDAO extends ExecutaSQL{
 				stmt.execute(); 
 				getConexao().commit();
 			}catch(SQLException e) {
-				try {
-					rollBack(e);
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+				rollBack(e);
 				executou = false;
 			}finally {
-				try {
-					verificaConexao(stmt);
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				verificaConexao(stmt);
 			}
 			return executou;
 		}
@@ -79,20 +69,10 @@ public class UsuarioDAO extends ExecutaSQL{
 				
 				stmt.executeUpdate();
 			}catch(SQLException e) {
-				try {
-					rollBack(e);
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+				rollBack(e);
 				executou = false;
 			}finally {
-				try {
-					verificaConexao(stmt);
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				verificaConexao(stmt);
 			}
 			return executou;
 		}
