@@ -38,7 +38,7 @@ public class Instalacao {
 				   //-----------------------------------//
 				   "CREATE TABLE ABRACE.Pessoa_Juridica (" + 
 				   " idPessoa INT NOT NULL," + 
-				   " cnpj VARCHAR(16) NOT NULL," +
+				   " cnpj VARCHAR(32) NOT NULL," +
 				   " razaoSocial VARCHAR(128)," +
 				   " fantasia VARCHAR(128)," + 
 				   " PRIMARY KEY (idPessoa)," + 
