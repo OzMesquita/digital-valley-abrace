@@ -50,14 +50,14 @@ public class PessoaJuridicaDAO extends ExecutaSQL{
 
 	public boolean editarDoadorJuridico(PessoaJuridica pessoaJ) throws SQLException {
 		boolean executou = true;
-		String sql = "UPDATE ABRACE.PESSOA_JURIDICA SET cnpj=? fantasia=? razaoSocial=? WHERE idPessoa = ?";
+		String sql = "UPDATE ABRACE.PESSOA_JURIDICA SET FANTASIA = ?, RAZAOSOCIAL = ?, CNPJ = ? WHERE IDPESSOA = ? ";
 		PreparedStatement stmt = null;
 		try {
 
 			stmt = getConexao().prepareStatement(sql);
-			stmt.setDate(1, Date.valueOf(pessoaJ.getCnpj()));
-			stmt.setString(2, pessoaJ.getNomeFantasia());
-			stmt.setString(3, pessoaJ.getRazaoSocial());
+			stmt.setString(1, pessoaJ.getNomeFantasia());
+			stmt.setString(2, pessoaJ.getRazaoSocial());
+			stmt.setString(3, pessoaJ.getCnpj());
 			stmt.setInt(4, pessoaJ.getId());
 			
 			stmt.executeUpdate();
