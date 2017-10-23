@@ -18,6 +18,23 @@ public class PessoaFisicaDAO extends ExecutaSQL {
 	public PessoaFisicaDAO(Connection connection) {
 		super(connection);
 	}
+	
+	public boolean inserirPessoaFisica(PessoaFisica pessoaFisica) {
+		try {
+			getConexao().setAutoCommit(false);
+			PessoaDAO pessoa = new PessoaDAO(getConexao());
+			pessoa.cadastrarPessoa(pessoaFisica);
+			cadastrarPessoaFisica(pessoaFisica);
+			getConexao().commit();
+		}catch(SQLException e) {
+			rollBack(e);
+			return false;
+		}catch(PessoaInvalidaException e1) {
+			System.out.println(e1.getMessage());
+			return false;
+		}
+		return true;
+	}
 
 	public void cadastrarPessoaFisica(PessoaFisica pessoaFisica) throws SQLException, PessoaInvalidaException  {
 		PreparedStatement stmt = null;
