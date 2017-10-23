@@ -51,4 +51,9 @@ public class Usuario extends PessoaFisica{
 		this.senha = senha;
 	}
 
+	@Override
+	public String toString() {
+		return "Usuario [usuario=" + usuario + ", senha=" + senha + ", toString()=" + super.toString() + "]";
+	}
+	
 }

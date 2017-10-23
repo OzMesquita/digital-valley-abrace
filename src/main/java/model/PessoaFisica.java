@@ -72,4 +72,11 @@ public class PessoaFisica extends Pessoa {
 		}
 		this.dataNasc = dataNasc;
 	}
+
+	@Override
+	public String toString() {
+		return "PessoaFisica [cpf=" + cpf + ", rg=" + rg + ", dataNasc=" + dataNasc + ", toString()=" + super.toString()
+				+ "]";
+	}
+	
 }

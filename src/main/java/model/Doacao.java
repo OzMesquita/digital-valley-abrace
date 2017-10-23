@@ -46,4 +46,9 @@ public class Doacao {
 		}
 		this.doador = doador;
 	}
+	@Override
+	public String toString() {
+		return "Doacao [id=" + id + ", valor=" + valor + ", data=" + data + ", doador=" + doador + "]";
+	}
+	
 }

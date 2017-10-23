@@ -63,4 +63,11 @@ public class PessoaJuridica extends Pessoa{
 	public void setNomeFantasia(String nomeFantasia) {
 		this.nomeFantasia = nomeFantasia;
 	}
+
+	@Override
+	public String toString() {
+		return "PessoaJuridica [cnpj=" + cnpj + ", razaoSocial=" + razaoSocial + ", nomeFantasia=" + nomeFantasia
+				+ ", toString()=" + super.toString() + "]";
+	}
+	
 }

@@ -108,4 +108,12 @@ public class Pessoa {
 	public void setAtivo(boolean ativo) {
 		this.ativo = ativo;
 	}
+
+	@Override
+	public String toString() {
+		return "Pessoa [id=" + id + ", nome=" + nome + ", endereco=" + endereco + ", telefone=" + telefone
+				+ ", telefone2=" + telefone2 + ", dataCadastro=" + dataCadastro + ", email=" + email + ", ativo="
+				+ ativo + "]";
+	}
+	
 }
