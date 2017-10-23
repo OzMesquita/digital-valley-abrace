@@ -55,8 +55,7 @@ public class AssistidoDAO extends ExecutaSQL {
 
 	public boolean editarAssistido(Assistido assistido) {
 		boolean executou = true;
-		String sql3 = "UPDATE ABRACE.ASSISTIDO SET tipoCancer=?, apelido=?, status=? WHERE idPessoa="
-				+ assistido.getId();
+		String sql3 = "UPDATE ABRACE.ASSISTIDO SET tipoCancer=?, apelido=?, status=? WHERE idPessoa = ?";
 		PreparedStatement stmt = null;
 		try {
 			stmt = getConexao().prepareStatement(sql3);
@@ -64,24 +63,30 @@ public class AssistidoDAO extends ExecutaSQL {
 			stmt.setString(2, assistido.getApelido());
 			stmt.setBoolean(3, assistido.getSituacao());
 			stmt.setInt(4, assistido.getId());
-
+			
 			stmt.executeUpdate();
-
+			
 			return true;
-		} catch (SQLException e) {
+		}catch(SQLException e) {
 			rollBack(e);
+			
 			executou = false;
-		} finally {
+		}finally {
 			verificaConexao(stmt);
 		}
 		return executou;
 	}
-
-	public void excluirAssistido(Assistido assistido) throws SQLException {
-		String sql = "UPDATE ABRACE.PESSOA SET ativo=false WHERE idPessoa=" + assistido.getId();
-		PreparedStatement stmt = getConexao().prepareStatement(sql);
-		stmt.executeUpdate();
-
+	public boolean excluirAssistido(Assistido assistido) {
+		try {
+			String sql = "UPDATE ABRACE.PESSOA SET ativo=false WHERE idPessoa="+assistido.getId();
+			PreparedStatement stmt;
+			stmt = getConexao().prepareStatement(sql);
+			stmt.executeUpdate();
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 	public Assistido getAssistido(int id) {

@@ -44,6 +44,7 @@ public class EditarAssistidoControle {
 		if (event.getSource().toString().equals("Button {Salvar alterações}")){
 			Assistido assistido = new Assistido();
 			try {
+				assistido.setId(view.getAssistido().getId());
 				assistido.setNome(view.getTfNome().getText());
 				assistido.setApelido(view.getTfApelido().getText());
 				assistido.setCpf(view.getTfCPF().getText());
@@ -57,7 +58,6 @@ public class EditarAssistidoControle {
 				assistido.setTipoDeCancer(view.getTfTipoCancer().getText());
 				assistido.setAtivo(view.getTfStatus());
 				assistido.setSituacao(view.getTfSituacao());
-
 				if (fachada.editarAssistido(assistido)) {
 					view.mensagemSucesso(assistido);
 					view.getShlEditarAssistido().dispose();

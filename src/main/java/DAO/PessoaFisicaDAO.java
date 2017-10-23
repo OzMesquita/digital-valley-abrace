@@ -32,24 +32,23 @@ public class PessoaFisicaDAO extends ExecutaSQL {
 			stmt.execute();
 	}
 
-	public void editarPessoaFisca(PessoaFisica pessoaFisica) throws SQLException {
-		String sql = "UPDATE ABRACE.PESSOA SET dataNascimento=? rg=? cpf=? WHERE idPessoa=" + pessoaFisica.getId();
+	public void editarPessoaFisica(PessoaFisica pessoaFisica) throws SQLException {
+		String sql = "UPDATE ABRACE.PESSOA_FISICA SET dataNascimento=?, rg=?, cpf=? WHERE idPessoa = ?";
 		PreparedStatement stmt = getConexao().prepareStatement(sql);
 		try {
-			new PessoaDAO(getConexao()).editarPessoa(pessoaFisica);
-
 			stmt.setDate(1, Date.valueOf(pessoaFisica.getDataNasc()));
 			stmt.setString(2, pessoaFisica.getRg());
 			stmt.setString(3, pessoaFisica.getCpf());
+			stmt.setInt(4, pessoaFisica.getId());
 
 			stmt.execute();
-			stmt.close();
 		} catch (SQLException e) {
 			rollBack(e);
 		} finally {
 			verificaConexao(stmt);
 		}
 	}
+
 
 	public void excluirPessoaFisica(PessoaFisica pessoaFisica) throws SQLException {
 		String sql = "UPDATE ABRACE.PESSOA SET ativo=false WHERE idPessoa=" + pessoaFisica.getId();

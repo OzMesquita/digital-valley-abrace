@@ -177,6 +177,7 @@ public Text getTfNome() {
 	public EditarAssistidoView(Assistido a) {
         if(a != null) {
             this.setAssistido(a);
+           
         }
         this.setControle(new EditarAssistidoControle(this));
     }

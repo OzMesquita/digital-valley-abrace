@@ -23,33 +23,34 @@ public class PessoaJuridicaDAO extends ExecutaSQL{
 	}
 	
 	public void cadastrarDoadorJuridico(PessoaJuridica pessoaJ) throws SQLException, PessoaInvalidaException  {
-		PreparedStatement stmt = null;
-		String sql = "INSERT INTO ABRACE.PESSOA_JURIDICA (cnpj, fantasia, razaoSocial, idPessoa)" + "VALUES(?, ?, ?, ?)";
+        PreparedStatement stmt = null;
+        String sql = "INSERT INTO ABRACE.PESSOA_JURIDICA (cnpj, fantasia, razaoSocial, idPessoa)" + "VALUES(?, ?, ?, ?)";
 
-		try {
-			getConexao().setAutoCommit(false);
-			stmt = getConexao().prepareStatement(sql);
+        try {
+            getConexao().setAutoCommit(false);
+            stmt = getConexao().prepareStatement(sql);
 
-			int id = new PessoaDAO(getConexao()).cadastrarPessoa(pessoaJ);
+            new PessoaDAO(getConexao()).cadastrarPessoa(pessoaJ);
 
-			stmt.setString(1, pessoaJ.getCnpj());
-			stmt.setString(2, pessoaJ.getNomeFantasia());
-			stmt.setString(3, pessoaJ.getRazaoSocial());
-			stmt.setInt(4, id);
+            stmt.setString(1, pessoaJ.getCnpj());
+            stmt.setString(2, pessoaJ.getNomeFantasia());
+            stmt.setString(3, pessoaJ.getRazaoSocial());
+            stmt.setInt(4, pessoaJ.getId());
 
-			stmt.execute();
-			getConexao().commit();
+            stmt.execute();
+            getConexao().commit();
 
-		} catch (SQLException e) {
-			rollBack(e);
-		} finally {
-			verificaConexao(stmt);
-		}
+        } catch (SQLException e) {
+            rollBack(e);
+        } finally {
+            verificaConexao(stmt);
+        }
 
-	}
+    }
+
 
 	public void editarDoadorJuridico(PessoaJuridica pessoaJ) throws SQLException {
-		String sql = "UPDATE ABRACE.PESSOA_JURIDICA SET cnpj=? fantasia=? razaoSocial=? WHERE idPessoa=" + pessoaJ.getId();
+		String sql = "UPDATE ABRACE.PESSOA_JURIDICA SET cnpj=? fantasia=? razaoSocial=? WHERE idPessoa = ?";
 		PreparedStatement stmt = getConexao().prepareStatement(sql);
 		try {
 			new PessoaDAO(getConexao()).editarPessoa(pessoaJ);
@@ -57,7 +58,7 @@ public class PessoaJuridicaDAO extends ExecutaSQL{
 			stmt.setDate(1, Date.valueOf(pessoaJ.getCnpj()));
 			stmt.setString(2, pessoaJ.getNomeFantasia());
 			stmt.setString(3, pessoaJ.getRazaoSocial());
-
+			stmt.setInt(4, pessoaJ.getId());
 			stmt.execute();
 			stmt.close();
 		} catch (SQLException e) {

@@ -5,6 +5,8 @@ import java.util.ArrayList;
 
 import DAO.AssistidoDAO;
 import DAO.ConnectionFactory;
+import DAO.PessoaDAO;
+import DAO.PessoaFisicaDAO;
 import exceptions.PessoaInvalidaException;
 import model.Assistido;
 
@@ -40,11 +42,29 @@ public class AssistidoFachada {
 	
 	public boolean editarAssistido(Assistido a) {
 		AssistidoDAO assistido = new AssistidoDAO(new ConnectionFactory().getConnection());
-		return assistido.editarAssistido(a);
+		PessoaFisicaDAO fisicaDao = new PessoaFisicaDAO(assistido.getConexao());
+		PessoaDAO pessoa = new PessoaDAO(assistido.getConexao());
+		boolean resultado= false;
+		try {
+			pessoa.editarPessoa(a);
+			fisicaDao.editarPessoaFisica(a);
+			resultado = assistido.editarAssistido(a);
+			assistido.getConexao().close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}return resultado;
 	}
 	
 	public boolean excluirAssistido(int id) {
-		return false;
+		AssistidoDAO dao = new AssistidoDAO(new ConnectionFactory().getConnection());
+		boolean resultado = dao.excluirAssistido(dao.getAssistido(id));
+		try {
+			dao.getConexao().close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return resultado;
 	}
 	
 	

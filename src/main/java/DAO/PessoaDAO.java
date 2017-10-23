@@ -70,18 +70,16 @@ public class PessoaDAO extends ExecutaSQL{
 
 	@SuppressWarnings("finally")
 	public boolean editarPessoa(Pessoa pessoa) throws SQLException {
-		String sql= "UPDATE ABRACE.PESSOA SET nome=?, endereco=?, telefone1=?, telefone2=?, email=?, dataCadastro=?, ativo=? WHERE idPessoa="+pessoa.getId();
-		PreparedStatement stmt = getConexao().prepareStatement(sql);
-		
+		String sql= "UPDATE ABRACE.PESSOA SET nome=?, endereco=?, telefone1=?, telefone2=?, email=?, ativo=? WHERE idPessoa=?";
+		PreparedStatement stmt = getConexao().prepareStatement(sql);		
 		try {
-
 			stmt.setString(1, pessoa.getNome());
 			stmt.setString(2, pessoa.getEndereco());
 			stmt.setString(3, pessoa.getTelefone());
 			stmt.setString(4, pessoa.getTelefone2());
 			stmt.setString(5, pessoa.getEmail());
-			stmt.setDate(6, Date.valueOf(pessoa.getDataCadastro()));
-			stmt.setBoolean(7, pessoa.isAtivo());
+			stmt.setBoolean(6, pessoa.isAtivo());
+			stmt.setInt(7, pessoa.getId());
 
 			stmt.executeUpdate();
 
@@ -103,11 +101,6 @@ public class PessoaDAO extends ExecutaSQL{
 	    stmt.execute();
 	    stmt.close();
 	}
-	public static void main(String[] args) throws PessoaInvalidaException {
-		ArrayList<Pessoa> pessoas = new PessoaDAO(new ConnectionFactory().getConnection()).listarPessoas(true);
-		for (int i=0;i<pessoas.size();i++) {
-			System.out.println(pessoas.get(i).getId());
-		}
-	}
+	
 	   
 }
