@@ -36,27 +36,33 @@ public class UsuarioDAO extends ExecutaSQL{
 	        return null;
 	    }
 		
-		public boolean cadastrarUsuario (Usuario usuario) {
-			boolean executou = true;
-			PreparedStatement stmt = null;
-			String sql = "INSERT INTO ABRACE.USUARIO(login, senha) values(?, ?)";
-			
+		public boolean inserirUsuario(Usuario usuario) throws PessoaInvalidaException {
 			try {
 				getConexao().setAutoCommit(false);
+				PessoaDAO pessoa = new PessoaDAO(getConexao());
+				PessoaFisicaDAO pessoaFisica = new PessoaFisicaDAO(getConexao());
+				pessoa.cadastrarPessoa(usuario);
+				pessoaFisica.cadastrarPessoaFisica(usuario);
+				cadastrarUsuario(usuario);
+				getConexao().commit();
+			} catch (SQLException e) {
+				rollBack(e);
+				return false;
+			}
+			return true;
+		}
+
+	public void cadastrarUsuario(Usuario usuario) throws SQLException {
+			PreparedStatement stmt = null;
+			String sql = "INSERT INTO ABRACE.USUARIO(login, senha, idPessoa) values(?, ?, ?)";
 				stmt = getConexao().prepareStatement(sql);
-				
+
 				stmt.setString(1, usuario.getUsuario());
 				stmt.setString(2, usuario.getSenha());
+				stmt.setInt(3, usuario.getId());
 				
-				stmt.execute(); 
-				getConexao().commit();
-			}catch(SQLException e) {
-				rollBack(e);
-				executou = false;
-			}finally {
-				verificaConexao(stmt);
-			}
-			return executou;
+				stmt.execute();
+			
 		}
 		
 		public boolean editarUsuario(Usuario usuario) {

@@ -30,6 +30,14 @@ public class PessoaFisica extends Pessoa {
 		setRg(rg);
 		setDataNasc(dataNasc);
 	}
+	public PessoaFisica(String nome, String endereco, LocalDate dataCadastro, String telefone, String telefone2,
+			String email, boolean ativo, String cpf, String rg, LocalDate dataNasc)
+			throws PessoaInvalidaException, PessoaFisicaException {
+		super(nome, endereco, telefone2, telefone, dataCadastro, email, ativo);
+		setCpf(cpf);
+		setRg(rg);
+		setDataNasc(dataNasc);
+	}
 
 	public String getCpf() {
 		return cpf;
