@@ -19,31 +19,17 @@ public class PessoaFisicaDAO extends ExecutaSQL {
 		super(connection);
 	}
 
-	public int cadastrarPessoaFisica(PessoaFisica pessoaFisica) throws SQLException, PessoaInvalidaException  {
+	public void cadastrarPessoaFisica(PessoaFisica pessoaFisica) throws SQLException, PessoaInvalidaException  {
 		PreparedStatement stmt = null;
 		String sql = "INSERT INTO ABRACE.PESSOA_FISICA (dataNascimento, rg, cpf, idPessoa) VALUES (?, ?, ?, ?)";
-		int id=0;
-		try {
-
-			getConexao().setAutoCommit(false);
 			stmt = getConexao().prepareStatement(sql);
-
-			id = new PessoaDAO(getConexao()).cadastrarPessoa(pessoaFisica);
 
 			stmt.setDate(1, Date.valueOf(pessoaFisica.getDataNasc()));
 			stmt.setString(2, pessoaFisica.getRg());
 			stmt.setString(3, pessoaFisica.getCpf());
-			stmt.setInt(4, id);
+			stmt.setInt(4, pessoaFisica.getId());
 
 			stmt.execute();
-			getConexao().commit();
-		
-		} catch (SQLException e) {
-			rollBack(e);
-		} finally {
-			verificaConexao(stmt);
-		}
-		return id;
 	}
 
 	public void editarPessoaFisca(PessoaFisica pessoaFisica) throws SQLException {

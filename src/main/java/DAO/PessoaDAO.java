@@ -20,13 +20,9 @@ public class PessoaDAO extends ExecutaSQL{
 		super(connection);
 	}
 	
-	public int cadastrarPessoa(Pessoa pessoa) throws SQLException, PessoaInvalidaException  {
+	public void  cadastrarPessoa(Pessoa pessoa) throws SQLException, PessoaInvalidaException  {
 		PreparedStatement stmt = null;
         String sql = "insert into ABRACE.PESSOA (ativo, datacadastro, email, telefone2, telefone1, endereco, nome) values (?, ?, ?, ?, ?, ?, ?)";
-        int id = 0;
-        try {
-            // prepared statement for insertion
-            getConexao().setAutoCommit(false);
             stmt = getConexao().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             // set values
             pessoa.setDataCadastro(LocalDate.now());
@@ -39,18 +35,12 @@ public class PessoaDAO extends ExecutaSQL{
             stmt.setString(7, pessoa.getNome());
             // execute
             stmt.execute();
-            getConexao().commit();
             // get DB id
 	        ResultSet rs = stmt.getGeneratedKeys();
 	        if(rs.next()){
-	            id = rs.getInt(1);
+	            pessoa.setId(rs.getInt(1));
 	        }
-        } catch (SQLException e) {
-        	rollBack(e);
-        } finally {
-            verificaConexao(stmt);
-        }
-        return id;
+    
 			
 	}
 	
