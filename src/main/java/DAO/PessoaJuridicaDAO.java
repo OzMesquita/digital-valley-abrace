@@ -33,7 +33,7 @@ public class PessoaJuridicaDAO extends ExecutaSQL{
 		return true;
 	}
 	
-	public void cadastrarDoadorJuridico(PessoaJuridica pessoaJ) throws SQLException, PessoaInvalidaException  {
+	public void cadastrarDoadorJuridico(PessoaJuridica pessoaJ) throws SQLException{
         PreparedStatement stmt = null;
         String sql = "INSERT INTO ABRACE.PESSOA_JURIDICA (cnpj, fantasia, razaoSocial, idPessoa)" + "VALUES(?, ?, ?, ?)";
 
@@ -46,31 +46,33 @@ public class PessoaJuridicaDAO extends ExecutaSQL{
 
         stmt.execute();
     }
-
-
-	public boolean editarDoadorJuridico(PessoaJuridica pessoaJ) throws SQLException {
-		boolean executou = true;
-		String sql = "UPDATE ABRACE.PESSOA_JURIDICA SET FANTASIA = ?, RAZAOSOCIAL = ?, CNPJ = ? WHERE IDPESSOA = ? ";
-		PreparedStatement stmt = null;
+	
+	public boolean editarDoadorJuridico(PessoaJuridica pessoaJ) {
 		try {
-
-			stmt = getConexao().prepareStatement(sql);
-			stmt.setString(1, pessoaJ.getNomeFantasia());
-			stmt.setString(2, pessoaJ.getRazaoSocial());
-			stmt.setString(3, pessoaJ.getCnpj());
-			stmt.setInt(4, pessoaJ.getId());
-			
-			stmt.executeUpdate();
-		
-			return true;
-		}catch(SQLException e) {
+			getConexao().setAutoCommit(false);
+			PessoaDAO pessoa = new PessoaDAO(getConexao());
+			pessoa.editarPessoa(pessoaJ);
+			editar(pessoaJ);
+			getConexao().commit();
+		} catch (SQLException e) {
 			rollBack(e);
-			
-			executou = false;
-		}finally {
-			verificaConexao(stmt);
+			return false;
 		}
-		return executou;
+		return true;
+	} 
+	
+	public void editar(PessoaJuridica pessoaJ) throws SQLException {
+		String sql = "UPDATE ABRACE.PESSOA_JURIDICA SET FANTASIA = ?, RAZAOSOCIAL = ?, CNPJ = ? WHERE IDPESSOA = ?";
+	
+		PreparedStatement stmt = getConexao().prepareStatement(sql);
+		
+		stmt.setString(1, pessoaJ.getNomeFantasia());
+		stmt.setString(2, pessoaJ.getRazaoSocial());
+		stmt.setString(3, pessoaJ.getCnpj());
+		stmt.setInt(4, pessoaJ.getId());
+			
+		stmt.executeUpdate();
+		
 	}
 	
 	public boolean excluirDoadorJuridico(PessoaJuridica pessoaJ) throws SQLException {

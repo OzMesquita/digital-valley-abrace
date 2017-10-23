@@ -13,42 +13,61 @@ public class PessoaJuridicaDAOTest {
 	public static void main(String[] args)
 			throws PessoaInvalidaException, PessoaJuridicaInvalidaException, SQLException {
 
-		 cadastrar();
-		// editar();
+		 //inserir();
+		 //inserirInvalido();
+		 editar();
 		// listar();
 		// excluir();
 	}
 
-	public static void cadastrar() throws PessoaInvalidaException, SQLException, PessoaJuridicaInvalidaException {
+	public static void inserir() throws PessoaInvalidaException, SQLException, PessoaJuridicaInvalidaException {
 		PessoaJuridica pessoaJ = new PessoaJuridica();
 
-		pessoaJ.setNome("João do teste");
-		pessoaJ.setEndereco("Avenida Dom Lino");
-		pessoaJ.setTelefone("3411-4444");
-		pessoaJ.setTelefone2("3411-4444");
+		pessoaJ.setNome("Maria Juridica");
+		pessoaJ.setEndereco("Avenida da Maria");
+		pessoaJ.setTelefone("3411-5555");
+		pessoaJ.setTelefone2("");
 		pessoaJ.setDataCadastro(LocalDate.now());
-		pessoaJ.setEmail("joaoteste@gmail.com");
+		pessoaJ.setEmail("mj@gmail.com");
 		pessoaJ.setAtivo(true);
-		pessoaJ.setCnpj("586495730001-------20");
-		pessoaJ.setNomeFantasia("João Variedades");
-		pessoaJ.setRazaoSocial("João T LTDA");
+		pessoaJ.setCnpj("02215163000117");
+		pessoaJ.setNomeFantasia("M J Confecções");
+		pessoaJ.setRazaoSocial("M J LTDA");
 
-		new PessoaJuridicaDAO(new ConnectionFactory().getConnection()).cadastrarDoadorJuridico(pessoaJ);
+		new PessoaJuridicaDAO(new ConnectionFactory().getConnection()).inserirDoadorJuridico(pessoaJ);
+	}
+	
+	public static void inserirInvalido() throws PessoaInvalidaException, SQLException, PessoaJuridicaInvalidaException {
+		PessoaJuridica pessoaJ = new PessoaJuridica();
+
+		pessoaJ.setNome("Maria Juridica");
+		pessoaJ.setEndereco("Avenida da Maria");
+		pessoaJ.setTelefone("3411-5555");
+		pessoaJ.setTelefone2("");
+		pessoaJ.setDataCadastro(LocalDate.now());
+		pessoaJ.setEmail("mj@gmail.com");
+		pessoaJ.setAtivo(true);
+		pessoaJ.setCnpj("02.215.163/0001-17");
+		pessoaJ.setNomeFantasia("M J Confecções");
+		pessoaJ.setRazaoSocial("M J LTDA");
+
+		new PessoaJuridicaDAO(new ConnectionFactory().getConnection()).inserirDoadorJuridico(pessoaJ);
 	}
 
 	public static void editar() throws PessoaInvalidaException, SQLException, PessoaJuridicaInvalidaException {
 		PessoaJuridica pessoaJ = new PessoaJuridica();
 
-		pessoaJ.setNome("João do teste");
-		pessoaJ.setEndereco("Avenida Dom Lino");
-		pessoaJ.setTelefone("3411-4444");
-		pessoaJ.setTelefone2("3411-4444");
+		pessoaJ.setNome("Maria Juridica");
+		pessoaJ.setEndereco("Avenida da Maria");
+		pessoaJ.setTelefone("3411-6666");
+		pessoaJ.setTelefone2("3411-2400");
 		pessoaJ.setDataCadastro(LocalDate.now());
-		pessoaJ.setEmail("joaoteste@gmail.com");
+		pessoaJ.setEmail("mj@gmail.com");
 		pessoaJ.setAtivo(true);
-		pessoaJ.setCnpj("58.649.573/0001-20");
-		pessoaJ.setNomeFantasia("João Variedades");
-		pessoaJ.setRazaoSocial("João T LTDA");
+		pessoaJ.setCnpj("02215163000117");
+		pessoaJ.setNomeFantasia("M J Confecções");
+		pessoaJ.setRazaoSocial("M J LTDA");
+		pessoaJ.setId(901);
 
 		new PessoaJuridicaDAO(new ConnectionFactory().getConnection()).editarDoadorJuridico(pessoaJ);
 
@@ -59,7 +78,7 @@ public class PessoaJuridicaDAOTest {
 		ArrayList<PessoaJuridica> lista = new PessoaJuridicaDAO(new ConnectionFactory().getConnection())
 				.listarDoadorJuridico(true);
 		for (PessoaJuridica pessoaJ : lista) {
-			if (pessoaJ.getId() == 1) {
+			if (pessoaJ.getId() == 901) {
 				new PessoaJuridicaDAO(new ConnectionFactory().getConnection()).excluirDoadorJuridico(pessoaJ);
 				System.out.println(pessoaJ + "\n");
 			}
