@@ -83,6 +83,15 @@ public class AplicacaoView {
 		});
 		btnCadastrarDoador.setText("Cadastrar Doador");
 		btnCadastrarDoador.setBounds(334, 74, 224, 68);
-
+		
+		Button btnRealizarDoacao = new Button(shlOngRussasTransformando, SWT.NONE);
+		btnRealizarDoacao.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent arg0) {
+				DoacaoView.main();
+			}
+		});
+		btnRealizarDoacao.setText("Realizar Doação");
+		btnRealizarDoacao.setBounds(334, 148, 224, 68);
 	}
 }
