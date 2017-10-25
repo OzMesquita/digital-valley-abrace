@@ -12,8 +12,11 @@ import model.PessoaFisica;
 import model.PessoaJuridica;
 
 public class DoadorFachada {
-	public boolean cadastrarDoador(PessoaFisica doador) {
-		return true;
+	public boolean cadastrarDoador(PessoaFisica doador) throws SQLException {
+		PessoaFisicaDAO pessoaFisica = new PessoaFisicaDAO(new ConnectionFactory().getConnection());
+		boolean resultado = pessoaFisica.inserirPessoaFisica(doador);
+		pessoaFisica.getConexao().close();
+		return resultado;
 	}
 	
 	public PessoaFisica obterDoadorFisico(int id) {

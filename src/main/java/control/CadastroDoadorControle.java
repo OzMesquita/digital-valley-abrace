@@ -1,5 +1,6 @@
 package control;
 
+import java.sql.SQLException;
 import java.time.LocalDate;
 
 import org.eclipse.swt.events.SelectionEvent;
@@ -14,7 +15,7 @@ public class CadastroDoadorControle {
 	private CadastroDoadorView view;
 	private DoadorFachada facade; 
 	
-	public void getEvent(SelectionEvent event) throws PessoaInvalidaException, PessoaFisicaException{
+	public void getEvent(SelectionEvent event) throws PessoaInvalidaException, PessoaFisicaException, SQLException{
 		if (event.getSource().toString().equals("Button {Cadastrar}")){
 			try {
 				PessoaFisica doador = new PessoaFisica();
@@ -22,7 +23,7 @@ public class CadastroDoadorControle {
 				doador.setCpf(view.getTfCPF().getText());
 				doador.setRg(view.getTfRG().getText());
 				doador.setEndereco(view.getTfEndereco().getText());
-				doador.setDataNasc(LocalDate.of(view.getTfDataNascimento().getYear(), view.getTfDataNascimento().getMonth(), view.getTfDataNascimento().getDay()));
+				doador.setDataNasc(LocalDate.of(view.getTfDataNascimento().getYear(), view.getTfDataNascimento().getMonth() + 1, view.getTfDataNascimento().getDay()));
 				doador.setTelefone(view.getTfTelefone1().getText());
 				doador.setTelefone2(view.getTfTelefone2().getText());
 				doador.setEmail(view.getTfEmail().getText());

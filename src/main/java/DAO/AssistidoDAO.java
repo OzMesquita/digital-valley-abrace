@@ -22,12 +22,9 @@ public class AssistidoDAO extends ExecutaSQL {
 	public boolean inserirAssistido(Assistido assistido) throws PessoaInvalidaException, SQLException {
 
 		try {
-
 			getConexao().setAutoCommit(false);
-			PessoaDAO pessoa = new PessoaDAO(getConexao());
 			PessoaFisicaDAO pessoaFisica = new PessoaFisicaDAO(getConexao());
-			pessoa.cadastrarPessoa(assistido);
-			pessoaFisica.cadastrarPessoaFisica(assistido);
+			pessoaFisica.inserirPessoaFisica(assistido);
 			cadastrarAssistido(assistido);
 			getConexao().commit();
 		} catch (SQLException e) {
@@ -56,9 +53,7 @@ public class AssistidoDAO extends ExecutaSQL {
 	public boolean editarAssistido(Assistido assistido) throws PessoaInvalidaException {
 		try {
 			getConexao().setAutoCommit(false);
-			PessoaDAO pessoa = new PessoaDAO(getConexao());
 			PessoaFisicaDAO pessoaFisica = new PessoaFisicaDAO(getConexao());
-			pessoa.editarPessoa(assistido);
 			pessoaFisica.editarDoadorFisico(assistido);
 			editar(assistido);
 			getConexao().commit();

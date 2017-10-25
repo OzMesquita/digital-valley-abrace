@@ -13,6 +13,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.MessageBox;
 
 import java.io.File;
+import java.sql.SQLException;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Text;
@@ -254,6 +255,9 @@ public class CadastroDoadorView {
 					mensagemErro(e1);
 				} catch (PessoaFisicaException e) {
 					mensagemErro(e);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
 			}
 		});
