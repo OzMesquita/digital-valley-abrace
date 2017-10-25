@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import exceptions.PessoaFisicaException;
 import exceptions.PessoaInvalidaException;
 import model.PessoaFisica;
+import model.PessoaJuridica;
 
 public class PessoaFisicaDAO extends ExecutaSQL {
 
@@ -84,17 +85,17 @@ public class PessoaFisicaDAO extends ExecutaSQL {
 		stmt.close();
 	}
 
-	public ArrayList<PessoaFisica> listarPessoasFisicas(Boolean situacao) throws SQLException {
+	public ArrayList<PessoaFisica> listarPessoasFisicas() throws SQLException {
 		ArrayList<PessoaFisica> listaPessoasFisicas = new ArrayList<PessoaFisica>();
 
 		String informacaoPessoa = "ABRACE.PESSOA.idPessoa, ABRACE.PESSOA.nome, ABRACE.PESSOA.endereco, ABRACE.PESSOA.telefone1,"
 				+ "ABRACE.PESSOA.telefone2, ABRACE.PESSOA.email, ABRACE.PESSOA.dataCadastro,";
 
 		String sql = "SELECT " + informacaoPessoa
-				+ "ABRACE.PESSOA_FISICA.cpf, ABRACE.PESSOA_FISICA.rg, ABRACE.PESSOA_FISICA.dataNascimento FROM ABRACE.PESSOA_FISICA, ABRACE.PESSOA WHERE ABRACE.PESSOA_FISICA.idPessoa = ABRACE.PESSOA.idPessoa AND ativo = "
-				+ situacao;
+				+ "ABRACE.PESSOA_FISICA.cpf, ABRACE.PESSOA_FISICA.rg, ABRACE.PESSOA_FISICA.dataNascimento FROM ABRACE.PESSOA_FISICA, ABRACE.PESSOA WHERE ABRACE.PESSOA_FISICA.idPessoa = ABRACE.PESSOA.idPessoa AND ativo = ?";
 		try {
 			PreparedStatement stmt = getConexao().prepareStatement(sql);
+			stmt.setBoolean(1, true);
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
 				int id = rs.getInt(1);
@@ -108,8 +109,7 @@ public class PessoaFisicaDAO extends ExecutaSQL {
 				String rg = rs.getString(9);
 				LocalDate dataNasc = rs.getDate(10).toLocalDate();
 
-				listaPessoasFisicas.add(new PessoaFisica(id, nome, endereco, dataCadastro, telefone1, telefone2, email,
-						situacao, cpf, rg, dataNasc));
+				listaPessoasFisicas.add(new PessoaFisica(id, nome, endereco, dataCadastro, telefone1, telefone2, email, true, cpf, rg, dataNasc));
 			}
 			stmt.close();
 		} catch (SQLException e) {

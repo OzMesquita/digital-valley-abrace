@@ -33,7 +33,7 @@ public class PessoaJuridicaDAO extends ExecutaSQL{
 		return true;
 	}
 	
-	public void cadastrarDoadorJuridico(PessoaJuridica pessoaJ) throws SQLException{
+	private void cadastrarDoadorJuridico(PessoaJuridica pessoaJ) throws SQLException{
         PreparedStatement stmt = null;
         String sql = "INSERT INTO ABRACE.PESSOA_JURIDICA (cnpj, fantasia, razaoSocial, idPessoa)" + "VALUES(?, ?, ?, ?)";
 
@@ -90,18 +90,18 @@ public class PessoaJuridicaDAO extends ExecutaSQL{
 	}
 
 	@SuppressWarnings("finally")
-	public ArrayList<PessoaJuridica> listarDoadorJuridico(boolean situacao) {
+	public ArrayList<PessoaJuridica> listarDoadorJuridico() {
 		ArrayList<PessoaJuridica> listaPessoasJuridicas = new ArrayList<PessoaJuridica>();
 		
 		String informacaoPessoa = "ABRACE.PESSOA.idPessoa, ABRACE.PESSOA.nome, ABRACE.PESSOA.endereco, ABRACE.PESSOA.telefone1,"
 				+ "ABRACE.PESSOA.telefone2, ABRACE.PESSOA.email, ABRACE.PESSOA.dataCadastro,";
 		
-		String sql = "SELECT " + informacaoPessoa
-				+ "ABRACE.PESSOA_JURIDICA.cnpj, ABRACE.PESSOA_JURIDICA.fantasia, ABRACE.PESSOA_JURIDICA.razaoSocial  FROM ABRACE.PESSOA_JURIDICA, ABRACE.PESSOA WHERE ABRACE.PESSOA_JURIDICA.idPessoa = ABRACE.PESSOA.idPessoa AND ativo = "
-				+ situacao;
+		String sql = "SELECT " + informacaoPessoa+ 
+				"ABRACE.PESSOA_JURIDICA.cnpj, ABRACE.PESSOA_JURIDICA.fantasia, ABRACE.PESSOA_JURIDICA.razaoSocial  FROM ABRACE.PESSOA_JURIDICA, ABRACE.PESSOA WHERE ABRACE.PESSOA_JURIDICA.idPessoa = ABRACE.PESSOA.idPessoa AND ativo = ?";
 		
 		try {
 			PreparedStatement stmt = getConexao().prepareStatement(sql);
+			stmt.setBoolean(1, true);
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
 				int id = rs.getInt(1);
@@ -114,8 +114,7 @@ public class PessoaJuridicaDAO extends ExecutaSQL{
 				String cnpj = rs.getString(8);
 				String nomeFantasia = rs.getString(9);
 				String razaoSocial = rs.getString(10);
-
-				listaPessoasJuridicas.add(new PessoaJuridica(id, nome, endereco, telefone1, telefone2, dataCadastro, email, situacao, cnpj, razaoSocial, nomeFantasia));
+				listaPessoasJuridicas.add(new PessoaJuridica(id, nome, endereco, telefone1, telefone2, dataCadastro, email, true, cnpj, razaoSocial, nomeFantasia));
 			}
 			stmt.close();
 		} catch (SQLException e) {
@@ -129,4 +128,17 @@ public class PessoaJuridicaDAO extends ExecutaSQL{
 		}
 	}
 	
+	public static void main(String[] args) {
+		PessoaJuridicaDAO dao = new PessoaJuridicaDAO(new ConnectionFactory().getConnection());
+		try {
+			ArrayList<PessoaJuridica> arraus = dao.listarDoadorJuridico();
+			for(PessoaJuridica pessoa:arraus) {
+				System.out.println(pessoa);
+			}
+			dao.getConexao().close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}	
 }
