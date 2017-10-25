@@ -2,6 +2,7 @@ package DAO;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.Date;
 
 import exceptions.PessoaInvalidaException;
 import exceptions.PessoaJuridicaInvalidaException;
@@ -9,7 +10,7 @@ import model.Pessoa;
 
 public class PessoaDAOTest {
 
-	public static void main(String[] args) throws PessoaInvalidaException, PessoaJuridicaInvalidaException, SQLException {
+	/*public static void main(String[] args) throws PessoaInvalidaException, PessoaJuridicaInvalidaException, SQLException {
 		Pessoa p = new Pessoa();
 		
 		p.setNome("Pessoa Test");
@@ -22,5 +23,6 @@ public class PessoaDAOTest {
 		p.setAtivo(true);
 		
 		System.out.println(new PessoaDAO(new ConnectionFactory().getConnection()).cadastrarPessoa(p));
-	}
+	}*/
+	
 }

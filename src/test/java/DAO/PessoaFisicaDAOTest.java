@@ -14,7 +14,7 @@ public static void main(String[] args) throws PessoaInvalidaException, SQLExcept
 		
 		//cadastrar();
 		//listar();
-		excluir();
+		//excluir();
 	}
 	
 	//Teste do editar foi feito aqui
@@ -35,7 +35,7 @@ public static void main(String[] args) throws PessoaInvalidaException, SQLExcept
 		new PessoaFisicaDAO(new ConnectionFactory().getConnection()).cadastrarPessoaFisica(pf);
 	}
 	
-	public static void listar() throws SQLException {
+	/*public static void listar() throws SQLException {
 		
 		boolean situacao = true; 
 		
@@ -54,5 +54,5 @@ public static void main(String[] args) throws PessoaInvalidaException, SQLExcept
 				System.out.println(p + "\n");
 			}
 		}
-	}
+	}*/
 }

@@ -9,8 +9,10 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+import exceptions.AssistidoInvalidoException;
 import exceptions.PessoaFisicaException;
 import exceptions.PessoaInvalidaException;
+import model.Assistido;
 import model.PessoaFisica;
 import model.PessoaJuridica;
 
@@ -121,5 +123,38 @@ public class PessoaFisicaDAO extends ExecutaSQL {
 		}
 
 		return listaPessoasFisicas;
+	}
+
+	public PessoaFisica getPessoaFisica(int id) {
+		String informacaoPessoa = "ABRACE.Pessoa.ativo, ABRACE.Pessoa.nome, ABRACE.Pessoa.endereco, ABRACE.Pessoa.telefone1,"
+				+ "ABRACE.Pessoa.telefone2, ABRACE.Pessoa.email, ABRACE.Pessoa.dataCadastro,";
+		String sql = "SELECT " + informacaoPessoa + " ABRACE.Pessoa_Fisica.cpf, ABRACE.Pessoa_Fisica.rg, ABRACE.Pessoa_Fisica.dataNascimento"
+				+ " FROM ABRACE.Pessoa, ABRACE.Pessoa_Fisica"
+				+ " WHERE ABRACE.Pessoa.idPessoa = ? AND ABRACE.Pessoa.idPessoa = ABRACE.Pessoa_Fisica.idPessoa ";
+		try {
+			PreparedStatement ps = getConexao().prepareStatement(sql);
+			ps.setInt(1, id);
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+				boolean ativo = rs.getBoolean(1);
+				String nome = rs.getString(2);
+				String endereco = rs.getString(3);
+				String telefone = rs.getString(4);
+				String telefone2 = rs.getString(5);
+				String email = rs.getString(6);
+				LocalDate dataCadastro = rs.getDate(7).toLocalDate();
+				String cpf = rs.getString(8);
+				String rg = rs.getString(9);
+				LocalDate dataNasc = rs.getDate(10).toLocalDate();
+				return new PessoaFisica(id, nome, endereco, dataCadastro, telefone, telefone2, email, ativo, cpf, rg, dataNasc);
+			}
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage());
+		} catch (PessoaInvalidaException e) {
+			e.printStackTrace();
+		} catch (PessoaFisicaException e) {
+			e.printStackTrace();
+		} 
+		return null;
 	}
 }

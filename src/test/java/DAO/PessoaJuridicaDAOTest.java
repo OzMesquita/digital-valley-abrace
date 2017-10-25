@@ -73,7 +73,7 @@ public class PessoaJuridicaDAOTest {
 
 	}
 
-	public static void excluir() throws SQLException {
+	/*public static void excluir() throws SQLException {
 
 		ArrayList<PessoaJuridica> lista = new PessoaJuridicaDAO(new ConnectionFactory().getConnection())
 				.listarDoadorJuridico(true);
@@ -95,5 +95,5 @@ public class PessoaJuridicaDAOTest {
 			System.out.println(pessoaJ + "\n");
 		}
 	}
-
+*/
 }

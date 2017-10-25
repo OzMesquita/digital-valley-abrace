@@ -9,8 +9,12 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+import exceptions.AssistidoInvalidoException;
+import exceptions.PessoaFisicaException;
 import exceptions.PessoaInvalidaException;
 import exceptions.PessoaJuridicaInvalidaException;
+import model.Assistido;
+import model.PessoaFisica;
 import model.PessoaJuridica;
 
 public class PessoaJuridicaDAO extends ExecutaSQL{
@@ -127,18 +131,38 @@ public class PessoaJuridicaDAO extends ExecutaSQL{
 			return listaPessoasJuridicas;
 		}
 	}
-	
-	public static void main(String[] args) {
-		PessoaJuridicaDAO dao = new PessoaJuridicaDAO(new ConnectionFactory().getConnection());
+
+	public PessoaJuridica getPessoaJuridica(int id) {
+		String informacaoPessoa = "ABRACE.Pessoa.ativo, ABRACE.Pessoa.nome, ABRACE.Pessoa.endereco, ABRACE.Pessoa.telefone1,"
+				+ "ABRACE.Pessoa.telefone2, ABRACE.Pessoa.email, ABRACE.Pessoa.dataCadastro,";
+		String sql = "SELECT " + informacaoPessoa + " ABRACE.PESSOA_JURIDICA.cnpj, ABRACE.PESSOA_JURIDICA.fantasia, ABRACE.PESSOA_JURIDICA.razaoSocial"
+				+ " FROM ABRACE.Pessoa, ABRACE.Pessoa_Juridica"
+				+ " WHERE ABRACE.Pessoa.idPessoa = ? AND ABRACE.Pessoa.idPessoa = ABRACE.Pessoa_Juridica.idPessoa";
 		try {
-			ArrayList<PessoaJuridica> arraus = dao.listarDoadorJuridico();
-			for(PessoaJuridica pessoa:arraus) {
-				System.out.println(pessoa);
+			PreparedStatement ps = getConexao().prepareStatement(sql);
+			ps.setInt(1, id);
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+				boolean ativo = rs.getBoolean(1);
+				String nome = rs.getString(2);
+				String endereco = rs.getString(3);
+				String telefone = rs.getString(4);
+				String telefone2 = rs.getString(5);
+				String email = rs.getString(6);
+				LocalDate dataCadastro = rs.getDate(7).toLocalDate();
+				String cnpj = rs.getString(8);
+				String fantasia = rs.getString(9);
+				String razaoSocial = rs.getString(10);
+				return new PessoaJuridica(id, nome, endereco, telefone, telefone2, dataCadastro, email, ativo, cnpj, razaoSocial, fantasia);
 			}
-			dao.getConexao().close();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			throw new RuntimeException(e.getMessage());
+		} catch (PessoaInvalidaException e) {
+			e.printStackTrace();
+		} catch (PessoaJuridicaInvalidaException e) {
 			e.printStackTrace();
 		}
-	}	
+		return null;
+	}
+	
 }
