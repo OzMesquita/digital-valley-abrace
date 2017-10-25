@@ -1,13 +1,27 @@
 package DAO;
 
+import java.sql.Array;
+import java.sql.Blob;
+import java.sql.CallableStatement;
+import java.sql.Clob;
 import java.sql.Connection;
-
+import java.sql.DatabaseMetaData;
 import java.sql.Date;
+import java.sql.NClob;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLClientInfoException;
 import java.sql.SQLException;
+import java.sql.SQLWarning;
+import java.sql.SQLXML;
+import java.sql.Savepoint;
+import java.sql.Statement;
+import java.sql.Struct;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.Properties;
+import java.util.concurrent.Executor;
 
 import exceptions.AssistidoInvalidoException;
 import exceptions.PessoaFisicaException;
@@ -39,7 +53,7 @@ public class PessoaFisicaDAO extends ExecutaSQL {
 		return true;
 	}
 
-	public void cadastrarPessoaFisica(PessoaFisica pessoaFisica) throws SQLException, PessoaInvalidaException  {
+	public void cadastrarPessoaFisica(PessoaFisica pessoaFisica) throws SQLException  {
 		PreparedStatement stmt = null;
 		String sql = "INSERT INTO ABRACE.PESSOA_FISICA (dataNascimento, rg, cpf, idPessoa) VALUES (?, ?, ?, ?)";
 			stmt = getConexao().prepareStatement(sql);
@@ -52,7 +66,7 @@ public class PessoaFisicaDAO extends ExecutaSQL {
 			stmt.execute();
 	}
 
-	public void editar(PessoaFisica pessoaFisica) throws SQLException {
+	private void editar(PessoaFisica pessoaFisica) throws SQLException {
 		String sql = "UPDATE ABRACE.PESSOA_FISICA SET dataNascimento=?, rg=?, cpf=? WHERE idPessoa = ?";
 		PreparedStatement stmt = getConexao().prepareStatement(sql);
 		
@@ -79,7 +93,7 @@ public class PessoaFisicaDAO extends ExecutaSQL {
 	}
 
 
-	public void excluirPessoaFisica(PessoaFisica pessoaFisica) throws SQLException {
+	public void excluirDoadorFisico(PessoaFisica pessoaFisica) throws SQLException {
 		String sql = "UPDATE ABRACE.PESSOA SET ativo=false WHERE idPessoa=" + pessoaFisica.getId();
 		PreparedStatement stmt = getConexao().prepareStatement(sql);
 
@@ -157,4 +171,5 @@ public class PessoaFisicaDAO extends ExecutaSQL {
 		} 
 		return null;
 	}
+	
 }

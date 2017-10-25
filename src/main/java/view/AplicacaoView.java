@@ -78,7 +78,7 @@ public class AplicacaoView {
 		btnCadastrarDoador.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
-				CadastroDoadorView.main();
+				SelecionarTipoDoadorView.main();
 			}
 		});
 		btnCadastrarDoador.setText("Cadastrar Doador");

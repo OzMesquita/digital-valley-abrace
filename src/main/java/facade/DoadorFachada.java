@@ -19,6 +19,13 @@ public class DoadorFachada {
 		return resultado;
 	}
 	
+	public boolean cadastrarDoadorJuridico(PessoaJuridica doador) throws SQLException, PessoaInvalidaException {
+		PessoaJuridicaDAO pessoaJuridica = new PessoaJuridicaDAO(new ConnectionFactory().getConnection());
+		boolean resultado = pessoaJuridica.inserirDoadorJuridico(doador);
+		pessoaJuridica.getConexao().close();
+		return resultado;
+	}
+	
 	public PessoaFisica obterDoadorFisico(int id) {
 		PessoaFisicaDAO dao = new PessoaFisicaDAO(new ConnectionFactory().getConnection());
 		PessoaFisica doador = dao.getPessoaFisica(id);
