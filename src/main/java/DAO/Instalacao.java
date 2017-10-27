@@ -26,10 +26,11 @@ public class Instalacao {
 				   ,
 				   //-----------------------------------//
 				   "CREATE TABLE ABRACE.Doacao (" + 
-				   " IdDoacao INT NOT NULL," + 
+				   " IdDoacao INT NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1 INCREMENT BY 1)," + 
 				   " idPessoa INT NOT NULL," + 
 				   " valor DOUBLE," + 
 				   " data DATE," + 
+				   " ativo BOOLEAN NOT NULL," +
 				   " PRIMARY KEY (IdDoacao)," + 
 				   " FOREIGN KEY (idPessoa) REFERENCES ABRACE.Pessoa (idPessoa) ON DELETE CASCADE ON UPDATE RESTRICT" + 
 				   ")"

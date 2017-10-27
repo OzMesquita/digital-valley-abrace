@@ -8,9 +8,16 @@ public class Doacao {
 	private int id;
 	private Double valor;//No diagrama tava String, mas preferi usar float
 	private LocalDate data;
+	private boolean ativo;
 	private Pessoa doador;
 	
 	
+	public Doacao(int id, Double valor, LocalDate data, boolean ativo, Pessoa doador) throws DoacaoInvalidaException {
+		setId(id);
+		setValor(valor);
+		setAtivo(ativo);
+		setDoador(doador);
+	}
 	
 	public int getId() {
 		return id;
@@ -39,6 +46,12 @@ public class Doacao {
 		}
 		this.data = data;
 	}
+	public boolean isAtivo() {
+		return ativo;
+	}
+	public void setAtivo(boolean ativo) {
+		this.ativo = ativo;
+	}
 	public Pessoa getDoador() {
 		return doador;
 	}
@@ -52,5 +65,6 @@ public class Doacao {
 	public String toString() {
 		return "Doacao [id=" + id + ", valor=" + valor + ", data=" + data + ", doador=" + doador + "]";
 	}
+	
 	
 }
