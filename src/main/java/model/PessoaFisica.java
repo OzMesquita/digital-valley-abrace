@@ -56,7 +56,7 @@ public class PessoaFisica extends Pessoa {
 	}
 
 	public void setRg(String rg) throws PessoaFisicaException {
-		if (rg == null) {
+		if (rg == null || rg == "") {
 			throw new PessoaFisicaException("O RG informado é inválido!");
 		}
 		this.rg = rg;

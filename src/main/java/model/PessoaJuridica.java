@@ -50,7 +50,7 @@ public class PessoaJuridica extends Pessoa{
 		return razaoSocial;
 	}
 	public void setRazaoSocial(String razaoSocial) throws PessoaJuridicaInvalidaException {
-		if(razaoSocial == null) {
+		if(razaoSocial == null || razaoSocial == "") {
 			throw new PessoaJuridicaInvalidaException("A Razão social informada é inválida");
 		}
 		this.razaoSocial = razaoSocial;
@@ -60,7 +60,10 @@ public class PessoaJuridica extends Pessoa{
 		return nomeFantasia;
 	}
 
-	public void setNomeFantasia(String nomeFantasia) {
+	public void setNomeFantasia(String nomeFantasia) throws PessoaJuridicaInvalidaException {
+		if(nomeFantasia == null || nomeFantasia == "") {
+			throw new PessoaJuridicaInvalidaException("A fantasia informada é inválida");
+		}
 		this.nomeFantasia = nomeFantasia;
 	}
 

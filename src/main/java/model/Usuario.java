@@ -34,7 +34,7 @@ public class Usuario extends PessoaFisica{
 	}
 
 	public void setUsuario(String usuario) throws UsuarioInvalidoException {
-		if(usuario == null) {
+		if(usuario == null || usuario == "") {
 			throw new UsuarioInvalidoException("O login informado é inválido");
 		}
 		this.usuario = usuario;
@@ -45,7 +45,7 @@ public class Usuario extends PessoaFisica{
 	}
 
 	public void setSenha(String senha) throws UsuarioInvalidoException {
-		if(senha == null) {
+		if(senha == null || senha == "") {
 			throw new UsuarioInvalidoException("A senha informada é inválida");
 		}
 		this.senha = senha;

@@ -33,7 +33,7 @@ public class Assistido extends PessoaFisica {
 	}
 
 	public void setApelido(String apelido) throws AssistidoInvalidoException {
-		if(apelido == null) {
+		if(apelido == null || apelido == "") {
     		throw new AssistidoInvalidoException("O apelido informado é inválido!");
     	}
 		this.apelido = apelido;
@@ -44,7 +44,7 @@ public class Assistido extends PessoaFisica {
     }
 
     public void setTipoDeCancer(String tipoDeCancer) throws AssistidoInvalidoException {
-    	if(tipoDeCancer == null) {
+    	if(tipoDeCancer == null || tipoDeCancer == "") {
     		throw new AssistidoInvalidoException("O tipo de cancer informado é inválido!");
     	}
         this.tipoDeCancer = tipoDeCancer;

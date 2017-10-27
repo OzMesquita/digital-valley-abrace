@@ -1,7 +1,6 @@
 package view;
 
 import java.io.File;
-import java.sql.SQLException;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -35,6 +34,7 @@ public class CadastroDoadorJuridicoView {
 	private Text tfTelefone2;
 	private Text tfEmail;
 	Combo tfStatus;
+	private Text tfRazaoSocial;
 	public Shell getShlCadastroDoador() {
 		return shlCadastroDoador;
 	}
@@ -140,8 +140,10 @@ public class CadastroDoadorJuridicoView {
 		tfStatus = new Combo(shlCadastroDoador, SWT.READ_ONLY);
 		tfStatus.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfStatus.setItems(new String[] {"Ativo", "Inativo"});
-		tfStatus.setBounds(236, 422, 99, 38);
+		tfStatus.setBounds(236, 458, 99, 38);
 		tfStatus.select(0);
+		
+		
 		shlCadastroDoador.open();
 		shlCadastroDoador.layout();
 		while (!shlCadastroDoador.isDisposed()) {
@@ -149,6 +151,14 @@ public class CadastroDoadorJuridicoView {
 				display.sleep();
 			}
 		}
+	}
+
+	public Text getTfRazaoSocial() {
+		return tfRazaoSocial;
+	}
+
+	public void setTfRazaoSocial(Text tfRazaoSocial) {
+		this.tfRazaoSocial = tfRazaoSocial;
 	}
 
 	/**
@@ -192,46 +202,55 @@ public class CadastroDoadorJuridicoView {
 		tfFantasia.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfFantasia.setBounds(236, 232, 369, 32);
 		
+		tfRazaoSocial = new Text(shlCadastroDoador, SWT.BORDER);
+		tfRazaoSocial.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
+		tfRazaoSocial.setBounds(236, 270, 369, 32);
+		
+		Label lblRazoSocial = new Label(shlCadastroDoador, SWT.NONE);
+		lblRazoSocial.setText("Raz\u00E3o social:");
+		lblRazoSocial.setFont(SWTResourceManager.getFont("Segoe UI Emoji", 16, SWT.NORMAL));
+		lblRazoSocial.setBounds(110, 272, 120, 28);
+		
 		Label label_3 = new Label(shlCadastroDoador, SWT.NONE);
 		label_3.setText("Endere\u00E7o:");
 		label_3.setFont(SWTResourceManager.getFont("Segoe UI Emoji", 16, SWT.NORMAL));
-		label_3.setBounds(139, 273, 91, 28);
+		label_3.setBounds(139, 309, 91, 28);
 		
 		tfEndereco = new Text(shlCadastroDoador, SWT.BORDER);
 		tfEndereco.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
-		tfEndereco.setBounds(236, 271, 369, 32);
+		tfEndereco.setBounds(236, 307, 369, 32);
 		
 		Label lblTelefone_1 = new Label(shlCadastroDoador, SWT.NONE);
 		lblTelefone_1.setText("Telefone 1:");
 		lblTelefone_1.setFont(SWTResourceManager.getFont("Segoe UI Emoji", 16, SWT.NORMAL));
-		lblTelefone_1.setBounds(128, 311, 102, 28);
+		lblTelefone_1.setBounds(128, 347, 102, 28);
 		
 		tfTelefone1 = new Text(shlCadastroDoador, SWT.BORDER);
 		tfTelefone1.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
-		tfTelefone1.setBounds(236, 309, 369, 32);
+		tfTelefone1.setBounds(236, 345, 369, 32);
 		
 		Label lblTelefone = new Label(shlCadastroDoador, SWT.NONE);
 		lblTelefone.setText("Telefone 2:");
 		lblTelefone.setFont(SWTResourceManager.getFont("Segoe UI Emoji", 16, SWT.NORMAL));
-		lblTelefone.setBounds(128, 349, 102, 28);
+		lblTelefone.setBounds(128, 385, 102, 28);
 		
 		tfTelefone2 = new Text(shlCadastroDoador, SWT.BORDER);
 		tfTelefone2.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
-		tfTelefone2.setBounds(236, 347, 369, 32);
+		tfTelefone2.setBounds(236, 383, 369, 32);
 		
 		Label label_7 = new Label(shlCadastroDoador, SWT.NONE);
 		label_7.setText("Email:");
 		label_7.setFont(SWTResourceManager.getFont("Segoe UI Emoji", 16, SWT.NORMAL));
-		label_7.setBounds(175, 386, 55, 28);
+		label_7.setBounds(175, 422, 55, 28);
 		
 		tfEmail = new Text(shlCadastroDoador, SWT.BORDER);
 		tfEmail.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
-		tfEmail.setBounds(236, 384, 369, 32);
+		tfEmail.setBounds(236, 420, 369, 32);
 		
 		Label lblStatus = new Label(shlCadastroDoador, SWT.NONE);
 		lblStatus.setText("Status:");
 		lblStatus.setFont(SWTResourceManager.getFont("Segoe UI Emoji", 16, SWT.NORMAL));
-		lblStatus.setBounds(168, 427, 62, 28);
+		lblStatus.setBounds(168, 463, 62, 28);
 		
 		Button btnCadastrar = new Button(shlCadastroDoador, SWT.NONE);
 		btnCadastrar.addSelectionListener(new SelectionAdapter() {

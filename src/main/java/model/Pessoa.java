@@ -48,7 +48,7 @@ public class Pessoa {
 		return nome;
 	}
 	public void setNome(String nome) throws PessoaInvalidaException{
-		if(nome == null) {
+		if(nome == null || nome == "") {
 			throw new PessoaInvalidaException("O nome informado é inválido");
 		}
 		this.nome = nome;
@@ -58,7 +58,7 @@ public class Pessoa {
 		return endereco;
 	}
 	public void setEndereco(String endereco) throws PessoaInvalidaException{
-		if(endereco == null) {
+		if(endereco == null || endereco == "") {
 			throw new PessoaInvalidaException("O endereco informado é inválido");
 		}
 		this.endereco = endereco;
@@ -77,7 +77,7 @@ public class Pessoa {
 		return telefone;
 	}
 	public void setTelefone(String telefone) throws PessoaInvalidaException{
-		if(telefone == null) {
+		if(telefone == null || telefone == "") {
 			throw new PessoaInvalidaException("O telefone informado é inválido");
 		}
 		this.telefone = telefone;
@@ -86,7 +86,7 @@ public class Pessoa {
 		return telefone2;
 	}
 	public void setTelefone2(String telefone2) throws PessoaInvalidaException{
-		if(telefone2 == null) {
+		if(telefone2 == null || telefone2 == "") {
 			throw new PessoaInvalidaException("O telefone informado é inválido");
 		}
 		this.telefone2 = telefone2;

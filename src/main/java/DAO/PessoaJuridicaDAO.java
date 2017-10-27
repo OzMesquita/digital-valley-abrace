@@ -2,19 +2,14 @@ package DAO;
 
 import java.sql.Connection;
 
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-import exceptions.AssistidoInvalidoException;
-import exceptions.PessoaFisicaException;
 import exceptions.PessoaInvalidaException;
 import exceptions.PessoaJuridicaInvalidaException;
-import model.Assistido;
-import model.PessoaFisica;
 import model.PessoaJuridica;
 
 public class PessoaJuridicaDAO extends ExecutaSQL{
@@ -165,4 +160,25 @@ public class PessoaJuridicaDAO extends ExecutaSQL{
 		return null;
 	}
 	
+	public static void main(String[] args) {
+		
+		try {
+			PessoaJuridicaDAO dao = new PessoaJuridicaDAO(new ConnectionFactory().getConnection());
+			dao.excluirDoadorJuridico(new PessoaJuridica(501,"12778567000172", "something", "adasd"));
+			ArrayList<PessoaJuridica> arrays = dao.listarDoadorJuridico();
+			for(PessoaJuridica p : arrays) {
+				System.out.println(p);
+			}
+			dao.getConexao().close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (PessoaJuridicaInvalidaException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (PessoaInvalidaException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }
