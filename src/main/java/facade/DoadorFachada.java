@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import DAO.ConnectionFactory;
 import DAO.PessoaFisicaDAO;
 import DAO.PessoaJuridicaDAO;
-import exceptions.PessoaFisicaException;
 import exceptions.PessoaInvalidaException;
 import model.PessoaFisica;
 import model.PessoaJuridica;
@@ -70,5 +69,17 @@ public class DoadorFachada {
 			e.printStackTrace();
 		}
 		return lista;
+	}
+
+	public boolean editarDoadorJuridico(PessoaJuridica doador) {
+		PessoaJuridicaDAO dao = new PessoaJuridicaDAO(new ConnectionFactory().getConnection());
+		try {
+			dao.editar(doador);
+			dao.getConexao().close();
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
 	}
 }

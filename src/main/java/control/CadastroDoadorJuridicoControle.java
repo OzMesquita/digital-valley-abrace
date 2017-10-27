@@ -1,12 +1,9 @@
 package control;
 
 import java.sql.SQLException;
-import java.time.LocalDate;
 
 import org.eclipse.swt.events.SelectionEvent;
 
-import exceptions.AssistidoInvalidoException;
-import exceptions.PessoaFisicaException;
 import exceptions.PessoaInvalidaException;
 import exceptions.PessoaJuridicaInvalidaException;
 import facade.DoadorFachada;

@@ -23,7 +23,7 @@ public class LoginControle {
 					throw new UsuarioNaoEncontradoException();
 				}else {
 					this.view.getShlOngRussasTransformando().dispose();
-					new AplicacaoView().main();
+					AplicacaoView.main();
 				}
 			} catch (UsuarioInvalidoException e) {
 				view.mensagemErro(e);
