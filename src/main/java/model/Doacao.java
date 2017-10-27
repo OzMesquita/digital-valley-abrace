@@ -10,6 +10,7 @@ public class Doacao {
 	private LocalDate data;
 	private Pessoa doador;
 	
+	
 	public int getId() {
 		return id;
 	}
