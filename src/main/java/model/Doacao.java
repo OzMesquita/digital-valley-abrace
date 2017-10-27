@@ -6,7 +6,7 @@ import exceptions.DoacaoInvalidaException;
 
 public class Doacao {
 	private int id;
-	private String valor;//No diagrama tava String, mas preferi usar float
+	private Double valor;//No diagrama tava String, mas preferi usar float
 	private LocalDate data;
 	private Pessoa doador;
 	
@@ -19,11 +19,11 @@ public class Doacao {
 		}
 		this.id = id;
 	}
-	public String getValor() {
+	public double getValor() {
 		return valor;
 	}
-	public void setValor(String valor) throws DoacaoInvalidaException {
-		if(valor == null) {
+	public void setValor(double valor) throws DoacaoInvalidaException {
+		if(valor < 0) {
 			throw new DoacaoInvalidaException("O valor informado é inválido!");
 		}
 		this.valor = valor;
