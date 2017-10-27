@@ -94,4 +94,5 @@ public class AplicacaoView {
 		btnRealizarDoacao.setText("Realizar Doação");
 		btnRealizarDoacao.setBounds(334, 148, 224, 68);
 	}
+	
 }

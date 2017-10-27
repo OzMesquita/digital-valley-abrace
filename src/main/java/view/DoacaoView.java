@@ -217,6 +217,7 @@ public class  DoacaoView{
 	 * @param args
 	 * @wbp.parser.entryPoint
 	 */
+	
 	public static void main() {
 		try {
 			DoacaoView window = new DoacaoView();

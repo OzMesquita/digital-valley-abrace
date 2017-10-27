@@ -9,6 +9,7 @@ import facade.DoacaoFachada;
 import model.Doacao;
 import view.DoacaoView;
 
+
 public class DoacaoControle {
 	
 	private DoacaoView view;
