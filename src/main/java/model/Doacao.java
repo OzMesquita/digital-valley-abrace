@@ -11,14 +11,22 @@ public class Doacao {
 	private boolean ativo;
 	private Pessoa doador;
 	
-	
+	public Doacao() {
+		
+	}
 	public Doacao(int id, Double valor, LocalDate data, boolean ativo, Pessoa doador) throws DoacaoInvalidaException {
 		setId(id);
 		setValor(valor);
 		setAtivo(ativo);
 		setDoador(doador);
 	}
-	
+	public Doacao(Double valor, LocalDate data, boolean ativo, Pessoa doador) throws DoacaoInvalidaException {
+		setValor(valor);
+		setData(data);
+		setAtivo(ativo);
+		setDoador(doador);
+	}
+		
 	public int getId() {
 		return id;
 	}
