@@ -11,6 +11,7 @@ public class Doacao {
 	private Pessoa doador;
 	
 	
+	
 	public int getId() {
 		return id;
 	}
