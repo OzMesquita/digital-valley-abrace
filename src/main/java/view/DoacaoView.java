@@ -2,7 +2,6 @@ package view;
 
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.MessageBox;
 
 import java.io.File;
@@ -32,6 +31,7 @@ public class  DoacaoView{
 	private PessoaJuridica doadorJuridico;
 	private Doacao doacao;
 	private DoacaoControle controle;
+	private Combo tfAtivo;
 	
 	public Text getTfDoador() {
 		
@@ -72,6 +72,14 @@ public class  DoacaoView{
 	
 	public void setDoadorJuridico(PessoaJuridica doadorJuridico) {
 		this.doadorJuridico = doadorJuridico;
+	}
+	
+	public boolean getTfAtivo() {
+		if(tfAtivo.getSelectionIndex() == 0) {
+			return true;
+		}else {
+			return false;
+		}
 	}
 	
 	public Doacao getDoacao() {
@@ -141,45 +149,25 @@ public class  DoacaoView{
 		shlDoacao.setSize(715, 748);
 		shlDoacao.setText("Realizar Doação - ABRACE");
 		
-		Label lblDoacao = new Label(shlDoacao, SWT.NONE);
-		lblDoacao.setText("Realizar Doação");
-		lblDoacao.setFont(SWTResourceManager.getFont("Segoe UI", 30, SWT.NORMAL));
-		lblDoacao.setBounds(214, 42, 271, 54);
-		
-		Label label_1 = new Label(shlDoacao, SWT.NONE);
-		label_1.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/assistido.png").getAbsolutePath()));
-		label_1.setBounds(548, 10, 75, 119);
-		
-		Label label_2 = new Label(shlDoacao, SWT.NONE);
-		label_2.setText("Doador:");
-		label_2.setFont(SWTResourceManager.getFont("Segoe UI Emoji", 16, SWT.NORMAL));
-		label_2.setBounds(193, 151, 62, 28);
-		
 		tfDoador = new Text(shlDoacao, SWT.BORDER);
 		tfDoador.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfDoador.setBounds(261, 149, 369, 32);
-		
-		Label label_3 = new Label(shlDoacao, SWT.NONE);
-		label_3.setText("Valor:");
-		label_3.setFont(SWTResourceManager.getFont("Segoe UI Emoji", 16, SWT.NORMAL));
-		label_3.setBounds(179, 190, 76, 28);
 		
 		tfValor = new Text(shlDoacao, SWT.BORDER);
 		tfValor.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfValor.setBounds(261, 188, 369, 32);
 		
-		Label label_4 = new Label(shlDoacao, SWT.NONE);
-		label_4.setText("Data da Doação:");
-		label_4.setFont(SWTResourceManager.getFont("Segoe UI Emoji", 16, SWT.NORMAL));
-		label_4.setBounds(60, 343, 195, 28);
-		
 		tfDataDoacao = new DateTime(shlDoacao, SWT.BORDER);
 		tfDataDoacao.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfDataDoacao.setBounds(261, 341, 369, 32);
 		
-
+		tfAtivo = new Combo(shlDoacao, SWT.READ_ONLY);
+		tfAtivo.setItems(new String[] {"Ativo", "Inativo"});
+		tfAtivo.setBounds(244, 530, 99, 38);
+		tfAtivo.select(0);
+		
 		tfDoador.setText(getDoacao().getDoador().getNome());
-		tfValor.setText(getDoacao().getValor());
+		tfValor.setText(getDoacao().getValor()+"");
 		tfDataDoacao.setDay(getDoacao().getData().getDayOfMonth());
 		tfDataDoacao.setMonth(getDoacao().getData().getMonthValue());
 		tfDataDoacao.setYear(getDoacao().getData().getYear());		
