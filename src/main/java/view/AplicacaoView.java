@@ -46,6 +46,16 @@ public class AplicacaoView {
 		});
 		btnListarAssistidos.setBounds(92, 148, 224, 68);
 		btnListarAssistidos.setText("Gerenciar Assistidos");
+		
+		Button btnListarDoadores = new Button(shlOngRussasTransformando, SWT.NONE);
+		btnListarDoadores.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent arg0) {
+				SelecionarTipoDoadorListadoView.main();
+			}
+		});
+		btnListarDoadores.setText("Gerenciar Doadores");
+		btnListarDoadores.setBounds(334, 148, 224, 68);
 		shlOngRussasTransformando.open();
 		shlOngRussasTransformando.layout();
 		while (!shlOngRussasTransformando.isDisposed()) {
@@ -92,7 +102,7 @@ public class AplicacaoView {
 			}
 		});
 		btnRealizarDoacao.setText("Realizar Doação");
-		btnRealizarDoacao.setBounds(334, 148, 224, 68);
+		btnRealizarDoacao.setBounds(92, 222, 224, 68);
 	}
 	
 }

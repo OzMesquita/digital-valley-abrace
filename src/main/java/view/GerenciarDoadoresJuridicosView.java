@@ -1,12 +1,33 @@
 package view;
 
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.Table;
+import org.eclipse.swt.widgets.TableColumn;
+import org.eclipse.swt.widgets.Text;
+
+import control.GerenciarDoadoresFisicosControle;
 
 public class GerenciarDoadoresJuridicosView {
+	
+	GerenciarDoadoresJuridicosControle controle;
 
-	protected Shell shell;
-
+	protected Shell shlGerenciarDoadoresFisicos;
+	private Table table;
+	private TableColumn tblclmnId;
+	private TableColumn tblclmnNomeDoDoadorFisico;
+	private TableColumn tblclmnDataDeNascimento;
+	private TableColumn tblclmnCpf;
+	private Label lblSelecioneUmDoadorFisico;
+	private Label lblPesquisarDoadorFisico;
+	private Text tfPesquisa;
+	private Button btnCadastrar;
+	private Button btnEditar;
+	
+	private Button btnExcluir;
+	private Button btnCancelar;
 	/**
 	 * Launch the application.
 	 * @param args
