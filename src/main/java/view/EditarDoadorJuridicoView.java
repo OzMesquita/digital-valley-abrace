@@ -22,11 +22,24 @@ public class EditarDoadorJuridicoView {
 
 	private EditarDoadorJuridicoControle controle;
 	
-	protected Shell shlEditarDoador;
+	protected Shell shlEditarDoador = new Shell();
 	
 	private PessoaJuridica doador;
-	public EditarDoadorJuridicoView(PessoaJuridica a) {
-		// TODO Auto-generated constructor stub
+	public EditarDoadorJuridicoView(PessoaJuridica doador) {
+		this.setControle(new EditarDoadorJuridicoControle(this));
+		this.setDoador(doador);
+	}
+
+	public EditarDoadorJuridicoView() {
+		this.setControle(new EditarDoadorJuridicoControle(this));
+	}
+
+	public EditarDoadorJuridicoControle getControle() {
+		return controle;
+	}
+
+	public void setControle(EditarDoadorJuridicoControle controle) {
+		this.controle = controle;
 	}
 
 	public PessoaJuridica getDoador() {
@@ -56,7 +69,6 @@ public class EditarDoadorJuridicoView {
 	}
 	public Text getTfNome() {
 		return tfNome;
-		
 	}
 
 	public void setTfNome(Text tfNome) {
@@ -129,7 +141,7 @@ public class EditarDoadorJuridicoView {
 	 */
 	public static void main() {
 		try {
-			CadastroDoadorJuridicoView window = new CadastroDoadorJuridicoView();
+			EditarDoadorJuridicoView window = new EditarDoadorJuridicoView();
 			window.open();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -167,7 +179,7 @@ public class EditarDoadorJuridicoView {
 		shlEditarDoador = new Shell();
 		shlEditarDoador.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/ABRACE.png").getAbsolutePath()));
 		shlEditarDoador.setSize(715, 662);
-		shlEditarDoador.setText("Cadastro Doador - ABRACE");
+		shlEditarDoador.setText("Editar Doador - ABRACE");
 		
 		Label lblCadastroDeDoador = new Label(shlEditarDoador, SWT.NONE);
 		lblCadastroDeDoador.setFont(SWTResourceManager.getFont("Segoe UI", 30, SWT.NORMAL));
@@ -267,7 +279,7 @@ public class EditarDoadorJuridicoView {
 		btnCadastrar.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/ok.png").getAbsolutePath()));
 		btnCadastrar.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		btnCadastrar.setBounds(391, 530, 184, 60);
-		btnCadastrar.setText("Cadastrar");
+		btnCadastrar.setText("Editar");
 		
 		Button btnCancelar = new Button(shlEditarDoador, SWT.NONE);
 		btnCancelar.addSelectionListener(new SelectionAdapter() {
@@ -299,18 +311,16 @@ public class EditarDoadorJuridicoView {
 			tfStatus.select(1);
 		}
 	}
-	
 	public void mensagemErro(Exception e){
 		 MessageBox messageBox = new MessageBox(shlEditarDoador,SWT.ICON_ERROR | SWT.OK); 
-        messageBox.setText("Login inválido");
-        messageBox.setMessage(e.getMessage()+".\nTente novamente");
-       messageBox.open();
+		 messageBox.setText("Problemas ao editar dados do assistido");
+		 messageBox.setMessage(e.getMessage()+"\nTente novamente");
+		 messageBox.open();
 	}
-	
 	public void mensagemSucesso(PessoaJuridica p){
 		MessageBox messageBox = new MessageBox(shlEditarDoador,SWT.ICON_WORKING | SWT.OK); 
-		messageBox.setText("Assistido cadastrado com sucesso!");
-		messageBox.setMessage("Cadastro realizado com sucesso!\n" + p.getNome()+", agora é um de nossos assistidos!");
+		messageBox.setText("Doador editado com sucesso!");
+		messageBox.setMessage("As informações do doador foram alteradas com sucesso");
 		messageBox.open();
 	}
 

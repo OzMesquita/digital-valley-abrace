@@ -160,7 +160,7 @@ public class GerenciarDoadoresJuridicosView {
 	 */
 	public static void main() {
 		try {
-			GerenciarDoadoresFisicosView window = new GerenciarDoadoresFisicosView();
+			GerenciarDoadoresJuridicosView window = new GerenciarDoadoresJuridicosView();
 			window.open();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -311,7 +311,7 @@ public class GerenciarDoadoresJuridicosView {
 	protected void createContents() {
 		shlGerenciarDoadoresJuridicos = new Shell();
 		shlGerenciarDoadoresJuridicos.setSize(730, 730);
-		shlGerenciarDoadoresJuridicos.setText("Gerenciar Assistidos - ABRACE");
+		shlGerenciarDoadoresJuridicos.setText("Gerenciar Doadores - ABRACE");
 		shlGerenciarDoadoresJuridicos.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/ABRACE.png").getAbsolutePath()));
 
 	}

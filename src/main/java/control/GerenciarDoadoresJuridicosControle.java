@@ -19,6 +19,7 @@ public class GerenciarDoadoresJuridicosControle {
 	private ArrayList<PessoaJuridica> listaExibidaNaTabela;
 	
 	public GerenciarDoadoresJuridicosControle(GerenciarDoadoresJuridicosView view) {
+		fachada = new DoadorFachada();
 		this.setView(view);
 	}
 	

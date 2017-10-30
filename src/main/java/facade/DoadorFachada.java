@@ -74,7 +74,7 @@ public class DoadorFachada {
 	public boolean editarDoadorJuridico(PessoaJuridica doador) {
 		PessoaJuridicaDAO dao = new PessoaJuridicaDAO(new ConnectionFactory().getConnection());
 		try {
-			dao.editar(doador);
+			dao.editarDoadorJuridico(doador);
 			dao.getConexao().close();
 			return true;
 		} catch (SQLException e) {
