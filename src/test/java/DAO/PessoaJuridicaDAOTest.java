@@ -1,8 +1,8 @@
 package DAO;
 
 import java.sql.SQLException;
+
 import java.time.LocalDate;
-import java.util.ArrayList;
 
 import exceptions.PessoaInvalidaException;
 import exceptions.PessoaJuridicaInvalidaException;
@@ -15,7 +15,8 @@ public class PessoaJuridicaDAOTest {
 
 		 //inserir();
 		 //inserirInvalido();
-		 editar();
+		//editar();
+		 editarInvalida();
 		// listar();
 		// excluir();
 	}
@@ -23,16 +24,16 @@ public class PessoaJuridicaDAOTest {
 	public static void inserir() throws PessoaInvalidaException, SQLException, PessoaJuridicaInvalidaException {
 		PessoaJuridica pessoaJ = new PessoaJuridica();
 
-		pessoaJ.setNome("Maria Juridica");
-		pessoaJ.setEndereco("Avenida da Maria");
-		pessoaJ.setTelefone("3411-5555");
-		pessoaJ.setTelefone2("");
+		pessoaJ.setNome("Cícero Alcantara");
+		pessoaJ.setEndereco("Avenida Primeira Classe");
+		pessoaJ.setTelefone("3445-7894");
+		pessoaJ.setTelefone2("8598001388");
 		pessoaJ.setDataCadastro(LocalDate.now());
-		pessoaJ.setEmail("mj@gmail.com");
+		pessoaJ.setEmail("imoveis@gmail.com");
 		pessoaJ.setAtivo(true);
-		pessoaJ.setCnpj("02215163000117");
-		pessoaJ.setNomeFantasia("M J Confecções");
-		pessoaJ.setRazaoSocial("M J LTDA");
+		pessoaJ.setCnpj("78533714000152");
+		pessoaJ.setNomeFantasia("Alcantara Imovéis");
+		pessoaJ.setRazaoSocial("A Imovéis LTDA");
 
 		new PessoaJuridicaDAO(new ConnectionFactory().getConnection()).inserirDoadorJuridico(pessoaJ);
 	}
@@ -53,25 +54,58 @@ public class PessoaJuridicaDAOTest {
 
 		new PessoaJuridicaDAO(new ConnectionFactory().getConnection()).inserirDoadorJuridico(pessoaJ);
 	}
-
+	
 	public static void editar() throws PessoaInvalidaException, SQLException, PessoaJuridicaInvalidaException {
 		PessoaJuridica pessoaJ = new PessoaJuridica();
 
-		pessoaJ.setNome("Maria Juridica");
-		pessoaJ.setEndereco("Avenida da Maria");
-		pessoaJ.setTelefone("3411-6666");
-		pessoaJ.setTelefone2("3411-2400");
+		pessoaJ.setNome("Cícero Alcantara");
+		pessoaJ.setEndereco("Avenida Primeira Classe - Centro/CE"); //incluindo alteração no endereço
+		pessoaJ.setTelefone("3445-7894");
+		pessoaJ.setTelefone2("8598001388");
 		pessoaJ.setDataCadastro(LocalDate.now());
-		pessoaJ.setEmail("mj@gmail.com");
+		pessoaJ.setEmail("imoveis@gmail.com");
 		pessoaJ.setAtivo(true);
-		pessoaJ.setCnpj("02215163000117");
-		pessoaJ.setNomeFantasia("M J Confecções");
-		pessoaJ.setRazaoSocial("M J LTDA");
-		pessoaJ.setId(901);
+		pessoaJ.setCnpj("78533714000152");
+		pessoaJ.setNomeFantasia("Alcantara Imovéis");
+		pessoaJ.setRazaoSocial("A Imovéis LTDA");
+		pessoaJ.setId(301);
 
 		new PessoaJuridicaDAO(new ConnectionFactory().getConnection()).editarDoadorJuridico(pessoaJ);
 
 	}
+
+	public static void editarInvalida() throws PessoaInvalidaException, SQLException, PessoaJuridicaInvalidaException {
+		PessoaJuridica pessoaJ = new PessoaJuridica();
+
+//		pessoaJ.setNome("Cícero Alcantara");
+//		pessoaJ.setEndereco("Avenida Simões"); //incluindo alteração no endereço
+//		pessoaJ.setTelefone("3445-7894");
+//		pessoaJ.setTelefone2("8899151620"); //incluindo alteração no telefone 8598001388 para 8899151620
+//		pessoaJ.setDataCadastro(LocalDate.now());
+//		pessoaJ.setEmail("imoveis@gmail.com");
+//		pessoaJ.setAtivo(true);
+//		pessoaJ.setCnpj("78533714000152"); //Incluindo um erro no nomeFantasia na Tabela PessoaJuridica
+//		pessoaJ.setNomeFantasia("Alcantara Imovéis--------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+//		pessoaJ.setRazaoSocial("A Imovéis LTDA");
+//		pessoaJ.setId(301);
+		
+		//Incluindo um erro no nomeFantasia na Tabela PessoaJuridica
+		pessoaJ.setNome("Cícero Alcantara------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+		pessoaJ.setEndereco("Avenida Simões"); //incluindo alteração no endereço
+		pessoaJ.setTelefone("3445-7894");
+		pessoaJ.setTelefone2("8899151620"); //incluindo alteração no telefone 8598001388 para 8899151620
+		pessoaJ.setDataCadastro(LocalDate.now());
+		pessoaJ.setEmail("imoveis@gmail.com");
+		pessoaJ.setAtivo(true);
+		pessoaJ.setCnpj("78533714000152"); 
+		pessoaJ.setNomeFantasia("Imovéis Alcantara");//incluindo alteração no nomeFantasia
+		pessoaJ.setRazaoSocial("A Imovéis LTDA");
+		pessoaJ.setId(301);
+
+		new PessoaJuridicaDAO(new ConnectionFactory().getConnection()).editarDoadorJuridico(pessoaJ);
+
+	}
+	
 
 	/*public static void excluir() throws SQLException {
 

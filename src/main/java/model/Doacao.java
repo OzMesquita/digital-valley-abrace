@@ -71,7 +71,7 @@ public class Doacao {
 	}
 	@Override
 	public String toString() {
-		return "Doacao [id=" + id + ", valor=" + valor + ", data=" + data + ", doador=" + doador + "]";
+		return "Doacao [id=" + id + ", valor=" + valor + ", data=" + data + ", ativo="+ ativo +", doador=" + this.getDoador().getNome() + " idDoador=" +this.getDoador().getId()+ "]";
 	}
 	
 	

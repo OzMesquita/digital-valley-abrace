@@ -3,6 +3,7 @@ package DAO;
 import java.sql.Connection;
 
 
+
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -68,7 +69,6 @@ public class PessoaDAO extends ExecutaSQL{
 		return listaPessoas;
 	}
 
-	@SuppressWarnings("finally")
 	public boolean editarPessoa(Pessoa pessoa) throws SQLException {
 		String sql= "UPDATE ABRACE.PESSOA SET nome=?, endereco=?, telefone1=?, telefone2=?, email=?, ativo=? WHERE idPessoa=?";
 		PreparedStatement stmt = getConexao().prepareStatement(sql);		
@@ -96,5 +96,30 @@ public class PessoaDAO extends ExecutaSQL{
 	    stmt.close();
 	}
 	
+	public Pessoa getPessoa(int id) {
+	
+		String sql = "SELECT ABRACE.Pessoa.ativo, ABRACE.Pessoa.nome, ABRACE.Pessoa.endereco, ABRACE.Pessoa.telefone1, ABRACE.Pessoa.telefone2,"
+				+ " ABRACE.Pessoa.email, ABRACE.Pessoa.dataCadastro FROM ABRACE.Pessoa WHERE ABRACE.Pessoa.idPessoa = ?";
+		try {
+			PreparedStatement ps = getConexao().prepareStatement(sql);
+			ps.setInt(1, id);
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+				boolean ativo = rs.getBoolean(1);
+				String nome = rs.getString(2);
+				String endereco = rs.getString(3);
+				String telefone = rs.getString(4);
+				String telefone2 = rs.getString(5);
+				String email = rs.getString(6);
+				LocalDate dataCadastro = rs.getDate(7).toLocalDate();
+				return new Pessoa(id, nome, endereco, dataCadastro, telefone, telefone2, email, ativo);
+			}
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage());
+		} catch (PessoaInvalidaException e) {
+			e.printStackTrace();
+		} 
+		return null;
+	}
 	   
 }
