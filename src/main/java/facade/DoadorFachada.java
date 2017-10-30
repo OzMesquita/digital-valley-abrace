@@ -93,4 +93,15 @@ public class DoadorFachada {
 		}
 		return resultado;
 	}
+
+	public boolean excluirDoadorJuridico(int id) {
+		PessoaJuridicaDAO dao = new PessoaJuridicaDAO(new ConnectionFactory().getConnection());
+			boolean resultado = dao.excluirDoadorJuridico(dao.getPessoaJuridica(id));
+			try {
+				dao.getConexao().close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		return resultado;
+	}
 }

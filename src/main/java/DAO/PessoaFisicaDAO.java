@@ -1,34 +1,15 @@
 package DAO;
 
-import java.sql.Array;
-import java.sql.Blob;
-import java.sql.CallableStatement;
-import java.sql.Clob;
 import java.sql.Connection;
-import java.sql.DatabaseMetaData;
 import java.sql.Date;
-import java.sql.NClob;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLClientInfoException;
 import java.sql.SQLException;
-import java.sql.SQLWarning;
-import java.sql.SQLXML;
-import java.sql.Savepoint;
-import java.sql.Statement;
-import java.sql.Struct;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Map;
-import java.util.Properties;
-import java.util.concurrent.Executor;
-
-import exceptions.AssistidoInvalidoException;
 import exceptions.PessoaFisicaException;
 import exceptions.PessoaInvalidaException;
-import model.Assistido;
 import model.PessoaFisica;
-import model.PessoaJuridica;
 
 public class PessoaFisicaDAO extends ExecutaSQL {
 

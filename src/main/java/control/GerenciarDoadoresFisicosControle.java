@@ -8,12 +8,9 @@ import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.TableItem;
 
-import facade.AssistidoFachada;
 import facade.DoadorFachada;
-import model.Assistido;
 import model.PessoaFisica;
-import view.EditarAssistidoView;
-import view.GerenciarAssistidosView;
+import view.EditarDoadorFisicoView;
 import view.GerenciarDoadoresFisicosView;
 
 public class GerenciarDoadoresFisicosControle {

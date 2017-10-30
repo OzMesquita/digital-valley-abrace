@@ -74,7 +74,7 @@ public class PessoaJuridicaDAO extends ExecutaSQL{
 		
 	}
 	
-	public boolean excluirDoadorJuridico(PessoaJuridica pessoaJ) throws SQLException {
+	public boolean excluirDoadorJuridico(PessoaJuridica pessoaJ) {
 		
 		try{
 			String sql = "UPDATE ABRACE.PESSOA SET ativo=false WHERE idPessoa=" + pessoaJ.getId();

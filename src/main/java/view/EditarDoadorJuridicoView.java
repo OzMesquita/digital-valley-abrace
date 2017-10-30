@@ -25,6 +25,10 @@ public class EditarDoadorJuridicoView {
 	protected Shell shlEditarDoador;
 	
 	private PessoaJuridica doador;
+	public EditarDoadorJuridicoView(PessoaJuridica a) {
+		// TODO Auto-generated constructor stub
+	}
+
 	public PessoaJuridica getDoador() {
 		return doador;
 	}
