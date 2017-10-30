@@ -20,7 +20,7 @@ public class DoacaoDAO extends ExecutaSQL{
 	
 	public boolean cadastrarDoacao(Doacao doacao) {
 		PreparedStatement stmt = null;
-		String sql = "INSERT INTO ABRACE.DOACAO (idDoacao, valor, data, ativo) values (?, ?, ?, ?)";
+		String sql = "INSERT INTO ABRACE.DOACAO (idDoacao, valor, data, ativo) values (?, ?, ?, true)";
 		try {
 			stmt = getConexao().prepareStatement(sql);
 			
