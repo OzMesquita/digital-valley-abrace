@@ -72,7 +72,7 @@ public class PessoaDAO extends ExecutaSQL{
 	public boolean editarPessoa(Pessoa pessoa) throws SQLException {
 		String sql= "UPDATE ABRACE.PESSOA SET nome=?, endereco=?, telefone1=?, telefone2=?, email=?, ativo=? WHERE idPessoa=?";
 		PreparedStatement stmt = getConexao().prepareStatement(sql);		
-		try {
+		
 			stmt.setString(1, pessoa.getNome());
 			stmt.setString(2, pessoa.getEndereco());
 			stmt.setString(3, pessoa.getTelefone());
@@ -84,13 +84,7 @@ public class PessoaDAO extends ExecutaSQL{
 			stmt.executeUpdate();
 
 			return true;
-		} catch (SQLException e) {
-			rollBack(e);
-			return false;
-		} finally {
-			verificaConexao(stmt);
-			
-		}
+
 	}
 	public void excluirPessoa(Pessoa pessoa) throws SQLException{
 		String sql= "UPDATE ABRACE.PESSOA SET ativo=false WHERE idPessoa="+pessoa.getId();
