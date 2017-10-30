@@ -93,12 +93,20 @@ public class PessoaFisicaDAO extends ExecutaSQL {
 	}
 
 
-	public void excluirDoadorFisico(PessoaFisica pessoaFisica) throws SQLException {
-		String sql = "UPDATE ABRACE.PESSOA SET ativo=false WHERE idPessoa=" + pessoaFisica.getId();
-		PreparedStatement stmt = getConexao().prepareStatement(sql);
+	public boolean excluirDoadorFisico(PessoaFisica pessoaFisica) {
+		
+		try {
+			String sql = "UPDATE ABRACE.PESSOA SET ativo=false WHERE idPessoa=" + pessoaFisica.getId();
+			PreparedStatement stmt = getConexao().prepareStatement(sql);
 
-		stmt.execute();
-		stmt.close();
+			stmt.execute();
+			stmt.close();
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+
 	}
 
 	public ArrayList<PessoaFisica> listarPessoasFisicas() throws SQLException {

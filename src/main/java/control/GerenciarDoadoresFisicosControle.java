@@ -77,7 +77,7 @@ public class GerenciarDoadoresFisicosControle {
         MessageBox messageBox = new MessageBox(view.getShlGerenciarDoadoresFisicos(),SWT.ICON_WARNING | SWT.CANCEL | SWT.OK);
         
         messageBox.setText("Aviso!");
-        messageBox.setMessage("Você deseja realmente deletar o assistido do sistema?");
+        messageBox.setMessage("Você deseja realmente deletar esse doador do sistema?");
         int buttonID = messageBox.open();
         switch(buttonID) {
           case SWT.CANCEL:
@@ -109,7 +109,7 @@ public class GerenciarDoadoresFisicosControle {
 		if (event.getSource().toString().equals("Button {Editar Assistido}")) {
 			PessoaFisica a = fachada.obterDoadorFisico(listaExibidaNaTabela.get(view.getTable().getSelectionIndex()).getId());
 			this.view.getShlGerenciarDoadoresFisicos().dispose();
-			new EditarDoadorFisico(a).open();
+			new EditarDoadorFisicoView(a).open();
 		}
 		if(event.getSource().toString().equals("Button {Excluir Assistido}")) {
 			if(confirmacao()) {

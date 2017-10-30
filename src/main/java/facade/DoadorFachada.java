@@ -82,4 +82,15 @@ public class DoadorFachada {
 		}
 		return false;
 	}
+	
+	public boolean excluirDoadorFisico(int id) {
+		PessoaFisicaDAO dao = new PessoaFisicaDAO(new ConnectionFactory().getConnection());
+		boolean resultado = dao.excluirDoadorFisico(dao.getPessoaFisica(id));
+		try {
+			dao.getConexao().close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return resultado;
+	}
 }
