@@ -26,7 +26,7 @@ public class Instalacao {
 				   ,
 				   //-----------------------------------//
 				   "CREATE TABLE ABRACE.Doacao (" + 
-				   " IdDoacao INT NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1 INCREMENT BY 1)," + 
+				   " IdDoacao INT NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1)," + 
 				   " idPessoa INT NOT NULL," + 
 				   " valor DOUBLE," + 
 				   " data DATE," + 

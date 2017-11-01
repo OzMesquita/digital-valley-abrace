@@ -10,7 +10,7 @@ import org.eclipse.swt.widgets.TableItem;
 
 import facade.DoadorFachada;
 import model.PessoaFisica;
-import view.EditarDoadorFisicoView;
+import view.EditarDoadorPFView;
 import view.GerenciarDoadoresFisicosView;
 
 public class GerenciarDoadoresFisicosControle {
@@ -103,12 +103,12 @@ public class GerenciarDoadoresFisicosControle {
 		if (event.getSource().toString().equals("Button {Pesquisar}")) {
 			preencherTabelaDoadoresFisicos(pesquisarAssistidos(view.getTfPesquisa().getText()));
 		}
-		if (event.getSource().toString().equals("Button {Editar Assistido}")) {
+		if (event.getSource().toString().equals("Button {Editar Doador}")) {
 			PessoaFisica a = fachada.obterDoadorFisico(listaExibidaNaTabela.get(view.getTable().getSelectionIndex()).getId());
 			this.view.getShlGerenciarDoadoresFisicos().dispose();
-			new EditarDoadorFisicoView(a).open();
+			new EditarDoadorPFView(a).open();
 		}
-		if(event.getSource().toString().equals("Button {Excluir Assistido}")) {
+		if(event.getSource().toString().equals("Button {Excluir Doador}")) {
 			if(confirmacao()) {
 				fachada.excluirDoadorFisico(listaExibidaNaTabela.get(view.getTable().getSelectionIndex()).getId());
 				excluirLinhasDaTabela();

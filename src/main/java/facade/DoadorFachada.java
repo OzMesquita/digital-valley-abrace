@@ -70,6 +70,10 @@ public class DoadorFachada {
 		}
 		return lista;
 	}
+	
+	public boolean editarDoadorPF(PessoaFisica doador) {
+		return false;
+	}
 
 	public boolean editarDoadorJuridico(PessoaJuridica doador) {
 		PessoaJuridicaDAO dao = new PessoaJuridicaDAO(new ConnectionFactory().getConnection());
