@@ -35,10 +35,7 @@ public class GerenciarDoadoresFisicosView {
 	private Button btnExcluir;
 	private Button btnCancelar;
 	private Label lblPessoaFsica;
-	
-	
 
-	
 	
 	public GerenciarDoadoresFisicosView() {
 		this.controle = new GerenciarDoadoresFisicosControle(this);
@@ -224,12 +221,12 @@ public class GerenciarDoadoresFisicosView {
 		
 		lblPesquisarDoadorFisico = new Label(shlGerenciarDoadoresFisicos, SWT.NONE);
 		lblPesquisarDoadorFisico.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
-		lblPesquisarDoadorFisico.setBounds(98, 170, 92, 30);
+		lblPesquisarDoadorFisico.setBounds(10, 173, 92, 30);
 		lblPesquisarDoadorFisico.setText("Pesquisar:");
 		
 		tfPesquisa = new Text(shlGerenciarDoadoresFisicos, SWT.BORDER);
 		tfPesquisa.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
-		tfPesquisa.setBounds(196, 170, 360, 36);
+		tfPesquisa.setBounds(108, 170, 448, 36);
 		
 		Button btnPesquisar = new Button(shlGerenciarDoadoresFisicos, SWT.NONE);
 		btnPesquisar.addSelectionListener(new SelectionAdapter() {

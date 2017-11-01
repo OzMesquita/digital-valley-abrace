@@ -127,7 +127,7 @@ public class DoadorFachada {
 		return resultado;
 	}
 
-	public Pessoa getDadosDoador(int id) {
+	public static Pessoa getDadosDoador(int id) {
 		PessoaFisicaDAO dao = new PessoaFisicaDAO(new ConnectionFactory().getConnection());
 		Pessoa pessoa = dao.getPessoaFisica(id);
 		try {

@@ -9,6 +9,8 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.wb.swt.SWTResourceManager;
+
+import doacao.SelecionarDoadorView;
 public class AplicacaoView {
 
 	protected Shell shlOngRussasTransformando;
@@ -94,13 +96,13 @@ public class AplicacaoView {
 		btnCadastrarDoador.setBounds(334, 74, 224, 68);
 		
 		Button btnRealizarDoacao = new Button(shlOngRussasTransformando, SWT.NONE);
+		btnRealizarDoacao.setText("Realizar Doação");
+		btnRealizarDoacao.setBounds(92, 222, 224, 68);
 		btnRealizarDoacao.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
-				DoacaoView.main();
+				SelecionarDoadorView.main();
 			}
 		});
-		btnRealizarDoacao.setText("Realizar Doação");
-		btnRealizarDoacao.setBounds(92, 222, 224, 68);
 	}
 }
