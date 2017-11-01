@@ -29,7 +29,7 @@ public class DoacaoControle {
 	private PessoaFachada pessoaFachada = new PessoaFachada();
 	
 	public DoacaoControle(SelecionarDoadorView view1) {
-		setView1(view1);
+		setView1(view1); 
 	}
 	
 	public SelecionarDoadorView getView1() {
