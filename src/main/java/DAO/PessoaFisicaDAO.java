@@ -47,7 +47,7 @@ public class PessoaFisicaDAO extends ExecutaSQL {
 			stmt.execute();
 	}
 
-	private void editar(PessoaFisica pessoaFisica) throws SQLException {
+	public void editar(PessoaFisica pessoaFisica) throws SQLException {
 		String sql = "UPDATE ABRACE.PESSOA_FISICA SET dataNascimento=?, rg=?, cpf=? WHERE idPessoa = ?";
 		PreparedStatement stmt = getConexao().prepareStatement(sql);
 		
@@ -65,6 +65,7 @@ public class PessoaFisicaDAO extends ExecutaSQL {
 			PessoaDAO pessoa = new PessoaDAO(getConexao());
 			pessoa.editarPessoa(pessoaFisica);
 			editar(pessoaFisica);
+			
 			getConexao().commit();
 		}catch(SQLException e) {
 			rollBack(e);

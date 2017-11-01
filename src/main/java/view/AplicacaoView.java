@@ -9,7 +9,6 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.wb.swt.SWTResourceManager;
-
 public class AplicacaoView {
 
 	protected Shell shlOngRussasTransformando;
@@ -104,5 +103,4 @@ public class AplicacaoView {
 		btnRealizarDoacao.setText("Realizar Doação");
 		btnRealizarDoacao.setBounds(92, 222, 224, 68);
 	}
-	
 }

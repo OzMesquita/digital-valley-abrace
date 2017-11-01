@@ -37,7 +37,7 @@ public class AssistidoDAO extends ExecutaSQL {
 	public void cadastrarAssistido(Assistido assistido) throws PessoaInvalidaException, SQLException {
 		PreparedStatement stmt = null;
 		String sql = "insert into ABRACE.ASSISTIDO" + "(idpessoa, status, apelido, tipocancer) values (?, ?, ?, ?)";
-		// try {
+		
 		// prepared statement para inserção
 		stmt = getConexao().prepareStatement(sql);
 
@@ -50,12 +50,19 @@ public class AssistidoDAO extends ExecutaSQL {
 		stmt.execute();
 	}
 	
-	public boolean editarAssistido(Assistido assistido) throws PessoaInvalidaException {
+	public boolean editarAssistido(Assistido assistido) throws PessoaInvalidaException, SQLException {
 		try {
 			getConexao().setAutoCommit(false);
+			PessoaDAO pessoa = new PessoaDAO(getConexao());
+			
 			PessoaFisicaDAO pessoaFisica = new PessoaFisicaDAO(getConexao());
-			pessoaFisica.editarDoadorFisico(assistido);
+			
+			pessoa.editarPessoa(assistido);
+
+			pessoaFisica.editar(assistido);
+			
 			editar(assistido);
+			
 			getConexao().commit();
 		} catch (SQLException e) {
 			rollBack(e);
@@ -171,8 +178,7 @@ public class AssistidoDAO extends ExecutaSQL {
 			e.printStackTrace();
 		} catch (AssistidoInvalidoException e) {
 			e.printStackTrace();
-		} finally {
-			return assistidos;
 		}
+		return assistidos;
 	}
 }

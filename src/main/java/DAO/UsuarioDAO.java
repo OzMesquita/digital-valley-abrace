@@ -132,9 +132,8 @@ public class UsuarioDAO extends ExecutaSQL{
 				e.printStackTrace();
 			} catch (UsuarioInvalidoException e) {
 				e.printStackTrace();
-			}finally {
-				return usuarios;
 			}
+			return usuarios;
 		}
 
 	}
