@@ -7,6 +7,7 @@ import DAO.ConnectionFactory;
 import DAO.PessoaFisicaDAO;
 import DAO.PessoaJuridicaDAO;
 import exceptions.PessoaInvalidaException;
+import model.Pessoa;
 import model.PessoaFisica;
 import model.PessoaJuridica;
 
@@ -115,5 +116,29 @@ public class DoadorFachada {
 				e.printStackTrace();
 			}
 		return resultado;
+	}
+
+	public Pessoa getDadosDoador(int id) {
+		PessoaFisicaDAO dao = new PessoaFisicaDAO(new ConnectionFactory().getConnection());
+		Pessoa pessoa = dao.getPessoaFisica(id);
+		try {
+			if(pessoa != null) {
+				dao.getConexao().close();
+				return pessoa;
+			}else {
+				PessoaJuridicaDAO novaDao = new PessoaJuridicaDAO(dao.getConexao());
+				pessoa = novaDao.getPessoaJuridica(id);
+				if(pessoa != null) {
+					novaDao.getConexao().close();
+					return pessoa;
+				}else {
+					novaDao.getConexao().close();
+					return null;
+				}
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 }

@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 import exceptions.PessoaInvalidaException;
 import model.Pessoa;
+import model.PessoaFisica;
 
 public class PessoaDAO extends ExecutaSQL{
 	
