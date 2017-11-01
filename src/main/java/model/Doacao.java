@@ -17,6 +17,7 @@ public class Doacao {
 	public Doacao(int id, Double valor, LocalDate data, boolean ativo, Pessoa doador) throws DoacaoInvalidaException {
 		setId(id);
 		setValor(valor);
+		setData(data);
 		setAtivo(ativo);
 		setDoador(doador);
 	}
