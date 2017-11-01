@@ -269,7 +269,7 @@ public class GerenciarDoacoesView {
 		btnCadastrar.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
 		btnCadastrar.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/assistido-small.png").getAbsolutePath()));
 		btnCadastrar.setBounds(346, 615, 208, 54);
-		btnCadastrar.setText("Cadastrar Assistido");
+		btnCadastrar.setText("Cadastrar Doa\u00E7\u00E3o");
 		
 		btnCancelar = new Button(shlGerenciarDoacoes, SWT.NONE);
 		btnCancelar.addSelectionListener(new SelectionAdapter() {
