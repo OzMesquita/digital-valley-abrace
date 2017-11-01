@@ -2,6 +2,7 @@ package facade;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import DAO.ConnectionFactory;
 import DAO.PessoaFisicaDAO;
@@ -48,6 +49,14 @@ public class DoadorFachada {
 		}
 		return lista;
 	}
+	
+	public List<Pessoa> getTodosDoadores(){
+        ArrayList<Pessoa> todos = new ArrayList<Pessoa>();
+        todos.addAll(listarPessoaFisica());
+        todos.addAll(listarPessoaJuridica());
+        return todos;
+    }
+
 	
 	public PessoaJuridica obterDoadorJuridico(int id) {
 	PessoaJuridicaDAO dao = new PessoaJuridicaDAO(new ConnectionFactory().getConnection());
