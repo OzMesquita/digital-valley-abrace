@@ -9,6 +9,8 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import exceptions.DoacaoInvalidaException;
+import exceptions.PessoaInvalidaException;
+import facade.DoadorFachada;
 import model.Doacao;
 import model.Pessoa;
 
@@ -27,7 +29,6 @@ public class DoacaoDAO extends ExecutaSQL{
 			stmt.setInt(1, doacao.getDoador().getId());
 			stmt.setDouble(2,  doacao.getValor());
 			stmt.setDate(3, Date.valueOf(doacao.getData()));
-			
 			stmt.execute();
 		} catch (SQLException e) {
 			rollBack(e);
@@ -88,7 +89,7 @@ public class DoacaoDAO extends ExecutaSQL{
 				
 				Pessoa doador = new PessoaDAO(new ConnectionFactory().getConnection()).getPessoa(idDoador);
 				
-				doacoes.add(new Doacao(id, valor, data, true, doador));
+				doacoes.add(new Doacao(id, valor, data,true , doador));
 			}
 			stmt.close();
 		}catch(SQLException e) {
@@ -96,4 +97,5 @@ public class DoacaoDAO extends ExecutaSQL{
 		}
 		return doacoes;
 	}
+	
 }
