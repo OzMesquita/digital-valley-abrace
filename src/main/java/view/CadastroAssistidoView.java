@@ -14,7 +14,6 @@ import control.CadastroAssistidoControle;
 import exceptions.PessoaFisicaException;
 import exceptions.PessoaInvalidaException;
 import model.PessoaFisica;
-
 import org.eclipse.swt.widgets.DateTime;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Label;
@@ -23,7 +22,7 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 
-public class CadastroAssistidoView {
+public class CadastroAssistidoView{
 	CadastroAssistidoControle controle;
 
 	protected Shell shlCadastroAssistido;
@@ -379,4 +378,5 @@ public class CadastroAssistidoView {
 		messageBox.setMessage("Cadastro realizado com sucesso!\n" + p.getNome()+", agora é um de nossos assistidos! :)");
 		messageBox.open();
 	}
+
 }

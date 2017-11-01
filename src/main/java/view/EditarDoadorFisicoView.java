@@ -10,7 +10,9 @@ public class EditarDoadorFisicoView {
 	protected Shell shell;
 
 	public EditarDoadorFisicoView(PessoaFisica a) {
-		// TODO Auto-generated constructor stub
+	}
+
+	public EditarDoadorFisicoView() {
 	}
 
 	/**

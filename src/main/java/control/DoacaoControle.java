@@ -9,24 +9,29 @@ import doacao.SelecionarDoadorView;
 import exceptions.DoacaoInvalidaException;
 import facade.DoacaoFachada;
 import model.Doacao;
+import view.DoacaoView;
 
 
 public class DoacaoControle {
 	
-	private SelecionarDoadorView view;
+	private DoacaoView view;
 	private InserirValorView view2;
+	private SelecionarDoadorView view3;
 	private DoacaoFachada fachada;
-	
-	public DoacaoControle(SelecionarDoadorView view) {
+	public DoacaoControle(DoacaoView view) {
 		setView(view);
 		setFachada(new DoacaoFachada());
 	}
 	
-	public SelecionarDoadorView getView() {
+	public DoacaoControle(SelecionarDoadorView selecionarDoadorView) {
+		this.view3 = selecionarDoadorView;
+	}
+
+	public DoacaoView getView() {
 		return view;
 	}
 	
-	public void setView(SelecionarDoadorView view) {
+	public void setView(DoacaoView view) {
 		this.view = view;
 	}
 	

@@ -178,8 +178,7 @@ public class AssistidoDAO extends ExecutaSQL {
 			e.printStackTrace();
 		} catch (AssistidoInvalidoException e) {
 			e.printStackTrace();
-		} finally {
-			return assistidos;
 		}
+		return assistidos;
 	}
 }
