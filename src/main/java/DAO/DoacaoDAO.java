@@ -98,4 +98,9 @@ public class DoacaoDAO extends ExecutaSQL{
 		return doacoes;
 	}
 	
+	public Doacao getDoacao(int idDoacao) {
+		String sql = "SELECT ABRACE.DOACAO.valor, ABRACE.DOACAO.data, ABRACE.DOACAO.idPessoa WHERE idDoacao = "+idDoacao;
+		return new Doacao();
+	}
+	
 }
