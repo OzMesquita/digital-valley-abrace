@@ -197,7 +197,7 @@ public class  SelecionarDoadorView{
 		btnCancelar.setText("Cancelar");
 		btnCancelar.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/cancelar.png").getAbsolutePath()));
 		btnCancelar.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
-		btnCancelar.setBounds(140, 642, 214, 54);
+		btnCancelar.setBounds(140, 590, 214, 54);
 		
 		Button btnCadastrar = new Button(shlDoacao, SWT.NONE);
 		btnCadastrar.addSelectionListener(new SelectionAdapter() {
@@ -209,7 +209,7 @@ public class  SelecionarDoadorView{
 		btnCadastrar.setText("Cadastrar doador");
 		btnCadastrar.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/assistido-small.png").getAbsolutePath()));
 		btnCadastrar.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
-		btnCadastrar.setBounds(360, 582, 214, 54);
+		btnCadastrar.setBounds(360, 650, 214, 54);
 		
 		Button btnPrximo = new Button(shlDoacao, SWT.NONE);
 		btnPrximo.addSelectionListener(new SelectionAdapter() {
@@ -221,13 +221,13 @@ public class  SelecionarDoadorView{
 		btnPrximo.setText("Continuar");
 		btnPrximo.setImage(SWTResourceManager.getImage("C:\\Users\\Thiago Hellen\\Desktop\\src\\main\\java\\view\\img\\assistido-small.png"));
 		btnPrximo.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
-		btnPrximo.setBounds(360, 642, 214, 54);
+		btnPrximo.setBounds(360, 590, 214, 54);
 		
 		Label lblNoEncontrouTente = new Label(shlDoacao, SWT.NONE);
 		lblNoEncontrouTente.setAlignment(SWT.RIGHT);
 		lblNoEncontrouTente.setFont(SWTResourceManager.getFont("Segoe UI", 12, SWT.NORMAL));
-		lblNoEncontrouTente.setBounds(130, 588, 224, 42);
-		lblNoEncontrouTente.setText("N\u00E3o encontrou?\r\nTente cadastrar um novo doador");
+		lblNoEncontrouTente.setBounds(130, 656, 224, 42);
+		lblNoEncontrouTente.setText("N\u00E3o encontrou o doador?\r\nTente cadastrar um novo");
 		
 		controle.preencherTabelaDoadores(controle.obterTodosDoadores());
 		
