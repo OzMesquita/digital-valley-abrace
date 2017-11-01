@@ -292,7 +292,7 @@ public class CadastroDoadorJuridicoView {
 	public void mensagemSucesso(PessoaJuridica p){
 		MessageBox messageBox = new MessageBox(shlCadastroDoador,SWT.ICON_WORKING | SWT.OK); 
 		messageBox.setText("Assistido cadastrado com sucesso!");
-		messageBox.setMessage("Cadastro realizado com sucesso!\n" + p.getNome()+", agora é um de nossos assistidos!");
+		messageBox.setMessage("Cadastro realizado com sucesso!\n" + p.getNome()+", agora é um de nossos doadores! :)");
 		messageBox.open();
 	}
 }

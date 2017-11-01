@@ -293,7 +293,7 @@ public class CadastroDoadorView {
 	public void mensagemSucesso(PessoaFisica p){
 		MessageBox messageBox = new MessageBox(shlCadastroDoador,SWT.ICON_WORKING | SWT.OK); 
 		messageBox.setText("Doador cadastrado com sucesso!");
-		messageBox.setMessage("Cadastro realizado com sucesso!\n" + p.getNome()+", agora é um doador! :)");
+		messageBox.setMessage("Cadastro realizado com sucesso!\n" + p.getNome()+", agora é um de nossos doadores! :)");
 		messageBox.open();
 	}
 }
