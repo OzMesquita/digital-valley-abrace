@@ -10,10 +10,10 @@ import facade.DoadorFachada;
 import model.PessoaFisica;
 import view.EditarDoadorPFView;
 
-public class EditarDoadorPFControle {
+public class EditarDoadorFisicoControle {
 	private EditarDoadorPFView view;
 	private DoadorFachada facade;
-	public EditarDoadorPFControle(EditarDoadorPFView editarDoadorFisicoView) {
+	public EditarDoadorFisicoControle(EditarDoadorPFView editarDoadorFisicoView) {
 		if(editarDoadorFisicoView != null) {
 			this.view = editarDoadorFisicoView;
 			this.facade = new DoadorFachada();

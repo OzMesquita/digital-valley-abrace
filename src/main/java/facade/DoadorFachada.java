@@ -72,6 +72,14 @@ public class DoadorFachada {
 	}
 	
 	public boolean editarDoadorPF(PessoaFisica doador) {
+		PessoaFisicaDAO dao = new PessoaFisicaDAO(new ConnectionFactory().getConnection());
+		try {
+			dao.editarDoadorFisico(doador);
+			dao.getConexao().close();
+			return true;
+		}catch (SQLException e){
+			e.printStackTrace();
+		}
 		return false;
 	}
 

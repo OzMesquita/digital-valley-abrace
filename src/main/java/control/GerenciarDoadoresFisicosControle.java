@@ -106,7 +106,7 @@ public class GerenciarDoadoresFisicosControle {
 		if (event.getSource().toString().equals("Button {Editar Doador}")) {
 			PessoaFisica a = fachada.obterDoadorFisico(listaExibidaNaTabela.get(view.getTable().getSelectionIndex()).getId());
 			this.view.getShlGerenciarDoadoresFisicos().dispose();
-			new EditarDoadorPFView(a).open();
+			new EditarDoadorPFView().main(a);
 		}
 		if(event.getSource().toString().equals("Button {Excluir Doador}")) {
 			if(confirmacao()) {

@@ -7,7 +7,6 @@ import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Combo;
-import org.eclipse.swt.widgets.DateTime;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.MessageBox;
@@ -54,11 +53,10 @@ public class EditarDoadorJuridicoView {
 	private Text tfCNPJ;
 	private Text tfFantasia;
 	private Text tfEndereco;
-	DateTime tfDataNascimento;
 	private Text tfTelefone1;
 	private Text tfTelefone2;
 	private Text tfEmail;
-	Combo tfStatus;
+	private Combo tfStatus;
 	private Text tfRazaoSocial;
 	public Shell getShlCadastroDoador() {
 		return shlEditarDoador;
@@ -263,7 +261,7 @@ public class EditarDoadorJuridicoView {
 		lblStatus.setFont(SWTResourceManager.getFont("Segoe UI Emoji", 16, SWT.NORMAL));
 		lblStatus.setBounds(168, 463, 62, 28);
 		
-		tfStatus = new Combo(shlEditarDoador, SWT.READ_ONLY);
+		this.tfStatus = new Combo(shlEditarDoador, SWT.READ_ONLY);
 		tfStatus.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfStatus.setItems(new String[] {"Ativo", "Inativo"});
 		tfStatus.setBounds(236, 458, 99, 38);

@@ -3,41 +3,76 @@ package view;
 import java.io.File;
 
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.Combo;
+import org.eclipse.swt.widgets.DateTime;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.Text;
 import org.eclipse.wb.swt.SWTResourceManager;
 
 import control.EditarDoadorPFControle;
 import model.PessoaFisica;
-import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.Text;
-import org.eclipse.swt.widgets.DateTime;
-import org.eclipse.swt.widgets.Combo;
-import org.eclipse.swt.widgets.Button;
-import org.eclipse.swt.events.SelectionAdapter;
-import org.eclipse.swt.events.SelectionEvent;
 
 public class EditarDoadorPFView {
 
-	protected Shell shlEditarDoador;
+	private EditarDoadorPFControle controle;
+	
+	protected Shell shlEditarDoador = new Shell();
+	
+	private PessoaFisica doador;
+	/**
+	 * @wbp.parser.entryPoint
+	 */
+	public EditarDoadorPFView(PessoaFisica doador) {
+		this.setControle(new EditarDoadorPFControle(this));
+		this.setDoador(doador);
+	}
+
+	public EditarDoadorPFView() {
+		this.setControle(new EditarDoadorPFControle(this));
+	}
+
+	public EditarDoadorPFControle getControle() {
+		return controle;
+	}
+
+	public void setControle(EditarDoadorPFControle controle) {
+		this.controle = controle;
+	}
+
+	public PessoaFisica getDoador() {
+		return doador;
+	}
+
+	public void setDoador(PessoaFisica doador) {
+		this.doador = doador;
+	}
+
 	private Text tfNome;
 	private Text tfCPF;
 	private Text tfRG;
 	private Text tfEndereco;
-	private Text tfTelefone1;
-	private Text tfEmail;
-	private Text tfTelefone2;
 	private DateTime tfDataNascimento;
-	private PessoaFisica doador;
-	private EditarDoadorPFControle controle;
-
-	public Shell getShlEditarDoador() {
-		return shlEditarDoador;
+	public DateTime getTfDataNascimento() {
+		return tfDataNascimento;
 	}
 
-	public void setShlEditarDoador(Shell shlEditarDoador) {
-		this.shlEditarDoador = shlEditarDoador;
+	public void setTfDataNascimento(DateTime tfDataNascimento) {
+		this.tfDataNascimento = tfDataNascimento;
+	}
+
+	private Text tfTelefone1;
+	private Text tfTelefone2;
+	private Text tfEmail;
+	private Combo tfStatus;
+	private Text tfRazaoSocial;
+	public Shell getShlEditarDoador() {
+		return shlEditarDoador;
 	}
 
 	public Text getTfNome() {
@@ -80,14 +115,6 @@ public class EditarDoadorPFView {
 		this.tfTelefone1 = tfTelefone1;
 	}
 
-	public Text getTfEmail() {
-		return tfEmail;
-	}
-
-	public void setTfEmail(Text tfEmail) {
-		this.tfEmail = tfEmail;
-	}
-
 	public Text getTfTelefone2() {
 		return tfTelefone2;
 	}
@@ -96,49 +123,33 @@ public class EditarDoadorPFView {
 		this.tfTelefone2 = tfTelefone2;
 	}
 
-	public DateTime getTfDataNascimento() {
-		return tfDataNascimento;
+	public Text getTfEmail() {
+		return tfEmail;
 	}
 
-	public void setTfDataNascimento(DateTime tfDataNascimento) {
-		this.tfDataNascimento = tfDataNascimento;
+	public void setTfEmail(Text tfEmail) {
+		this.tfEmail = tfEmail;
 	}
 
-	public PessoaFisica getDoador() {
-		return doador;
+	public boolean getTfStatus() {
+		if(tfStatus.getSelectionIndex() == 0) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
-	public void setDoador(PessoaFisica doador) {
-		this.doador = doador;
+	public void setTfStatus(Combo tfStatus) {
+		this.tfStatus = tfStatus;
 	}
-
-	public EditarDoadorPFControle getControle() {
-		return controle;
-	}
-
-	public void setControle(EditarDoadorPFControle controle) {
-		this.controle = controle;
-	}
-	
-	public EditarDoadorPFView(PessoaFisica a) {
-        if(a != null) {
-            this.setDoador(a);
-           
-        }
-        this.setControle(new EditarDoadorPFControle(this));
-    }
-    
-    public EditarDoadorPFView() {
-    	this.setControle(new EditarDoadorPFControle(this));
-    }
-
 	/**
 	 * Launch the application.
 	 * @param args
+	 * @wbp.parser.entryPoint
 	 */
-	public static void main(String[] args) {
+	public static void main(PessoaFisica a) {
 		try {
-			EditarDoadorPFView window = new EditarDoadorPFView();
+			EditarDoadorPFView window = new EditarDoadorPFView(a);
 			window.open();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -159,6 +170,14 @@ public class EditarDoadorPFView {
 				display.sleep();
 			}
 		}
+	}
+
+	public Text getTfRazaoSocial() {
+		return tfRazaoSocial;
+	}
+
+	public void setTfRazaoSocial(Text tfRazaoSocial) {
+		this.tfRazaoSocial = tfRazaoSocial;
 	}
 
 	/**
@@ -211,7 +230,7 @@ public class EditarDoadorPFView {
 		tfEmail.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfEmail.setBounds(255, 421, 369, 32);
 		
-		Combo tfStatus = new Combo(shlEditarDoador, SWT.READ_ONLY);
+		tfStatus = new Combo(shlEditarDoador, SWT.NONE);
 		tfStatus.setItems(new String[] {"Ativo", "Inativo"});
 		tfStatus.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfStatus.setBounds(255, 459, 99, 38);
@@ -304,18 +323,18 @@ public class EditarDoadorPFView {
 		tfTelefone2.setText(getDoador().getTelefone2());
 		tfEmail.setText(getDoador().getEmail());
 		if(getDoador().isAtivo()) {
-			tfStatus.select(0);
+			this.tfStatus.select(0);
 		} else {
-			tfStatus.select(1);
+			this.tfStatus.select(1);
 		}
 
 	}
 	
 	public void mensagemErro(Exception e){
 		 MessageBox messageBox = new MessageBox(shlEditarDoador,SWT.ICON_ERROR | SWT.OK); 
-     messageBox.setText("Problemas ao editar dados do assistido");
-     messageBox.setMessage(e.getMessage()+"\nTente novamente");
-     messageBox.open();
+		 messageBox.setText("Problemas ao editar dados do assistido");
+		 messageBox.setMessage(e.getMessage()+"\nTente novamente");
+		 messageBox.open();
 	}
 	
 	public void mensagemSucesso(PessoaFisica p){

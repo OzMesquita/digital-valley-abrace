@@ -52,7 +52,7 @@ public class UsuarioDAO extends ExecutaSQL{
 			return true;
 		}
 
-	public void cadastrarUsuario(Usuario usuario) throws SQLException {
+	private void cadastrarUsuario(Usuario usuario) throws SQLException {
 			PreparedStatement stmt = null;
 			String sql = "INSERT INTO ABRACE.USUARIO(login, senha, idPessoa) values(?, ?, ?)";
 				stmt = getConexao().prepareStatement(sql);
@@ -135,5 +135,5 @@ public class UsuarioDAO extends ExecutaSQL{
 			}
 			return usuarios;
 		}
-
-	}
+		
+}
