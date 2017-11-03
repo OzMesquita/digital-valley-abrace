@@ -6,6 +6,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.MessageBox;
 
+import exceptions.DoacaoInvalidaException;
 import facade.DoacaoFachada;
 import model.Doacao;
 import view.GerenciarDoacoesView;
@@ -104,9 +105,13 @@ public class GerenciarDoacoesControle {
 		}
 		if(event.getSource().toString().equals("Button {Excluir Doação}")) {
 			if(confirmacao()) {
-				fachada.excluirDoacao(listaExibidaNaTabela.get(view.getTable().getSelectionIndex()).getId());
-				excluirLinhasDaTabela();
-				preencherTabelaDoacoes(obterTodasDoacoes());
+				try {
+					fachada.excluirDoacao(listaExibidaNaTabela.get(view.getTable().getSelectionIndex()).getId());
+					excluirLinhasDaTabela();
+					preencherTabelaDoacoes(obterTodasDoacoes());
+				} catch (DoacaoInvalidaException e) {
+					e.printStackTrace();
+				}
 			}
 		}
 		

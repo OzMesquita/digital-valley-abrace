@@ -3,10 +3,9 @@ package facade;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import javax.crypto.CipherOutputStream;
-
 import DAO.ConnectionFactory;
 import DAO.DoacaoDAO;
+import DAO.PessoaDAO;
 import exceptions.DoacaoInvalidaException;
 import model.Doacao;
 
@@ -38,15 +37,29 @@ public class DoacaoFachada {
 		return resultado;
 	}
 	
-	public boolean realizarDoacao(Doacao doacao) {
-		DoacaoDAO dao = new DoacaoDAO(new  ConnectionFactory().getConnection());
-		boolean resultado = dao.cadastrarDoacao(doacao);
+	public String obterCPFCNPJ(int id) {
+		PessoaDAO dao = new PessoaDAO(new  ConnectionFactory().getConnection());
+		String cpfCNPJ = null;
 		try {
+			cpfCNPJ = dao.getCPFCNPJ(id);
 			dao.getConexao().close();
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}finally{
-			return resultado;
 		}
+		return cpfCNPJ;
+	}
+	
+	public boolean realizarDoacao(Doacao doacao) {
+		DoacaoDAO dao = new DoacaoDAO(new  ConnectionFactory().getConnection());
+		if(dao.cadastrarDoacao(doacao)) {
+			try {
+				dao.getConexao().close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally{
+				return true;
+			}
+		}
+		return false;
 	}
 }

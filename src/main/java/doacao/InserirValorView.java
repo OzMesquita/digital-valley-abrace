@@ -3,6 +3,7 @@ package doacao;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.MessageBox;
 
 import java.io.File;
 
@@ -257,6 +258,19 @@ public class InserirValorView {
 		} else if(DoacaoSingleton.getDoacao().getDoador() instanceof PessoaJuridica) {
 			tfCPFCNPJ.setText(((PessoaJuridica) DoacaoSingleton.getDoacao().getDoador()).getCnpj());
 		}
-
+	}
+	
+	public void mensagemErro(Exception e){
+		MessageBox messageBox = new MessageBox(shlRealizarDoao,SWT.ICON_ERROR | SWT.OK); 
+		messageBox.setText("Problemas no cadastro do assistido");
+		messageBox.setMessage(e.getMessage()+"\nTente novamente");
+		messageBox.open();
+	}
+	
+	public void mensagemSucesso(PessoaFisica p){
+		MessageBox messageBox = new MessageBox(shlRealizarDoao,SWT.ICON_WORKING | SWT.OK); 
+		messageBox.setText("Assistido cadastrado com sucesso!");
+		messageBox.setMessage("Cadastro realizado com sucesso!\n" + p.getNome()+", agora é um de nossos assistidos! :)");
+		messageBox.open();
 	}
 }

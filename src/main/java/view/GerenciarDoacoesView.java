@@ -6,7 +6,6 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.wb.swt.SWTResourceManager;
 
-import control.GerenciarAssistidosControle;
 import control.GerenciarDoacoesControle;
 
 import org.eclipse.swt.widgets.Label;

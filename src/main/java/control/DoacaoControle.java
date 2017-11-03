@@ -13,6 +13,7 @@ import doacao.SelecionarDoadorView;
 import facade.DoacaoFachada;
 import facade.DoadorFachada;
 import facade.PessoaFachada;
+import model.Doacao;
 import model.Pessoa;
 import model.PessoaFisica;
 import model.PessoaJuridica;
@@ -71,6 +72,9 @@ public class DoacaoControle {
 			DoacaoSingleton.setValor(Double.parseDouble(view2.getTfValor().getText()));
 			DoacaoSingleton.setDataDoacao(LocalDate.of(view2.getDateTime_1().getYear(), view2.getDateTime_1().getMonth() + 1, view2.getDateTime_1().getDay()));
 			
+			if(fachada.realizarDoacao(DoacaoSingleton.getDoacao())) {
+				
+			}
 		}
 	}
 	
