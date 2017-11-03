@@ -35,4 +35,8 @@ public class DoacaoFachada {
 		}
 		return resultado;
 	}
+	
+	public boolean realizarDoacao(Doacao doacao) {
+		return false;
+	}
 }

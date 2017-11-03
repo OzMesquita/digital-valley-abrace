@@ -8,8 +8,6 @@ import org.eclipse.swt.widgets.MessageBox;
 
 import facade.DoacaoFachada;
 import model.Doacao;
-import model.PessoaFisica;
-import view.EditarDoadorPFView;
 import view.GerenciarDoacoesView;
 
 public class GerenciarDoacoesControle {
@@ -102,9 +100,7 @@ public class GerenciarDoacoesControle {
 			preencherTabelaDoacoes(pesquisarDoacoes(view.getTfPesquisa().getText()));
 		}
 		if (event.getSource().toString().equals("Button {Editar Doação}")) {
-			Doacao a = fachada.obterDoacao(listaExibidaNaTabela.get(view.getTable().getSelectionIndex()).getId());
-			this.view.getShlGerenciarDoacoes().dispose();
-			new EditarDoacaoView().main(a);
+			//Editar doação
 		}
 		if(event.getSource().toString().equals("Button {Excluir Doação}")) {
 			if(confirmacao()) {

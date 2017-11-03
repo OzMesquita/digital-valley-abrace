@@ -10,7 +10,6 @@ import org.eclipse.swt.SWT;
 import org.eclipse.wb.swt.SWTResourceManager;
 
 import control.DoacaoControle;
-import facade.DoadorFachada;
 import model.PessoaFisica;
 import model.PessoaJuridica;
 import view.Centralize;
@@ -238,6 +237,12 @@ public class InserirValorView {
 		button.setBounds(155, 626, 214, 54);
 		
 		Button btnSalvarDoao = new Button(shlRealizarDoao, SWT.NONE);
+		btnSalvarDoao.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent arg0) {
+				controle.getEvent(arg0);
+			}
+		});
 		btnSalvarDoao.setText("Salvar doa\u00E7\u00E3o");
 		btnSalvarDoao.setImage(SWTResourceManager.getImage("C:\\Users\\Thiago Hellen\\Desktop\\src\\main\\java\\view\\img\\assistido-small.png"));
 		btnSalvarDoao.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));

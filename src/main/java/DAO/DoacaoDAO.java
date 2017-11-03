@@ -9,8 +9,6 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import exceptions.DoacaoInvalidaException;
-import exceptions.PessoaInvalidaException;
-import facade.DoadorFachada;
 import model.Doacao;
 import model.Pessoa;
 

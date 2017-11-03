@@ -70,6 +70,7 @@ public class DoacaoControle {
 		if (event.getSource().toString().equals("Button {Salvar doação}")) {
 			DoacaoSingleton.setValor(Double.parseDouble(view2.getTfValor().getText()));
 			DoacaoSingleton.setDataDoacao(LocalDate.of(view2.getDateTime_1().getYear(), view2.getDateTime_1().getMonth() + 1, view2.getDateTime_1().getDay()));
+			
 		}
 	}
 	

@@ -11,7 +11,7 @@ public class EditarDoacaoView {
 	 * Launch the application.
 	 * @param args
 	 */
-	public static void main(String[] args) {
+	public static void main() {
 		try {
 			EditarDoacaoView window = new EditarDoacaoView();
 			window.open();
