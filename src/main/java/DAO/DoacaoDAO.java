@@ -96,9 +96,27 @@ public class DoacaoDAO extends ExecutaSQL{
 		return doacoes;
 	}
 	
-	public Doacao getDoacao(int idDoacao) {
-		String sql = "SELECT ABRACE.DOACAO.valor, ABRACE.DOACAO.data, ABRACE.DOACAO.idPessoa WHERE idDoacao = "+idDoacao;
-		return new Doacao();
+	public Doacao getDoacao(int idDoacao) throws DoacaoInvalidaException {
+		String sql = "SELECT ABRACE.DOACAO.valor, ABRACE.DOACAO.data, ABRACE.DOACAO.idPessoa WHERE idDoacao = ?";
+		try {
+			PreparedStatement stmt = getConexao().prepareStatement(sql);
+			ResultSet rs = stmt.executeQuery();
+			if(rs.next()) {
+				double valor = rs.getDouble(1);
+				LocalDate data = rs.getDate(2).toLocalDate();
+				Pessoa doador = new PessoaFisicaDAO(getConexao()).getPessoaFisica(rs.getInt(3));
+				if(doador == null) {
+					doador = new PessoaJuridicaDAO(getConexao()).getPessoaJuridica(rs.getInt(3));
+					if(doador == null) {
+						return null;
+					}
+				}
+				return new Doacao(idDoacao, valor, data, true, doador);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 	
 }

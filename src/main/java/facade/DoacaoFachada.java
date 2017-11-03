@@ -3,9 +3,11 @@ package facade;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import javax.crypto.CipherOutputStream;
+
 import DAO.ConnectionFactory;
 import DAO.DoacaoDAO;
-import DAO.PessoaFisicaDAO;
+import exceptions.DoacaoInvalidaException;
 import model.Doacao;
 
 public class DoacaoFachada {
@@ -14,7 +16,7 @@ public class DoacaoFachada {
 		return new ArrayList<Doacao>();
 	}
 	
-	public Doacao obterDoacao(int idDoacao) {
+	public Doacao obterDoacao(int idDoacao) throws DoacaoInvalidaException {
 		DoacaoDAO dao = new DoacaoDAO(new ConnectionFactory().getConnection());
 		Doacao doacao = dao.getDoacao(idDoacao);
 		try {
@@ -25,7 +27,7 @@ public class DoacaoFachada {
 		return doacao;
 	}
 	
-	public boolean excluirDoacao(int idDoacao) {
+	public boolean excluirDoacao(int idDoacao) throws DoacaoInvalidaException {
 		DoacaoDAO dao = new DoacaoDAO(new ConnectionFactory().getConnection());
 		boolean resultado = dao.excluirDoacao(dao.getDoacao(idDoacao));
 		try {
@@ -37,6 +39,14 @@ public class DoacaoFachada {
 	}
 	
 	public boolean realizarDoacao(Doacao doacao) {
-		return false;
+		DoacaoDAO dao = new DoacaoDAO(new  ConnectionFactory().getConnection());
+		boolean resultado = dao.cadastrarDoacao(doacao);
+		try {
+			dao.getConexao().close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			return resultado;
+		}
 	}
 }
