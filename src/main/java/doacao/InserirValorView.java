@@ -11,8 +11,6 @@ import org.eclipse.swt.SWT;
 import org.eclipse.wb.swt.SWTResourceManager;
 
 import control.DoacaoControle;
-import model.PessoaFisica;
-import model.PessoaJuridica;
 import view.Centralize;
 
 import org.eclipse.swt.widgets.Text;
@@ -25,7 +23,7 @@ public class InserirValorView {
 
 	protected Shell shlRealizarDoao;
 	private DateTime tfDataDoacao;
-	DoacaoControle controle;
+	DoacaoControle controle = new DoacaoControle(this);
 	private Text tfNomeDoador;
 	private Text tfCPFCNPJ;
 	private Text tfValor;
@@ -252,25 +250,20 @@ public class InserirValorView {
 		tfNomeDoador.setText(DoacaoSingleton.getDoacao().getDoador().getNome());
 		tfEndereco.setText(DoacaoSingleton.getDoacao().getDoador().getEndereco());
 		tfEmail.setText(DoacaoSingleton.getDoacao().getDoador().getEmail());
-		
-		if(DoacaoSingleton.getDoacao().getDoador() instanceof PessoaFisica) {
-			tfCPFCNPJ.setText(((PessoaFisica) DoacaoSingleton.getDoacao().getDoador()).getCpf());
-		} else if(DoacaoSingleton.getDoacao().getDoador() instanceof PessoaJuridica) {
-			tfCPFCNPJ.setText(((PessoaJuridica) DoacaoSingleton.getDoacao().getDoador()).getCnpj());
-		}
+		tfCPFCNPJ.setText(DoacaoSingleton.getCpfCNPJ());
 	}
 	
 	public void mensagemErro(Exception e){
 		MessageBox messageBox = new MessageBox(shlRealizarDoao,SWT.ICON_ERROR | SWT.OK); 
-		messageBox.setText("Problemas no cadastro do assistido");
+		messageBox.setText("Problemas no registro da doação");
 		messageBox.setMessage(e.getMessage()+"\nTente novamente");
 		messageBox.open();
 	}
 	
-	public void mensagemSucesso(PessoaFisica p){
+	public void mensagemSucesso(){
 		MessageBox messageBox = new MessageBox(shlRealizarDoao,SWT.ICON_WORKING | SWT.OK); 
-		messageBox.setText("Assistido cadastrado com sucesso!");
-		messageBox.setMessage("Cadastro realizado com sucesso!\n" + p.getNome()+", agora é um de nossos assistidos! :)");
+		messageBox.setText("Doação realizada com sucesso!");
+		messageBox.setMessage("A doação foi realizada com sucesso! :)");
 		messageBox.open();
 	}
 }

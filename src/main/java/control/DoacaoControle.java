@@ -13,7 +13,6 @@ import doacao.SelecionarDoadorView;
 import facade.DoacaoFachada;
 import facade.DoadorFachada;
 import facade.PessoaFachada;
-import model.Doacao;
 import model.Pessoa;
 import model.PessoaFisica;
 import model.PessoaJuridica;
@@ -23,7 +22,7 @@ public class DoacaoControle {
 	
 	private SelecionarDoadorView view1;
 	private InserirValorView view2;
-	private DoacaoFachada fachada;
+	private DoacaoFachada fachada = new DoacaoFachada();
 	private DoadorFachada doadorFachada = new DoadorFachada();
 	private List<Pessoa> listaExibidaNaTabela;
 	private List<Pessoa> listaTodosDoadores;
@@ -33,6 +32,10 @@ public class DoacaoControle {
 		setView1(view1); 
 	}
 	
+	public DoacaoControle(InserirValorView inserirValorView) {
+		setView2(inserirValorView);
+	}
+
 	public SelecionarDoadorView getView1() {
 		return view1;
 	}
@@ -62,18 +65,22 @@ public class DoacaoControle {
 			//Criar tela para linkar com o cadastro de doador pessoa fisica ou juridica
 		}
 		if (event.getSource().toString().equals("Button {Continuar}")) {
-			pessoaFachada.obterPessoa(403);
-			
-			DoacaoSingleton.setDoador(pessoaFachada.obterPessoa(listaExibidaNaTabela.get(view1.getTable().getSelectionIndex()).getId()));
+			int idPessoa = listaExibidaNaTabela.get(view1.getTable().getSelectionIndex()).getId();
+			DoacaoSingleton.setDoador(pessoaFachada.obterPessoa(idPessoa));
+			DoacaoSingleton.setCpfCNPJ(fachada.obterCPFCNPJ(idPessoa));
 			view1.getShlDoacao().dispose();
 			InserirValorView.main();
 		}
 		if (event.getSource().toString().equals("Button {Salvar doação}")) {
 			DoacaoSingleton.setValor(Double.parseDouble(view2.getTfValor().getText()));
 			DoacaoSingleton.setDataDoacao(LocalDate.of(view2.getDateTime_1().getYear(), view2.getDateTime_1().getMonth() + 1, view2.getDateTime_1().getDay()));
-			
-			if(fachada.realizarDoacao(DoacaoSingleton.getDoacao())) {
-				
+			try {
+				if(fachada.realizarDoacao(DoacaoSingleton.getDoacao())) {
+					view2.mensagemSucesso();
+					view2.getShlRealizarDoao().dispose();
+				}
+			} catch(Exception e) {
+				view2.mensagemErro(e);
 			}
 		}
 	}
