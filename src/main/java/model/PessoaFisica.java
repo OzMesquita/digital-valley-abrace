@@ -78,5 +78,7 @@ public class PessoaFisica extends Pessoa {
 		return "PessoaFisica [cpf=" + cpf + ", rg=" + rg + ", dataNasc=" + dataNasc + ", toString()=" + super.toString()
 				+ "]";
 	}
-	
+	 public String getInformacaoDoador() {
+		 return this.cpf;
+	 }
 }

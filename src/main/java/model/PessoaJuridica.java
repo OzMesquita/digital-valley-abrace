@@ -73,4 +73,8 @@ public class PessoaJuridica extends Pessoa{
 				+ ", toString()=" + super.toString() + "]";
 	}
 	
+	public String getInformacaoDoador() {
+		 return this.cnpj;
+	 }
+	
 }

@@ -116,4 +116,8 @@ public class Pessoa {
 				+ ativo + "]";
 	}
 	
+	public String getInformacaoDoador() {
+		return null;
+	}
+	
 }
