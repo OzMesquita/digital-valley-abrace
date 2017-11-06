@@ -20,9 +20,6 @@ public class RelatorioDAOTest {
 
 
 	public static void main(String[] args) {
-		for (Assistido assistidos : new AssistidoDAO(new ConnectionFactory().getConnection()).listaAssistido()) {
-			System.out.println(assistidos.getNome());
-		}
 		try {
 			new RelatorioFacade().relatorioDeAssistido(new AssistidoDAO(new ConnectionFactory().getConnection()).listaAssistido(),"Relatório de assitidos");
 		} catch (DocumentException e) {

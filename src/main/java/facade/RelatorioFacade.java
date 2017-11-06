@@ -54,7 +54,7 @@ public class RelatorioFacade {
         table.getDefaultCell().setBackgroundColor(BaseColor.ORANGE);
         header.setBackgroundColor(BaseColor.ORANGE);
         header.setColspan(2);
-        table.addCell(header);	
+        table.addCell(header);
         table.addCell("Cidade:");
         table.addCell("estado:");
         table.addCell("Endereço:");
@@ -66,12 +66,20 @@ public class RelatorioFacade {
         table.addCell("Emissão: "+LocalDateTime.now().format(formatadorDataCadastro));
         document.add(table);
         //==================================================================================================//
-        PdfPTable table2 = new PdfPTable(4);
+        PdfPTable table2 = new PdfPTable(new float[] { 0.4f, 0.18f, 0.14f, 0.08f });
         table2.setSpacingBefore(20);
-        table2.addCell("Nome");
-        table2.addCell("Cpf");
-        table2.addCell("Nascimento");
-        table2.addCell("Status");
+        PdfPCell nome = new PdfPCell(new Paragraph("Nome")),
+        		cpf = new PdfPCell(new Paragraph("Cpf")),
+        		nascimento = new PdfPCell(new Paragraph("Nascimento")),
+        		status = new PdfPCell(new Paragraph("Status"));
+        nome.setBackgroundColor(BaseColor.GRAY);
+        cpf.setBackgroundColor(BaseColor.GRAY);
+        nascimento.setBackgroundColor(BaseColor.GRAY);
+        status.setBackgroundColor(BaseColor.GRAY);
+        table2.addCell(nome);
+        table2.addCell(cpf);
+        table2.addCell(nascimento);
+        table2.addCell(status);
         //--------------------------------------------------------------------------------------------------//
         DateTimeFormatter formatadorDataNascimento = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         for (Assistido assistido : assistidos) {
@@ -80,7 +88,12 @@ public class RelatorioFacade {
 			table2.addCell(assistido.getDataNasc().format(formatadorDataNascimento));
 			table2.addCell(assistido.getSituacao()?"Vivo":"falecido");
 		}
-        table2.addCell("Total de assitidos");
+        PdfPCell totalAssistidos = new PdfPCell(new Paragraph("Total de assitidos"));
+        totalAssistidos.setColspan(3);
+        table2.addCell(totalAssistidos);
+        table2.addCell("");
+        table2.addCell("");
+        table2.addCell("");
         
         document.add(table2);
         
