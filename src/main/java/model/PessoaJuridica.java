@@ -25,8 +25,8 @@ public class PessoaJuridica extends Pessoa{
 		setNomeFantasia(nomeFantasia);
 	}
 	 
-	public PessoaJuridica(int id,String nome, String endereco, String telefone, String telefone2, LocalDate dataCadastro,String email, boolean ativo, String cnpj, String razaoSocial, String nomeFantasia) throws PessoaInvalidaException, PessoaJuridicaInvalidaException{
-		super(id, nome, endereco, dataCadastro, telefone, telefone2, email, ativo);
+	public PessoaJuridica(int id,String nome, String endereco, String telefone, String telefone2, LocalDate dataCadastro,String email, boolean ativo, boolean isDoador, String cnpj, String razaoSocial, String nomeFantasia) throws PessoaInvalidaException, PessoaJuridicaInvalidaException{
+		super(id, nomeFantasia, endereco, telefone, telefone2, dataCadastro, email, ativo, isDoador);
 		setCnpj(cnpj);
 		setRazaoSocial(razaoSocial);
 		setNomeFantasia(nomeFantasia);

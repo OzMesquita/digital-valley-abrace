@@ -98,7 +98,7 @@ public class AssistidoDAO extends ExecutaSQL {
 
 	public Assistido getAssistido(int id) {
 		String informacaoPessoa = "ABRACE.Pessoa.ativo, ABRACE.Pessoa.nome, ABRACE.Pessoa.endereco, ABRACE.Pessoa.telefone1,"
-				+ "ABRACE.Pessoa.telefone2, ABRACE.Pessoa.email, ABRACE.Pessoa.dataCadastro,";
+				+ "ABRACE.Pessoa.telefone2, ABRACE.Pessoa.email, ABRACE.Pessoa.dataCadastro, ABRACE.Pessoa.isDoador,";
 		String informacaoPessoaFisica = " ABRACE.Pessoa_Fisica.cpf, ABRACE.Pessoa_Fisica.rg, ABRACE.Pessoa_Fisica.dataNascimento,";
 		String sql = "SELECT " + informacaoPessoa + informacaoPessoaFisica
 				+ " ABRACE.Assistido.tipoCancer, ABRACE.Assistido.apelido, ABRACE.Assistido.status"
@@ -117,14 +117,14 @@ public class AssistidoDAO extends ExecutaSQL {
 				String telefone2 = rs.getString(5);
 				String email = rs.getString(6);
 				LocalDate dataCadastro = rs.getDate(7).toLocalDate();
-				String cpf = rs.getString(8);
-				String rg = rs.getString(9);
-				LocalDate dataNasc = rs.getDate(10).toLocalDate();
-				String tipoDeCancer = rs.getString(11);
-				String apelido = rs.getString(12);
-				boolean situacao = rs.getBoolean(13);
-				return new Assistido(id, nome, endereco, dataCadastro, telefone, telefone2, email, ativo, cpf, rg,
-						dataNasc, apelido, tipoDeCancer, situacao);
+				boolean isDoador = rs.getBoolean(8);
+				String cpf = rs.getString(9);
+				String rg = rs.getString(10);
+				LocalDate dataNasc = rs.getDate(11).toLocalDate();
+				String tipoDeCancer = rs.getString(12);
+				String apelido = rs.getString(13);
+				boolean situacao = rs.getBoolean(14);
+				return new Assistido(id, nome, endereco, dataCadastro, telefone, telefone2, email, ativo, isDoador, cpf, rg, dataNasc, apelido, tipoDeCancer, situacao);
 			}
 		} catch (SQLException e) {
 			throw new RuntimeException(e.getMessage());
@@ -141,7 +141,7 @@ public class AssistidoDAO extends ExecutaSQL {
 	public ArrayList<Assistido> listaAssistido() {
 		ArrayList<Assistido> assistidos = new ArrayList<Assistido>();
 		String informacaoPessoa = "ABRACE.Pessoa.idPessoa, ABRACE.Pessoa.nome, ABRACE.Pessoa.endereco, ABRACE.Pessoa.telefone1,"
-				+ "ABRACE.Pessoa.telefone2, ABRACE.Pessoa.email, ABRACE.Pessoa.dataCadastro,";
+				+ "ABRACE.Pessoa.telefone2, ABRACE.Pessoa.email, ABRACE.Pessoa.dataCadastro,ABRACE.Pessoa.isDoador,";
 		String informacaoPessoaFisica = " ABRACE.Pessoa_Fisica.cpf, ABRACE.Pessoa_Fisica.rg, ABRACE.Pessoa_Fisica.dataNascimento,";
 		// Vou pegar essas duas Strings que são necessárias para pegar os assistidos e
 		// usar no SELECT do sql para pegar os dados de todas essas tabelas.
@@ -161,14 +161,14 @@ public class AssistidoDAO extends ExecutaSQL {
 				String telefone2 = rs.getString(5);
 				String email = rs.getString(6);
 				LocalDate dataCadastro = rs.getDate(7).toLocalDate();
-				String cpf = rs.getString(8);
-				String rg = rs.getString(9);
-				LocalDate dataNasc = rs.getDate(10).toLocalDate();
-				String tipoDeCancer = rs.getString(11);
-				String apelido = rs.getString(12);
-				boolean situacao = rs.getBoolean(13);
-				assistidos.add(new Assistido(id, nome, endereco, dataCadastro, telefone, telefone2, email, true, cpf,
-						rg, dataNasc, apelido, tipoDeCancer, situacao));
+				boolean isDoador = rs.getBoolean(8);
+				String cpf = rs.getString(9);
+				String rg = rs.getString(10);
+				LocalDate dataNasc = rs.getDate(11).toLocalDate();
+				String tipoDeCancer = rs.getString(12);
+				String apelido = rs.getString(13);
+				boolean situacao = rs.getBoolean(14);
+				assistidos.add(new Assistido(id, nome, endereco, dataCadastro, telefone, telefone2, email, true, isDoador, cpf, rg, dataNasc, apelido, tipoDeCancer, situacao));
 			}
 		} catch (SQLException e) {
 			throw new RuntimeException(e.getMessage());

@@ -13,12 +13,22 @@ public class Pessoa {
     private LocalDate dataCadastro;
     private String email;
     private boolean ativo;
+    private boolean isDoador;
 
     public Pessoa() {
     	
     }
     
-    public Pessoa(String nome, String endereco, String telefone, String telefone2, LocalDate dataCadastro,String email, boolean ativo) throws PessoaInvalidaException{
+    public Pessoa(String nome, String endereco, String telefone, String telefone2, LocalDate dataCadastro,String email, boolean ativo, boolean isDoador) throws PessoaInvalidaException{
+    	this(nome, endereco, telefone, telefone2, dataCadastro, email, ativo);
+    	setDoador(isDoador);
+    } 
+    public Pessoa(int id, String nome, String endereco, String telefone, String telefone2, LocalDate dataCadastro,String email, boolean ativo, boolean isDoador) throws PessoaInvalidaException{
+    	this(nome, endereco, telefone, telefone2, dataCadastro, email, ativo, isDoador);
+    	setId(id);
+     }
+    
+   public Pessoa(String nome, String endereco, String telefone, String telefone2, LocalDate dataCadastro,String email, boolean ativo) throws PessoaInvalidaException{
     	setNome(nome);
     	setTelefone(telefone);
     	setTelefone2(telefone2);
@@ -28,9 +38,12 @@ public class Pessoa {
     	setAtivo(ativo);
      }
     
-	public Pessoa(int id, String nome, String endereco,  LocalDate dataCadastro, String telefone, String telefone2, String email, boolean ativo) throws PessoaInvalidaException{
-    	this(nome, endereco, telefone, telefone2, dataCadastro, email, ativo);
-		setId(id);
+	public boolean isDoador() {
+		return isDoador;
+	}
+
+	public void setDoador(boolean isDoador) {
+		this.isDoador = isDoador;
 	}
     
 	public int getId() {

@@ -23,9 +23,9 @@ public class PessoaFisica extends Pessoa {
 	}
 
 	public PessoaFisica(int id, String nome, String endereco, LocalDate dataCadastro, String telefone, String telefone2,
-			String email, boolean ativo, String cpf, String rg, LocalDate dataNasc)
+			String email, boolean ativo, boolean isDoador, String cpf, String rg, LocalDate dataNasc)
 			throws PessoaInvalidaException, PessoaFisicaException {
-		super(id, nome, endereco, dataCadastro, telefone, telefone2, email, ativo);
+		super(id, nome, endereco, telefone, telefone2, dataCadastro, email, ativo, isDoador);
 		setCpf(cpf);
 		setRg(rg);
 		setDataNasc(dataNasc);

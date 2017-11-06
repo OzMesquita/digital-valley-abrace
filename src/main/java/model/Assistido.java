@@ -11,8 +11,8 @@ public class Assistido extends PessoaFisica {
     private String tipoDeCancer;
     private boolean situacao;
 
-    public Assistido(int id, String nome, String endereco,  LocalDate dataCadastro, String telefone, String telefone2, String email, boolean ativo, String cpf, String rg, LocalDate dataNasc, String apelido, String tipoDeCancer, boolean situacao) throws PessoaInvalidaException, PessoaFisicaException, AssistidoInvalidoException {
-    	super(id, nome, endereco, dataCadastro, telefone, telefone2, email, ativo, cpf, rg, dataNasc);
+    public Assistido(int id, String nome, String endereco,  LocalDate dataCadastro, String telefone, String telefone2, String email, boolean ativo, boolean isDoador, String cpf, String rg, LocalDate dataNasc, String apelido, String tipoDeCancer, boolean situacao) throws PessoaInvalidaException, PessoaFisicaException, AssistidoInvalidoException {
+    	super(id, nome, endereco, dataCadastro, telefone, telefone2, email, ativo, isDoador, cpf, rg, dataNasc);
         setApelido(apelido);
         setSituacao(situacao);
         setTipoDeCancer(tipoDeCancer);

@@ -21,9 +21,9 @@ public class PessoaDAO extends ExecutaSQL {
 
 	public void cadastrarPessoa(Pessoa pessoa) throws SQLException, PessoaInvalidaException {
 		PreparedStatement stmt = null;
-		String sql = "insert into ABRACE.PESSOA (ativo, datacadastro, email, telefone2, telefone1, endereco, nome) values (?, ?, ?, ?, ?, ?, ?)";
+		String sql = "insert into ABRACE.PESSOA (ativo, datacadastro, email, telefone2, telefone1, endereco, nome,isDoador) values (?, ?, ?, ?, ?, ?, ?, ?)";
 		stmt = getConexao().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-		// set values
+		// se você chegou aqui após um erro ocorrer, é porque seu banco não foi atualizado com o novo atributo encontrado (isDoador). Apague o localhost e reexecute o script de instalacao
 		pessoa.setDataCadastro(LocalDate.now());
 		stmt.setBoolean(1, pessoa.isAtivo());
 		stmt.setDate(2, Date.valueOf(pessoa.getDataCadastro()));
@@ -32,6 +32,7 @@ public class PessoaDAO extends ExecutaSQL {
 		stmt.setString(5, pessoa.getTelefone());
 		stmt.setString(6, pessoa.getEndereco());
 		stmt.setString(7, pessoa.getNome());
+		stmt.setBoolean(8, pessoa.isDoador());
 		// execute
 		stmt.execute();
 		// get DB id
@@ -57,7 +58,9 @@ public class PessoaDAO extends ExecutaSQL {
 				String telefone2 = rs.getString(5);
 				String email = rs.getString(6);
 				LocalDate dataCadastro = rs.getDate(7).toLocalDate();
-				listaPessoas.add(new Pessoa(id, nome, endereco, dataCadastro, telefone1, telefone2, email, situacao));
+				boolean isDoador = rs.getBoolean(8);
+				// se você chegou aqui após um erro ocorrer, é porque seu banco não foi atualizado com o novo atributo encontrado (isDoador). Apague o localhost e reexecute o script de instalacao
+				listaPessoas.add(new Pessoa(id, nome, endereco, telefone1, telefone2, dataCadastro, email, true, isDoador));
 			}
 			stmt.close();
 		} catch (SQLException ex) {
@@ -123,7 +126,7 @@ public class PessoaDAO extends ExecutaSQL {
 	public Pessoa getPessoa(int id) {
 
 		String sql = "SELECT ABRACE.Pessoa.ativo, ABRACE.Pessoa.nome, ABRACE.Pessoa.endereco, ABRACE.Pessoa.telefone1, ABRACE.Pessoa.telefone2,"
-				+ " ABRACE.Pessoa.email, ABRACE.Pessoa.dataCadastro FROM ABRACE.Pessoa WHERE ABRACE.Pessoa.idPessoa = ?";
+				+ " ABRACE.Pessoa.email, ABRACE.Pessoa.dataCadastro, ABRACE.Pessoa.isDoador FROM ABRACE.Pessoa WHERE ABRACE.Pessoa.idPessoa = ?";
 		try {
 			PreparedStatement ps = getConexao().prepareStatement(sql);
 			ps.setInt(1, id);
@@ -136,7 +139,8 @@ public class PessoaDAO extends ExecutaSQL {
 				String telefone2 = rs.getString(5);
 				String email = rs.getString(6);
 				LocalDate dataCadastro = rs.getDate(7).toLocalDate();
-				return new Pessoa(id, nome, endereco, dataCadastro, telefone, telefone2, email, ativo);
+				boolean isDoador = rs.getBoolean(8);
+				return new Pessoa(id, nome, endereco, telefone, telefone2, dataCadastro, email, ativo, isDoador);
 			}
 		} catch (SQLException e) {
 			throw new RuntimeException(e.getMessage());

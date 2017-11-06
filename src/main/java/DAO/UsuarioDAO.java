@@ -96,7 +96,7 @@ public class UsuarioDAO extends ExecutaSQL{
 			ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
 			
 			String informacaoPessoa = "ABRACE.Pessoa.idPessoa, ABRACE.Pessoa.nome, ABRACE.Pessoa.endereco, ABRACE.Pessoa.telefone1,"
-	                				+ "ABRACE.Pessoa.telefone2, ABRACE.Pessoa.email, ABRACE.Pessoa.dataCadastro,";
+	                				+ "ABRACE.Pessoa.telefone2, ABRACE.Pessoa.email, ABRACE.Pessoa.dataCadastro,ABRACE.Pessoa.isDoador,";
 			String informacaoPessoaFisica = " ABRACE.Pessoa_Fisica.cpf, ABRACE.Pessoa_Fisica.rg, ABRACE.Pessoa_Fisica.dataNascimento,";
 			
 			String sql = "SELECT "+informacaoPessoa+informacaoPessoaFisica+ "ABRACE.Usuario.login, ABRACE.Usuario.senha"
@@ -116,13 +116,14 @@ public class UsuarioDAO extends ExecutaSQL{
 					String telefone2 = rs.getString(5);
 					String email = rs.getString(6);
 					LocalDate dataCadastro = rs.getDate(7).toLocalDate();
-					String cpf = rs.getString(8);
-					String rg = rs.getString(9);
-					LocalDate dataNasc = rs.getDate(10).toLocalDate();
-					String login = rs.getString(11);
-					String senha = rs.getString(12);
+					boolean isDoador = rs.getBoolean(8);
+					String cpf = rs.getString(9);
+					String rg = rs.getString(10);
+					LocalDate dataNasc = rs.getDate(11).toLocalDate();
+					String login = rs.getString(12);
+					String senha = rs.getString(13);
 					
-					usuarios.add(new Usuario(id, nome, endereco, dataCadastro, telefone, telefone2, email, true, cpf, rg, dataNasc, login, senha));
+					usuarios.add(new Usuario(id, nome, endereco, dataCadastro, telefone, telefone2, email, true, isDoador, cpf, rg, dataNasc, login, senha));
 				}
 			}catch(SQLException e) {
 				throw new RuntimeException(e.getMessage());
