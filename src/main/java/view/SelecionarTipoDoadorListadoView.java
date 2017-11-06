@@ -11,7 +11,7 @@ import org.eclipse.wb.swt.SWTResourceManager;
 
 public class SelecionarTipoDoadorListadoView {
 
-	protected Shell shlSelecionarTipoDoador = new Shell();
+	protected Shell shlSelecionarTipoDoador = new Shell(SWT.SHELL_TRIM & (~SWT.RESIZE) & (~SWT.MAX));
 	public static void main() {
 		try {
 			SelecionarTipoDoadorListadoView window = new SelecionarTipoDoadorListadoView();

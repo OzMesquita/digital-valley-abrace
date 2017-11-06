@@ -206,7 +206,7 @@ public Text getTfNome() {
 	 * Create contents of the window.
 	 */
 	protected void createContents() {
-		shlEditarAssistido = new Shell();
+		shlEditarAssistido = new Shell(SWT.SHELL_TRIM & (~SWT.RESIZE) & (~SWT.MAX));
 		shlEditarAssistido.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/ABRACE.png").getAbsolutePath()));
 		shlEditarAssistido.setSize(715, 748);
 		shlEditarAssistido.setText("Editar Assistido - ABRACE");

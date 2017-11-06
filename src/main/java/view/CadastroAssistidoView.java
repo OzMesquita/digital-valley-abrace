@@ -247,7 +247,7 @@ public class CadastroAssistidoView{
 	 * Create contents of the window.
 	 */
 	protected void createContents() {
-		shlCadastroAssistido = new Shell();
+		shlCadastroAssistido = new Shell(SWT.SHELL_TRIM & (~SWT.RESIZE) & (~SWT.MAX));
 		shlCadastroAssistido.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/ABRACE.png").getAbsolutePath()));
 		shlCadastroAssistido.setSize(694, 806);
 		shlCadastroAssistido.setText("Cadastro Assistido - ABRACE");

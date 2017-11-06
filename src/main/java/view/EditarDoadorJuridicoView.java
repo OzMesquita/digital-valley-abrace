@@ -174,7 +174,7 @@ public class EditarDoadorJuridicoView {
 	 * Create contents of the window.
 	 */
 	protected void createContents() {
-		shlEditarDoador = new Shell();
+		shlEditarDoador = new Shell(SWT.SHELL_TRIM & (~SWT.RESIZE) & (~SWT.MAX));
 		shlEditarDoador.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/ABRACE.png").getAbsolutePath()));
 		shlEditarDoador.setSize(715, 662);
 		shlEditarDoador.setText("Editar Doador - ABRACE");

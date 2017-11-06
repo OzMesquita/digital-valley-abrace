@@ -83,7 +83,7 @@ public class LoginView {
 	 * Create contents of the window.
 	 */
 	protected void createContents() {
-		shlOngRussasTransformando = new Shell();
+		shlOngRussasTransformando = new Shell(SWT.SHELL_TRIM & (~SWT.RESIZE) & (~SWT.MAX));
 		shlOngRussasTransformando.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/ABRACE.png").getAbsolutePath()));
 		shlOngRussasTransformando.setSize(530, 513);
 		shlOngRussasTransformando.setText("ONG Russas Transformando Vidas - ABRACE");

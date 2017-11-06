@@ -160,7 +160,7 @@ public class CadastroDoadorJuridicoView {
 	 * Create contents of the window.
 	 */
 	protected void createContents() {
-		shlCadastroDoador = new Shell();
+		shlCadastroDoador = new Shell(SWT.SHELL_TRIM & (~SWT.RESIZE) & (~SWT.MAX));
 		shlCadastroDoador.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/ABRACE.png").getAbsolutePath()));
 		shlCadastroDoador.setSize(715, 662);
 		shlCadastroDoador.setText("Cadastro Doador - ABRACE");

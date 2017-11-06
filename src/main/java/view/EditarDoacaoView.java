@@ -1,5 +1,6 @@
 package view;
 
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 
@@ -39,7 +40,7 @@ public class EditarDoacaoView {
 	 * Create contents of the window.
 	 */
 	protected void createContents() {
-		shell = new Shell();
+		shell = new Shell(SWT.SHELL_TRIM & (~SWT.RESIZE) & (~SWT.MAX));
 		shell.setSize(450, 300);
 		shell.setText("SWT Application");
 

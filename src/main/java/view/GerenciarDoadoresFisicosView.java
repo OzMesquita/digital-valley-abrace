@@ -314,7 +314,7 @@ public class GerenciarDoadoresFisicosView {
 	 * Create contents of the window.
 	 */
 	protected void createContents() {
-		shlGerenciarDoadoresFisicos = new Shell();
+		shlGerenciarDoadoresFisicos = new Shell(SWT.SHELL_TRIM & (~SWT.RESIZE) & (~SWT.MAX));
 		shlGerenciarDoadoresFisicos.setSize(730, 762);
 		shlGerenciarDoadoresFisicos.setText("Gerenciar Assistidos - ABRACE");
 		shlGerenciarDoadoresFisicos.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/ABRACE.png").getAbsolutePath()));

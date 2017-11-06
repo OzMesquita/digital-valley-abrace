@@ -309,7 +309,7 @@ public class GerenciarDoadoresJuridicosView {
 	 * Create contents of the window.
 	 */
 	protected void createContents() {
-		shlGerenciarDoadoresJuridicos = new Shell();
+		shlGerenciarDoadoresJuridicos = new Shell(SWT.SHELL_TRIM & (~SWT.RESIZE) & (~SWT.MAX));
 		shlGerenciarDoadoresJuridicos.setSize(730, 730);
 		shlGerenciarDoadoresJuridicos.setText("Gerenciar Doadores - ABRACE");
 		shlGerenciarDoadoresJuridicos.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/ABRACE.png").getAbsolutePath()));

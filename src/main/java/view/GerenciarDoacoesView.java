@@ -302,7 +302,7 @@ public class GerenciarDoacoesView {
 	 * Create contents of the window.
 	 */
 	protected void createContents() {
-		shlGerenciarDoacoes = new Shell();
+		shlGerenciarDoacoes = new Shell(SWT.SHELL_TRIM & (~SWT.RESIZE) & (~SWT.MAX));
 		shlGerenciarDoacoes.setSize(730, 730);
 		shlGerenciarDoacoes.setText("Gerenciar Doações - ABRACE");
 		shlGerenciarDoacoes.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/ABRACE.png").getAbsolutePath()));

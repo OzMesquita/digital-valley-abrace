@@ -302,7 +302,7 @@ public class GerenciarAssistidosView {
 	 * Create contents of the window.
 	 */
 	protected void createContents() {
-		shlGerenciarAssistidos = new Shell();
+		shlGerenciarAssistidos = new Shell(SWT.SHELL_TRIM & (~SWT.RESIZE) & (~SWT.MAX));
 		shlGerenciarAssistidos.setSize(730, 730);
 		shlGerenciarAssistidos.setText("Gerenciar Assistidos - ABRACE");
 		shlGerenciarAssistidos.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/ABRACE.png").getAbsolutePath()));
