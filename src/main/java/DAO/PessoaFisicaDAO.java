@@ -46,6 +46,18 @@ public class PessoaFisicaDAO extends ExecutaSQL {
 
 			stmt.execute();
 	}
+	
+	public boolean getPessoaPeloCPF(String cpf) throws SQLException {
+		PreparedStatement stmt = null;
+		String sql = "SELECT ABRACE.PESSOA_FISICA.idPessoa FROM ABRACE.PESSOA_FISICA WHERE ABRACE.PESSOA_FISICA.cpf = ?";
+		stmt = getConexao().prepareStatement(sql);
+		stmt.setString(1, cpf);
+		ResultSet rs = stmt.executeQuery();
+		if(rs.next()) {
+			return true;
+		}
+		return false;
+	}
 
 	public void editar(PessoaFisica pessoaFisica) throws SQLException {
 		String sql = "UPDATE ABRACE.PESSOA_FISICA SET dataNascimento=?, rg=?, cpf=? WHERE idPessoa = ?";

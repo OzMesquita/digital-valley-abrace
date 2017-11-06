@@ -13,9 +13,11 @@ public class PessoaFisicaDAOTest {
 	public static void main(String[] args) throws PessoaInvalidaException, SQLException, PessoaFisicaException {
 
 		//cadastrar();
-		editarInvalido();
+		//editarInvalido();
 		//listar();
 		//excluir();
+		PessoaFisicaDAO pessoafisica =new PessoaFisicaDAO(new ConnectionFactory().getConnection());
+		System.out.println(pessoafisica.getPessoaPeloCPF("308.807.450-45"));
 	}
 
 	public static void cadastrar() throws PessoaInvalidaException, SQLException, PessoaFisicaException{
