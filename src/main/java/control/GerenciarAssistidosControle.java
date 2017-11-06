@@ -10,6 +10,7 @@ import org.eclipse.swt.widgets.TableItem;
 
 import facade.AssistidoFachada;
 import model.Assistido;
+import view.CadastroAssistidoView;
 import view.EditarAssistidoView;
 import view.GerenciarAssistidosView;
 
@@ -114,6 +115,11 @@ public class GerenciarAssistidosControle {
 				excluirLinhasDaTabela();
 				preencherTabelaAssistidos(obterTodosAssistidos());
 			}
+		}
+		if(event.getSource().toString().equals("Button {Cadastrar Assistido}")) {
+			view.getShlGerenciarAssistidos().dispose();
+			CadastroAssistidoView.main();
+			GerenciarAssistidosView.main();
 		}
 	}
 }

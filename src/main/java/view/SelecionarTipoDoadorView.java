@@ -8,6 +8,7 @@ import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.wb.swt.SWTResourceManager;
+import org.eclipse.swt.widgets.Label;
 
 public class SelecionarTipoDoadorView {
 
@@ -39,20 +40,24 @@ public class SelecionarTipoDoadorView {
 	 */
 	protected void createContents() {
 		shlSelecionarTipoDoador.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/ABRACE.png").getAbsolutePath()));
-		shlSelecionarTipoDoador.setSize(657, 491);
+		shlSelecionarTipoDoador.setSize(657, 503);
 		shlSelecionarTipoDoador.setText("ONG Russas Transformando Vidas - ABRACE");
 		
-		Button pessoaFisicabnt = new Button(shlSelecionarTipoDoador, SWT.NONE);
+		Button pessoaFisicabnt = new Button(shlSelecionarTipoDoador, SWT.FLAT | SWT.CENTER);
+		pessoaFisicabnt.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
+		pessoaFisicabnt.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/pessoa-fisica-medium.png").getAbsolutePath()));
 		pessoaFisicabnt.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
 				CadastroDoadorView.main();
 			}
 		});
-		pessoaFisicabnt.setBounds(92, 74, 224, 68);
+		pessoaFisicabnt.setBounds(120, 162, 411, 89);
 		pessoaFisicabnt.setText("Cadastrar Doador Pessoa Física");
 		
 		Button pessoaJuridicabnt = new Button(shlSelecionarTipoDoador, SWT.NONE);
+		pessoaJuridicabnt.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/pessoa-juridica-medium.png").getAbsolutePath()));
+		pessoaJuridicabnt.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
 		pessoaJuridicabnt.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
@@ -60,7 +65,28 @@ public class SelecionarTipoDoadorView {
 			}
 		});
 		pessoaJuridicabnt.setText("Cadastrar Doador Pessoa Jurídica");
-		pessoaJuridicabnt.setBounds(334, 74, 224, 68);
+		pessoaJuridicabnt.setBounds(120, 265, 411, 89);
+		
+		Label label = new Label(shlSelecionarTipoDoador, SWT.NONE);
+		label.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/ABRACE.png").getAbsolutePath()));
+		label.setBounds(532, 37, 71, 68);
+		
+		Label lblSelecioneOTipo = new Label(shlSelecionarTipoDoador, SWT.NONE);
+		lblSelecioneOTipo.setFont(SWTResourceManager.getFont("Segoe UI", 18, SWT.NORMAL));
+		lblSelecioneOTipo.setBounds(180, 64, 291, 32);
+		lblSelecioneOTipo.setText("Selecione o tipo do doador");
+		
+		Button button = new Button(shlSelecionarTipoDoador, SWT.NONE);
+		button.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent arg0) {
+				shlSelecionarTipoDoador.dispose();
+			}
+		});
+		button.setText("Cancelar");
+		button.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/cancelar.png").getAbsolutePath()));
+		button.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
+		button.setBounds(221, 398, 208, 54);
 	}
 
 }

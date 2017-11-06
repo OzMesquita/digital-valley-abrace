@@ -52,15 +52,23 @@ public class AplicacaoView {
 		btnListarDoadores.setText("Gerenciar Doadores");
 		btnListarDoadores.setBounds(333, 251, 243, 68);
 		
-		Label lblBemVindo = new Label(shlOngRussasTransformando, SWT.NONE);
-		lblBemVindo.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
-		lblBemVindo.setBounds(72, 39, 222, 30);
-		lblBemVindo.setText("Bem vindo, " + LoginSingleton.getUsuario().getNome());
+		Button btnRealizarDoacao = new Button(shlOngRussasTransformando, SWT.NONE);
+		btnRealizarDoacao.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/doacao-small.png").getAbsolutePath()));
+		btnRealizarDoacao.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
+		btnRealizarDoacao.setText("Realizar Doação");
+		btnRealizarDoacao.setBounds(72, 337, 243, 68);
+		btnRealizarDoacao.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent arg0) {
+				SelecionarDoadorView.main();
+			}
+		});
 		
-		Label lblSelecioneAOpo = new Label(shlOngRussasTransformando, SWT.NONE);
-		lblSelecioneAOpo.setText("Selecione a op\u00E7\u00E3o desejada");
-		lblSelecioneAOpo.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
-		lblSelecioneAOpo.setBounds(197, 91, 256, 30);
+		Button btnGerenciarDoaes = new Button(shlOngRussasTransformando, SWT.NONE);
+		btnGerenciarDoaes.setText("Gerenciar Doa\u00E7\u00F5es");
+		btnGerenciarDoaes.setImage(SWTResourceManager.getImage("C:\\Users\\Thiago Hellen\\Desktop\\src\\main\\java\\view\\img\\doadores-small.png"));
+		btnGerenciarDoaes.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
+		btnGerenciarDoaes.setBounds(333, 337, 243, 68);
 		
 		Label label = new Label(shlOngRussasTransformando, SWT.NONE);
 		label.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/ABRACE.png").getAbsolutePath()));
@@ -83,17 +91,15 @@ public class AplicacaoView {
 		shlOngRussasTransformando.setSize(657, 503);
 		shlOngRussasTransformando.setText("ONG Russas Transformando Vidas - ABRACE");
 		
-		Button btnListarAssistidos = new Button(shlOngRussasTransformando, SWT.NONE);
-		btnListarAssistidos.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
-		btnListarAssistidos.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/assistidos-small.png").getAbsolutePath()));
-		btnListarAssistidos.addSelectionListener(new SelectionAdapter() {
-			@Override
-			public void widgetSelected(SelectionEvent arg0) {
-				GerenciarAssistidosView.main();
-			}
-		});
-		btnListarAssistidos.setBounds(333, 165, 243, 68);
-		btnListarAssistidos.setText("Gerenciar Assistidos");
+		Label lblBemVindo = new Label(shlOngRussasTransformando, SWT.NONE);
+		lblBemVindo.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
+		lblBemVindo.setBounds(72, 39, 222, 30);
+		lblBemVindo.setText("Bem vindo, " + LoginSingleton.getUsuario().getNome());
+		
+		Label lblSelecioneAOpo = new Label(shlOngRussasTransformando, SWT.NONE);
+		lblSelecioneAOpo.setText("Selecione a op\u00E7\u00E3o desejada");
+		lblSelecioneAOpo.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
+		lblSelecioneAOpo.setBounds(197, 91, 256, 30);
 		
 		Button btnCadastrarAssistido = new Button(shlOngRussasTransformando, SWT.NONE);
 		btnCadastrarAssistido.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
@@ -107,6 +113,18 @@ public class AplicacaoView {
 		btnCadastrarAssistido.setBounds(72, 165, 243, 68);
 		btnCadastrarAssistido.setText("Cadastrar Assistido");
 		
+		Button btnListarAssistidos = new Button(shlOngRussasTransformando, SWT.NONE);
+		btnListarAssistidos.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
+		btnListarAssistidos.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/assistidos-small.png").getAbsolutePath()));
+		btnListarAssistidos.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent arg0) {
+				GerenciarAssistidosView.main();
+			}
+		});
+		btnListarAssistidos.setBounds(333, 165, 243, 68);
+		btnListarAssistidos.setText("Gerenciar Assistidos");
+		
 		Button btnCadastrarDoador = new Button(shlOngRussasTransformando, SWT.NONE);
 		btnCadastrarDoador.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
 		btnCadastrarDoador.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/doador-small.png").getAbsolutePath()));
@@ -118,17 +136,5 @@ public class AplicacaoView {
 		});
 		btnCadastrarDoador.setText("Cadastrar Doador");
 		btnCadastrarDoador.setBounds(72, 251, 243, 68);
-		
-		Button btnRealizarDoacao = new Button(shlOngRussasTransformando, SWT.NONE);
-		btnRealizarDoacao.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/doacao-small.png").getAbsolutePath()));
-		btnRealizarDoacao.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
-		btnRealizarDoacao.setText("Realizar Doação");
-		btnRealizarDoacao.setBounds(72, 337, 243, 68);
-		btnRealizarDoacao.addSelectionListener(new SelectionAdapter() {
-			@Override
-			public void widgetSelected(SelectionEvent arg0) {
-				SelecionarDoadorView.main();
-			}
-		});
 	}
 }

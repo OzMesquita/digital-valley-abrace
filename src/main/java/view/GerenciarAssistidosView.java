@@ -21,7 +21,7 @@ public class GerenciarAssistidosView {
 	
 	GerenciarAssistidosControle controle;
 
-	protected Shell shlGerenciarAssistidos;
+	private Shell shlGerenciarAssistidos;
 	private Table table;
 	private TableColumn tblclmnId;
 	private TableColumn tblclmnNomeDoAssistido;
@@ -261,8 +261,7 @@ public class GerenciarAssistidosView {
 		btnCadastrar.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
-				shlGerenciarAssistidos.dispose();
-				CadastroAssistidoView.main();
+				controle.getEvent(arg0);
 			}
 		});
 		btnCadastrar.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
