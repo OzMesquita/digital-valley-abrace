@@ -176,6 +176,7 @@ public class CadastroDoadorView {
 		tfNome = new Text(shlCadastroDoador, SWT.BORDER);
 		tfNome.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfNome.setBounds(236, 154, 369, 32);
+		tfNome.setTextLimit(128);
 		
 		Label label_1 = new Label(shlCadastroDoador, SWT.NONE);
 		label_1.setText("CPF:");
@@ -185,6 +186,7 @@ public class CadastroDoadorView {
 		tfCPF = new Text(shlCadastroDoador, SWT.BORDER);
 		tfCPF.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfCPF.setBounds(236, 194, 369, 32);
+		tfCPF.setTextLimit(14);
 		
 		Label label_2 = new Label(shlCadastroDoador, SWT.NONE);
 		label_2.setText("RG:");
@@ -194,6 +196,7 @@ public class CadastroDoadorView {
 		tfRG = new Text(shlCadastroDoador, SWT.BORDER);
 		tfRG.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfRG.setBounds(236, 232, 369, 32);
+		tfRG.setTextLimit(16);
 		
 		Label label_3 = new Label(shlCadastroDoador, SWT.NONE);
 		label_3.setText("Endere\u00E7o:");
@@ -203,6 +206,7 @@ public class CadastroDoadorView {
 		tfEndereco = new Text(shlCadastroDoador, SWT.BORDER);
 		tfEndereco.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfEndereco.setBounds(236, 271, 369, 32);
+		tfEndereco.setTextLimit(268);
 		
 		Label label_4 = new Label(shlCadastroDoador, SWT.NONE);
 		label_4.setText("Data de Nascimento:");
@@ -221,6 +225,7 @@ public class CadastroDoadorView {
 		tfTelefone1 = new Text(shlCadastroDoador, SWT.BORDER);
 		tfTelefone1.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfTelefone1.setBounds(236, 347, 369, 32);
+		tfTelefone1.setTextLimit(16);
 		
 		Label lblTelefone = new Label(shlCadastroDoador, SWT.NONE);
 		lblTelefone.setText("Telefone 2:");
@@ -230,6 +235,7 @@ public class CadastroDoadorView {
 		tfTelefone2 = new Text(shlCadastroDoador, SWT.BORDER);
 		tfTelefone2.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfTelefone2.setBounds(236, 385, 369, 32);
+		tfTelefone2.setTextLimit(16);
 		
 		Label label_7 = new Label(shlCadastroDoador, SWT.NONE);
 		label_7.setText("Email:");
@@ -239,6 +245,8 @@ public class CadastroDoadorView {
 		tfEmail = new Text(shlCadastroDoador, SWT.BORDER);
 		tfEmail.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfEmail.setBounds(236, 422, 369, 32);
+		tfEmail.setTextLimit(128);
+		
 		
 		Label lblStatus = new Label(shlCadastroDoador, SWT.NONE);
 		lblStatus.setText("Status:");

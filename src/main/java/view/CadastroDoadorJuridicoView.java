@@ -178,6 +178,7 @@ public class CadastroDoadorJuridicoView {
 		tfNome = new Text(shlCadastroDoador, SWT.BORDER);
 		tfNome.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfNome.setBounds(236, 154, 369, 32);
+		tfNome.setTextLimit(128);
 		
 		Label label_1 = new Label(shlCadastroDoador, SWT.NONE);
 		label_1.setText("CNPJ:");
@@ -187,6 +188,7 @@ public class CadastroDoadorJuridicoView {
 		tfCNPJ = new Text(shlCadastroDoador, SWT.BORDER);
 		tfCNPJ.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfCNPJ.setBounds(236, 194, 369, 32);
+		tfCNPJ.setTextLimit(32);
 		
 		Label label_2 = new Label(shlCadastroDoador, SWT.NONE);
 		label_2.setText("Fantasia:");
@@ -196,10 +198,12 @@ public class CadastroDoadorJuridicoView {
 		tfFantasia = new Text(shlCadastroDoador, SWT.BORDER);
 		tfFantasia.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfFantasia.setBounds(236, 232, 369, 32);
+		tfFantasia.setTextLimit(128);
 		
 		tfRazaoSocial = new Text(shlCadastroDoador, SWT.BORDER);
 		tfRazaoSocial.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfRazaoSocial.setBounds(236, 270, 369, 32);
+		tfRazaoSocial.setTextLimit(128);
 		
 		Label lblRazoSocial = new Label(shlCadastroDoador, SWT.NONE);
 		lblRazoSocial.setText("Raz\u00E3o social:");
@@ -214,6 +218,7 @@ public class CadastroDoadorJuridicoView {
 		tfEndereco = new Text(shlCadastroDoador, SWT.BORDER);
 		tfEndereco.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfEndereco.setBounds(236, 307, 369, 32);
+		tfEndereco.setTextLimit(256);
 		
 		Label lblTelefone_1 = new Label(shlCadastroDoador, SWT.NONE);
 		lblTelefone_1.setText("Telefone 1:");
@@ -223,6 +228,7 @@ public class CadastroDoadorJuridicoView {
 		tfTelefone1 = new Text(shlCadastroDoador, SWT.BORDER);
 		tfTelefone1.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfTelefone1.setBounds(236, 345, 369, 32);
+		tfTelefone1.setTextLimit(16);
 		
 		Label lblTelefone = new Label(shlCadastroDoador, SWT.NONE);
 		lblTelefone.setText("Telefone 2:");
@@ -232,6 +238,7 @@ public class CadastroDoadorJuridicoView {
 		tfTelefone2 = new Text(shlCadastroDoador, SWT.BORDER);
 		tfTelefone2.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfTelefone2.setBounds(236, 383, 369, 32);
+		tfTelefone2.setTextLimit(16);
 		
 		Label label_7 = new Label(shlCadastroDoador, SWT.NONE);
 		label_7.setText("Email:");
@@ -241,6 +248,7 @@ public class CadastroDoadorJuridicoView {
 		tfEmail = new Text(shlCadastroDoador, SWT.BORDER);
 		tfEmail.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfEmail.setBounds(236, 420, 369, 32);
+		tfEmail.setTextLimit(128);
 		
 		Label lblStatus = new Label(shlCadastroDoador, SWT.NONE);
 		lblStatus.setText("Status:");

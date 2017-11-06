@@ -255,22 +255,27 @@ public class CadastroAssistidoView{
 		tfNome = new Text(shlCadastroAssistido, SWT.BORDER);
 		tfNome.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfNome.setBounds(254, 169, 369, 38);
+		tfNome.setTextLimit(128);
 		
 		tfApelido = new Text(shlCadastroAssistido, SWT.BORDER);
 		tfApelido.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfApelido.setBounds(254, 213, 369, 38);
+		tfApelido.setTextLimit(32);
 		
 		tfCPF = new Text(shlCadastroAssistido, SWT.BORDER);
 		tfCPF.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfCPF.setBounds(254, 258, 369, 38);
+		tfCPF.setTextLimit(14);
 		
 		tfRG = new Text(shlCadastroAssistido, SWT.BORDER);
 		tfRG.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfRG.setBounds(254, 302, 369, 38);
+		tfRG.setTextLimit(16);
 		
 		tfEndereco = new Text(shlCadastroAssistido, SWT.BORDER);
 		tfEndereco.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfEndereco.setBounds(254, 346, 369, 38);
+		tfEndereco.setTextLimit(256);
 		
 		tfDataNascimento = new DateTime(shlCadastroAssistido, SWT.BORDER);
 		tfDataNascimento.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
@@ -279,18 +284,22 @@ public class CadastroAssistidoView{
 		tfTelefone1 = new Text(shlCadastroAssistido, SWT.BORDER);
 		tfTelefone1.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfTelefone1.setBounds(254, 434, 369, 38);
+		tfTelefone1.setTextLimit(16);
 		
 		tfTelefone2 = new Text(shlCadastroAssistido, SWT.BORDER);
 		tfTelefone2.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfTelefone2.setBounds(254, 478, 369, 38);
+		tfTelefone2.setTextLimit(16);
 		
 		tfEmail = new Text(shlCadastroAssistido, SWT.BORDER);
 		tfEmail.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfEmail.setBounds(254, 522, 369, 38);
+		tfEmail.setTextLimit(128);
 		
 		tfTipoCancer = new Text(shlCadastroAssistido, SWT.BORDER);
 		tfTipoCancer.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfTipoCancer.setBounds(254, 566, 369, 38);
+		tfTipoCancer.setTextLimit(64);
 		
 		tfSituacao = new Combo(shlCadastroAssistido, SWT.READ_ONLY);
 		tfSituacao.setItems(new String[] {"Vivo", "Falecido"});
