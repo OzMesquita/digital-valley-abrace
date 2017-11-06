@@ -140,34 +140,28 @@ public class AssistidoDAO extends ExecutaSQL {
 
 	public ArrayList<Assistido> listaAssistido() {
 		ArrayList<Assistido> assistidos = new ArrayList<Assistido>();
-		String informacaoPessoa = "ABRACE.Pessoa.idPessoa, ABRACE.Pessoa.nome, ABRACE.Pessoa.endereco, ABRACE.Pessoa.telefone1,"
-				+ "ABRACE.Pessoa.telefone2, ABRACE.Pessoa.email, ABRACE.Pessoa.dataCadastro,ABRACE.Pessoa.isDoador,";
-		String informacaoPessoaFisica = " ABRACE.Pessoa_Fisica.cpf, ABRACE.Pessoa_Fisica.rg, ABRACE.Pessoa_Fisica.dataNascimento,";
-		// Vou pegar essas duas Strings que são necessárias para pegar os assistidos e
-		// usar no SELECT do sql para pegar os dados de todas essas tabelas.
-		String sql = "SELECT " + informacaoPessoa + informacaoPessoaFisica
-				+ " ABRACE.Assistido.tipoCancer, ABRACE.Assistido.apelido, ABRACE.Assistido.status"
-				+ " FROM ABRACE.Assistido, ABRACE.Pessoa, ABRACE.Pessoa_Fisica"
-				+ " WHERE ABRACE.Pessoa.ativo = True AND ABRACE.Pessoa.idPessoa = ABRACE.Pessoa_Fisica.idPessoa "
-				+ " AND ABRACE.Pessoa_Fisica.idPessoa = ABRACE.Assistido.idPessoa";
+		String sql = "SELECT * " + 
+				"FROM PESSOA " + 
+				"JOIN PESSOA_FISICA ON PESSOA.idpessoa=PESSOA_FISICA.idpessoa " + 
+				"join ASSISTIDO ON ASSISTIDO.idpessoa=PESSOA_FISICA.idpessoa";
 		try {
 			PreparedStatement ps = getConexao().prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
-				int id = rs.getInt(1);
-				String nome = rs.getString(2);
-				String endereco = rs.getString(3);
-				String telefone = rs.getString(4);
-				String telefone2 = rs.getString(5);
-				String email = rs.getString(6);
-				LocalDate dataCadastro = rs.getDate(7).toLocalDate();
-				boolean isDoador = rs.getBoolean(8);
-				String cpf = rs.getString(9);
-				String rg = rs.getString(10);
-				LocalDate dataNasc = rs.getDate(11).toLocalDate();
-				String tipoDeCancer = rs.getString(12);
-				String apelido = rs.getString(13);
-				boolean situacao = rs.getBoolean(14);
+				int id = rs.getInt("idpessoa");
+				String nome = rs.getString("nome");
+				String endereco = rs.getString("endereco");
+				String telefone = rs.getString("telefone1");
+				String telefone2 = rs.getString("telefone2");
+				String email = rs.getString("email");
+				LocalDate dataCadastro = rs.getDate("datacadastro").toLocalDate();
+				boolean isDoador = rs.getBoolean("isdoador");
+				String cpf = rs.getString("cpf");
+				String rg = rs.getString("rg");
+				LocalDate dataNasc = rs.getDate("datanascimento").toLocalDate();
+				String tipoDeCancer = rs.getString("tipocancer");
+				String apelido = rs.getString("apelido");
+				boolean situacao = rs.getBoolean("status");
 				assistidos.add(new Assistido(id, nome, endereco, dataCadastro, telefone, telefone2, email, true, isDoador, cpf, rg, dataNasc, apelido, tipoDeCancer, situacao));
 			}
 		} catch (SQLException e) {
