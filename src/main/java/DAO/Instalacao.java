@@ -20,6 +20,7 @@ public class Instalacao {
 				   " email VARCHAR(128)," + 
 				   " dataCadastro DATE NOT NULL," + 
 				   " ativo BOOLEAN NOT NULL," + 
+				   " isDoador BOOLEAN NOT NULL," +
 				   " PRIMARY KEY (idPessoa)" + 
 				   ")"
 				   //-----------------------------------//

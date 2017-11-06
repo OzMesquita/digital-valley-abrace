@@ -90,7 +90,7 @@ public class LoginView {
 		
 		Label lblUsurio = new Label(shlOngRussasTransformando, SWT.NONE);
 		lblUsurio.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
-		lblUsurio.setBounds(95, 273, 75, 30);
+		lblUsurio.setBounds(99, 274, 75, 30);
 		lblUsurio.setText("Usu\u00E1rio:");
 		
 		tfUsuario = new Text(shlOngRussasTransformando, SWT.BORDER);
@@ -101,11 +101,11 @@ public class LoginView {
 			}
 		});
 		tfUsuario.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
-		tfUsuario.setBounds(176, 270, 230, 36);
+		tfUsuario.setBounds(180, 271, 230, 36);
 		
 		Label lblSenha = new Label(shlOngRussasTransformando, SWT.NONE);
 		lblSenha.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
-		lblSenha.setBounds(108, 323, 62, 30);
+		lblSenha.setBounds(112, 324, 62, 30);
 		lblSenha.setText("Senha:");
 		
 		tfSenha = new Text(shlOngRussasTransformando, SWT.BORDER | SWT.PASSWORD);
@@ -116,7 +116,7 @@ public class LoginView {
 			}
 		});
 		tfSenha.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
-		tfSenha.setBounds(176, 320, 230, 36);
+		tfSenha.setBounds(180, 321, 230, 36);
 		
 		Button btnEntrar = new Button(shlOngRussasTransformando, SWT.NONE);
 		btnEntrar.addSelectionListener(new SelectionAdapter() {
@@ -127,23 +127,23 @@ public class LoginView {
 			}
 		});
 		btnEntrar.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
-		btnEntrar.setBounds(193, 385, 128, 40);
+		btnEntrar.setBounds(198, 385, 128, 40);
 		btnEntrar.setText("Entrar");
 		
 		Label lblBemVindo = new Label(shlOngRussasTransformando, SWT.NONE);
 		lblBemVindo.setFont(SWTResourceManager.getFont("Segoe UI", 18, SWT.NORMAL));
-		lblBemVindo.setBounds(194, 133, 125, 32);
+		lblBemVindo.setBounds(199, 133, 125, 32);
 		lblBemVindo.setText("Bem Vindo!");
 		
 		
 		Label lblDigiteSeusDados = new Label(shlOngRussasTransformando, SWT.NONE);
 		lblDigiteSeusDados.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
-		lblDigiteSeusDados.setBounds(125, 225, 261, 30);
+		lblDigiteSeusDados.setBounds(131, 225, 261, 30);
 		lblDigiteSeusDados.setText("Digite seus dados de acesso");
 		
 		Label label = new Label(shlOngRussasTransformando, SWT.NONE);
 		label.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/ABRACE.png").getAbsolutePath()));
-		label.setBounds(225, 57, 64, 64);
+		label.setBounds(230, 57, 64, 64);
 
 	}
 	
