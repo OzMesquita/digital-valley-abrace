@@ -4,6 +4,9 @@ import java.sql.SQLException;
 
 import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.SelectionEvent;
+
+import DAO.ConnectionFactory;
+import DAO.PessoaDAO;
 import exceptions.PessoaInvalidaException;
 import exceptions.UsuarioInvalidoException;
 import exceptions.UsuarioNaoEncontradoException;
@@ -14,7 +17,8 @@ import view.LoginView;
 
 public class LoginControle {
 	private LoginView view;
-	private LoginFachada facade; 
+	private LoginFachada facade;
+	private PessoaDAO pessoaDAO = new PessoaDAO(new ConnectionFactory().getConnection());
 	
 	public void capturarEnter(KeyEvent evento) {
 		if(evento.keyCode == 13 || evento.keyCode == 16777296) {
@@ -53,6 +57,7 @@ public class LoginControle {
 			if(usuario == null) {
 				throw new UsuarioNaoEncontradoException();
 			}else {
+				LoginSingleton.LoginSingleton(pessoaDAO.getPessoa(usuario.getId()));
 				this.view.getShlOngRussasTransformando().dispose();
 				AplicacaoView.main();
 			}
