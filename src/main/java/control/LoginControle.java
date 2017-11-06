@@ -2,6 +2,7 @@ package control;
 
 import java.sql.SQLException;
 
+import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.SelectionEvent;
 import exceptions.PessoaInvalidaException;
 import exceptions.UsuarioInvalidoException;
@@ -14,26 +15,16 @@ import view.LoginView;
 public class LoginControle {
 	private LoginView view;
 	private LoginFachada facade; 
+	
+	public void capturarEnter(KeyEvent evento) {
+		if(evento.keyCode == 13 || evento.keyCode == 16777296) {
+			validarLogin();
+		}
+	}
 		
 	public void getEvent(SelectionEvent event){
 		if (event.getSource().toString().equals("Button {Entrar}")){
-			try {
-				Usuario usuario = facade.loga(view.getTfUsuario().getText(), view.getTfSenha().getText());
-				if(usuario == null) {
-					throw new UsuarioNaoEncontradoException();
-				}else {
-					this.view.getShlOngRussasTransformando().dispose();
-					AplicacaoView.main();
-				}
-			} catch (UsuarioInvalidoException e) {
-				view.mensagemErro(e);
-			} catch (PessoaInvalidaException e) {
-				view.mensagemErro(e);
-			}catch(UsuarioNaoEncontradoException e) {
-				view.mensagemErro(e);
-			} catch (SQLException e) {
-				view.mensagemErro(e);
-			}
+			validarLogin();
 		}else {
 			view.mensagemErro(new UsuarioNaoEncontradoException());
 		}
@@ -53,6 +44,26 @@ public class LoginControle {
 	private void setFacade(LoginFachada facade) {
 		if(facade != null) {
 			this.facade = facade; 
+		}
+	}
+	
+	public void validarLogin() {
+		try {
+			Usuario usuario = facade.loga(view.getTfUsuario().getText(), view.getTfSenha().getText());
+			if(usuario == null) {
+				throw new UsuarioNaoEncontradoException();
+			}else {
+				this.view.getShlOngRussasTransformando().dispose();
+				AplicacaoView.main();
+			}
+		} catch (UsuarioInvalidoException e) {
+			view.mensagemErro(e);
+		} catch (PessoaInvalidaException e) {
+			view.mensagemErro(e);
+		}catch(UsuarioNaoEncontradoException e) {
+			view.mensagemErro(e);
+		} catch (SQLException e) {
+			view.mensagemErro(e);
 		}
 	}
 		

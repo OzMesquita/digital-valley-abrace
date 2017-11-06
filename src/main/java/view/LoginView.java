@@ -16,6 +16,8 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.KeyAdapter;
+import org.eclipse.swt.events.KeyEvent;
 
 public class LoginView {
 
@@ -92,6 +94,12 @@ public class LoginView {
 		lblUsurio.setText("Usu\u00E1rio:");
 		
 		tfUsuario = new Text(shlOngRussasTransformando, SWT.BORDER);
+		tfUsuario.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				controle.capturarEnter(arg0);
+			}
+		});
 		tfUsuario.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfUsuario.setBounds(176, 270, 230, 36);
 		
@@ -101,6 +109,12 @@ public class LoginView {
 		lblSenha.setText("Senha:");
 		
 		tfSenha = new Text(shlOngRussasTransformando, SWT.BORDER | SWT.PASSWORD);
+		tfSenha.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				controle.capturarEnter(arg0);
+			}
+		});
 		tfSenha.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfSenha.setBounds(176, 320, 230, 36);
 		
