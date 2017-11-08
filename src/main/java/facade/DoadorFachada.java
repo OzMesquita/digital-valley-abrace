@@ -13,7 +13,7 @@ import model.PessoaFisica;
 import model.PessoaJuridica;
 
 public class DoadorFachada {
-	public boolean cadastrarDoador(PessoaFisica doador) throws SQLException {
+	public boolean cadastrarDoador(PessoaFisica doador) throws SQLException, PessoaInvalidaException {
 		PessoaFisicaDAO pessoaFisica = new PessoaFisicaDAO(new ConnectionFactory().getConnection());
 		boolean resultado = pessoaFisica.inserirPessoaFisica(doador);
 		pessoaFisica.getConexao().close();
