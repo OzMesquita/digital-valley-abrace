@@ -299,7 +299,7 @@ public class CadastroDoadorView {
 	public void mensagemErro(Exception e){
 		 MessageBox messageBox = new MessageBox(shlCadastroDoador,SWT.ICON_ERROR | SWT.OK); 
         messageBox.setText("Problemas no cadastro do doador físico!");
-        messageBox.setMessage(/*e.getMessage()+*/"Não foi possível cadastrar este doador pessoa física. \nConsulte o suporte.");
+        messageBox.setMessage(e.getMessage()+"\nNão foi possível cadastrar este doador pessoa física.");
         messageBox.open();
 	}
 	

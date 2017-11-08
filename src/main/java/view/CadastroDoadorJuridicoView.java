@@ -298,7 +298,7 @@ public class CadastroDoadorJuridicoView {
 	public void mensagemErro(Exception e){
 		 MessageBox messageBox = new MessageBox(shlCadastroDoador,SWT.ICON_ERROR | SWT.OK); 
         messageBox.setText("Problemas no cadastro do doador jurídico!");
-        messageBox.setMessage(/*e.getMessage()+*/"Não foi possível cadastrar este doador pessoa jurídica. \nConsulte o suporte.");
+        messageBox.setMessage(e.getMessage()+"\nNão foi possível cadastrar este doador pessoa jurídica.");
        messageBox.open();
 	}
 	

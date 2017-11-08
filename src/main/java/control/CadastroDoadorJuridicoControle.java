@@ -36,7 +36,7 @@ public class CadastroDoadorJuridicoControle {
 					view.getShlCadastroDoador().dispose();
 				}
 			} catch (SQLException ex) {
-				view.mensagemErro(ex);
+				view.mensagemErro(new Exception("Erro na operação! Contate o suporte!"));
 			}catch(PessoaInvalidaException ex) {
 				view.mensagemErro(ex);
 			} catch (PessoaJuridicaInvalidaException ex) {

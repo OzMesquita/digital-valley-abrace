@@ -408,7 +408,7 @@ public class CadastroAssistidoView{
 	public void mensagemErro(Exception e){
 		 MessageBox messageBox = new MessageBox(shlCadastroAssistido,SWT.ICON_ERROR | SWT.OK); 
        messageBox.setText("Problemas no cadastro do assistido!");
-       messageBox.setMessage(/*e.getMessage()+*/"Não foi possível cadastrar este assistido. \nConsulte o suporte.");
+       messageBox.setMessage(e.getMessage()+"\nNão foi possível cadastrar este assistido.");
        messageBox.open();
 	}
 	
