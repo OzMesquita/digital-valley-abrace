@@ -145,6 +145,11 @@ public class CadastroDoadorView {
 		tfStatus.setItems(new String[] {"Ativo", "Inativo"});
 		tfStatus.setBounds(236, 460, 99, 38);
 		tfStatus.select(0);
+		
+		Label lblDoadorPessoaFsica = new Label(shlCadastroDoador, SWT.NONE);
+		lblDoadorPessoaFsica.setText("Pessoa F\u00EDsica");
+		lblDoadorPessoaFsica.setFont(SWTResourceManager.getFont("Segoe UI", 24, SWT.NORMAL));
+		lblDoadorPessoaFsica.setBounds(239, 97, 183, 45);
 		shlCadastroDoador.open();
 		shlCadastroDoador.layout();
 		while (!shlCadastroDoador.isDisposed()) {
@@ -165,7 +170,7 @@ public class CadastroDoadorView {
 		
 		Label lblCadastroDeDoador = new Label(shlCadastroDoador, SWT.NONE);
 		lblCadastroDeDoador.setFont(SWTResourceManager.getFont("Segoe UI", 30, SWT.NORMAL));
-		lblCadastroDeDoador.setBounds(149, 53, 356, 54);
+		lblCadastroDeDoador.setBounds(149, 37, 356, 54);
 		lblCadastroDeDoador.setText("Cadastro de Doador");
 		
 		Label label = new Label(shlCadastroDoador, SWT.NONE);
@@ -288,7 +293,7 @@ public class CadastroDoadorView {
 		
 		Label label_9 = new Label(shlCadastroDoador, SWT.NONE);
 		label_9.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/doadores.png").getAbsolutePath()));
-		label_9.setBounds(511, 23, 109, 114);
+		label_9.setBounds(511, 10, 109, 114);
 	}
 	
 	public void mensagemErro(Exception e){

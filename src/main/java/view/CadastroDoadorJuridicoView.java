@@ -137,6 +137,11 @@ public class CadastroDoadorJuridicoView {
 		createContents();
 		Centralize.centralize(shlCadastroDoador);
 		
+		Label lblDoadorPessoaJurdica = new Label(shlCadastroDoador, SWT.NONE);
+		lblDoadorPessoaJurdica.setText("Pessoa Jur\u00EDdica");
+		lblDoadorPessoaJurdica.setFont(SWTResourceManager.getFont("Segoe UI", 24, SWT.NORMAL));
+		lblDoadorPessoaJurdica.setBounds(225, 98, 212, 45);
+		
 		
 		
 		shlCadastroDoador.open();
@@ -167,7 +172,7 @@ public class CadastroDoadorJuridicoView {
 		
 		Label lblCadastroDeDoador = new Label(shlCadastroDoador, SWT.NONE);
 		lblCadastroDeDoador.setFont(SWTResourceManager.getFont("Segoe UI", 30, SWT.NORMAL));
-		lblCadastroDeDoador.setBounds(149, 53, 356, 54);
+		lblCadastroDeDoador.setBounds(149, 38, 356, 54);
 		lblCadastroDeDoador.setText("Cadastro de Doador");
 		
 		Label label = new Label(shlCadastroDoador, SWT.NONE);
@@ -287,7 +292,7 @@ public class CadastroDoadorJuridicoView {
 		
 		Label label_9 = new Label(shlCadastroDoador, SWT.NONE);
 		label_9.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/doadores.png").getAbsolutePath()));
-		label_9.setBounds(511, 23, 109, 114);
+		label_9.setBounds(511, 10, 109, 114);
 	}
 	
 	public void mensagemErro(Exception e){
