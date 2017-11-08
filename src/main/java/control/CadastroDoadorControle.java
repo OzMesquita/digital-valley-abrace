@@ -36,6 +36,8 @@ public class CadastroDoadorControle {
 				view.mensagemErro(e);
 			} catch (PessoaFisicaException e) {
 				view.mensagemErro(e);
+			} catch (SQLException e) {
+				view.mensagemErro(e);
 			}
 		}
 	}

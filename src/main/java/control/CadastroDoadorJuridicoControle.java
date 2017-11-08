@@ -36,7 +36,7 @@ public class CadastroDoadorJuridicoControle {
 					view.getShlCadastroDoador().dispose();
 				}
 			} catch (SQLException ex) {
-				view.mensagemErro(new Exception("Um problema interno do sistema ocorreu"));
+				view.mensagemErro(ex);
 			}catch(PessoaInvalidaException ex) {
 				view.mensagemErro(ex);
 			} catch (PessoaJuridicaInvalidaException ex) {

@@ -64,6 +64,8 @@ public class CadastroAssistidoControle {
 				view.mensagemErro(e);
 			} catch (PessoaFisicaException e) {
 				view.mensagemErro(e);
+			} catch (SQLException e) {
+				view.mensagemErro(e);
 			}
 
 		}
