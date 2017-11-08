@@ -7,16 +7,14 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.TableItem;
 
-import doacao.DoacaoSingleton;
-import doacao.InserirValorView;
-import doacao.SelecionarDoadorView;
 import facade.DoacaoFachada;
 import facade.DoadorFachada;
 import facade.PessoaFachada;
 import model.Pessoa;
 import model.PessoaFisica;
 import model.PessoaJuridica;
-
+import view.InserirValorView;
+import view.SelecionarDoadorView;
 import view.SelecionarTipoDoadorView;
 
 

@@ -11,7 +11,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.wb.swt.SWTResourceManager;
 
 import control.LoginSingleton;
-import doacao.SelecionarDoadorView;
+
 import org.eclipse.swt.widgets.Label;
 public class AplicacaoView {
 

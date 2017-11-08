@@ -1,4 +1,4 @@
-package doacao;
+package view;
 
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
@@ -11,7 +11,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.wb.swt.SWTResourceManager;
 
 import control.DoacaoControle;
-import view.Centralize;
+import control.DoacaoSingleton;
 
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.DateTime;
@@ -108,6 +108,10 @@ public class InserirValorView {
 		Display display = Display.getDefault();
 		createContents();
 		Centralize.centralize(shlRealizarDoao);
+		
+		Label label = new Label(shlRealizarDoao, SWT.NONE);
+		label.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/doacao.png").getAbsolutePath()));
+		label.setBounds(550, 18, 140, 127);
 		shlRealizarDoao.open();
 		shlRealizarDoao.layout();
 		while (!shlRealizarDoao.isDisposed()) {
