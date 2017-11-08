@@ -29,7 +29,6 @@ public class CadastroDoadorJuridicoControle {
 				doador.setTelefone(view.getTfTelefone1().getText());
 				doador.setTelefone2(view.getTfTelefone2().getText());
 				doador.setEmail(view.getTfEmail().getText());
-				doador.setRazaoSocial(view.getTfRazaoSocial().getText());
 				doador.setAtivo(view.getTfStatus());
 				doador.setDoador(true);
 				if (facade.cadastrarDoadorJuridico(doador)) {
