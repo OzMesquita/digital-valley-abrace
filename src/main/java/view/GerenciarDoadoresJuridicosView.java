@@ -34,6 +34,7 @@ public class GerenciarDoadoresJuridicosView {
 	
 	private Button btnExcluir;
 	private Button btnCancelar;
+	private Label lblPessoaJurdica;
 	
 	
 
@@ -157,6 +158,7 @@ public class GerenciarDoadoresJuridicosView {
 	/**
 	 * Launch the application.
 	 * @param args
+	 * @wbp.parser.entryPoint
 	 */
 	public static void main() {
 		try {
@@ -177,13 +179,13 @@ public class GerenciarDoadoresJuridicosView {
 		
 		Label lblGerenciarDoadroesFisicos = new Label(shlGerenciarDoadoresJuridicos, SWT.NONE);
 		lblGerenciarDoadroesFisicos.setFont(SWTResourceManager.getFont("Segoe UI", 30, SWT.NORMAL));
-		lblGerenciarDoadroesFisicos.setBounds(66, 28, 475, 54);
-		lblGerenciarDoadroesFisicos.setText("Gerenciar Doadores Jurídicos");
+		lblGerenciarDoadroesFisicos.setBounds(182, 29, 349, 54);
+		lblGerenciarDoadroesFisicos.setText("Gerenciar Doadores");
 		
 		lblSelecioneUmDoadorFisico = new Label(shlGerenciarDoadoresJuridicos, SWT.NONE);
 		lblSelecioneUmDoadorFisico.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
-		lblSelecioneUmDoadorFisico.setBounds(196, 88, 334, 25);
-		lblSelecioneUmDoadorFisico.setText("Selecione ou pesquise um doador jurídico");
+		lblSelecioneUmDoadorFisico.setBounds(214, 125, 285, 25);
+		lblSelecioneUmDoadorFisico.setText("Selecione ou pesquise um doador");
 		
 		table = new Table(shlGerenciarDoadoresJuridicos, SWT.BORDER | SWT.FULL_SELECTION);
 		table.addSelectionListener(new SelectionAdapter() {
@@ -196,7 +198,7 @@ public class GerenciarDoadoresJuridicosView {
 		table.setLinesVisible(true);
 		table.setToolTipText("");
 		table.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
-		table.setBounds(10, 175, 694, 356);
+		table.setBounds(10, 210, 694, 356);
 		table.setHeaderVisible(true);
 		
 		tblclmnId = new TableColumn(table, SWT.CENTER);
@@ -221,12 +223,12 @@ public class GerenciarDoadoresJuridicosView {
 		
 		lblPesquisarDoadorFisico = new Label(shlGerenciarDoadoresJuridicos, SWT.NONE);
 		lblPesquisarDoadorFisico.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
-		lblPesquisarDoadorFisico.setBounds(10, 136, 180, 30);
+		lblPesquisarDoadorFisico.setBounds(10, 171, 180, 30);
 		lblPesquisarDoadorFisico.setText("Pesquisar Doador:");
 		
 		tfPesquisa = new Text(shlGerenciarDoadoresJuridicos, SWT.BORDER);
 		tfPesquisa.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
-		tfPesquisa.setBounds(196, 133, 360, 36);
+		tfPesquisa.setBounds(196, 168, 360, 36);
 		
 		Button btnPesquisar = new Button(shlGerenciarDoadoresJuridicos, SWT.NONE);
 		btnPesquisar.addSelectionListener(new SelectionAdapter() {
@@ -237,7 +239,7 @@ public class GerenciarDoadoresJuridicosView {
 		});
 		btnPesquisar.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
 		btnPesquisar.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/pesquisar.png").getAbsolutePath()));
-		btnPesquisar.setBounds(560, 133, 144, 36);
+		btnPesquisar.setBounds(560, 168, 144, 36);
 		btnPesquisar.setText("Pesquisar");
 		
 		btnEditar = new Button(shlGerenciarDoadoresJuridicos, SWT.NONE);
@@ -250,7 +252,7 @@ public class GerenciarDoadoresJuridicosView {
 		});
 		btnEditar.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/editar.png").getAbsolutePath()));
 		btnEditar.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
-		btnEditar.setBounds(132, 551, 208, 54);
+		btnEditar.setBounds(132, 586, 208, 54);
 		btnEditar.setText("Editar Doador");
 		
 		btnExcluir = new Button(shlGerenciarDoadoresJuridicos, SWT.NONE);
@@ -263,7 +265,7 @@ public class GerenciarDoadoresJuridicosView {
 		btnExcluir.setEnabled(false);
 		btnExcluir.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
 		btnExcluir.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/lixeira.png").getAbsolutePath()));
-		btnExcluir.setBounds(346, 551, 208, 54);
+		btnExcluir.setBounds(346, 586, 208, 54);
 		btnExcluir.setText("Excluir Doador");
 		
 		btnCadastrar = new Button(shlGerenciarDoadoresJuridicos, SWT.NONE);
@@ -276,7 +278,7 @@ public class GerenciarDoadoresJuridicosView {
 		});
 		btnCadastrar.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
 		btnCadastrar.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/assistido-small.png").getAbsolutePath()));
-		btnCadastrar.setBounds(346, 615, 208, 54);
+		btnCadastrar.setBounds(346, 650, 208, 54);
 		btnCadastrar.setText("Cadastrar Doador");
 		
 		btnCancelar = new Button(shlGerenciarDoadoresJuridicos, SWT.NONE);
@@ -288,12 +290,17 @@ public class GerenciarDoadoresJuridicosView {
 		});
 		btnCancelar.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/cancelar.png").getAbsolutePath()));
 		btnCancelar.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
-		btnCancelar.setBounds(132, 615, 208, 54);
+		btnCancelar.setBounds(132, 650, 208, 54);
 		btnCancelar.setText("Cancelar");
 		
 		Label label = new Label(shlGerenciarDoadoresJuridicos, SWT.NONE);
 		label.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/assistidos.png").getAbsolutePath()));
 		label.setBounds(560, 10, 137, 109);
+		
+		lblPessoaJurdica = new Label(shlGerenciarDoadoresJuridicos, SWT.NONE);
+		lblPessoaJurdica.setText("Pessoa Jur\u00EDdica");
+		lblPessoaJurdica.setFont(SWTResourceManager.getFont("Segoe UI", 22, SWT.NORMAL));
+		lblPessoaJurdica.setBounds(276, 77, 189, 40);
 		
 		controle.preencherTabelaDoadoresJuridico(controle.obterTodosDoadoresJuridicos());
 		shlGerenciarDoadoresJuridicos.open();
@@ -310,7 +317,7 @@ public class GerenciarDoadoresJuridicosView {
 	 */
 	protected void createContents() {
 		shlGerenciarDoadoresJuridicos = new Shell(SWT.SHELL_TRIM & (~SWT.RESIZE) & (~SWT.MAX));
-		shlGerenciarDoadoresJuridicos.setSize(730, 730);
+		shlGerenciarDoadoresJuridicos.setSize(730, 762);
 		shlGerenciarDoadoresJuridicos.setText("Gerenciar Doadores - ABRACE");
 		shlGerenciarDoadoresJuridicos.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/ABRACE.png").getAbsolutePath()));
 
