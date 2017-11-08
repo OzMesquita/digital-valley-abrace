@@ -50,6 +50,7 @@ public class SelecionarTipoDoadorView {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
 				CadastroDoadorView.main();
+				shlSelecionarTipoDoador.dispose();
 			}
 		});
 		pessoaFisicabnt.setBounds(120, 162, 411, 89);
@@ -62,6 +63,7 @@ public class SelecionarTipoDoadorView {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
 				CadastroDoadorJuridicoView.main();
+				shlSelecionarTipoDoador.dispose();
 			}
 		});
 		pessoaJuridicabnt.setText("Cadastrar Doador Pessoa Jurídica");

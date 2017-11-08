@@ -46,7 +46,7 @@ public class AplicacaoView {
 		btnListarDoadores.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
-				SelecionarTipoDoadorListadoView.main();
+				GerenciarDoadoresView.main();
 			}
 		});
 		btnListarDoadores.setText("Gerenciar Doadores");
