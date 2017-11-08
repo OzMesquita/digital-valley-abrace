@@ -34,7 +34,7 @@ public class PessoaJuridicaDAO extends ExecutaSQL{
 	
 	private void cadastrarDoadorJuridico(PessoaJuridica pessoaJ) throws SQLException{
         PreparedStatement stmt = null;
-        String sql = "INSERT INTO ABRACE.PESSOA_JURIDICA (cnpj, fantasia, razaoSocial, idPessoa)" + "VALUES(?, ?, ?, ?)";
+        String sql = "INSERT INTO ABRACE.PESSOA_JURIDICA (cnpj, fantasia, idPessoa)" + "VALUES(?, ?, ?, ?)";
 
         stmt = getConexao().prepareStatement(sql);
 
