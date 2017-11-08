@@ -7,10 +7,14 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
+import org.eclipse.swt.widgets.Table;
+
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.Font.FontFamily;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
@@ -34,48 +38,14 @@ public class RelatorioFacade {
 		document.open();
 		// ==================================================================================================//
 		
-		
-		
-		// ==================================================================================================//
-		//Cabecalho
-		// ==================================================================================================//
-		Paragraph titulo = new Paragraph("ONG Russas Transformando Vidas - ABRACE");
-		titulo.setAlignment(Element.ALIGN_CENTER);
-		document.add(titulo);
-		// ==================================================================================================//
-		
-		
-		
-		PdfPTable table = new PdfPTable(2);
-		
-		PdfPCell header = new PdfPCell(new Paragraph("Organização:"));
-		PdfPCell email = new PdfPCell(new Paragraph("E-mail:"));
-
-		table.setSpacingBefore(20);
-		
-		header.setColspan(2);
-		email.setColspan(2);
-		
-		table.addCell(header);
-		table.addCell("CNPJ:");
-		table.addCell("Endereço:");
-		table.addCell("CEP:");
-		table.addCell("Cidade:");
-		table.addCell("estado:");
-		table.addCell("Telefone:");
-		table.addCell(email);
-		table.addCell("");
-		
-		document.add(table);
-		
-		
+		Cabecalho(document);
 
 		// ==================================================================================================//
 		//Cabecalho
 		// ==================================================================================================//
 		DateTimeFormatter formatadorDataCadastro = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
 		
-		Paragraph sub = new Paragraph(Subtitulo);
+		Paragraph sub = new Paragraph(Subtitulo,new Font(FontFamily.UNDEFINED,12,Font.BOLD));
 		Paragraph emissao = new Paragraph("Emissão: " + LocalDateTime.now().format(formatadorDataCadastro));
 		
 		sub.setSpacingBefore(20);
@@ -154,6 +124,36 @@ public class RelatorioFacade {
 		// ====================================================================================================//
 		document.close();
 		// ====================================================================================================//
+	}
+
+	private void Cabecalho(Document document) throws DocumentException {
+		// ==================================================================================================//
+		//Cabecalho
+		// ==================================================================================================//
+		Paragraph titulo = new Paragraph("ONG Russas Transformando Vidas - ABRACE",new Font(FontFamily.UNDEFINED,12,Font.BOLD));
+		titulo.setAlignment(Element.ALIGN_CENTER);
+		document.add(titulo);
+		// ==================================================================================================//  
+		    
+		PdfPTable table = new PdfPTable(2);
+		    
+		PdfPCell header = new PdfPCell(new Paragraph("Organização:"));
+		PdfPCell email = new PdfPCell(new Paragraph("E-mail:"));
+	        
+		table.setSpacingBefore(20);
+		    
+		header.setColspan(2);
+		email.setColspan(2);
+		    
+		table.addCell(header);
+		table.addCell("CNPJ:");
+		table.addCell("Endereço:");
+		table.addCell("CEP:");
+		table.addCell("Cidade:");
+		table.addCell("estado:");
+		table.addCell("Telefone:");
+		table.addCell(email);
+		table.addCell("");
 	}
 
 }
