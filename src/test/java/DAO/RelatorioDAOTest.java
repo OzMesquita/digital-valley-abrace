@@ -21,7 +21,7 @@ public class RelatorioDAOTest {
 
 	public static void main(String[] args) {
 		try {
-			new RelatorioFacade().relatorioDeAssistido(new AssistidoDAO(new ConnectionFactory().getConnection()).listaAssistido(),"Relatório de assitidos");
+			new RelatorioFacade().relatorioDeAssistido(new AssistidoDAO(new ConnectionFactory().getConnection()).listaAssistido(),"Relatório dos Assistidos da ONG ABRACE",true,true);
 		} catch (DocumentException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
