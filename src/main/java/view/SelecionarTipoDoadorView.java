@@ -74,9 +74,10 @@ public class SelecionarTipoDoadorView {
 		label.setBounds(532, 37, 71, 68);
 		
 		Label lblSelecioneOTipo = new Label(shlSelecionarTipoDoador, SWT.NONE);
+		lblSelecioneOTipo.setAlignment(SWT.CENTER);
 		lblSelecioneOTipo.setFont(SWTResourceManager.getFont("Segoe UI", 18, SWT.NORMAL));
-		lblSelecioneOTipo.setBounds(180, 64, 291, 32);
-		lblSelecioneOTipo.setText("Selecione o tipo do doador");
+		lblSelecioneOTipo.setBounds(180, 64, 291, 64);
+		lblSelecioneOTipo.setText("Selecione o tipo do doador\r\nque deseja cadastrar");
 		
 		Button button = new Button(shlSelecionarTipoDoador, SWT.NONE);
 		button.addSelectionListener(new SelectionAdapter() {

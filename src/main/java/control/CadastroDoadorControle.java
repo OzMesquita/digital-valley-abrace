@@ -32,6 +32,7 @@ public class CadastroDoadorControle {
 				
 				if(facade.cadastrarDoador(doador)) {
 					view.mensagemSucesso(doador);
+					view.getShlCadastroDoador().dispose();
 				}
 			} catch (PessoaInvalidaException e) {
 				view.mensagemErro(e);

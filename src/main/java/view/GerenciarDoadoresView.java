@@ -270,7 +270,7 @@ public class GerenciarDoadoresView {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
 				shlGerenciarDoadoresFisicos.dispose();
-				CadastroDoadorView.main();
+				SelecionarTipoDoadorView.main();
 			}
 		});
 		btnCadastrar.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));

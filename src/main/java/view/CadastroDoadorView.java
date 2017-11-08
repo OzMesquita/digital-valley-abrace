@@ -195,6 +195,14 @@ public class CadastroDoadorView {
 		}
 	}
 
+	public Shell getShlCadastroDoador() {
+		return shlCadastroDoador;
+	}
+
+	public void setShlCadastroDoador(Shell shlCadastroDoador) {
+		this.shlCadastroDoador = shlCadastroDoador;
+	}
+
 	/**
 	 * Create contents of the window.
 	 */

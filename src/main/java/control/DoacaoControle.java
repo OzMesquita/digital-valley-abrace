@@ -17,6 +17,8 @@ import model.Pessoa;
 import model.PessoaFisica;
 import model.PessoaJuridica;
 
+import view.SelecionarTipoDoadorView;
+
 
 public class DoacaoControle {
 	
@@ -62,7 +64,7 @@ public class DoacaoControle {
 	
 	public void getEvent(SelectionEvent event) {
 		if (event.getSource().toString().equals("Button {Cadastrar doador}")) {
-			//Criar tela para linkar com o cadastro de doador pessoa fisica ou juridica
+			SelecionarTipoDoadorView.main();
 		}
 		if (event.getSource().toString().equals("Button {Continuar}")) {
 			int idPessoa = listaExibidaNaTabela.get(view1.getTable().getSelectionIndex()).getId();
