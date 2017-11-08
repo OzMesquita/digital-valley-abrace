@@ -34,7 +34,6 @@ public class CadastroDoadorJuridicoView {
 	private Text tfTelefone2;
 	private Text tfEmail;
 	Combo tfStatus;
-	private Text tfRazaoSocial;
 	public Shell getShlCadastroDoador() {
 		return shlCadastroDoador;
 	}
@@ -158,31 +157,25 @@ public class CadastroDoadorJuridicoView {
 		label_2.setText("*");
 		label_2.setForeground(SWTResourceManager.getColor(SWT.COLOR_RED));
 		label_2.setFont(SWTResourceManager.getFont("Segoe UI", 12, SWT.NORMAL));
-		label_2.setBounds(222, 230, 7, 21);
+		label_2.setBounds(222, 274, 7, 21);
 		
 		Label label_3 = new Label(shlCadastroDoador, SWT.NONE);
 		label_3.setText("*");
 		label_3.setForeground(SWTResourceManager.getColor(SWT.COLOR_RED));
 		label_3.setFont(SWTResourceManager.getFont("Segoe UI", 12, SWT.NORMAL));
-		label_3.setBounds(222, 274, 7, 21);
-		
-		Label label_4 = new Label(shlCadastroDoador, SWT.NONE);
-		label_4.setText("*");
-		label_4.setForeground(SWTResourceManager.getColor(SWT.COLOR_RED));
-		label_4.setFont(SWTResourceManager.getFont("Segoe UI", 12, SWT.NORMAL));
-		label_4.setBounds(222, 318, 7, 21);
+		label_3.setBounds(222, 230, 7, 21);
 		
 		Label label_5 = new Label(shlCadastroDoador, SWT.NONE);
 		label_5.setText("*");
 		label_5.setForeground(SWTResourceManager.getColor(SWT.COLOR_RED));
 		label_5.setFont(SWTResourceManager.getFont("Segoe UI", 12, SWT.NORMAL));
-		label_5.setBounds(222, 362, 7, 21);
+		label_5.setBounds(222, 318, 7, 21);
 		
 		Label label_6 = new Label(shlCadastroDoador, SWT.NONE);
 		label_6.setText("*");
 		label_6.setForeground(SWTResourceManager.getColor(SWT.COLOR_RED));
 		label_6.setFont(SWTResourceManager.getFont("Segoe UI", 12, SWT.NORMAL));
-		label_6.setBounds(222, 541, 7, 21);
+		label_6.setBounds(222, 497, 7, 21);
 		
 		
 		
@@ -195,21 +188,13 @@ public class CadastroDoadorJuridicoView {
 		}
 	}
 
-	public Text getTfRazaoSocial() {
-		return tfRazaoSocial;
-	}
-
-	public void setTfRazaoSocial(Text tfRazaoSocial) {
-		this.tfRazaoSocial = tfRazaoSocial;
-	}
-
 	/**
 	 * Create contents of the window.
 	 */
 	protected void createContents() {
 		shlCadastroDoador = new Shell(SWT.SHELL_TRIM & (~SWT.RESIZE) & (~SWT.MAX));
 		shlCadastroDoador.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/ABRACE.png").getAbsolutePath()));
-		shlCadastroDoador.setSize(694, 725);
+		shlCadastroDoador.setSize(694, 678);
 		shlCadastroDoador.setText("Cadastro Doador - ABRACE");
 		
 		Label lblCadastroDeDoador = new Label(shlCadastroDoador, SWT.NONE);
@@ -217,10 +202,10 @@ public class CadastroDoadorJuridicoView {
 		lblCadastroDeDoador.setBounds(149, 38, 356, 54);
 		lblCadastroDeDoador.setText("Cadastro de Doador");
 		
-		Label label = new Label(shlCadastroDoador, SWT.NONE);
-		label.setText("Nome:");
-		label.setFont(SWTResourceManager.getFont("Segoe UI Emoji", 16, SWT.NORMAL));
-		label.setBounds(158, 186, 62, 28);
+		Label lblRazoSocial = new Label(shlCadastroDoador, SWT.NONE);
+		lblRazoSocial.setText("Raz\u00E3o Social:");
+		lblRazoSocial.setFont(SWTResourceManager.getFont("Segoe UI Emoji", 16, SWT.NORMAL));
+		lblRazoSocial.setBounds(98, 186, 122, 28);
 		
 		tfNome = new Text(shlCadastroDoador, SWT.BORDER);
 		tfNome.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
@@ -230,82 +215,72 @@ public class CadastroDoadorJuridicoView {
 		Label label_1 = new Label(shlCadastroDoador, SWT.NONE);
 		label_1.setText("CNPJ:");
 		label_1.setFont(SWTResourceManager.getFont("Segoe UI Emoji", 16, SWT.NORMAL));
-		label_1.setBounds(165, 230, 55, 28);
+		label_1.setBounds(165, 274, 55, 28);
 		
 		tfCNPJ = new Text(shlCadastroDoador, SWT.BORDER);
 		tfCNPJ.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
-		tfCNPJ.setBounds(235, 225, 369, 38);
+		tfCNPJ.setBounds(235, 269, 369, 38);
 		tfCNPJ.setTextLimit(32);
 		
 		Label label_2 = new Label(shlCadastroDoador, SWT.NONE);
 		label_2.setText("Fantasia:");
 		label_2.setFont(SWTResourceManager.getFont("Segoe UI Emoji", 16, SWT.NORMAL));
-		label_2.setBounds(139, 274, 81, 28);
+		label_2.setBounds(139, 230, 81, 28);
 		
 		tfFantasia = new Text(shlCadastroDoador, SWT.BORDER);
 		tfFantasia.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
-		tfFantasia.setBounds(235, 269, 369, 38);
+		tfFantasia.setBounds(235, 225, 369, 38);
 		tfFantasia.setTextLimit(128);
-		
-		tfRazaoSocial = new Text(shlCadastroDoador, SWT.BORDER);
-		tfRazaoSocial.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
-		tfRazaoSocial.setBounds(235, 313, 369, 38);
-		tfRazaoSocial.setTextLimit(128);
-		
-		Label lblRazoSocial = new Label(shlCadastroDoador, SWT.NONE);
-		lblRazoSocial.setText("Raz\u00E3o social:");
-		lblRazoSocial.setFont(SWTResourceManager.getFont("Segoe UI Emoji", 16, SWT.NORMAL));
-		lblRazoSocial.setBounds(100, 318, 120, 28);
 		
 		Label label_3 = new Label(shlCadastroDoador, SWT.NONE);
 		label_3.setText("Endere\u00E7o:");
 		label_3.setFont(SWTResourceManager.getFont("Segoe UI Emoji", 16, SWT.NORMAL));
-		label_3.setBounds(129, 362, 91, 28);
+		label_3.setBounds(129, 318, 91, 28);
 		
 		tfEndereco = new Text(shlCadastroDoador, SWT.BORDER);
 		tfEndereco.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
-		tfEndereco.setBounds(235, 357, 369, 38);
+		tfEndereco.setBounds(235, 313, 369, 38);
 		tfEndereco.setTextLimit(256);
 		
 		Label lblTelefone_1 = new Label(shlCadastroDoador, SWT.NONE);
 		lblTelefone_1.setText("Telefone 1:");
 		lblTelefone_1.setFont(SWTResourceManager.getFont("Segoe UI Emoji", 16, SWT.NORMAL));
-		lblTelefone_1.setBounds(118, 406, 102, 28);
+		lblTelefone_1.setBounds(118, 363, 102, 28);
 		
 		tfTelefone1 = new Text(shlCadastroDoador, SWT.BORDER);
 		tfTelefone1.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
-		tfTelefone1.setBounds(235, 401, 369, 38);
+		tfTelefone1.setBounds(235, 358, 369, 38);
 		tfTelefone1.setTextLimit(16);
 		
 		Label lblTelefone = new Label(shlCadastroDoador, SWT.NONE);
 		lblTelefone.setText("Telefone 2:");
 		lblTelefone.setFont(SWTResourceManager.getFont("Segoe UI Emoji", 16, SWT.NORMAL));
-		lblTelefone.setBounds(118, 450, 102, 28);
+		lblTelefone.setBounds(118, 407, 102, 28);
 		
 		tfTelefone2 = new Text(shlCadastroDoador, SWT.BORDER);
 		tfTelefone2.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
-		tfTelefone2.setBounds(235, 445, 369, 38);
+		tfTelefone2.setBounds(235, 402, 369, 38);
 		tfTelefone2.setTextLimit(16);
 		
 		Label label_7 = new Label(shlCadastroDoador, SWT.NONE);
 		label_7.setText("Email:");
 		label_7.setFont(SWTResourceManager.getFont("Segoe UI Emoji", 16, SWT.NORMAL));
-		label_7.setBounds(165, 496, 55, 28);
+		label_7.setBounds(165, 451, 55, 28);
 		
 		tfEmail = new Text(shlCadastroDoador, SWT.BORDER);
 		tfEmail.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
-		tfEmail.setBounds(235, 491, 369, 38);
+		tfEmail.setBounds(235, 446, 369, 38);
 		tfEmail.setTextLimit(128);
 		
 		Label lblStatus = new Label(shlCadastroDoador, SWT.NONE);
 		lblStatus.setText("Status:");
 		lblStatus.setFont(SWTResourceManager.getFont("Segoe UI Emoji", 16, SWT.NORMAL));
-		lblStatus.setBounds(158, 541, 62, 28);
+		lblStatus.setBounds(158, 497, 62, 28);
 		
 		tfStatus = new Combo(shlCadastroDoador, SWT.READ_ONLY);
 		tfStatus.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfStatus.setItems(new String[] {"Ativo", "Inativo"});
-		tfStatus.setBounds(235, 536, 99, 38);
+		tfStatus.setBounds(235, 492, 99, 38);
 		tfStatus.select(0);
 		
 		Button btnCadastrar = new Button(shlCadastroDoador, SWT.NONE);
@@ -317,7 +292,7 @@ public class CadastroDoadorJuridicoView {
 		});
 		btnCadastrar.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/ok.png").getAbsolutePath()));
 		btnCadastrar.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
-		btnCadastrar.setBounds(380, 607, 184, 60);
+		btnCadastrar.setBounds(366, 555, 184, 60);
 		btnCadastrar.setText("Cadastrar");
 		
 		Button btnCancelar = new Button(shlCadastroDoador, SWT.NONE);
@@ -329,7 +304,7 @@ public class CadastroDoadorJuridicoView {
 		});
 		btnCancelar.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/cancelar.png").getAbsolutePath()));
 		btnCancelar.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
-		btnCancelar.setBounds(179, 607, 184, 60);
+		btnCancelar.setBounds(165, 555, 184, 60);
 		btnCancelar.setText("Cancelar");
 		
 		Label label_9 = new Label(shlCadastroDoador, SWT.NONE);

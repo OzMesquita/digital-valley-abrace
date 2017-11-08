@@ -33,7 +33,6 @@ public class PessoaJuridicaDAOTest {
 		pessoaJ.setAtivo(true);
 		pessoaJ.setCnpj("78533714000152");
 		pessoaJ.setNomeFantasia("Alcantara Imovéis");
-		pessoaJ.setRazaoSocial("A Imovéis LTDA");
 
 		new PessoaJuridicaDAO(new ConnectionFactory().getConnection()).inserirDoadorJuridico(pessoaJ);
 	}
@@ -50,7 +49,6 @@ public class PessoaJuridicaDAOTest {
 		pessoaJ.setAtivo(true);
 		pessoaJ.setCnpj("02.215.163/0001-17");
 		pessoaJ.setNomeFantasia("M J Confecções");
-		pessoaJ.setRazaoSocial("M J LTDA");
 
 		new PessoaJuridicaDAO(new ConnectionFactory().getConnection()).inserirDoadorJuridico(pessoaJ);
 	}
@@ -67,7 +65,6 @@ public class PessoaJuridicaDAOTest {
 		pessoaJ.setAtivo(true);
 		pessoaJ.setCnpj("78533714000152");
 		pessoaJ.setNomeFantasia("Alcantara Imovéis");
-		pessoaJ.setRazaoSocial("A Imovéis LTDA");
 		pessoaJ.setId(301);
 
 		new PessoaJuridicaDAO(new ConnectionFactory().getConnection()).editarDoadorJuridico(pessoaJ);
@@ -99,7 +96,6 @@ public class PessoaJuridicaDAOTest {
 		pessoaJ.setAtivo(true);
 		pessoaJ.setCnpj("78533714000152"); 
 		pessoaJ.setNomeFantasia("Imovéis Alcantara");//incluindo alteração no nomeFantasia
-		pessoaJ.setRazaoSocial("A Imovéis LTDA");
 		pessoaJ.setId(301);
 
 		new PessoaJuridicaDAO(new ConnectionFactory().getConnection()).editarDoadorJuridico(pessoaJ);

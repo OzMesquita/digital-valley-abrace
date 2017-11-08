@@ -219,7 +219,7 @@ public class  SelecionarDoadorView{
 			}
 		});
 		btnPrximo.setText("Continuar");
-		btnPrximo.setImage(SWTResourceManager.getImage("C:\\Users\\Thiago Hellen\\Desktop\\src\\main\\java\\view\\img\\assistido-small.png"));
+		btnPrximo.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/botao-proximo.png").getAbsolutePath()));
 		btnPrximo.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
 		btnPrximo.setBounds(360, 590, 214, 54);
 		

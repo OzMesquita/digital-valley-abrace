@@ -231,7 +231,7 @@ public class InserirValorView {
 			}
 		});
 		button.setText("Cancelar");
-		button.setImage(SWTResourceManager.getImage("C:\\Users\\Thiago Hellen\\Desktop\\src\\main\\java\\view\\img\\cancelar.png"));
+		button.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/cancelar.png").getAbsolutePath()));
 		button.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
 		button.setBounds(155, 626, 214, 54);
 		
@@ -243,7 +243,7 @@ public class InserirValorView {
 			}
 		});
 		btnSalvarDoao.setText("Salvar doa\u00E7\u00E3o");
-		btnSalvarDoao.setImage(SWTResourceManager.getImage("C:\\Users\\Thiago Hellen\\Desktop\\src\\main\\java\\view\\img\\assistido-small.png"));
+		btnSalvarDoao.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/ok.png").getAbsolutePath()));
 		btnSalvarDoao.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
 		btnSalvarDoao.setBounds(375, 626, 214, 54);
 		

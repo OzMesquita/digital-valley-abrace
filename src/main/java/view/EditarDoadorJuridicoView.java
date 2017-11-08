@@ -58,7 +58,6 @@ public class EditarDoadorJuridicoView {
 	private Text tfTelefone2;
 	private Text tfEmail;
 	private Combo tfStatus;
-	private Text tfRazaoSocial;
 	public Shell getShlCadastroDoador() {
 		return shlEditarDoador_1;
 	}
@@ -168,21 +167,13 @@ public class EditarDoadorJuridicoView {
 		}
 	}
 
-	public Text getTfRazaoSocial() {
-		return tfRazaoSocial;
-	}
-
-	public void setTfRazaoSocial(Text tfRazaoSocial) {
-		this.tfRazaoSocial = tfRazaoSocial;
-	}
-
 	/**
 	 * Create contents of the window.
 	 */
 	protected void createContents() {
 		shlEditarDoador_1 = new Shell(SWT.SHELL_TRIM & (~SWT.RESIZE) & (~SWT.MAX));
 		shlEditarDoador_1.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/ABRACE.png").getAbsolutePath()));
-		shlEditarDoador_1.setSize(715, 662);
+		shlEditarDoador_1.setSize(715, 598);
 		shlEditarDoador_1.setText("Editar Doador - ABRACE");
 		
 		Label lblCadastroDeDoador = new Label(shlEditarDoador_1, SWT.NONE);
@@ -190,10 +181,10 @@ public class EditarDoadorJuridicoView {
 		lblCadastroDeDoador.setBounds(248, 33, 245, 54);
 		lblCadastroDeDoador.setText("Editar Doador");
 		
-		Label label = new Label(shlEditarDoador_1, SWT.NONE);
-		label.setText("Nome:");
-		label.setFont(SWTResourceManager.getFont("Segoe UI Emoji", 16, SWT.NORMAL));
-		label.setBounds(168, 156, 62, 28);
+		Label lblRazoSocial = new Label(shlEditarDoador_1, SWT.NONE);
+		lblRazoSocial.setText("Raz\u00E3o Social:");
+		lblRazoSocial.setFont(SWTResourceManager.getFont("Segoe UI Emoji", 16, SWT.NORMAL));
+		lblRazoSocial.setBounds(108, 156, 122, 28);
 		
 		tfNome = new Text(shlEditarDoador_1, SWT.BORDER);
 		tfNome.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
@@ -217,60 +208,51 @@ public class EditarDoadorJuridicoView {
 		tfFantasia.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfFantasia.setBounds(236, 232, 369, 32);
 		
-		tfRazaoSocial = new Text(shlEditarDoador_1, SWT.BORDER);
-		tfRazaoSocial.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
-		tfRazaoSocial.setBounds(236, 270, 369, 32);
-		
-		Label lblRazoSocial = new Label(shlEditarDoador_1, SWT.NONE);
-		lblRazoSocial.setText("Raz\u00E3o social:");
-		lblRazoSocial.setFont(SWTResourceManager.getFont("Segoe UI Emoji", 16, SWT.NORMAL));
-		lblRazoSocial.setBounds(110, 272, 120, 28);
-		
 		Label label_3 = new Label(shlEditarDoador_1, SWT.NONE);
 		label_3.setText("Endere\u00E7o:");
 		label_3.setFont(SWTResourceManager.getFont("Segoe UI Emoji", 16, SWT.NORMAL));
-		label_3.setBounds(139, 309, 91, 28);
+		label_3.setBounds(139, 274, 91, 28);
 		
 		tfEndereco = new Text(shlEditarDoador_1, SWT.BORDER);
 		tfEndereco.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
-		tfEndereco.setBounds(236, 307, 369, 32);
+		tfEndereco.setBounds(236, 270, 369, 32);
 		
 		Label lblTelefone_1 = new Label(shlEditarDoador_1, SWT.NONE);
 		lblTelefone_1.setText("Telefone 1:");
 		lblTelefone_1.setFont(SWTResourceManager.getFont("Segoe UI Emoji", 16, SWT.NORMAL));
-		lblTelefone_1.setBounds(128, 347, 102, 28);
+		lblTelefone_1.setBounds(128, 308, 102, 28);
 		
 		tfTelefone1 = new Text(shlEditarDoador_1, SWT.BORDER);
 		tfTelefone1.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
-		tfTelefone1.setBounds(236, 345, 369, 32);
+		tfTelefone1.setBounds(236, 308, 369, 32);
 		
 		Label lblTelefone = new Label(shlEditarDoador_1, SWT.NONE);
 		lblTelefone.setText("Telefone 2:");
 		lblTelefone.setFont(SWTResourceManager.getFont("Segoe UI Emoji", 16, SWT.NORMAL));
-		lblTelefone.setBounds(128, 385, 102, 28);
+		lblTelefone.setBounds(128, 346, 102, 28);
 		
 		tfTelefone2 = new Text(shlEditarDoador_1, SWT.BORDER);
 		tfTelefone2.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
-		tfTelefone2.setBounds(236, 383, 369, 32);
+		tfTelefone2.setBounds(236, 346, 369, 32);
 		
 		Label label_7 = new Label(shlEditarDoador_1, SWT.NONE);
 		label_7.setText("Email:");
 		label_7.setFont(SWTResourceManager.getFont("Segoe UI Emoji", 16, SWT.NORMAL));
-		label_7.setBounds(175, 422, 55, 28);
+		label_7.setBounds(175, 383, 55, 28);
 		
 		tfEmail = new Text(shlEditarDoador_1, SWT.BORDER);
 		tfEmail.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
-		tfEmail.setBounds(236, 420, 369, 32);
+		tfEmail.setBounds(236, 383, 369, 32);
 		
 		Label lblStatus = new Label(shlEditarDoador_1, SWT.NONE);
 		lblStatus.setText("Status:");
 		lblStatus.setFont(SWTResourceManager.getFont("Segoe UI Emoji", 16, SWT.NORMAL));
-		lblStatus.setBounds(168, 463, 62, 28);
+		lblStatus.setBounds(168, 426, 62, 28);
 		
 		this.tfStatus = new Combo(shlEditarDoador_1, SWT.READ_ONLY);
 		tfStatus.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfStatus.setItems(new String[] {"Ativo", "Inativo"});
-		tfStatus.setBounds(236, 458, 99, 38);
+		tfStatus.setBounds(236, 421, 99, 38);
 		tfStatus.select(0);
 		
 		Button btnCadastrar = new Button(shlEditarDoador_1, SWT.NONE);
@@ -282,7 +264,7 @@ public class EditarDoadorJuridicoView {
 		});
 		btnCadastrar.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/ok.png").getAbsolutePath()));
 		btnCadastrar.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
-		btnCadastrar.setBounds(391, 530, 184, 60);
+		btnCadastrar.setBounds(393, 482, 184, 60);
 		btnCadastrar.setText("Editar");
 		
 		Button btnCancelar = new Button(shlEditarDoador_1, SWT.NONE);
@@ -294,7 +276,7 @@ public class EditarDoadorJuridicoView {
 		});
 		btnCancelar.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/cancelar.png").getAbsolutePath()));
 		btnCancelar.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
-		btnCancelar.setBounds(190, 530, 184, 60);
+		btnCancelar.setBounds(192, 482, 184, 60);
 		btnCancelar.setText("Cancelar");
 		
 		Label label_9 = new Label(shlEditarDoador_1, SWT.NONE);
@@ -303,7 +285,6 @@ public class EditarDoadorJuridicoView {
 	
 		tfNome.setText(doador.getNome());
 		tfCNPJ.setText(doador.getCnpj());
-		tfRazaoSocial.setText(doador.getRazaoSocial());
 		tfFantasia.setText(doador.getNomeFantasia());
 		tfEndereco.setText(doador.getEndereco());
 		tfTelefone1.setText(doador.getTelefone());
