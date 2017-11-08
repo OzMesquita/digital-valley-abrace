@@ -6,7 +6,6 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.Button;
-import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.DateTime;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
@@ -18,7 +17,7 @@ import org.eclipse.wb.swt.SWTResourceManager;
 import control.CadastroDoadorJuridicoControle;
 import model.PessoaJuridica;
 
-public class CadastroDoadorJuridicoView {
+public class CadastroDoadorPJuridicoView {
 
 	private CadastroDoadorJuridicoControle controle;
 	
@@ -33,7 +32,6 @@ public class CadastroDoadorJuridicoView {
 	private Text tfTelefone1;
 	private Text tfTelefone2;
 	private Text tfEmail;
-	Combo tfStatus;
 	public Shell getShlCadastroDoador() {
 		return shlCadastroDoador;
 	}
@@ -98,19 +96,7 @@ public class CadastroDoadorJuridicoView {
 		this.tfEmail = tfEmail;
 	}
 
-	public boolean getTfStatus() {
-		if(tfStatus.getSelectionIndex() == 0) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-
-	public void setTfStatus(Combo tfStatus) {
-		this.tfStatus = tfStatus;
-	}
-
-	public CadastroDoadorJuridicoView() {
+	public CadastroDoadorPJuridicoView() {
 		this.controle = new CadastroDoadorJuridicoControle(this);
 	}
 
@@ -121,7 +107,7 @@ public class CadastroDoadorJuridicoView {
 	 */
 	public static void main() {
 		try {
-			CadastroDoadorJuridicoView window = new CadastroDoadorJuridicoView();
+			CadastroDoadorPJuridicoView window = new CadastroDoadorPJuridicoView();
 			window.open();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -171,12 +157,6 @@ public class CadastroDoadorJuridicoView {
 		label_5.setFont(SWTResourceManager.getFont("Segoe UI", 12, SWT.NORMAL));
 		label_5.setBounds(222, 318, 7, 21);
 		
-		Label label_6 = new Label(shlCadastroDoador, SWT.NONE);
-		label_6.setText("*");
-		label_6.setForeground(SWTResourceManager.getColor(SWT.COLOR_RED));
-		label_6.setFont(SWTResourceManager.getFont("Segoe UI", 12, SWT.NORMAL));
-		label_6.setBounds(222, 497, 7, 21);
-		
 		
 		
 		shlCadastroDoador.open();
@@ -194,7 +174,7 @@ public class CadastroDoadorJuridicoView {
 	protected void createContents() {
 		shlCadastroDoador = new Shell(SWT.SHELL_TRIM & (~SWT.RESIZE) & (~SWT.MAX));
 		shlCadastroDoador.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/ABRACE.png").getAbsolutePath()));
-		shlCadastroDoador.setSize(694, 678);
+		shlCadastroDoador.setSize(694, 640);
 		shlCadastroDoador.setText("Cadastro Doador - ABRACE");
 		
 		Label lblCadastroDeDoador = new Label(shlCadastroDoador, SWT.NONE);
@@ -212,16 +192,6 @@ public class CadastroDoadorJuridicoView {
 		tfNome.setBounds(235, 181, 369, 38);
 		tfNome.setTextLimit(128);
 		
-		Label label_1 = new Label(shlCadastroDoador, SWT.NONE);
-		label_1.setText("CNPJ:");
-		label_1.setFont(SWTResourceManager.getFont("Segoe UI Emoji", 16, SWT.NORMAL));
-		label_1.setBounds(165, 274, 55, 28);
-		
-		tfCNPJ = new Text(shlCadastroDoador, SWT.BORDER);
-		tfCNPJ.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
-		tfCNPJ.setBounds(235, 269, 369, 38);
-		tfCNPJ.setTextLimit(32);
-		
 		Label label_2 = new Label(shlCadastroDoador, SWT.NONE);
 		label_2.setText("Fantasia:");
 		label_2.setFont(SWTResourceManager.getFont("Segoe UI Emoji", 16, SWT.NORMAL));
@@ -231,6 +201,16 @@ public class CadastroDoadorJuridicoView {
 		tfFantasia.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfFantasia.setBounds(235, 225, 369, 38);
 		tfFantasia.setTextLimit(128);
+		
+		Label label_1 = new Label(shlCadastroDoador, SWT.NONE);
+		label_1.setText("CNPJ:");
+		label_1.setFont(SWTResourceManager.getFont("Segoe UI Emoji", 16, SWT.NORMAL));
+		label_1.setBounds(165, 274, 55, 28);
+		
+		tfCNPJ = new Text(shlCadastroDoador, SWT.BORDER);
+		tfCNPJ.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
+		tfCNPJ.setBounds(235, 269, 369, 38);
+		tfCNPJ.setTextLimit(32);
 		
 		Label label_3 = new Label(shlCadastroDoador, SWT.NONE);
 		label_3.setText("Endere\u00E7o:");
@@ -272,17 +252,6 @@ public class CadastroDoadorJuridicoView {
 		tfEmail.setBounds(235, 446, 369, 38);
 		tfEmail.setTextLimit(128);
 		
-		Label lblStatus = new Label(shlCadastroDoador, SWT.NONE);
-		lblStatus.setText("Status:");
-		lblStatus.setFont(SWTResourceManager.getFont("Segoe UI Emoji", 16, SWT.NORMAL));
-		lblStatus.setBounds(158, 497, 62, 28);
-		
-		tfStatus = new Combo(shlCadastroDoador, SWT.READ_ONLY);
-		tfStatus.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
-		tfStatus.setItems(new String[] {"Ativo", "Inativo"});
-		tfStatus.setBounds(235, 492, 99, 38);
-		tfStatus.select(0);
-		
 		Button btnCadastrar = new Button(shlCadastroDoador, SWT.NONE);
 		btnCadastrar.addSelectionListener(new SelectionAdapter() {
 			@Override
@@ -292,7 +261,7 @@ public class CadastroDoadorJuridicoView {
 		});
 		btnCadastrar.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/ok.png").getAbsolutePath()));
 		btnCadastrar.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
-		btnCadastrar.setBounds(366, 555, 184, 60);
+		btnCadastrar.setBounds(350, 526, 184, 60);
 		btnCadastrar.setText("Cadastrar");
 		
 		Button btnCancelar = new Button(shlCadastroDoador, SWT.NONE);
@@ -304,7 +273,7 @@ public class CadastroDoadorJuridicoView {
 		});
 		btnCancelar.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/cancelar.png").getAbsolutePath()));
 		btnCancelar.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
-		btnCancelar.setBounds(165, 555, 184, 60);
+		btnCancelar.setBounds(149, 526, 184, 60);
 		btnCancelar.setText("Cancelar");
 		
 		Label label_9 = new Label(shlCadastroDoador, SWT.NONE);

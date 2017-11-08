@@ -22,7 +22,7 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 
-public class CadastroDoadorView {
+public class CadastroDoadorPFisicaView {
 	CadastroDoadorControle controle;
 	
 	protected Shell shlCadastroDoador;
@@ -100,7 +100,7 @@ public class CadastroDoadorView {
 		this.tfEmail = tfEmail;
 	}
 
-	public CadastroDoadorView() {
+	public CadastroDoadorPFisicaView() {
 		this.controle = new CadastroDoadorControle(this);
 	}
 
@@ -111,7 +111,7 @@ public class CadastroDoadorView {
 	 */
 	public static void main() {
 		try {
-			CadastroDoadorView window = new CadastroDoadorView();
+			CadastroDoadorPFisicaView window = new CadastroDoadorPFisicaView();
 			window.open();
 		} catch (Exception e) {
 			e.printStackTrace();

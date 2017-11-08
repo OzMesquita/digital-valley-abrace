@@ -49,7 +49,7 @@ public class SelecionarTipoDoadorView {
 		pessoaFisicabnt.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
-				CadastroDoadorView.main();
+				CadastroDoadorPFisicaView.main();
 				shlSelecionarTipoDoador.dispose();
 			}
 		});
@@ -62,7 +62,7 @@ public class SelecionarTipoDoadorView {
 		pessoaJuridicabnt.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
-				CadastroDoadorJuridicoView.main();
+				CadastroDoadorPJuridicoView.main();
 				shlSelecionarTipoDoador.dispose();
 			}
 		});

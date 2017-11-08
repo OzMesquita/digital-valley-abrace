@@ -9,10 +9,10 @@ import exceptions.PessoaFisicaException;
 import exceptions.PessoaInvalidaException;
 import facade.DoadorFachada;
 import model.PessoaFisica;
-import view.CadastroDoadorView;
+import view.CadastroDoadorPFisicaView;
 
 public class CadastroDoadorControle {
-	private CadastroDoadorView view;
+	private CadastroDoadorPFisicaView view;
 	private DoadorFachada facade; 
 	
 	public void getEvent(SelectionEvent event) throws PessoaInvalidaException, PessoaFisicaException, SQLException{
@@ -42,12 +42,12 @@ public class CadastroDoadorControle {
 		}
 	}
 	
-	public CadastroDoadorControle(CadastroDoadorView cadastroDoadorView) {
+	public CadastroDoadorControle(CadastroDoadorPFisicaView cadastroDoadorView) {
 		setCadastroDoadorView(cadastroDoadorView);
 		setFacade(new DoadorFachada());
 	}
 
-	private void setCadastroDoadorView(CadastroDoadorView cadastroDoadorView) {
+	private void setCadastroDoadorView(CadastroDoadorPFisicaView cadastroDoadorView) {
 		if(cadastroDoadorView != null) {
 			this.view = cadastroDoadorView;
 		}
