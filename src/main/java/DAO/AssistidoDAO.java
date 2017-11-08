@@ -27,11 +27,11 @@ public class AssistidoDAO extends ExecutaSQL {
 			pessoaFisica.inserirPessoaFisica(assistido);
 			cadastrarAssistido(assistido);
 			getConexao().commit();
+			return true;
 		} catch (SQLException e) {
 			rollBack(e);
-			return false;
+			throw e;
 		}
-		return true;
 	}
 
 	public void cadastrarAssistido(Assistido assistido) throws PessoaInvalidaException, SQLException {

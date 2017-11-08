@@ -17,21 +17,22 @@ public class PessoaFisicaDAO extends ExecutaSQL {
 		super(connection);
 	}
 	
-	public boolean inserirPessoaFisica(PessoaFisica pessoaFisica) {
+	public boolean inserirPessoaFisica(PessoaFisica pessoaFisica) throws SQLException, PessoaInvalidaException {
 		try {
 			getConexao().setAutoCommit(false);
 			PessoaDAO pessoa = new PessoaDAO(getConexao());
 			pessoa.cadastrarPessoa(pessoaFisica);
 			cadastrarPessoaFisica(pessoaFisica);
 			getConexao().commit();
+			return true;
 		}catch(SQLException e) {
 			rollBack(e);
-			return false;
+			throw e;
 		}catch(PessoaInvalidaException e1) {
 			System.out.println(e1.getMessage());
-			return false;
+			throw e1;
 		}
-		return true;
+		
 	}
 
 	public void cadastrarPessoaFisica(PessoaFisica pessoaFisica) throws SQLException  {

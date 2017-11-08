@@ -25,11 +25,11 @@ public class PessoaJuridicaDAO extends ExecutaSQL{
 			pessoa.cadastrarPessoa(pessoaJ);
 			cadastrarDoadorJuridico(pessoaJ);
 			getConexao().commit();
+			return true;
 		} catch (SQLException e) {
 			rollBack(e);
-			return false;
+			throw e;
 		}
-		return true;
 	}
 	
 	private void cadastrarDoadorJuridico(PessoaJuridica pessoaJ) throws SQLException{
