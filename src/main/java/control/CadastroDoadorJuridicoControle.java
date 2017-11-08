@@ -31,6 +31,7 @@ public class CadastroDoadorJuridicoControle {
 				doador.setEmail(view.getTfEmail().getText());
 				doador.setRazaoSocial(view.getTfRazaoSocial().getText());
 				doador.setAtivo(view.getTfStatus());
+				doador.setDoador(true);
 				if (facade.cadastrarDoadorJuridico(doador)) {
 					view.mensagemSucesso(doador);
 					view.getShlCadastroDoador().dispose();

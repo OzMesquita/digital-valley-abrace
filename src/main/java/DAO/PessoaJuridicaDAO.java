@@ -96,11 +96,12 @@ public class PessoaJuridicaDAO extends ExecutaSQL{
 				+ "ABRACE.PESSOA.telefone2, ABRACE.PESSOA.email, ABRACE.PESSOA.dataCadastro,ABRACE.Pessoa.isDoador,";
 		
 		String sql = "SELECT " + informacaoPessoa+ 
-				"ABRACE.PESSOA_JURIDICA.cnpj, ABRACE.PESSOA_JURIDICA.fantasia, ABRACE.PESSOA_JURIDICA.razaoSocial  FROM ABRACE.PESSOA_JURIDICA, ABRACE.PESSOA WHERE ABRACE.PESSOA_JURIDICA.idPessoa = ABRACE.PESSOA.idPessoa AND ativo = ?";
+				"ABRACE.PESSOA_JURIDICA.cnpj, ABRACE.PESSOA_JURIDICA.fantasia, ABRACE.PESSOA_JURIDICA.razaoSocial  FROM ABRACE.PESSOA_JURIDICA, ABRACE.PESSOA WHERE ABRACE.PESSOA_JURIDICA.idPessoa = ABRACE.PESSOA.idPessoa AND ativo = ? AND isDoador = ?";
 		
 		try {
 			PreparedStatement stmt = getConexao().prepareStatement(sql);
 			stmt.setBoolean(1, true);
+			stmt.setBoolean(2, true);
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
 				int id = rs.getInt(1);

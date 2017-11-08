@@ -42,7 +42,7 @@ public class DoadorFachada {
 		PessoaFisicaDAO dao = new PessoaFisicaDAO(new ConnectionFactory().getConnection());
 		ArrayList<PessoaFisica> lista = new ArrayList<PessoaFisica>();
 		try {
-			lista = dao.listarPessoasFisicas();
+			lista = dao.listarDoadoresFisicos();
 			dao.getConexao().close();
 		} catch (SQLException e) {
 			e.printStackTrace();

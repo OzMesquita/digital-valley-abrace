@@ -142,6 +142,46 @@ public class PessoaFisicaDAO extends ExecutaSQL {
 
 		return listaPessoasFisicas;
 	}
+	
+	public ArrayList<PessoaFisica> listarDoadoresFisicos() throws SQLException {
+		ArrayList<PessoaFisica> listaPessoasFisicas = new ArrayList<PessoaFisica>();
+
+		String informacaoPessoa = "ABRACE.PESSOA.idPessoa, ABRACE.PESSOA.nome, ABRACE.PESSOA.endereco, ABRACE.PESSOA.telefone1,"
+				+ "ABRACE.PESSOA.telefone2, ABRACE.PESSOA.email, ABRACE.PESSOA.dataCadastro, ABRACE.PESSOA.isDoador,";
+
+		String sql = "SELECT " + informacaoPessoa
+				+ "ABRACE.PESSOA_FISICA.cpf, ABRACE.PESSOA_FISICA.rg, ABRACE.PESSOA_FISICA.dataNascimento FROM ABRACE.PESSOA_FISICA, ABRACE.PESSOA WHERE ABRACE.PESSOA_FISICA.idPessoa = ABRACE.PESSOA.idPessoa AND ativo = ? AND isDoador = ?";
+		try {
+			PreparedStatement stmt = getConexao().prepareStatement(sql);
+			stmt.setBoolean(1, true);
+			stmt.setBoolean(2, true);
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+				int id = rs.getInt(1);
+				String nome = rs.getString(2);
+				String endereco = rs.getString(3);
+				String telefone1 = rs.getString(4);
+				String telefone2 = rs.getString(5);
+				String email = rs.getString(6);
+				LocalDate dataCadastro = rs.getDate(7).toLocalDate();
+				boolean isDoador = rs.getBoolean(8);
+				String cpf = rs.getString(9);
+				String rg = rs.getString(10);
+				LocalDate dataNasc = rs.getDate(11).toLocalDate();
+
+				listaPessoasFisicas.add(new PessoaFisica(id, nome, endereco, dataCadastro, telefone1, telefone2, email, true, isDoador, cpf, rg, dataNasc));
+			}
+			stmt.close();
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage());
+		} catch (PessoaInvalidaException e) {
+			e.printStackTrace();
+		} catch (PessoaFisicaException e) {
+			e.printStackTrace();
+		}
+
+		return listaPessoasFisicas;
+	}
 
 	public PessoaFisica getPessoaFisica(int id) {
 		String informacaoPessoa = "ABRACE.Pessoa.ativo, ABRACE.Pessoa.nome, ABRACE.Pessoa.endereco, ABRACE.Pessoa.telefone1,"
