@@ -154,6 +154,8 @@ public class RelatorioFacade {
 		table.addCell("Telefone:");
 		table.addCell(email);
 		table.addCell("");
+		
+		document.add(table);
 	}
 
 }
