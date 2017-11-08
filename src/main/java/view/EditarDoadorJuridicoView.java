@@ -317,8 +317,8 @@ public class EditarDoadorJuridicoView {
 	}
 	public void mensagemErro(Exception e){
 		 MessageBox messageBox = new MessageBox(shlEditarDoador_1,SWT.ICON_ERROR | SWT.OK); 
-		 messageBox.setText("Problemas ao editar dados do assistido");
-		 messageBox.setMessage(e.getMessage()+"\nTente novamente");
+		 messageBox.setText("Problemas ao editar dados do doador jurídico!");
+		 messageBox.setMessage(/*e.getMessage()+*/"Não foi possível editar este doador pessoa jurídica. \nConsulte o suporte.");
 		 messageBox.open();
 	}
 	public void mensagemSucesso(PessoaJuridica p){

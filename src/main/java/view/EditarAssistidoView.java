@@ -6,7 +6,6 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.MessageBox;
 
 import java.io.File;
-
 import org.eclipse.swt.SWT;
 import org.eclipse.wb.swt.SWTResourceManager;
 
@@ -402,8 +401,8 @@ public Text getTfNome() {
 	
 	public void mensagemErro(Exception e){
 		 MessageBox messageBox = new MessageBox(shlEditarAssistido,SWT.ICON_ERROR | SWT.OK); 
-      messageBox.setText("Problemas ao editar dados do assistido");
-      messageBox.setMessage(e.getMessage()+"\nTente novamente");
+      messageBox.setText("Problemas ao editar dados do assistido!");
+      messageBox.setMessage(/*e.getMessage()+*/"Não foi possível editar este assistido. \nConsulte o suporte.");
       messageBox.open();
 	}
 	
