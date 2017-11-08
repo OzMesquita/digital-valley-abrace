@@ -6,7 +6,6 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.Button;
-import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.MessageBox;
@@ -57,7 +56,6 @@ public class EditarDoadorJuridicoView {
 	private Text tfTelefone1;
 	private Text tfTelefone2;
 	private Text tfEmail;
-	private Combo tfStatus;
 	public Shell getShlCadastroDoador() {
 		return shlEditarDoador_1;
 	}
@@ -121,17 +119,6 @@ public class EditarDoadorJuridicoView {
 		this.tfEmail = tfEmail;
 	}
 
-	public boolean getTfStatus() {
-		if(tfStatus.getSelectionIndex() == 0) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-
-	public void setTfStatus(Combo tfStatus) {
-		this.tfStatus = tfStatus;
-	}
 	/**
 	 * Launch the application.
 	 * @param args
@@ -156,8 +143,38 @@ public class EditarDoadorJuridicoView {
 		
 		Label lblDoadorPessoaJurdica = new Label(shlEditarDoador_1, SWT.NONE);
 		lblDoadorPessoaJurdica.setText("Pessoa Jur\u00EDdica");
-		lblDoadorPessoaJurdica.setFont(SWTResourceManager.getFont("Segoe UI", 24, SWT.NORMAL));
-		lblDoadorPessoaJurdica.setBounds(270, 93, 212, 45);
+		lblDoadorPessoaJurdica.setFont(SWTResourceManager.getFont("Segoe UI", 19, SWT.NORMAL));
+		lblDoadorPessoaJurdica.setBounds(271, 93, 167, 35);
+		
+		Label label = new Label(shlEditarDoador_1, SWT.NONE);
+		label.setText("* Campos Obrigat\u00F3rios");
+		label.setForeground(SWTResourceManager.getColor(SWT.COLOR_RED));
+		label.setFont(SWTResourceManager.getFont("Segoe UI", 12, SWT.NORMAL));
+		label.setBounds(246, 141, 160, 21);
+		
+		Label label_1 = new Label(shlEditarDoador_1, SWT.NONE);
+		label_1.setText("*");
+		label_1.setForeground(SWTResourceManager.getColor(SWT.COLOR_RED));
+		label_1.setFont(SWTResourceManager.getFont("Segoe UI", 12, SWT.NORMAL));
+		label_1.setBounds(232, 173, 7, 21);
+		
+		Label label_2 = new Label(shlEditarDoador_1, SWT.NONE);
+		label_2.setText("*");
+		label_2.setForeground(SWTResourceManager.getColor(SWT.COLOR_RED));
+		label_2.setFont(SWTResourceManager.getFont("Segoe UI", 12, SWT.NORMAL));
+		label_2.setBounds(232, 261, 7, 21);
+		
+		Label label_3 = new Label(shlEditarDoador_1, SWT.NONE);
+		label_3.setText("*");
+		label_3.setForeground(SWTResourceManager.getColor(SWT.COLOR_RED));
+		label_3.setFont(SWTResourceManager.getFont("Segoe UI", 12, SWT.NORMAL));
+		label_3.setBounds(232, 217, 7, 21);
+		
+		Label label_4 = new Label(shlEditarDoador_1, SWT.NONE);
+		label_4.setText("*");
+		label_4.setForeground(SWTResourceManager.getColor(SWT.COLOR_RED));
+		label_4.setFont(SWTResourceManager.getFont("Segoe UI", 12, SWT.NORMAL));
+		label_4.setBounds(232, 305, 7, 21);
 		shlEditarDoador_1.open();
 		shlEditarDoador_1.layout();
 		while (!shlEditarDoador.isDisposed()) {
@@ -173,87 +190,76 @@ public class EditarDoadorJuridicoView {
 	protected void createContents() {
 		shlEditarDoador_1 = new Shell(SWT.SHELL_TRIM & (~SWT.RESIZE) & (~SWT.MAX));
 		shlEditarDoador_1.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/ABRACE.png").getAbsolutePath()));
-		shlEditarDoador_1.setSize(715, 598);
+		shlEditarDoador_1.setSize(715, 635);
 		shlEditarDoador_1.setText("Editar Doador - ABRACE");
 		
 		Label lblCadastroDeDoador = new Label(shlEditarDoador_1, SWT.NONE);
 		lblCadastroDeDoador.setFont(SWTResourceManager.getFont("Segoe UI", 30, SWT.NORMAL));
-		lblCadastroDeDoador.setBounds(248, 33, 245, 54);
+		lblCadastroDeDoador.setBounds(232, 33, 245, 54);
 		lblCadastroDeDoador.setText("Editar Doador");
 		
 		Label lblRazoSocial = new Label(shlEditarDoador_1, SWT.NONE);
 		lblRazoSocial.setText("Raz\u00E3o Social:");
 		lblRazoSocial.setFont(SWTResourceManager.getFont("Segoe UI Emoji", 16, SWT.NORMAL));
-		lblRazoSocial.setBounds(108, 156, 122, 28);
+		lblRazoSocial.setBounds(105, 173, 122, 28);
 		
 		tfNome = new Text(shlEditarDoador_1, SWT.BORDER);
 		tfNome.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
-		tfNome.setBounds(236, 154, 369, 32);
+		tfNome.setBounds(244, 168, 369, 38);
 		
 		Label label_1 = new Label(shlEditarDoador_1, SWT.NONE);
 		label_1.setText("CNPJ:");
 		label_1.setFont(SWTResourceManager.getFont("Segoe UI Emoji", 16, SWT.NORMAL));
-		label_1.setBounds(175, 196, 55, 28);
+		label_1.setBounds(172, 261, 55, 28);
 		
 		tfCNPJ = new Text(shlEditarDoador_1, SWT.BORDER);
 		tfCNPJ.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
-		tfCNPJ.setBounds(236, 194, 369, 32);
+		tfCNPJ.setBounds(244, 256, 369, 38);
 		
 		Label label_2 = new Label(shlEditarDoador_1, SWT.NONE);
 		label_2.setText("Fantasia:");
 		label_2.setFont(SWTResourceManager.getFont("Segoe UI Emoji", 16, SWT.NORMAL));
-		label_2.setBounds(149, 236, 81, 28);
+		label_2.setBounds(146, 217, 81, 28);
 		
 		tfFantasia = new Text(shlEditarDoador_1, SWT.BORDER);
 		tfFantasia.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
-		tfFantasia.setBounds(236, 232, 369, 32);
+		tfFantasia.setBounds(244, 212, 369, 38);
 		
 		Label label_3 = new Label(shlEditarDoador_1, SWT.NONE);
 		label_3.setText("Endere\u00E7o:");
 		label_3.setFont(SWTResourceManager.getFont("Segoe UI Emoji", 16, SWT.NORMAL));
-		label_3.setBounds(139, 274, 91, 28);
+		label_3.setBounds(136, 305, 91, 28);
 		
 		tfEndereco = new Text(shlEditarDoador_1, SWT.BORDER);
 		tfEndereco.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
-		tfEndereco.setBounds(236, 270, 369, 32);
+		tfEndereco.setBounds(244, 300, 369, 38);
 		
 		Label lblTelefone_1 = new Label(shlEditarDoador_1, SWT.NONE);
 		lblTelefone_1.setText("Telefone 1:");
 		lblTelefone_1.setFont(SWTResourceManager.getFont("Segoe UI Emoji", 16, SWT.NORMAL));
-		lblTelefone_1.setBounds(128, 308, 102, 28);
+		lblTelefone_1.setBounds(125, 349, 102, 28);
 		
 		tfTelefone1 = new Text(shlEditarDoador_1, SWT.BORDER);
 		tfTelefone1.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
-		tfTelefone1.setBounds(236, 308, 369, 32);
+		tfTelefone1.setBounds(244, 344, 369, 38);
 		
 		Label lblTelefone = new Label(shlEditarDoador_1, SWT.NONE);
 		lblTelefone.setText("Telefone 2:");
 		lblTelefone.setFont(SWTResourceManager.getFont("Segoe UI Emoji", 16, SWT.NORMAL));
-		lblTelefone.setBounds(128, 346, 102, 28);
+		lblTelefone.setBounds(125, 393, 102, 28);
 		
 		tfTelefone2 = new Text(shlEditarDoador_1, SWT.BORDER);
 		tfTelefone2.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
-		tfTelefone2.setBounds(236, 346, 369, 32);
+		tfTelefone2.setBounds(244, 388, 369, 38);
 		
 		Label label_7 = new Label(shlEditarDoador_1, SWT.NONE);
 		label_7.setText("Email:");
 		label_7.setFont(SWTResourceManager.getFont("Segoe UI Emoji", 16, SWT.NORMAL));
-		label_7.setBounds(175, 383, 55, 28);
+		label_7.setBounds(172, 437, 55, 28);
 		
 		tfEmail = new Text(shlEditarDoador_1, SWT.BORDER);
 		tfEmail.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
-		tfEmail.setBounds(236, 383, 369, 32);
-		
-		Label lblStatus = new Label(shlEditarDoador_1, SWT.NONE);
-		lblStatus.setText("Status:");
-		lblStatus.setFont(SWTResourceManager.getFont("Segoe UI Emoji", 16, SWT.NORMAL));
-		lblStatus.setBounds(168, 426, 62, 28);
-		
-		this.tfStatus = new Combo(shlEditarDoador_1, SWT.READ_ONLY);
-		tfStatus.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
-		tfStatus.setItems(new String[] {"Ativo", "Inativo"});
-		tfStatus.setBounds(236, 421, 99, 38);
-		tfStatus.select(0);
+		tfEmail.setBounds(244, 432, 369, 38);
 		
 		Button btnCadastrar = new Button(shlEditarDoador_1, SWT.NONE);
 		btnCadastrar.addSelectionListener(new SelectionAdapter() {
@@ -264,8 +270,8 @@ public class EditarDoadorJuridicoView {
 		});
 		btnCadastrar.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/ok.png").getAbsolutePath()));
 		btnCadastrar.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
-		btnCadastrar.setBounds(393, 482, 184, 60);
-		btnCadastrar.setText("Editar");
+		btnCadastrar.setBounds(360, 511, 232, 60);
+		btnCadastrar.setText("Salvar altera\u00E7\u00F5es");
 		
 		Button btnCancelar = new Button(shlEditarDoador_1, SWT.NONE);
 		btnCancelar.addSelectionListener(new SelectionAdapter() {
@@ -276,7 +282,7 @@ public class EditarDoadorJuridicoView {
 		});
 		btnCancelar.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/cancelar.png").getAbsolutePath()));
 		btnCancelar.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
-		btnCancelar.setBounds(192, 482, 184, 60);
+		btnCancelar.setBounds(159, 511, 184, 60);
 		btnCancelar.setText("Cancelar");
 		
 		Label label_9 = new Label(shlEditarDoador_1, SWT.NONE);
@@ -290,11 +296,6 @@ public class EditarDoadorJuridicoView {
 		tfTelefone1.setText(doador.getTelefone());
 		tfTelefone2.setText(doador.getTelefone2());
 		tfEmail.setText(doador.getEmail());
-		if(doador.isAtivo()) {
-			tfStatus.select(0);
-		} else {
-			tfStatus.select(1);
-		}
 	}
 	public void mensagemErro(Exception e){
 		 MessageBox messageBox = new MessageBox(shlEditarDoador_1,SWT.ICON_ERROR | SWT.OK); 

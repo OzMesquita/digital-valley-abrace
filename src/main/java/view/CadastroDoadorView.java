@@ -21,7 +21,6 @@ import org.eclipse.swt.widgets.DateTime;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.widgets.Combo;
 
 public class CadastroDoadorView {
 	CadastroDoadorControle controle;
@@ -35,7 +34,6 @@ public class CadastroDoadorView {
 	private Text tfTelefone1;
 	private Text tfTelefone2;
 	private Text tfEmail;
-	Combo tfStatus;
 	
 	public Text getTfNome() {
 		return tfNome;
@@ -100,18 +98,6 @@ public class CadastroDoadorView {
 
 	public void setTfEmail(Text tfEmail) {
 		this.tfEmail = tfEmail;
-	}
-
-	public boolean getTfStatus() {
-		if(tfStatus.getSelectionIndex() == 0) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-
-	public void setTfStatus(Combo tfStatus) {
-		this.tfStatus = tfStatus;
 	}
 
 	public CadastroDoadorView() {
@@ -180,12 +166,6 @@ public class CadastroDoadorView {
 		label_5.setForeground(SWTResourceManager.getColor(SWT.COLOR_RED));
 		label_5.setFont(SWTResourceManager.getFont("Segoe UI", 12, SWT.NORMAL));
 		label_5.setBounds(249, 360, 7, 21);
-		
-		Label label_9 = new Label(shlCadastroDoador, SWT.NONE);
-		label_9.setText("*");
-		label_9.setForeground(SWTResourceManager.getColor(SWT.COLOR_RED));
-		label_9.setFont(SWTResourceManager.getFont("Segoe UI", 12, SWT.NORMAL));
-		label_9.setBounds(249, 536, 7, 21);
 		shlCadastroDoador.open();
 		shlCadastroDoador.layout();
 		while (!shlCadastroDoador.isDisposed()) {
@@ -209,7 +189,7 @@ public class CadastroDoadorView {
 	protected void createContents() {
 		shlCadastroDoador = new Shell(SWT.SHELL_TRIM & (~SWT.RESIZE) & (~SWT.MAX));
 		shlCadastroDoador.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/ABRACE.png").getAbsolutePath()));
-		shlCadastroDoador.setSize(694, 725);
+		shlCadastroDoador.setSize(694, 668);
 		shlCadastroDoador.setText("Cadastro Doador - ABRACE");
 		
 		Label lblCadastroDeDoador = new Label(shlCadastroDoador, SWT.NONE);
@@ -296,18 +276,6 @@ public class CadastroDoadorView {
 		tfEmail.setBounds(262, 487, 369, 38);
 		tfEmail.setTextLimit(128);
 		
-		
-		Label lblStatus = new Label(shlCadastroDoador, SWT.NONE);
-		lblStatus.setText("Status:");
-		lblStatus.setFont(SWTResourceManager.getFont("Segoe UI Emoji", 16, SWT.NORMAL));
-		lblStatus.setBounds(183, 536, 62, 28);
-		
-		tfStatus = new Combo(shlCadastroDoador, SWT.READ_ONLY);
-		tfStatus.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
-		tfStatus.setItems(new String[] {"Ativo", "Inativo"});
-		tfStatus.setBounds(262, 531, 99, 38);
-		tfStatus.select(0);
-		
 		Button btnCadastrar = new Button(shlCadastroDoador, SWT.NONE);
 		btnCadastrar.addSelectionListener(new SelectionAdapter() {
 			@Override
@@ -326,7 +294,7 @@ public class CadastroDoadorView {
 		});
 		btnCadastrar.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/ok.png").getAbsolutePath()));
 		btnCadastrar.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
-		btnCadastrar.setBounds(370, 604, 184, 60);
+		btnCadastrar.setBounds(369, 550, 184, 60);
 		btnCadastrar.setText("Cadastrar");
 		
 		Button btnCancelar = new Button(shlCadastroDoador, SWT.NONE);
@@ -338,7 +306,7 @@ public class CadastroDoadorView {
 		});
 		btnCancelar.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/cancelar.png").getAbsolutePath()));
 		btnCancelar.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
-		btnCancelar.setBounds(169, 604, 184, 60);
+		btnCancelar.setBounds(168, 550, 184, 60);
 		btnCancelar.setText("Cancelar");
 		
 		Label label_9 = new Label(shlCadastroDoador, SWT.NONE);

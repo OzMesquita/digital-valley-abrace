@@ -51,7 +51,6 @@ public class EditarDoadorJuridicoControle {
 				doador.setTelefone2(view.getTfTelefone2().getText());
 				doador.setEmail(view.getTfEmail().getText());
 				doador.setNomeFantasia(view.gettfFantasia().getText());
-				doador.setAtivo(view.getTfStatus());
 				if (fachada.editarDoadorJuridico(doador)) {
 					view.mensagemSucesso(doador);
 					view.getShlCadastroDoador().dispose();

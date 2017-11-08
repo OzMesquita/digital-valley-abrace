@@ -193,12 +193,6 @@ public class CadastroAssistidoView{
 		label.setBounds(241, 173, 7, 21);
 		label.setText("*");
 		
-		Label label_1 = new Label(shlCadastroAssistido, SWT.NONE);
-		label_1.setText("*");
-		label_1.setForeground(SWTResourceManager.getColor(SWT.COLOR_RED));
-		label_1.setFont(SWTResourceManager.getFont("Segoe UI", 12, SWT.NORMAL));
-		label_1.setBounds(241, 218, 7, 21);
-		
 		Label label_2 = new Label(shlCadastroAssistido, SWT.NONE);
 		label_2.setText("*");
 		label_2.setForeground(SWTResourceManager.getColor(SWT.COLOR_RED));

@@ -56,7 +56,6 @@ public class EditarAssistidoControle {
 				assistido.setTelefone2(view.getTfTelefone2().getText());
 				assistido.setEmail(view.getTfEmail().getText());
 				assistido.setTipoDeCancer(view.getTfTipoCancer().getText());
-				assistido.setAtivo(view.getTfStatus());
 				assistido.setSituacao(view.getTfSituacao());
 				if (fachada.editarAssistido(assistido)) {
 					view.mensagemSucesso(assistido);
