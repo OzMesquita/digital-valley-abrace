@@ -46,13 +46,11 @@ public class EditarDoadorJuridicoControle {
 				doador.setId(view.getDoador().getId());
 				doador.setNome(view.getTfNome().getText());
 				doador.setCnpj(view.getTfCNPJ().getText());
-				doador.setRazaoSocial(view.getTfRazaoSocial().getText());
 				doador.setEndereco(view.getTfEndereco().getText());
 				doador.setTelefone(view.getTfTelefone1().getText());
 				doador.setTelefone2(view.getTfTelefone2().getText());
 				doador.setEmail(view.getTfEmail().getText());
 				doador.setNomeFantasia(view.gettfFantasia().getText());
-				doador.setAtivo(view.getTfStatus());
 				if (fachada.editarDoadorJuridico(doador)) {
 					view.mensagemSucesso(doador);
 					view.getShlCadastroDoador().dispose();

@@ -1,7 +1,6 @@
 package control;
 
 import model.Pessoa;
-import model.Usuario;
 
 public class LoginSingleton {
 	private static Pessoa usuario;

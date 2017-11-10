@@ -1,4 +1,4 @@
-package doacao;
+package view;
 
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
@@ -11,7 +11,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.wb.swt.SWTResourceManager;
 
 import control.DoacaoControle;
-import view.Centralize;
+import control.DoacaoSingleton;
 
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.DateTime;
@@ -108,6 +108,10 @@ public class InserirValorView {
 		Display display = Display.getDefault();
 		createContents();
 		Centralize.centralize(shlRealizarDoao);
+		
+		Label label = new Label(shlRealizarDoao, SWT.NONE);
+		label.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/doacao.png").getAbsolutePath()));
+		label.setBounds(550, 18, 140, 127);
 		shlRealizarDoao.open();
 		shlRealizarDoao.layout();
 		while (!shlRealizarDoao.isDisposed()) {
@@ -231,7 +235,7 @@ public class InserirValorView {
 			}
 		});
 		button.setText("Cancelar");
-		button.setImage(SWTResourceManager.getImage("C:\\Users\\Thiago Hellen\\Desktop\\src\\main\\java\\view\\img\\cancelar.png"));
+		button.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/cancelar.png").getAbsolutePath()));
 		button.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
 		button.setBounds(155, 626, 214, 54);
 		
@@ -243,7 +247,7 @@ public class InserirValorView {
 			}
 		});
 		btnSalvarDoao.setText("Salvar doa\u00E7\u00E3o");
-		btnSalvarDoao.setImage(SWTResourceManager.getImage("C:\\Users\\Thiago Hellen\\Desktop\\src\\main\\java\\view\\img\\assistido-small.png"));
+		btnSalvarDoao.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/ok.png").getAbsolutePath()));
 		btnSalvarDoao.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
 		btnSalvarDoao.setBounds(375, 626, 214, 54);
 		

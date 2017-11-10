@@ -7,15 +7,15 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.TableItem;
 
-import doacao.DoacaoSingleton;
-import doacao.InserirValorView;
-import doacao.SelecionarDoadorView;
 import facade.DoacaoFachada;
 import facade.DoadorFachada;
 import facade.PessoaFachada;
 import model.Pessoa;
 import model.PessoaFisica;
 import model.PessoaJuridica;
+import view.InserirValorView;
+import view.SelecionarDoadorView;
+import view.SelecionarTipoDoadorView;
 
 
 public class DoacaoControle {
@@ -62,7 +62,7 @@ public class DoacaoControle {
 	
 	public void getEvent(SelectionEvent event) {
 		if (event.getSource().toString().equals("Button {Cadastrar doador}")) {
-			//Criar tela para linkar com o cadastro de doador pessoa fisica ou juridica
+			SelecionarTipoDoadorView.main();
 		}
 		if (event.getSource().toString().equals("Button {Continuar}")) {
 			int idPessoa = listaExibidaNaTabela.get(view1.getTable().getSelectionIndex()).getId();

@@ -75,6 +75,7 @@ public class LoginView {
 		while (!shlOngRussasTransformando.isDisposed()) {
 			if (!display.readAndDispatch()) {
 				display.sleep();
+				
 			}
 		}
 	}

@@ -16,7 +16,7 @@ import org.eclipse.wb.swt.SWTResourceManager;
 
 import control.GerenciarDoadoresFisicosControle;
 
-public class GerenciarDoadoresFisicosView {
+public class GerenciarDoadoresView {
 	
 	GerenciarDoadoresFisicosControle controle;
 
@@ -34,10 +34,9 @@ public class GerenciarDoadoresFisicosView {
 	
 	private Button btnExcluir;
 	private Button btnCancelar;
-	private Label lblPessoaFsica;
 
 	
-	public GerenciarDoadoresFisicosView() {
+	public GerenciarDoadoresView() {
 		this.controle = new GerenciarDoadoresFisicosControle(this);
 	}
 
@@ -160,7 +159,7 @@ public class GerenciarDoadoresFisicosView {
 	 */
 	public static void main() {
 		try {
-			GerenciarDoadoresFisicosView window = new GerenciarDoadoresFisicosView();
+			GerenciarDoadoresView window = new GerenciarDoadoresView();
 			window.open();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -182,7 +181,7 @@ public class GerenciarDoadoresFisicosView {
 		
 		lblSelecioneUmDoadorFisico = new Label(shlGerenciarDoadoresFisicos, SWT.NONE);
 		lblSelecioneUmDoadorFisico.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
-		lblSelecioneUmDoadorFisico.setBounds(214, 125, 285, 25);
+		lblSelecioneUmDoadorFisico.setBounds(214, 88, 285, 25);
 		lblSelecioneUmDoadorFisico.setText("Selecione ou pesquise um doador");
 		
 		table = new Table(shlGerenciarDoadoresFisicos, SWT.BORDER | SWT.FULL_SELECTION);
@@ -196,7 +195,7 @@ public class GerenciarDoadoresFisicosView {
 		table.setLinesVisible(true);
 		table.setToolTipText("");
 		table.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
-		table.setBounds(10, 212, 694, 356);
+		table.setBounds(15, 183, 694, 385);
 		table.setHeaderVisible(true);
 		
 		tblclmnId = new TableColumn(table, SWT.CENTER);
@@ -206,27 +205,27 @@ public class GerenciarDoadoresFisicosView {
 		
 		tblclmnNomeDoDoadorFisico = new TableColumn(table, SWT.CENTER);
 		tblclmnNomeDoDoadorFisico.setWidth(275);
-		tblclmnNomeDoDoadorFisico.setText("Nome do Doador Fisico");
+		tblclmnNomeDoDoadorFisico.setText("Nome do Doador");
 		tblclmnNomeDoDoadorFisico.setResizable(false);
 		
 		tblclmnDataDeNascimento = new TableColumn(table, SWT.CENTER);
-		tblclmnDataDeNascimento.setWidth(187);
-		tblclmnDataDeNascimento.setText("Data de Nascimento");
+		tblclmnDataDeNascimento.setWidth(168);
+		tblclmnDataDeNascimento.setText("CPF / CNPJ");
 		tblclmnDataDeNascimento.setResizable(false);
 		
 		tblclmnCpf = new TableColumn(table, SWT.CENTER);
-		tblclmnCpf.setWidth(147);
-		tblclmnCpf.setText("CPF");
+		tblclmnCpf.setWidth(186);
+		tblclmnCpf.setText("Endere\u00E7o");
 		tblclmnCpf.setResizable(false);
 		
 		lblPesquisarDoadorFisico = new Label(shlGerenciarDoadoresFisicos, SWT.NONE);
 		lblPesquisarDoadorFisico.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
-		lblPesquisarDoadorFisico.setBounds(10, 173, 92, 30);
+		lblPesquisarDoadorFisico.setBounds(15, 144, 92, 30);
 		lblPesquisarDoadorFisico.setText("Pesquisar:");
 		
 		tfPesquisa = new Text(shlGerenciarDoadoresFisicos, SWT.BORDER);
 		tfPesquisa.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
-		tfPesquisa.setBounds(108, 170, 448, 36);
+		tfPesquisa.setBounds(113, 141, 448, 36);
 		
 		Button btnPesquisar = new Button(shlGerenciarDoadoresFisicos, SWT.NONE);
 		btnPesquisar.addSelectionListener(new SelectionAdapter() {
@@ -237,7 +236,7 @@ public class GerenciarDoadoresFisicosView {
 		});
 		btnPesquisar.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
 		btnPesquisar.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/pesquisar.png").getAbsolutePath()));
-		btnPesquisar.setBounds(560, 170, 144, 36);
+		btnPesquisar.setBounds(565, 141, 144, 36);
 		btnPesquisar.setText("Pesquisar");
 		
 		btnEditar = new Button(shlGerenciarDoadoresFisicos, SWT.NONE);
@@ -271,11 +270,11 @@ public class GerenciarDoadoresFisicosView {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
 				shlGerenciarDoadoresFisicos.dispose();
-				CadastroDoadorView.main();
+				SelecionarTipoDoadorView.main();
 			}
 		});
 		btnCadastrar.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
-		btnCadastrar.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/assistido-small.png").getAbsolutePath()));
+		btnCadastrar.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/doador-small.png").getAbsolutePath()));
 		btnCadastrar.setBounds(346, 652, 223, 54);
 		btnCadastrar.setText("Cadastrar Doador");
 		
@@ -294,11 +293,6 @@ public class GerenciarDoadoresFisicosView {
 		Label label = new Label(shlGerenciarDoadoresFisicos, SWT.NONE);
 		label.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/assistidos.png").getAbsolutePath()));
 		label.setBounds(560, 10, 137, 109);
-		
-		lblPessoaFsica = new Label(shlGerenciarDoadoresFisicos, SWT.NONE);
-		lblPessoaFsica.setText("Pessoa F\u00EDsica");
-		lblPessoaFsica.setFont(SWTResourceManager.getFont("Segoe UI", 22, SWT.NORMAL));
-		lblPessoaFsica.setBounds(276, 77, 162, 40);
 		
 		controle.preencherTabelaDoadoresFisicos(controle.obterTodosDoadoresFisicos());
 		shlGerenciarDoadoresFisicos.open();

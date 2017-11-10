@@ -11,7 +11,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.wb.swt.SWTResourceManager;
 
 import control.LoginSingleton;
-import doacao.SelecionarDoadorView;
+
 import org.eclipse.swt.widgets.Label;
 public class AplicacaoView {
 
@@ -46,7 +46,7 @@ public class AplicacaoView {
 		btnListarDoadores.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
-				SelecionarTipoDoadorListadoView.main();
+				GerenciarDoadoresView.main();
 			}
 		});
 		btnListarDoadores.setText("Gerenciar Doadores");

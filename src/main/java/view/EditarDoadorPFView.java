@@ -286,7 +286,7 @@ public class EditarDoadorPFView {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
 				shlEditarDoador.dispose();
-				GerenciarDoadoresFisicosView.main();
+				GerenciarDoadoresView.main();
 			}
 		});
 		btnCancelar.setText("Cancelar");
@@ -299,7 +299,7 @@ public class EditarDoadorPFView {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
 				controle.getEvent(arg0);
-				GerenciarDoadoresFisicosView.main();
+				GerenciarDoadoresView.main();
 			}
 		});
 		btnCadastrar.setText("Salvar altera\u00E7\u00F5es");

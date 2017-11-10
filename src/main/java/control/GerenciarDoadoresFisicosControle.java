@@ -11,20 +11,20 @@ import org.eclipse.swt.widgets.TableItem;
 import facade.DoadorFachada;
 import model.PessoaFisica;
 import view.EditarDoadorPFView;
-import view.GerenciarDoadoresFisicosView;
+import view.GerenciarDoadoresView;
 
 public class GerenciarDoadoresFisicosControle {
-	private GerenciarDoadoresFisicosView view; 
+	private GerenciarDoadoresView view; 
 	private DoadorFachada fachada;
 	private ArrayList<PessoaFisica> listaTodosDoadoresFisicos;
 	private ArrayList<PessoaFisica> listaExibidaNaTabela;
 	
-	public GerenciarDoadoresFisicosView getView() {
+	public GerenciarDoadoresView getView() {
 		return view;
 	}
 
 
-	public void setView(GerenciarDoadoresFisicosView view) {
+	public void setView(GerenciarDoadoresView view) {
 		this.view = view;
 	}
 
@@ -38,7 +38,7 @@ public class GerenciarDoadoresFisicosControle {
 		this.fachada = fachada;
 	}
 	
-	public GerenciarDoadoresFisicosControle (GerenciarDoadoresFisicosView view) {
+	public GerenciarDoadoresFisicosControle (GerenciarDoadoresView view) {
 		setView(view);
 		setFachada(new DoadorFachada());
 		

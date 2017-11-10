@@ -170,9 +170,21 @@ public class CadastroAssistidoView{
 		createContents();
 		Centralize.centralize(shlCadastroAssistido);
 		
+		Button button = new Button(shlCadastroAssistido, SWT.NONE);
+		button.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent arg0) {
+				shlCadastroAssistido.dispose();
+			}
+		});
+		button.setText("Cancelar");
+		button.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/cancelar.png").getAbsolutePath()));
+		button.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
+		button.setBounds(175, 686, 184, 60);
+		
 		Label lblPessoaFsica = new Label(shlCadastroAssistido, SWT.NONE);
-		lblPessoaFsica.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
-		lblPessoaFsica.setBounds(246, 87, 119, 30);
+		lblPessoaFsica.setFont(SWTResourceManager.getFont("Segoe UI", 19, SWT.NORMAL));
+		lblPessoaFsica.setBounds(241, 88, 143, 35);
 		lblPessoaFsica.setText("Pessoa F\u00EDsica");
 		
 		Label label = new Label(shlCadastroAssistido, SWT.NONE);
@@ -180,12 +192,6 @@ public class CadastroAssistidoView{
 		label.setForeground(SWTResourceManager.getColor(SWT.COLOR_RED));
 		label.setBounds(241, 173, 7, 21);
 		label.setText("*");
-		
-		Label label_1 = new Label(shlCadastroAssistido, SWT.NONE);
-		label_1.setText("*");
-		label_1.setForeground(SWTResourceManager.getColor(SWT.COLOR_RED));
-		label_1.setFont(SWTResourceManager.getFont("Segoe UI", 12, SWT.NORMAL));
-		label_1.setBounds(241, 218, 7, 21);
 		
 		Label label_2 = new Label(shlCadastroAssistido, SWT.NONE);
 		label_2.setText("*");
@@ -210,12 +216,6 @@ public class CadastroAssistidoView{
 		label_5.setForeground(SWTResourceManager.getColor(SWT.COLOR_RED));
 		label_5.setFont(SWTResourceManager.getFont("Segoe UI", 12, SWT.NORMAL));
 		label_5.setBounds(241, 395, 7, 21);
-		
-		Label label_7 = new Label(shlCadastroAssistido, SWT.NONE);
-		label_7.setText("*");
-		label_7.setForeground(SWTResourceManager.getColor(SWT.COLOR_RED));
-		label_7.setFont(SWTResourceManager.getFont("Segoe UI", 12, SWT.NORMAL));
-		label_7.setBounds(241, 527, 7, 21);
 		
 		Label label_8 = new Label(shlCadastroAssistido, SWT.NONE);
 		label_8.setText("*");
@@ -362,27 +362,15 @@ public class CadastroAssistidoView{
 		lblApelido.setFont(SWTResourceManager.getFont("Segoe UI Emoji", 16, SWT.NORMAL));
 		lblApelido.setBounds(162, 218, 76, 28);
 		
-		Label label_9 = new Label(shlCadastroAssistido, SWT.NONE);
-		label_9.setText("Tipo de Cancer:");
-		label_9.setFont(SWTResourceManager.getFont("Segoe UI Emoji", 16, SWT.NORMAL));
-		label_9.setBounds(94, 571, 144, 28);
+		Label lblTipoDeCncer = new Label(shlCadastroAssistido, SWT.NONE);
+		lblTipoDeCncer.setText("Tipo de C\u00E2ncer:");
+		lblTipoDeCncer.setFont(SWTResourceManager.getFont("Segoe UI Emoji", 16, SWT.NORMAL));
+		lblTipoDeCncer.setBounds(94, 571, 144, 28);
 		
 		Label lblSituao = new Label(shlCadastroAssistido, SWT.NONE);
 		lblSituao.setText("Situa\u00E7\u00E3o:");
 		lblSituao.setFont(SWTResourceManager.getFont("Segoe UI Emoji", 16, SWT.NORMAL));
 		lblSituao.setBounds(154, 616, 84, 28);
-		
-		Button button = new Button(shlCadastroAssistido, SWT.NONE);
-		button.addSelectionListener(new SelectionAdapter() {
-			@Override
-			public void widgetSelected(SelectionEvent arg0) {
-				shlCadastroAssistido.dispose();
-			}
-		});
-		button.setText("Cancelar");
-		button.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/cancelar.png").getAbsolutePath()));
-		button.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
-		button.setBounds(175, 686, 184, 60);
 		
 		Button button_1 = new Button(shlCadastroAssistido, SWT.NONE);
 		button_1.addSelectionListener(new SelectionAdapter() {

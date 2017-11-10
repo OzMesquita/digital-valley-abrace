@@ -8,12 +8,12 @@ import exceptions.PessoaInvalidaException;
 import exceptions.PessoaJuridicaInvalidaException;
 import facade.DoadorFachada;
 import model.PessoaJuridica;
-import view.CadastroDoadorJuridicoView;
+import view.CadastroDoadorPJuridicoView;
 
 public class CadastroDoadorJuridicoControle {
-	private CadastroDoadorJuridicoView view;
+	private CadastroDoadorPJuridicoView view;
 	private DoadorFachada facade;
-	public CadastroDoadorJuridicoControle(CadastroDoadorJuridicoView cadastroDoadorJuridicoView) {
+	public CadastroDoadorJuridicoControle(CadastroDoadorPJuridicoView cadastroDoadorJuridicoView) {
 		setView(cadastroDoadorJuridicoView);
 		setFacade(new DoadorFachada());
 	}
@@ -29,8 +29,6 @@ public class CadastroDoadorJuridicoControle {
 				doador.setTelefone(view.getTfTelefone1().getText());
 				doador.setTelefone2(view.getTfTelefone2().getText());
 				doador.setEmail(view.getTfEmail().getText());
-				doador.setRazaoSocial(view.getTfRazaoSocial().getText());
-				doador.setAtivo(view.getTfStatus());
 				doador.setDoador(true);
 				if (facade.cadastrarDoadorJuridico(doador)) {
 					view.mensagemSucesso(doador);
@@ -48,11 +46,11 @@ public class CadastroDoadorJuridicoControle {
 	}
 
 	
-	public CadastroDoadorJuridicoView getView() {
+	public CadastroDoadorPJuridicoView getView() {
 		return view;
 	}
 	
-	public void setView(CadastroDoadorJuridicoView view) {
+	public void setView(CadastroDoadorPJuridicoView view) {
 		if(view != null)
 			this.view = view;
 	}
