@@ -40,7 +40,7 @@ public class Instalacao {
 				   //-----------------------------------//
 				   "CREATE TABLE ABRACE.Pessoa_Juridica (" + 
 				   " idPessoa INT NOT NULL," + 
-				   " cnpj VARCHAR(32) NOT NULL," +
+				   " cnpj VARCHAR(32) NOT NULL UNIQUE," +
 				   " fantasia VARCHAR(128)," + 
 				   " PRIMARY KEY (idPessoa)," + 
 				   " FOREIGN KEY (idPessoa) REFERENCES ABRACE.Pessoa (idPessoa) ON DELETE CASCADE ON UPDATE RESTRICT" + 
@@ -50,7 +50,7 @@ public class Instalacao {
 				   //-----------------------------------//
 				   "CREATE TABLE ABRACE.Pessoa_Fisica (" + 
 				   " idPessoa INT NOT NULL," + 
-				   " cpf VARCHAR(16) NOT NULL," + 
+				   " cpf VARCHAR(16) NOT NULL UNIQUE," + 
 				   " rg VARCHAR(16) NOT NULL," + 
 				   " dataNascimento DATE NOT NULL," + 
 				   " PRIMARY KEY (idPessoa)," + 
