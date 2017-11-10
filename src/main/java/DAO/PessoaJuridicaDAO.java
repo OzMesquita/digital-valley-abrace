@@ -18,41 +18,37 @@ public class PessoaJuridicaDAO extends ExecutaSQL{
 		super(connection);
 	}
 	
-	public boolean inserirDoadorJuridico(PessoaJuridica pessoaJ) throws PessoaInvalidaException, SQLException {
+	public boolean inserirDoadorJuridico(PessoaJuridica pessoaJuridica) throws PessoaInvalidaException, SQLException {
 		try {
 			getConexao().setAutoCommit(false);
 			PessoaDAO pessoa = new PessoaDAO(getConexao());
-			pessoa.cadastrarPessoa(pessoaJ);
-			cadastrarDoadorJuridico(pessoaJ);
+			pessoa.cadastrarPessoa(pessoaJuridica);
+			cadastrarDoadorJuridico(pessoaJuridica);
 			getConexao().commit();
-			return true;
 		} catch (SQLException e) {
 			rollBack(e);
 			throw e;
 		}
+		return true;
 	}
 	
-	private void cadastrarDoadorJuridico(PessoaJuridica pessoaJ) throws SQLException{
+	private void cadastrarDoadorJuridico(PessoaJuridica pessoaJuridica) throws SQLException{
         PreparedStatement stmt = null;
-        String sql = "INSERT INTO ABRACE.PESSOA_JURIDICA (cnpj, fantasia, idPessoa)" + "VALUES(?, ?, ?, ?)";
-
+        String sql = "INSERT INTO ABRACE.Pessoa_Juridica (cnpj, fantasia, idPessoa)" + "VALUES (?, ?, ?, ?)";
         stmt = getConexao().prepareStatement(sql);
-        
-        if(getPessoaPeloCNPJ(pessoaJ.getCnpj())) {
+        if(getPessoaPeloCNPJ(pessoaJuridica.getCnpj())) {
 			rollBack(new SQLException("CNPJ já existente no sistema!"));
 			throw new SQLException("CNPJ já existente no sistema!");
 		}
-
-        stmt.setString(1, pessoaJ.getCnpj());
-        stmt.setString(2, pessoaJ.getNomeFantasia());
-        stmt.setInt(3, pessoaJ.getId());
-
+        stmt.setString(1, pessoaJuridica.getCnpj());
+        stmt.setString(2, pessoaJuridica.getNomeFantasia());
+        stmt.setInt(3, pessoaJuridica.getId());
         stmt.execute();
     }
 	
 	public boolean getPessoaPeloCNPJ(String cnpj) throws SQLException {
 		PreparedStatement stmt = null;
-		String sql = "SELECT ABRACE.PESSOA_JURIDICA.idPessoa FROM ABRACE.PESSOA_JURIDICA WHERE ABRACE.PESSOA_FISICA.cnpj = ?";
+		String sql = "SELECT ABRACE.Pessoa_Juridica.idPessoa FROM ABRACE.Pessoa_Juridica WHERE ABRACE.Pessoa_Fisica cnpj=?";
 		stmt = getConexao().prepareStatement(sql);
 		stmt.setString(1, cnpj);
 		ResultSet rs = stmt.executeQuery();
@@ -62,12 +58,12 @@ public class PessoaJuridicaDAO extends ExecutaSQL{
 		return false;
 	}
 	
-	public boolean editarDoadorJuridico(PessoaJuridica pessoaJ) {
+	public boolean editarDoadorJuridico(PessoaJuridica pessoaJuridica) {
 		try {
 			getConexao().setAutoCommit(false);
 			PessoaDAO pessoa = new PessoaDAO(getConexao());
-			pessoa.editarPessoa(pessoaJ);
-			editar(pessoaJ);
+			pessoa.editarPessoa(pessoaJuridica);
+			editar(pessoaJuridica);
 			getConexao().commit();
 		} catch (SQLException e) {
 			rollBack(e);
@@ -76,43 +72,34 @@ public class PessoaJuridicaDAO extends ExecutaSQL{
 		return true;
 	} 
 	
-	public void editar(PessoaJuridica pessoaJ) throws SQLException {
-		String sql = "UPDATE ABRACE.PESSOA_JURIDICA SET FANTASIA = ?, CNPJ = ? WHERE IDPESSOA = ?";
-	
+	public void editar(PessoaJuridica pessoaJuridica) throws SQLException {
+		String sql = "UPDATE ABRACE.Pessoa_Juridica SET FANTASIA=?, CNPJ=? WHERE idPessoa=?";
 		PreparedStatement stmt = getConexao().prepareStatement(sql);
-		
-		stmt.setString(1, pessoaJ.getNomeFantasia());
-		stmt.setString(2, pessoaJ.getCnpj());
-		stmt.setInt(3, pessoaJ.getId());
-			
+		stmt.setString(1, pessoaJuridica.getNomeFantasia());
+		stmt.setString(2, pessoaJuridica.getCnpj());
+		stmt.setInt(3, pessoaJuridica.getId());
 		stmt.executeUpdate();
-		
 	}
 	
 	public boolean excluirDoadorJuridico(PessoaJuridica pessoaJ) {
-		
 		try{
-			String sql = "UPDATE ABRACE.PESSOA SET ativo=false WHERE idPessoa=" + pessoaJ.getId();
+			String sql = "UPDATE ABRACE.Pessoa SET ativo=false WHERE idPessoa=?";
 			PreparedStatement stmt;
 			stmt = getConexao().prepareStatement(sql);
 			stmt.executeUpdate();
-			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return false;
 		}
+		return true;
 	}
 
-	@SuppressWarnings("finally")
 	public ArrayList<PessoaJuridica> listarDoadorJuridico() {
 		ArrayList<PessoaJuridica> listaPessoasJuridicas = new ArrayList<PessoaJuridica>();
-		
 		String informacaoPessoa = "ABRACE.PESSOA.idPessoa, ABRACE.PESSOA.nome, ABRACE.PESSOA.endereco, ABRACE.PESSOA.telefone1,"
 				+ "ABRACE.PESSOA.telefone2, ABRACE.PESSOA.email, ABRACE.PESSOA.dataCadastro,ABRACE.Pessoa.isDoador,";
-		
 		String sql = "SELECT " + informacaoPessoa+ 
-				"ABRACE.PESSOA_JURIDICA.cnpj, ABRACE.PESSOA_JURIDICA.fantasia FROM ABRACE.PESSOA_JURIDICA, ABRACE.PESSOA WHERE ABRACE.PESSOA_JURIDICA.idPessoa = ABRACE.PESSOA.idPessoa AND ativo = ? AND isDoador = ?";
-		
+				"ABRACE.PESSOA_JURIDICA.cnpj, ABRACE.PESSOA_JURIDICA.fantasia FROM ABRACE.PESSOA_JURIDICA, ABRACE.PESSOA WHERE ABRACE.PESSOA_JURIDICA.idPessoa=ABRACE.PESSOA.idPessoa AND ativo=? AND isDoador=?";
 		try {
 			PreparedStatement stmt = getConexao().prepareStatement(sql);
 			stmt.setBoolean(1, true);
@@ -138,9 +125,8 @@ public class PessoaJuridicaDAO extends ExecutaSQL{
 			e.printStackTrace();
 		} catch (PessoaJuridicaInvalidaException e) {
 			e.printStackTrace();
-		} finally {
-			return listaPessoasJuridicas;
-		}
+		} 
+		return listaPessoasJuridicas;
 	}
 
 	public PessoaJuridica getPessoaJuridica(int id) {
@@ -148,11 +134,11 @@ public class PessoaJuridicaDAO extends ExecutaSQL{
 				+ "ABRACE.Pessoa.telefone2, ABRACE.Pessoa.email, ABRACE.Pessoa.dataCadastro,ABRACE.Pessoa.isDoador,";
 		String sql = "SELECT " + informacaoPessoa + " ABRACE.PESSOA_JURIDICA.cnpj, ABRACE.PESSOA_JURIDICA.fantasia "
 				+ " FROM ABRACE.Pessoa, ABRACE.Pessoa_Juridica"
-				+ " WHERE ABRACE.Pessoa.idPessoa = ? AND ABRACE.Pessoa.idPessoa = ABRACE.Pessoa_Juridica.idPessoa";
+				+ " WHERE ABRACE.Pessoa.idPessoa=? AND ABRACE.Pessoa.idPessoa=ABRACE.Pessoa_Juridica.idPessoa";
 		try {
-			PreparedStatement ps = getConexao().prepareStatement(sql);
-			ps.setInt(1, id);
-			ResultSet rs = ps.executeQuery();
+			PreparedStatement stmt = getConexao().prepareStatement(sql);
+			stmt.setInt(1, id);
+			ResultSet rs = stmt.executeQuery();
 			if (rs.next()) {
 				boolean ativo = rs.getBoolean(1);
 				String nome = rs.getString(2);
@@ -174,24 +160,5 @@ public class PessoaJuridicaDAO extends ExecutaSQL{
 			e.printStackTrace();
 		}
 		return null;
-	}
-	
-	public static void main(String[] args) {
-		
-		try {
-			PessoaJuridicaDAO dao = new PessoaJuridicaDAO(new ConnectionFactory().getConnection());
-			dao.excluirDoadorJuridico(new PessoaJuridica(501,"12778567000172", "adasd"));
-			ArrayList<PessoaJuridica> arrays = dao.listarDoadorJuridico();
-			for(PessoaJuridica p : arrays) {
-				System.out.println(p);
-			}
-			dao.getConexao().close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} catch (PessoaJuridicaInvalidaException e) {
-			e.printStackTrace();
-		} catch (PessoaInvalidaException e) {
-			e.printStackTrace();
-		}
 	}
 }

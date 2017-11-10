@@ -20,27 +20,24 @@ public class AssistidoDAO extends ExecutaSQL {
 	}
 
 	public boolean inserirAssistido(Assistido assistido) throws PessoaInvalidaException, SQLException {
-
 		try {
 			getConexao().setAutoCommit(false);
 			PessoaFisicaDAO pessoaFisica = new PessoaFisicaDAO(getConexao());
 			pessoaFisica.inserirPessoaFisica(assistido);
 			cadastrarAssistido(assistido);
 			getConexao().commit();
-			return true;
 		} catch (SQLException e) {
 			rollBack(e);
 			throw e;
 		}
+		return true;
 	}
 
 	public void cadastrarAssistido(Assistido assistido) throws PessoaInvalidaException, SQLException {
 		PreparedStatement stmt = null;
-		String sql = "insert into ABRACE.ASSISTIDO" + "(idpessoa, status, apelido, tipocancer) values (?, ?, ?, ?)";
-		
+		String sql = "INSERT INTO ABRACE.Assistido (idpessoa, status, apelido, tipocancer)" + "VALUES (?, ?, ?, ?)";
 		// prepared statement para inserção
 		stmt = getConexao().prepareStatement(sql);
-
 		// seta os valores
 		stmt.setInt(1, assistido.getId());
 		stmt.setBoolean(2, assistido.getSituacao());
@@ -54,15 +51,10 @@ public class AssistidoDAO extends ExecutaSQL {
 		try {
 			getConexao().setAutoCommit(false);
 			PessoaDAO pessoa = new PessoaDAO(getConexao());
-			
 			PessoaFisicaDAO pessoaFisica = new PessoaFisicaDAO(getConexao());
-			
 			pessoa.editarPessoa(assistido);
-
 			pessoaFisica.editar(assistido);
-			
 			editar(assistido);
-			
 			getConexao().commit();
 		} catch (SQLException e) {
 			rollBack(e);
@@ -72,28 +64,25 @@ public class AssistidoDAO extends ExecutaSQL {
 	}
 
 	public void editar(Assistido assistido) throws SQLException{
-		String sql3 = "UPDATE ABRACE.ASSISTIDO SET tipoCancer=?, apelido=?, status=? WHERE idPessoa = ?";
-		
-		PreparedStatement stmt = getConexao().prepareStatement(sql3);
-		
+		String sql = "UPDATE ABRACE.Assistido SET tipoCancer=?, apelido=?, status=? WHERE idPessoa=?";
+		PreparedStatement stmt = getConexao().prepareStatement(sql);
 		stmt.setString(1, assistido.getTipoDeCancer());
 		stmt.setString(2, assistido.getApelido());
 		stmt.setBoolean(3, assistido.getSituacao());
 		stmt.setInt(4, assistido.getId());
-			
 		stmt.executeUpdate();
 	}
 	public boolean excluirAssistido(Assistido assistido) {
 		try {
-			String sql = "UPDATE ABRACE.PESSOA SET ativo=false WHERE idPessoa="+assistido.getId();
+			String sql = "UPDATE ABRACE.Pessoa SET ativo=false WHERE idPessoa=?";
 			PreparedStatement stmt;
 			stmt = getConexao().prepareStatement(sql);
 			stmt.executeUpdate();
-			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return false;
 		}
+		return true;
 	}
 
 	public Assistido getAssistido(int id) {
@@ -103,12 +92,12 @@ public class AssistidoDAO extends ExecutaSQL {
 		String sql = "SELECT " + informacaoPessoa + informacaoPessoaFisica
 				+ " ABRACE.Assistido.tipoCancer, ABRACE.Assistido.apelido, ABRACE.Assistido.status"
 				+ " FROM ABRACE.Assistido, ABRACE.Pessoa, ABRACE.Pessoa_Fisica"
-				+ " WHERE ABRACE.Pessoa.idPessoa = ? AND ABRACE.Pessoa.idPessoa = ABRACE.Pessoa_Fisica.idPessoa "
-				+ " AND ABRACE.Pessoa_Fisica.idPessoa = ABRACE.Assistido.idPessoa";
+				+ " WHERE ABRACE.Pessoa.idPessoa=? AND ABRACE.Pessoa.idPessoa=ABRACE.Pessoa_Fisica.idPessoa "
+				+ " AND ABRACE.Pessoa_Fisica.idPessoa=ABRACE.Assistido.idPessoa";
 		try {
-			PreparedStatement ps = getConexao().prepareStatement(sql);
-			ps.setInt(1, id);
-			ResultSet rs = ps.executeQuery();
+			PreparedStatement stmt = getConexao().prepareStatement(sql);
+			stmt.setInt(1, id);
+			ResultSet rs = stmt.executeQuery();
 			if (rs.next()) {
 				boolean ativo = rs.getBoolean(1);
 				String nome = rs.getString(2);
@@ -145,8 +134,8 @@ public class AssistidoDAO extends ExecutaSQL {
 				"JOIN PESSOA_FISICA ON PESSOA.idpessoa=PESSOA_FISICA.idpessoa " + 
 				"join ASSISTIDO ON ASSISTIDO.idpessoa=PESSOA_FISICA.idpessoa";
 		try {
-			PreparedStatement ps = getConexao().prepareStatement(sql);
-			ResultSet rs = ps.executeQuery();
+			PreparedStatement stmt = getConexao().prepareStatement(sql);
+			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
 				int id = rs.getInt("idpessoa");
 				String nome = rs.getString("nome");

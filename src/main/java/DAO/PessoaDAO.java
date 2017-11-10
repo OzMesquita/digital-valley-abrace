@@ -21,7 +21,7 @@ public class PessoaDAO extends ExecutaSQL {
 
 	public void cadastrarPessoa(Pessoa pessoa) throws SQLException, PessoaInvalidaException {
 		PreparedStatement stmt = null;
-		String sql = "insert into ABRACE.PESSOA (ativo, datacadastro, email, telefone2, telefone1, endereco, nome,isDoador) values (?, ?, ?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO ABRACE.Pessoa (ativo, datacadastro, email, telefone2, telefone1, endereco, nome,isDoador)" + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 		stmt = getConexao().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 		// se você chegou aqui após um erro ocorrer, é porque seu banco não foi atualizado com o novo atributo encontrado (isDoador). Apague o localhost e reexecute o script de instalacao
 		pessoa.setDataCadastro(LocalDate.now());
@@ -40,12 +40,11 @@ public class PessoaDAO extends ExecutaSQL {
 		if (rs.next()) {
 			pessoa.setId(rs.getInt(1));
 		}
-
 	}
 
 	public ArrayList<Pessoa> listarPessoas(Boolean situacao) throws PessoaInvalidaException {
 		ArrayList<Pessoa> listaPessoas = new ArrayList<Pessoa>();
-		String sql = "SELECT * FROM ABRACE.Pessoa where ativo = ?";
+		String sql = "SELECT * FROM ABRACE.Pessoa where ativo=?";
 		try {
 			PreparedStatement stmt = getConexao().prepareStatement(sql);
 			stmt.setBoolean(1, situacao);
@@ -70,9 +69,8 @@ public class PessoaDAO extends ExecutaSQL {
 	}
 
 	public boolean editarPessoa(Pessoa pessoa) throws SQLException {
-		String sql = "UPDATE ABRACE.PESSOA SET nome=?, endereco=?, telefone1=?, telefone2=?, email=?, ativo=? WHERE idPessoa=?";
+		String sql = "UPDATE ABRACE.Pessoa SET nome=?, endereco=?, telefone1=?, telefone2=?, email=?, ativo=? WHERE idPessoa=?";
 		PreparedStatement stmt = getConexao().prepareStatement(sql);
-
 		stmt.setString(1, pessoa.getNome());
 		stmt.setString(2, pessoa.getEndereco());
 		stmt.setString(3, pessoa.getTelefone());
@@ -80,42 +78,36 @@ public class PessoaDAO extends ExecutaSQL {
 		stmt.setString(5, pessoa.getEmail());
 		stmt.setBoolean(6, pessoa.isAtivo());
 		stmt.setInt(7, pessoa.getId());
-
 		stmt.executeUpdate();
-
 		return true;
-
 	}
 
 	public void excluirPessoa(Pessoa pessoa) throws SQLException {
-		String sql = "UPDATE ABRACE.PESSOA SET ativo=false WHERE idPessoa=" + pessoa.getId();
+		String sql = "UPDATE ABRACE.Pessoa SET ativo=false WHERE idPessoa=?";
 		PreparedStatement stmt = getConexao().prepareStatement(sql);
-
 		stmt.setBoolean(1, pessoa.isAtivo());
-
 		stmt.execute();
 		stmt.close();
 	}
 
 	public String getCPFCNPJ(int id) {
-		String sql = "SELECT ABRACE.Pessoa_Fisica.cpf FROM ABRACE.Pessoa_Fisica where ABRACE.Pessoa_Fisica.idPessoa=?";
+		String sql = "SELECT ABRACE.Pessoa_Fisica.cpf FROM ABRACE.Pessoa_Fisica WHERE ABRACE.Pessoa_Fisica.idPessoa=?";
 		try {
-			PreparedStatement ps = getConexao().prepareStatement(sql);
-			ps.setInt(1, id);
-			ResultSet rs = ps.executeQuery();
+			PreparedStatement stmt = getConexao().prepareStatement(sql);
+			stmt.setInt(1, id);
+			ResultSet rs = stmt.executeQuery();
 			String resultado = null;
 			if (rs.next()) {
 				resultado = rs.getString(1);
 			}
 			else {
-				sql = "SELECT ABRACE.Pessoa_Juridica.cnpj FROM ABRACE.Pessoa_Juridica where ABRACE.Pessoa_Juridica.idPessoa=?";
-				ps = getConexao().prepareStatement(sql);
-				ps.setInt(1, id);
-				rs = ps.executeQuery();
+				sql = "SELECT ABRACE.Pessoa_Juridica.cnpj FROM ABRACE.Pessoa_Juridica WHERE ABRACE.Pessoa_Juridica.idPessoa=?";
+				stmt = getConexao().prepareStatement(sql);
+				stmt.setInt(1, id);
+				rs = stmt.executeQuery();
 				if(rs.next()) {
 					resultado = rs.getString(1);
 				}
-				
 			}
 			return resultado;
 			} catch (SQLException e) {
@@ -124,13 +116,12 @@ public class PessoaDAO extends ExecutaSQL {
 		}
 
 	public Pessoa getPessoa(int id) {
-
 		String sql = "SELECT ABRACE.Pessoa.ativo, ABRACE.Pessoa.nome, ABRACE.Pessoa.endereco, ABRACE.Pessoa.telefone1, ABRACE.Pessoa.telefone2,"
-				+ " ABRACE.Pessoa.email, ABRACE.Pessoa.dataCadastro, ABRACE.Pessoa.isDoador FROM ABRACE.Pessoa WHERE ABRACE.Pessoa.idPessoa = ?";
+				+ " ABRACE.Pessoa.email, ABRACE.Pessoa.dataCadastro, ABRACE.Pessoa.isDoador FROM ABRACE.Pessoa WHERE ABRACE.Pessoa.idPessoa=?";
 		try {
-			PreparedStatement ps = getConexao().prepareStatement(sql);
-			ps.setInt(1, id);
-			ResultSet rs = ps.executeQuery();
+			PreparedStatement stmt = getConexao().prepareStatement(sql);
+			stmt.setInt(1, id);
+			ResultSet rs = stmt.executeQuery();
 			if (rs.next()) {
 				boolean ativo = rs.getBoolean(1);
 				String nome = rs.getString(2);
@@ -149,5 +140,4 @@ public class PessoaDAO extends ExecutaSQL {
 		}
 		return null;
 	}
-
 }

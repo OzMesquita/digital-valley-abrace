@@ -21,18 +21,18 @@ public class UsuarioDAO extends ExecutaSQL{
 		public Usuario getUsuario(String login, String senha) throws UsuarioInvalidoException, PessoaInvalidaException {
 	        try {
 	        	String sql = "SELECT idPessoa FROM ABRACE.Usuario WHERE login=? AND senha=?";
-	        	PreparedStatement ps = getConexao().prepareStatement(sql);
-	            ps.setString(1, login);
-	            ps.setString(2, senha);
-	            ResultSet rs = ps.executeQuery();
+	        	PreparedStatement stmt = getConexao().prepareStatement(sql);
+	            stmt.setString(1, login);
+	            stmt.setString(2, senha);
+	            ResultSet rs = stmt.executeQuery();
 	            if(rs != null){
 	                rs.next();
 	                int id = rs.getInt(1);
 	                return new Usuario(id, login, senha);
 	            }
-	            }catch (SQLException ex) {
-	                System.err.println("Erro com a sintaxe SQL no metodo de consulta. GerenteDAO");    
-	            }
+	        }catch (SQLException ex) {
+	            System.err.println("Erro com a sintaxe SQL no metodo de consulta. GerenteDAO");    
+	        }
 	        return null;
 	    }
 		
@@ -52,62 +52,49 @@ public class UsuarioDAO extends ExecutaSQL{
 			return true;
 		}
 
-	private void cadastrarUsuario(Usuario usuario) throws SQLException {
+		private void cadastrarUsuario(Usuario usuario) throws SQLException {
 			PreparedStatement stmt = null;
-			String sql = "INSERT INTO ABRACE.USUARIO(login, senha, idPessoa) values(?, ?, ?)";
+			String sql = "INSERT INTO ABRACE.Usuario (login, senha, idPessoa)" + "VALUES (?, ?, ?)";
 				stmt = getConexao().prepareStatement(sql);
-
 				stmt.setString(1, usuario.getUsuario());
 				stmt.setString(2, usuario.getSenha());
 				stmt.setInt(3, usuario.getId());
-				
 				stmt.execute();
-			
 		}
 		
 		public boolean editarUsuario(Usuario usuario) {
-			boolean executou = true;
-			String sql = "UPDATE ABRACE.USUARIO SET login=?, senha=? WHERE idPessoa="+usuario.getId();
+			String sql = "UPDATE ABRACE.Usuario SET login=?, senha=? WHERE idPessoa=?";
 			PreparedStatement stmt = null;
-			
 			try {
 				stmt = getConexao().prepareStatement(sql);
-				
 				stmt.setString(1, usuario.getUsuario());
 				stmt.setString(2, usuario.getSenha());
-				
 				stmt.executeUpdate();
 			}catch(SQLException e) {
 				rollBack(e);
-				executou = false;
-			}finally {
-				verificaConexao(stmt);
+				return false;
 			}
-			return executou;
+			return true;
 		}
 		
 		public void excluirUsuario(Usuario usuario) throws SQLException{
-			String sql = "UPDATE ABRACE.PESSOA SET ativo=false WHERE idPessoa="+usuario.getId();
+			String sql = "UPDATE ABRACE.Pessoa SET ativo=false WHERE idPessoa=?";
 			PreparedStatement stmt = getConexao().prepareStatement(sql);
 			stmt.executeQuery();
 		}
 		
 		public ArrayList<Usuario> listarUsuarios(){
 			ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
-			
 			String informacaoPessoa = "ABRACE.Pessoa.idPessoa, ABRACE.Pessoa.nome, ABRACE.Pessoa.endereco, ABRACE.Pessoa.telefone1,"
 	                				+ "ABRACE.Pessoa.telefone2, ABRACE.Pessoa.email, ABRACE.Pessoa.dataCadastro,ABRACE.Pessoa.isDoador,";
 			String informacaoPessoaFisica = " ABRACE.Pessoa_Fisica.cpf, ABRACE.Pessoa_Fisica.rg, ABRACE.Pessoa_Fisica.dataNascimento,";
-			
 			String sql = "SELECT "+informacaoPessoa+informacaoPessoaFisica+ "ABRACE.Usuario.login, ABRACE.Usuario.senha"
 					+ "FROM ABRACE.Pessoa, ABRACE.Pessoa_Fisica, ABRACE.Usuario"
-					+ "WHERE ABRACE.Pessoa.ativo = True AND ABRACE.Pessoa.idPessoa = ABRACE.Pessoa_Fisica.idPessoa"
-					+ "AND ABRACE.Pessoa_Fisica.idPessoa = ABRACE.Usuario.idPessoa";
-			
+					+ "WHERE ABRACE.Pessoa.ativo=True AND ABRACE.Pessoa.idPessoa=ABRACE.Pessoa_Fisica.idPessoa"
+					+ "AND ABRACE.Pessoa_Fisica.idPessoa=ABRACE.Usuario.idPessoa";
 			try {
 				PreparedStatement stmt = getConexao().prepareStatement(sql);
 				ResultSet rs = stmt.executeQuery();
-				
 				while(rs.next()) {
 					int id = rs.getInt(1);
 					String nome = rs.getString(2);
@@ -122,7 +109,6 @@ public class UsuarioDAO extends ExecutaSQL{
 					LocalDate dataNasc = rs.getDate(11).toLocalDate();
 					String login = rs.getString(12);
 					String senha = rs.getString(13);
-					
 					usuarios.add(new Usuario(id, nome, endereco, dataCadastro, telefone, telefone2, email, true, isDoador, cpf, rg, dataNasc, login, senha));
 				}
 			}catch(SQLException e) {
@@ -136,5 +122,4 @@ public class UsuarioDAO extends ExecutaSQL{
 			}
 			return usuarios;
 		}
-		
 }
