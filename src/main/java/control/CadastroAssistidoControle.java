@@ -53,6 +53,7 @@ public class CadastroAssistidoControle {
 				assistido.setEmail(view.getTfEmail().getText());
 				assistido.setTipoDeCancer(view.getTfTipoCancer().getText());
 				assistido.setSituacao(view.getTfSituacao());
+				assistido.setDoador(true);
 
 				if (fachada.cadastrarAssistido(assistido)) {
 					view.mensagemSucesso(assistido);
