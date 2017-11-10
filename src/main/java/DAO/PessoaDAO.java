@@ -25,7 +25,7 @@ public class PessoaDAO extends ExecutaSQL {
 		stmt = getConexao().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 		// se você chegou aqui após um erro ocorrer, é porque seu banco não foi atualizado com o novo atributo encontrado (isDoador). Apague o localhost e reexecute o script de instalacao
 		pessoa.setDataCadastro(LocalDate.now());
-		stmt.setBoolean(1, pessoa.isAtivo());
+		stmt.setBoolean(1, true);
 		stmt.setDate(2, Date.valueOf(pessoa.getDataCadastro()));
 		stmt.setString(3, pessoa.getEmail());
 		stmt.setString(4, pessoa.getTelefone2());
