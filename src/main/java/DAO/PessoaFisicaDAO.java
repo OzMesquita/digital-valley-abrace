@@ -39,7 +39,10 @@ public class PessoaFisicaDAO extends ExecutaSQL {
 		PreparedStatement stmt = null;
 		String sql = "INSERT INTO ABRACE.PESSOA_FISICA (dataNascimento, rg, cpf, idPessoa) VALUES (?, ?, ?, ?)";
 			stmt = getConexao().prepareStatement(sql);
-
+			if(getPessoaPeloCPF(pessoaFisica.getCpf())) {
+				rollBack(new SQLException("CPF já existente no sistema!"));
+				throw new SQLException("CPF já existente no sistema!");
+			}
 			stmt.setDate(1, Date.valueOf(pessoaFisica.getDataNasc()));
 			stmt.setString(2, pessoaFisica.getRg());
 			stmt.setString(3, pessoaFisica.getCpf());

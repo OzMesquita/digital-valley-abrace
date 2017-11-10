@@ -37,6 +37,11 @@ public class PessoaJuridicaDAO extends ExecutaSQL{
         String sql = "INSERT INTO ABRACE.PESSOA_JURIDICA (cnpj, fantasia, idPessoa)" + "VALUES(?, ?, ?, ?)";
 
         stmt = getConexao().prepareStatement(sql);
+        
+        if(getPessoaPeloCNPJ(pessoaJ.getCnpj())) {
+			rollBack(new SQLException("CNPJ já existente no sistema!"));
+			throw new SQLException("CNPJ já existente no sistema!");
+		}
 
         stmt.setString(1, pessoaJ.getCnpj());
         stmt.setString(2, pessoaJ.getNomeFantasia());
@@ -44,6 +49,18 @@ public class PessoaJuridicaDAO extends ExecutaSQL{
 
         stmt.execute();
     }
+	
+	public boolean getPessoaPeloCNPJ(String cnpj) throws SQLException {
+		PreparedStatement stmt = null;
+		String sql = "SELECT ABRACE.PESSOA_JURIDICA.idPessoa FROM ABRACE.PESSOA_JURIDICA WHERE ABRACE.PESSOA_FISICA.cnpj = ?";
+		stmt = getConexao().prepareStatement(sql);
+		stmt.setString(1, cnpj);
+		ResultSet rs = stmt.executeQuery();
+		if(rs.next()) {
+			return true;
+		}
+		return false;
+	}
 	
 	public boolean editarDoadorJuridico(PessoaJuridica pessoaJ) {
 		try {

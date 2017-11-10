@@ -66,7 +66,12 @@ public class CadastroAssistidoControle {
 			} catch (PessoaFisicaException e) {
 				view.mensagemErro(e);
 			} catch (SQLException e) {
-				view.mensagemErro(new Exception("Erro na operação! Contate o suporte!"));
+				if(e.getMessage().contains("CPF já existente")) {
+					view.mensagemErro(e);
+				}
+				else {
+					view.mensagemErro(new Exception("Erro na operação! Contate o suporte!"));
+				}
 			}
 
 		}

@@ -35,7 +35,12 @@ public class CadastroDoadorJuridicoControle {
 					view.getShlCadastroDoador().dispose();
 				}
 			} catch (SQLException ex) {
-				view.mensagemErro(new Exception("Erro na operação! Contate o suporte!"));
+				if(ex.getMessage().contains("CNPJ já existente")) {
+					view.mensagemErro(ex);
+				}
+				else {
+					view.mensagemErro(new Exception("Erro na operação! Contate o suporte!"));
+				}
 			}catch(PessoaInvalidaException ex) {
 				view.mensagemErro(ex);
 			} catch (PessoaJuridicaInvalidaException ex) {
