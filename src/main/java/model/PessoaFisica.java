@@ -14,8 +14,7 @@ public class PessoaFisica extends Pessoa {
 
 	}
 
-	public PessoaFisica(int id, String cpf, String rg, LocalDate dataNasc)
-			throws PessoaFisicaException, PessoaInvalidaException {
+	public PessoaFisica(int id, String cpf, String rg, LocalDate dataNasc) throws PessoaFisicaException, PessoaInvalidaException {
 		setId(id);
 		setCpf(cpf);
 		setRg(rg);
@@ -23,16 +22,14 @@ public class PessoaFisica extends Pessoa {
 	}
 
 	public PessoaFisica(int id, String nome, String endereco, LocalDate dataCadastro, String telefone, String telefone2,
-			String email, boolean ativo, boolean isDoador, String cpf, String rg, LocalDate dataNasc)
-			throws PessoaInvalidaException, PessoaFisicaException {
+			String email, boolean ativo, boolean isDoador, String cpf, String rg, LocalDate dataNasc) throws PessoaInvalidaException, PessoaFisicaException {
 		super(id, nome, endereco, telefone, telefone2, dataCadastro, email, ativo, isDoador);
 		setCpf(cpf);
 		setRg(rg);
 		setDataNasc(dataNasc);
 	}
 	public PessoaFisica(String nome, String endereco, LocalDate dataCadastro, String telefone, String telefone2,
-			String email, boolean ativo, String cpf, String rg, LocalDate dataNasc)
-			throws PessoaInvalidaException, PessoaFisicaException {
+			String email, boolean ativo, String cpf, String rg, LocalDate dataNasc) throws PessoaInvalidaException, PessoaFisicaException {
 		super(nome, endereco, telefone2, telefone, dataCadastro, email, ativo);
 		setCpf(cpf);
 		setRg(rg);
@@ -75,8 +72,7 @@ public class PessoaFisica extends Pessoa {
 
 	@Override
 	public String toString() {
-		return "PessoaFisica [cpf=" + cpf + ", rg=" + rg + ", dataNasc=" + dataNasc + ", toString()=" + super.toString()
-				+ "]";
+		return "PessoaFisica [cpf=" + cpf + ", rg=" + rg + ", dataNasc=" + dataNasc + ", toString()=" + super.toString() + "]";
 	}
 	 public String getInformacaoDoador() {
 		 return this.cpf;

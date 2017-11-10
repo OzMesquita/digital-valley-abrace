@@ -6,7 +6,7 @@ import exceptions.DoacaoInvalidaException;
 
 public class Doacao {
 	private int id;
-	private Double valor;//No diagrama tava String, mas preferi usar float
+	private Double valor;
 	private LocalDate data;
 	private boolean ativo;
 	private Pessoa doador;
