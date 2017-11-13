@@ -10,7 +10,6 @@ import exceptions.DoacaoInvalidaException;
 import model.Doacao;
 
 public class DoacaoFachada {
-
 	public ArrayList<Doacao> listarDoacoes() {
 		DoacaoDAO dao = new DoacaoDAO(new ConnectionFactory().getConnection());
 		ArrayList<Doacao> doacoes = null;
@@ -47,11 +46,11 @@ public class DoacaoFachada {
 		return resultado;
 	}
 	
-	public String obterCPFCNPJ(int id) {
-		PessoaDAO dao = new PessoaDAO(new  ConnectionFactory().getConnection());
+	public String obterCPFCNPJ(int idPessoa) {
+		PessoaDAO dao = new PessoaDAO(new ConnectionFactory().getConnection());
 		String cpfCNPJ = null;
 		try {
-			cpfCNPJ = dao.getCPFCNPJ(id);
+			cpfCNPJ = dao.getCPFCNPJ(idPessoa);
 			dao.getConexao().close();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -59,8 +58,9 @@ public class DoacaoFachada {
 		return cpfCNPJ;
 	}
 	
+	@SuppressWarnings("finally")
 	public boolean realizarDoacao(Doacao doacao) {
-		DoacaoDAO dao = new DoacaoDAO(new  ConnectionFactory().getConnection());
+		DoacaoDAO dao = new DoacaoDAO(new ConnectionFactory().getConnection());
 		if(dao.cadastrarDoacao(doacao)) {
 			try {
 				dao.getConexao().close();

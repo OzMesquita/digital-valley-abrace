@@ -55,7 +55,7 @@ public class LoginControle {
 	
 	public void validarLogin() {
 		try {
-			Usuario usuario = facade.loga(view.getTfUsuario().getText(), view.getTfSenha().getText());
+			Usuario usuario = facade.autenticar(view.getTfUsuario().getText(), view.getTfSenha().getText());
 			if(usuario == null) {
 				throw new UsuarioNaoEncontradoException();
 			}else {

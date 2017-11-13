@@ -11,16 +11,16 @@ import exceptions.PessoaInvalidaException;
 import model.Assistido;
 
 public class AssistidoFachada {
-	public boolean cadastrarAssistido(Assistido a) throws PessoaInvalidaException, SQLException{
-		AssistidoDAO assistido = new AssistidoDAO(new ConnectionFactory().getConnection());
-		boolean resultado = assistido.inserirAssistido(a);
-		assistido.getConexao().close();
+	public boolean cadastrarAssistido(Assistido assistido) throws PessoaInvalidaException, SQLException{
+		AssistidoDAO dao = new AssistidoDAO(new ConnectionFactory().getConnection());
+		boolean resultado = dao.inserirAssistido(assistido);
+		dao.getConexao().close();
 		return resultado;
 	}
 	
-	public Assistido obterAssistido(int id) {
+	public Assistido obterAssistido(int idAssistido) {
 		AssistidoDAO dao = new AssistidoDAO(new ConnectionFactory().getConnection());
-		Assistido assistido = dao.getAssistido(id);
+		Assistido assistido = dao.getAssistido(idAssistido);
 		try {
 			dao.getConexao().close();
 		} catch (SQLException e) {
@@ -31,38 +31,35 @@ public class AssistidoFachada {
 	
 	public ArrayList<Assistido> listarTodosAssistidos(){
 		AssistidoDAO dao = new AssistidoDAO(new ConnectionFactory().getConnection());
-		ArrayList<Assistido> lista = dao.listaAssistido();
+		ArrayList<Assistido> assistidos = dao.listaAssistido();
 		try {
 			dao.getConexao().close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return lista;
+		return assistidos;
 	}
 	
-	public boolean editarAssistido(Assistido a) throws PessoaInvalidaException {
-		AssistidoDAO assistido = new AssistidoDAO(new ConnectionFactory().getConnection());
+	public boolean editarAssistido(Assistido assistido) throws PessoaInvalidaException {
+		AssistidoDAO dao = new AssistidoDAO(new ConnectionFactory().getConnection());
 		boolean resultado= false;
 		try {
-			resultado = assistido.editarAssistido(a);
-			assistido.getConexao().close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}return resultado;
-	}
-	
-	public boolean excluirAssistido(int id) {
-		AssistidoDAO dao = new AssistidoDAO(new ConnectionFactory().getConnection());
-		boolean resultado = dao.excluirAssistido(dao.getAssistido(id));
-		try {
+			resultado = dao.editarAssistido(assistido);
 			dao.getConexao().close();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return resultado;
 	}
 	
-	
-	
+	public boolean excluirAssistido(int idAssistido) {
+		AssistidoDAO dao = new AssistidoDAO(new ConnectionFactory().getConnection());
+		boolean resultado = dao.excluirAssistido(dao.getAssistido(idAssistido));
+		try {
+			dao.getConexao().close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return resultado;
+	}
 }

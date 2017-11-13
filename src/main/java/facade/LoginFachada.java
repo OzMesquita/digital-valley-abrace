@@ -9,13 +9,11 @@ import exceptions.PessoaInvalidaException;
 import model.Usuario;
 
 public class LoginFachada {
-
-	public Usuario loga(String login, String senha) throws UsuarioInvalidoException, PessoaInvalidaException, SQLException {
-		Usuario func = null;
+	public Usuario autenticar(String login, String senha) throws UsuarioInvalidoException, PessoaInvalidaException, SQLException {
+		Usuario usuario = null;
 		UsuarioDAO dao = new UsuarioDAO(new ConnectionFactory().getConnection());
-		func = dao.getUsuario(login, senha);
+		usuario = dao.getUsuario(login, senha);
 		dao.getConexao().close();
-		
-		return func;
+		return usuario;
 	}
 }

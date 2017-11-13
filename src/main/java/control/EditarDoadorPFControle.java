@@ -34,7 +34,7 @@ public class EditarDoadorPFControle {
 				doador.setTelefone2(view.getTfTelefone2().getText());
 				doador.setEmail(view.getTfEmail().getText());
 				doador.setDataCadastro(LocalDate.now());
-				if (facade.editarDoadorPF(doador)) {
+				if (facade.editarDoadorFisico(doador)) {
 					view.mensagemSucesso(doador);
 					view.getShlEditarDoadorPessoa().dispose();
 					GerenciarDoadoresView.main();

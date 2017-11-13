@@ -28,7 +28,7 @@ public class CadastroDoadorControle {
 				doador.setTelefone2(view.getTfTelefone2().getText());
 				doador.setEmail(view.getTfEmail().getText());
 				doador.setDoador(true);
-				if(facade.cadastrarDoador(doador)) {
+				if(facade.cadastrarDoadorFisico(doador)) {
 					view.mensagemSucesso(doador);
 					view.getShlCadastroDoador().dispose();
 				}

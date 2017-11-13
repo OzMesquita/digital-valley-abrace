@@ -13,101 +13,101 @@ import model.PessoaFisica;
 import model.PessoaJuridica;
 
 public class DoadorFachada {
-	public boolean cadastrarDoador(PessoaFisica doador) throws SQLException, PessoaInvalidaException {
-		PessoaFisicaDAO pessoaFisica = new PessoaFisicaDAO(new ConnectionFactory().getConnection());
-		boolean resultado = pessoaFisica.inserirPessoaFisica(doador);
-		pessoaFisica.getConexao().close();
-		return resultado;
-	}
-	
-	public boolean cadastrarDoadorJuridico(PessoaJuridica doador) throws SQLException, PessoaInvalidaException {
-		PessoaJuridicaDAO pessoaJuridica = new PessoaJuridicaDAO(new ConnectionFactory().getConnection());
-		boolean resultado = pessoaJuridica.inserirDoadorJuridico(doador);
-		pessoaJuridica.getConexao().close();
-		return resultado;
-	}
-	
-	public PessoaFisica obterDoadorFisico(int id) {
+	public boolean cadastrarDoadorFisico(PessoaFisica doadorFisico) throws SQLException, PessoaInvalidaException {
 		PessoaFisicaDAO dao = new PessoaFisicaDAO(new ConnectionFactory().getConnection());
-		PessoaFisica doador = dao.getPessoaFisica(id);
+		boolean resultado = dao.inserirPessoaFisica(doadorFisico);
+		dao.getConexao().close();
+		return resultado;
+	}
+	
+	public boolean cadastrarDoadorJuridico(PessoaJuridica doadorJuridico) throws SQLException, PessoaInvalidaException {
+		PessoaJuridicaDAO dao = new PessoaJuridicaDAO(new ConnectionFactory().getConnection());
+		boolean resultado = dao.inserirDoadorJuridico(doadorJuridico);
+		dao.getConexao().close();
+		return resultado;
+	}
+	
+	public PessoaFisica obterDoadorFisico(int idDoadorFisico) {
+		PessoaFisicaDAO dao = new PessoaFisicaDAO(new ConnectionFactory().getConnection());
+		PessoaFisica doadorFisico = dao.getPessoaFisica(idDoadorFisico);
 		try {
 			dao.getConexao().close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return doador;
+		return doadorFisico;
 	}
 	
 	public ArrayList<PessoaFisica> listarPessoaFisica(){
 		PessoaFisicaDAO dao = new PessoaFisicaDAO(new ConnectionFactory().getConnection());
-		ArrayList<PessoaFisica> lista = new ArrayList<PessoaFisica>();
+		ArrayList<PessoaFisica> doadoresFisicos = new ArrayList<PessoaFisica>();
 		try {
-			lista = dao.listarDoadoresFisicos();
+			doadoresFisicos = dao.listarDoadoresFisicos();
 			dao.getConexao().close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return lista;
+		return doadoresFisicos;
 	}
 	
 	public List<Pessoa> getTodosDoadores(){
-        ArrayList<Pessoa> todos = new ArrayList<Pessoa>();
-        todos.addAll(listarPessoaFisica());
-        todos.addAll(listarPessoaJuridica());
-        return todos;
+        ArrayList<Pessoa> pessoas = new ArrayList<Pessoa>();
+        pessoas.addAll(listarPessoaFisica());
+        pessoas.addAll(listarPessoaJuridica());
+        return pessoas;
     }
 
 	
-	public PessoaJuridica obterDoadorJuridico(int id) {
-	PessoaJuridicaDAO dao = new PessoaJuridicaDAO(new ConnectionFactory().getConnection());
-	PessoaJuridica doador = dao.getPessoaJuridica(id);
-	try {
-		dao.getConexao().close();
-	} catch (SQLException e) {
-		e.printStackTrace();
-	}
-	return doador;
+	public PessoaJuridica obterDoadorJuridico(int idDoadorJuridico) {
+		PessoaJuridicaDAO dao = new PessoaJuridicaDAO(new ConnectionFactory().getConnection());
+		PessoaJuridica doadorJuridico = dao.getPessoaJuridica(idDoadorJuridico);
+		try {
+			dao.getConexao().close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return doadorJuridico;
 	}
 	
 	public ArrayList<PessoaJuridica> listarPessoaJuridica() {
 		PessoaJuridicaDAO dao = new PessoaJuridicaDAO(new ConnectionFactory().getConnection());
-		ArrayList<PessoaJuridica> lista = new ArrayList<PessoaJuridica>();
+		ArrayList<PessoaJuridica> doadoresJuridicos = new ArrayList<PessoaJuridica>();
 		try {
-			lista = dao.listarDoadorJuridico();
+			doadoresJuridicos = dao.listarDoadorJuridico();
 			dao.getConexao().close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return lista;
+		return doadoresJuridicos;
 	}
 	
-	public boolean editarDoadorPF(PessoaFisica doador) {
+	public boolean editarDoadorFisico(PessoaFisica doadorFisico) {
 		PessoaFisicaDAO dao = new PessoaFisicaDAO(new ConnectionFactory().getConnection());
 		try {
-			dao.editarDoadorFisico(doador);
+			dao.editarDoadorFisico(doadorFisico);
 			dao.getConexao().close();
-			return true;
 		}catch (SQLException e){
 			e.printStackTrace();
+			return false;
 		}
-		return false;
+		return true;
 	}
 
-	public boolean editarDoadorJuridico(PessoaJuridica doador) {
+	public boolean editarDoadorJuridico(PessoaJuridica doadorJuridico) {
 		PessoaJuridicaDAO dao = new PessoaJuridicaDAO(new ConnectionFactory().getConnection());
 		try {
-			dao.editarDoadorJuridico(doador);
+			dao.editarDoadorJuridico(doadorJuridico);
 			dao.getConexao().close();
-			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return false;
 		}
-		return false;
+		return true;
 	}
 	
-	private boolean excluirDoadorFisico(int id) {
+	private boolean excluirDoadorFisico(int idDoadorFisico) {
 		PessoaFisicaDAO dao = new PessoaFisicaDAO(new ConnectionFactory().getConnection());
-		boolean resultado = dao.excluirDoadorFisico(dao.getPessoaFisica(id));
+		boolean resultado = dao.excluirDoadorFisico(dao.getPessoaFisica(idDoadorFisico));
 		try {
 			dao.getConexao().close();
 		} catch (SQLException e) {
@@ -116,9 +116,9 @@ public class DoadorFachada {
 		return resultado;
 	}
 
-	private boolean excluirDoadorJuridico(int id) {
+	private boolean excluirDoadorJuridico(int idDoadorJuridico) {
 		PessoaJuridicaDAO dao = new PessoaJuridicaDAO(new ConnectionFactory().getConnection());
-		boolean resultado = dao.excluirDoadorJuridico(dao.getPessoaJuridica(id));
+		boolean resultado = dao.excluirDoadorJuridico(dao.getPessoaJuridica(idDoadorJuridico));
 		try {
 			dao.getConexao().close();
 		} catch (SQLException e) {
@@ -127,31 +127,31 @@ public class DoadorFachada {
 		return resultado;
 	}
 	
-	public boolean excluirDoador(int id) {
+	public boolean excluirDoador(int idDoador) {
 		PessoaJuridicaDAO dao = new PessoaJuridicaDAO(new ConnectionFactory().getConnection());
-		PessoaJuridica p = dao.getPessoaJuridica(id);
+		PessoaJuridica doador = dao.getPessoaJuridica(idDoador);
 		try {
 			dao.getConexao().close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		if(p == null) {
-			return excluirDoadorFisico(id);
+		if(doador == null) {
+			return excluirDoadorFisico(idDoador);
 		}else {
-			return excluirDoadorJuridico(id);
+			return excluirDoadorJuridico(idDoador);
 		}
 	}
 
-	public static Pessoa getDadosDoador(int id) {
+	public static Pessoa getDadosDoador(int idPessoa) {
 		PessoaFisicaDAO dao = new PessoaFisicaDAO(new ConnectionFactory().getConnection());
-		Pessoa pessoa = dao.getPessoaFisica(id);
+		Pessoa pessoa = dao.getPessoaFisica(idPessoa);
 		try {
 			if(pessoa != null) {
 				dao.getConexao().close();
 				return pessoa;
 			}else {
 				PessoaJuridicaDAO novaDao = new PessoaJuridicaDAO(dao.getConexao());
-				pessoa = novaDao.getPessoaJuridica(id);
+				pessoa = novaDao.getPessoaJuridica(idPessoa);
 				if(pessoa != null) {
 					novaDao.getConexao().close();
 					return pessoa;
