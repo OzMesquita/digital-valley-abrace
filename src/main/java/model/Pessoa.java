@@ -129,7 +129,7 @@ public class Pessoa {
 	public String toString() {
 		return "Pessoa [id=" + id + ", nome=" + nome + ", endereco=" + endereco + ", telefone=" + telefone
 				+ ", telefone2=" + telefone2 + ", dataCadastro=" + dataCadastro + ", email=" + email + ", ativo="
-				+ ativo + "]";
+				+ ativo + " isDoador= "+isDoador+"]";
 	}
 	
 	public String getInformacaoDoador() {

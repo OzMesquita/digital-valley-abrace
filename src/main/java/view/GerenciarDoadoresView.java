@@ -294,7 +294,7 @@ public class GerenciarDoadoresView {
 		label.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/assistidos.png").getAbsolutePath()));
 		label.setBounds(560, 10, 137, 109);
 		
-		controle.preencherTabelaDoadoresFisicos(controle.obterTodosDoadoresFisicos());
+		controle.preencherTabelaDoadores(controle.obterTodosDoadoresFisicos());
 		shlGerenciarDoadoresFisicos.open();
 		shlGerenciarDoadoresFisicos.layout();
 		while (!shlGerenciarDoadoresFisicos.isDisposed()) {

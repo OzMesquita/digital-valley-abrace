@@ -34,7 +34,7 @@ public class PessoaJuridicaDAO extends ExecutaSQL{
 	
 	private void cadastrarDoadorJuridico(PessoaJuridica pessoaJuridica) throws SQLException{
         PreparedStatement stmt = null;
-        String sql = "INSERT INTO ABRACE.Pessoa_Juridica (cnpj, fantasia, idPessoa)" + "VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO ABRACE.Pessoa_Juridica (cnpj, fantasia, idPessoa) VALUES (?, ?, ?)";
         stmt = getConexao().prepareStatement(sql);
         if(getPessoaPeloCNPJ(pessoaJuridica.getCnpj())) {
 			rollBack(new SQLException("CNPJ já existente no sistema!"));
@@ -48,7 +48,7 @@ public class PessoaJuridicaDAO extends ExecutaSQL{
 	
 	public boolean getPessoaPeloCNPJ(String cnpj) throws SQLException {
 		PreparedStatement stmt = null;
-		String sql = "SELECT ABRACE.Pessoa_Juridica.idPessoa FROM ABRACE.Pessoa_Juridica WHERE ABRACE.Pessoa_Fisica cnpj=?";
+		String sql = "SELECT ABRACE.Pessoa_Juridica.idPessoa FROM ABRACE.Pessoa_Juridica WHERE ABRACE.Pessoa_Juridica.cnpj=?";
 		stmt = getConexao().prepareStatement(sql);
 		stmt.setString(1, cnpj);
 		ResultSet rs = stmt.executeQuery();
@@ -160,5 +160,13 @@ public class PessoaJuridicaDAO extends ExecutaSQL{
 			e.printStackTrace();
 		}
 		return null;
+	}
+	
+	public static void main(String[] args) {
+		PessoaJuridicaDAO dao = new PessoaJuridicaDAO(new ConnectionFactory().getConnection());
+		ArrayList<PessoaJuridica> ps = dao.listarDoadorJuridico();
+		for(PessoaJuridica p : ps) {
+			System.out.println(p);
+		}
 	}
 }
