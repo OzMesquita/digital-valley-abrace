@@ -12,14 +12,14 @@ import facade.DoadorFachada;
 import model.Pessoa;
 import model.PessoaFisica;
 import model.PessoaJuridica;
-import view.EditarDoadorJuridicoView;
+import view.EditarDoadorPJView;
 import view.EditarDoadorPFView;
 import view.GerenciarDoadoresView;
 
 public class GerenciarDoadoresControle {
 	private GerenciarDoadoresView view; 
 	private DoadorFachada fachada;
-	private List<Pessoa> listaTodosDoadoresFisicos;
+	private List<Pessoa> listaTodosDoadores;
 	private List<Pessoa> listaExibidaNaTabela;
 	
 	public GerenciarDoadoresView getView() {
@@ -54,10 +54,10 @@ public class GerenciarDoadoresControle {
 		view.getTable().removeAll();
 	}
 	
-	public List<Pessoa> obterTodosDoadoresFisicos() {
+	public List<Pessoa> obterTodosDoadores() {
 		excluirLinhasDaTabela();
-		listaTodosDoadoresFisicos = fachada.getTodosDoadores();
-		return listaTodosDoadoresFisicos;
+		listaTodosDoadores = fachada.getTodosDoadores();
+		return listaTodosDoadores;
 	}
 	
 	public void preencherTabelaDoadores(List<Pessoa> list) {
@@ -93,13 +93,13 @@ public class GerenciarDoadoresControle {
         
       }
 	
-	public List<Pessoa> pesquisarAssistidos(String nomePesquisa) {
+	public List<Pessoa> pesquisarDoadores(String nomePesquisa) {
 		excluirLinhasDaTabela();
 		List<Pessoa> listaPesquisaDoadoresFisicos = new ArrayList<Pessoa>();
 		
-		for(int i = 0; i < listaTodosDoadoresFisicos.size(); i++) {
-			if(listaTodosDoadoresFisicos.get(i).getNome().toLowerCase().contains(nomePesquisa.toLowerCase())) {
-				listaPesquisaDoadoresFisicos.add(listaTodosDoadoresFisicos.get(i));
+		for(int i = 0; i < listaTodosDoadores.size(); i++) {
+			if(listaTodosDoadores.get(i).getNome().toLowerCase().contains(nomePesquisa.toLowerCase())) {
+				listaPesquisaDoadoresFisicos.add(listaTodosDoadores.get(i));
 			}
 		}
 		return listaPesquisaDoadoresFisicos;
@@ -107,14 +107,14 @@ public class GerenciarDoadoresControle {
 	
 	public void getEvent(SelectionEvent event) {
 		if (event.getSource().toString().equals("Button {Pesquisar}")) {
-			preencherTabelaDoadores(pesquisarAssistidos(view.getTfPesquisa().getText()));
+			preencherTabelaDoadores(pesquisarDoadores(view.getTfPesquisa().getText()));
 		}
 		if (event.getSource().toString().equals("Button {Editar Doador}")) {
 			PessoaFisica a = fachada.obterDoadorFisico(listaExibidaNaTabela.get(view.getTable().getSelectionIndex()).getId());
 			if(a == null) {
 				PessoaJuridica p = fachada.obterDoadorJuridico(listaExibidaNaTabela.get(view.getTable().getSelectionIndex()).getId());
 				view.getShlGerenciarDoadoresFisicos().dispose();
-				EditarDoadorJuridicoView.main(p);
+				EditarDoadorPJView.main(p);
 
 			}else {
 				view.getShlGerenciarDoadoresFisicos().dispose();
@@ -125,7 +125,7 @@ public class GerenciarDoadoresControle {
 			if(confirmacao()) {
 				fachada.excluirDoador(listaExibidaNaTabela.get(view.getTable().getSelectionIndex()).getId());
 				excluirLinhasDaTabela();
-				preencherTabelaDoadores(obterTodosDoadoresFisicos());
+				preencherTabelaDoadores(obterTodosDoadores());
 			}
 		}
 	}

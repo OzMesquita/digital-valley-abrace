@@ -7,25 +7,25 @@ import exceptions.PessoaInvalidaException;
 import exceptions.PessoaJuridicaInvalidaException;
 import facade.DoadorFachada;
 import model.PessoaJuridica;
-import view.EditarDoadorJuridicoView;
+import view.EditarDoadorPJView;
 import view.GerenciarDoadoresView;
 
 public class EditarDoadorJuridicoControle {
 
-	private EditarDoadorJuridicoView view;
+	private EditarDoadorPJView view;
 	private DoadorFachada fachada;
 	
-	public EditarDoadorJuridicoControle (EditarDoadorJuridicoView view){
+	public EditarDoadorJuridicoControle (EditarDoadorPJView view){
 		setView(view);
 		setFachada(new DoadorFachada());
 	}
 	
-	public EditarDoadorJuridicoView getView() {
+	public EditarDoadorPJView getView() {
 		return view;
 	}
 
 
-	public void setView(EditarDoadorJuridicoView view) {
+	public void setView(EditarDoadorPJView view) {
 		this.view = view;
 	}
 

@@ -16,19 +16,19 @@ import org.eclipse.wb.swt.SWTResourceManager;
 import control.EditarDoadorJuridicoControle;
 import model.PessoaJuridica;
 
-public class EditarDoadorJuridicoView {
+public class EditarDoadorPJView {
 
 	private EditarDoadorJuridicoControle controle;
 	
 	private Shell shlEditarDoador_1;
 	
 	private PessoaJuridica doador;
-	public EditarDoadorJuridicoView(PessoaJuridica doador) {
+	public EditarDoadorPJView(PessoaJuridica doador) {
 		this.setControle(new EditarDoadorJuridicoControle(this));
 		this.setDoador(doador);
 	}
 
-	public EditarDoadorJuridicoView() {
+	public EditarDoadorPJView() {
 		this.setControle(new EditarDoadorJuridicoControle(this));
 	}
 
@@ -125,7 +125,7 @@ public class EditarDoadorJuridicoView {
 	 */
 	public static void main(PessoaJuridica doador) {
 		try {
-			EditarDoadorJuridicoView window = new EditarDoadorJuridicoView(doador);
+			EditarDoadorPJView window = new EditarDoadorPJView(doador);
 			window.open();
 		} catch (Exception e) {
 			e.printStackTrace();
