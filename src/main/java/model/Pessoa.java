@@ -109,8 +109,11 @@ public class Pessoa {
 		return email;
 	}
 	public void setEmail(String email) throws PessoaInvalidaException{
-		if(email != null && !email.contains("@")) {
-			throw new PessoaInvalidaException("O e-mail informado é inválido");
+		if(email != null) {
+			/* Qualquer coisa a gente vê depois uma forma de inserir isso de novo.
+			 * else if(!email.contains("@")) {
+				throw new PessoaInvalidaException("O e-mail informado é inválido");
+			}*/
 		}
 		this.email = email;
 	}

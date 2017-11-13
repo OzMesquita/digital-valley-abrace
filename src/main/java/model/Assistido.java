@@ -34,7 +34,7 @@ public class Assistido extends PessoaFisica {
 	}
 
 	public void setApelido(String apelido) throws AssistidoInvalidoException {
-		if(apelido == null || apelido == "") {
+		if(apelido == null) {
     		throw new AssistidoInvalidoException("O apelido informado é inválido!");
     	}
 		this.apelido = apelido;
