@@ -1,7 +1,13 @@
 package relatorio;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.net.MalformedURLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
@@ -46,6 +52,12 @@ public abstract class RelatorioFacade {
 		table.addCell("");
 		
 		document.add(table);
+	}
+	
+	protected OutputStream gravarDocumento(String subtitulo) throws FileNotFoundException {
+		DateTimeFormatter formatador = DateTimeFormatter.ofPattern("'DATA['dd'_'MM'_'yyyy'] HORA['HH.mm.ss']'");
+		new File("Relatorios").mkdir();
+		return new FileOutputStream("Relatorios/"+subtitulo+" " + LocalDateTime.now().format(formatador) + ".pdf");
 	}
 
 }

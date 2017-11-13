@@ -1,8 +1,10 @@
 package relatorio;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -20,18 +22,15 @@ import com.itextpdf.text.pdf.PdfWriter;
 import model.Assistido;
 
 public class RelatorioAssistidoFacade extends RelatorioFacade {
-
-	public void relatorioDeAssistido(ArrayList<Assistido> assistidos, String Subtitulo, boolean exibirVivos, boolean exibirMortos) throws DocumentException, IOException {
-		
-		
+	
+	public void relatorioDeAssistido(ArrayList<Assistido> assistidos, boolean exibirVivos, boolean exibirMortos) throws DocumentException, IOException {
 		
 		// ==================================================================================================//
 		// step 1 - Criando o documento
 		// ==================================================================================================//
 		Document document = new Document();
-		DateTimeFormatter formatador = DateTimeFormatter.ofPattern("'DATA['dd'_'MM'_'yyyy'] HORA['HH.mm.ss']'");
-		new File("Relatorios").mkdir();
-		PdfWriter.getInstance(document, new FileOutputStream("Relatorios/Relatorio de Assistidos " + LocalDateTime.now().format(formatador) + ".pdf"));
+		String subtitulo = "Relatório dos Assistidos da ONG ABRACE";
+		PdfWriter.getInstance(document, gravarDocumento(subtitulo));
 		document.open();
 		// ==================================================================================================//
 		
@@ -44,7 +43,7 @@ public class RelatorioAssistidoFacade extends RelatorioFacade {
 		
 		DateTimeFormatter formatadorDataCadastro = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
 		
-		Paragraph sub = new Paragraph(Subtitulo,new Font(FontFamily.UNDEFINED,12,Font.BOLD));
+		Paragraph sub = new Paragraph(subtitulo,new Font(FontFamily.UNDEFINED,12,Font.BOLD));
 		Paragraph emissao = new Paragraph("Emissão: " + LocalDateTime.now().format(formatadorDataCadastro));
 		
 		sub.setSpacingBefore(20);
@@ -134,6 +133,8 @@ public class RelatorioAssistidoFacade extends RelatorioFacade {
 		
 		document.close();
 	}
+
+	
 	
 
 }
