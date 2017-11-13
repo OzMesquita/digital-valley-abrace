@@ -12,9 +12,9 @@ import exceptions.AssistidoInvalidoException;
 import exceptions.PessoaFisicaException;
 import exceptions.PessoaInvalidaException;
 import exceptions.PessoaJuridicaInvalidaException;
-import facade.RelatorioFacade;
 import model.Assistido;
 import model.Pessoa;
+import relatorio.RelatorioFacade;
 
 public class RelatorioDAOTest {
 
@@ -30,5 +30,4 @@ public class RelatorioDAOTest {
 			e.printStackTrace();
 		}
 	}
-	
 }

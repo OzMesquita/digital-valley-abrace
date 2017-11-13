@@ -1,4 +1,4 @@
-package facade;
+package relatorio;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -63,10 +63,10 @@ public class RelatorioFacade {
 		PdfPTable table2 = new PdfPTable(new float[] { 0.4f, 0.18f, 0.14f, 0.09f });
 		table2.setSpacingBefore(20);
 		
-		PdfPCell nome      = new PdfPCell(new Paragraph("Nome")),
-				 cpf       = new PdfPCell(new Paragraph("CPF")),
-				 nascimento= new PdfPCell(new Paragraph("Nascimento")),
-				 status    = new PdfPCell(new Paragraph("Status"));
+		PdfPCell nome      = new PdfPCell(new Paragraph("Nome",new Font(FontFamily.UNDEFINED,12,Font.BOLD))),
+				 cpf       = new PdfPCell(new Paragraph("CPF",new Font(FontFamily.UNDEFINED,12,Font.BOLD))),
+				 nascimento= new PdfPCell(new Paragraph("Nascimento",new Font(FontFamily.UNDEFINED,12,Font.BOLD))),
+				 status    = new PdfPCell(new Paragraph("Status",new Font(FontFamily.UNDEFINED,12,Font.BOLD)));
 		
 		nome.setHorizontalAlignment(Element.ALIGN_CENTER);
 		cpf.setHorizontalAlignment(Element.ALIGN_CENTER);
@@ -89,10 +89,16 @@ public class RelatorioFacade {
 		int Assistidoscontados = 0;
 		
 		for (Assistido assistido : assistidos) {
+			
 			PdfPCell cellNome       = new PdfPCell(new Paragraph(assistido.getNome())),
 					 cellCPF        = new PdfPCell(new Paragraph(assistido.getCpf())),
 					 cellNascimento = new PdfPCell(new Paragraph(assistido.getDataNasc().format(formatadorDataNascimento))),
 					 cellsituacao   = new PdfPCell(new Paragraph(assistido.getSituacao() ? "vivo" : "falecido"));
+			
+			cellCPF.setHorizontalAlignment(Element.ALIGN_CENTER);
+			cellNascimento.setHorizontalAlignment(Element.ALIGN_CENTER);
+			cellsituacao.setHorizontalAlignment(Element.ALIGN_CENTER);
+			
 			if (exibirVivos && assistido.getSituacao()) {
 				table2.addCell(cellNome);
 				table2.addCell(cellCPF);
@@ -100,6 +106,7 @@ public class RelatorioFacade {
 				table2.addCell(cellsituacao);
 				Assistidoscontados++;
 			}
+			
 			if (exibirMortos && !assistido.getSituacao()) {
 				table2.addCell(cellNome);
 				table2.addCell(cellCPF);
@@ -107,13 +114,19 @@ public class RelatorioFacade {
 				table2.addCell(cellsituacao);
 				Assistidoscontados++;
 			}
+			
 		}
+		
 		PdfPCell totalAssistidos = new PdfPCell(new Paragraph("Total de Assitidos ",new Font(FontFamily.UNDEFINED,12,Font.BOLD)));
 		PdfPCell numeroTotalAssistidos = new PdfPCell(new Paragraph(String.valueOf(Assistidoscontados)));
+		
 		totalAssistidos.setColspan(3);
 		totalAssistidos.setHorizontalAlignment(Element.ALIGN_RIGHT);
 		totalAssistidos.setBackgroundColor(BaseColor.LIGHT_GRAY);
+		
+		numeroTotalAssistidos.setHorizontalAlignment(Element.ALIGN_CENTER);
 		numeroTotalAssistidos.setBackgroundColor(BaseColor.LIGHT_GRAY);
+		
 		table2.addCell(totalAssistidos);
 		table2.addCell(numeroTotalAssistidos);
 		table2.addCell("");
@@ -142,8 +155,8 @@ public class RelatorioFacade {
 		    
 		PdfPTable table = new PdfPTable(2);
 		    
-		PdfPCell header = new PdfPCell(new Paragraph("Organização:"));
-		PdfPCell email = new PdfPCell(new Paragraph("E-mail:"));
+		PdfPCell header = new PdfPCell(new Paragraph("ORGANIZAÇÃO: ONG Russas Transformando Vidas - ABRACE"));
+		PdfPCell email = new PdfPCell(new Paragraph("E-MAIL: abrace.russas@gmail.com"));
 	        
 		table.setSpacingBefore(20);
 		    
@@ -152,11 +165,11 @@ public class RelatorioFacade {
 		    
 		table.addCell(header);
 		table.addCell("CNPJ:");
-		table.addCell("Endereço:");
-		table.addCell("CEP:");
-		table.addCell("Cidade:");
-		table.addCell("estado:");
-		table.addCell("Telefone:");
+		table.addCell("ENDEREÇO: Vila Matoso, 82");
+		table.addCell("CEP: 62900-000");
+		table.addCell("CIDADE: Russas");
+		table.addCell("ESTADO: Ceará");
+		table.addCell("TELEFONE: (85) 99935-7677");
 		table.addCell(email);
 		table.addCell("");
 		
