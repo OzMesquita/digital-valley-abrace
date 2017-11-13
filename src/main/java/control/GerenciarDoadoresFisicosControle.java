@@ -115,7 +115,7 @@ public class GerenciarDoadoresFisicosControle {
 		}
 		if(event.getSource().toString().equals("Button {Excluir Doador}")) {
 			if(confirmacao()) {
-				fachada.excluirDoadorFisico(listaExibidaNaTabela.get(view.getTable().getSelectionIndex()).getId());
+				fachada.excluirDoador(listaExibidaNaTabela.get(view.getTable().getSelectionIndex()).getId());
 				excluirLinhasDaTabela();
 				preencherTabelaDoadores(obterTodosDoadoresFisicos());
 			}

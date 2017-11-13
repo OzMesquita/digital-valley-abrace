@@ -105,7 +105,7 @@ public class DoadorFachada {
 		return false;
 	}
 	
-	public boolean excluirDoadorFisico(int id) {
+	private boolean excluirDoadorFisico(int id) {
 		PessoaFisicaDAO dao = new PessoaFisicaDAO(new ConnectionFactory().getConnection());
 		boolean resultado = dao.excluirDoadorFisico(dao.getPessoaFisica(id));
 		try {
@@ -116,15 +116,30 @@ public class DoadorFachada {
 		return resultado;
 	}
 
-	public boolean excluirDoadorJuridico(int id) {
+	private boolean excluirDoadorJuridico(int id) {
 		PessoaJuridicaDAO dao = new PessoaJuridicaDAO(new ConnectionFactory().getConnection());
-			boolean resultado = dao.excluirDoadorJuridico(dao.getPessoaJuridica(id));
-			try {
-				dao.getConexao().close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+		boolean resultado = dao.excluirDoadorJuridico(dao.getPessoaJuridica(id));
+		try {
+			dao.getConexao().close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return resultado;
+	}
+	
+	public boolean excluirDoador(int id) {
+		PessoaJuridicaDAO dao = new PessoaJuridicaDAO(new ConnectionFactory().getConnection());
+		PessoaJuridica p = dao.getPessoaJuridica(id);
+		try {
+			dao.getConexao().close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		if(p == null) {
+			return excluirDoadorFisico(id);
+		}else {
+			return excluirDoadorJuridico(id);
+		}
 	}
 
 	public static Pessoa getDadosDoador(int id) {

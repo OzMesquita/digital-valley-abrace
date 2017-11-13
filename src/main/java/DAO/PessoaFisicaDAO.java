@@ -89,6 +89,7 @@ public class PessoaFisicaDAO extends ExecutaSQL {
 		try {
 			String sql = "UPDATE ABRACE.Pessoa SET ativo=false WHERE idPessoa=?";
 			PreparedStatement stmt = getConexao().prepareStatement(sql);
+			stmt.setInt(1, pessoaFisica.getId());
 			stmt.execute();
 			stmt.close();
 		} catch (SQLException e) {
