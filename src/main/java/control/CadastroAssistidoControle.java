@@ -13,67 +13,64 @@ import model.Assistido;
 import view.CadastroAssistidoView;
 
 public class CadastroAssistidoControle {
-	private CadastroAssistidoView view;
-	private AssistidoFachada fachada;
+	private CadastroAssistidoView viewAssistido;
+	private AssistidoFachada fachadaAssistido;
 
-	public CadastroAssistidoControle(CadastroAssistidoView view) throws ClassNotFoundException {
-		setView(view);
-		setFachada(new AssistidoFachada());
+	public CadastroAssistidoControle(CadastroAssistidoView viewAssistido) throws ClassNotFoundException {
+		setViewAssistido(viewAssistido);
+		setFachadaAssistido(new AssistidoFachada());
 	}
 
-	public CadastroAssistidoView getView() {
-		return view;
+	public CadastroAssistidoView getViewAssistido() {
+		return viewAssistido;
 	}
 
-	public void setView(CadastroAssistidoView view) {
-		this.view = view;
+	public void setViewAssistido(CadastroAssistidoView viewAssistido) {
+		this.viewAssistido = viewAssistido;
 	}
 
-	public AssistidoFachada getFachada() {
-		return fachada;
+	public AssistidoFachada getFachadaAssistido() {
+		return fachadaAssistido;
 	}
 
-	public void setFachada(AssistidoFachada fachada) {
-		this.fachada = fachada;
+	public void setFachadaAssistido(AssistidoFachada fachadaAssistido) {
+		this.fachadaAssistido = fachadaAssistido;
 	}
 
 	public void getEvent(SelectionEvent event) throws PessoaInvalidaException, PessoaFisicaException, SQLException {
 		if (event.getSource().toString().equals("Button {Cadastrar}")) {
 			Assistido assistido = new Assistido();
 			try {
-				assistido.setNome(view.getTfNome().getText());
-				assistido.setApelido(view.getTfApelido().getText());
-				assistido.setCpf(view.getTfCPF().getText());
-				assistido.setRg(view.getTfRG().getText());
-				assistido.setEndereco(view.getTfEndereco().getText());
-				assistido.setDataNasc(LocalDate.of(view.getTfDataNascimento().getYear(),
-						view.getTfDataNascimento().getMonth() + 1, view.getTfDataNascimento().getDay()));
-				assistido.setTelefone(view.getTfTelefone1().getText());
-				assistido.setTelefone2(view.getTfTelefone2().getText());
-				assistido.setEmail(view.getTfEmail().getText());
-				assistido.setTipoDeCancer(view.getTfTipoCancer().getText());
-				assistido.setSituacao(view.getTfSituacao());
+				assistido.setNome(viewAssistido.getTfNome().getText());
+				assistido.setApelido(viewAssistido.getTfApelido().getText());
+				assistido.setCpf(viewAssistido.getTfCPF().getText());
+				assistido.setRg(viewAssistido.getTfRG().getText());
+				assistido.setEndereco(viewAssistido.getTfEndereco().getText());
+				assistido.setDataNasc(LocalDate.of(viewAssistido.getTfDataNascimento().getYear(), viewAssistido.getTfDataNascimento().getMonth() + 1, viewAssistido.getTfDataNascimento().getDay()));
+				assistido.setTelefone(viewAssistido.getTfTelefone1().getText());
+				assistido.setTelefone2(viewAssistido.getTfTelefone2().getText());
+				assistido.setEmail(viewAssistido.getTfEmail().getText());
+				assistido.setTipoDeCancer(viewAssistido.getTfTipoCancer().getText());
+				assistido.setSituacao(viewAssistido.getTfSituacao());
 				assistido.setDoador(true);
-
-				if (fachada.cadastrarAssistido(assistido)) {
-					view.mensagemSucesso(assistido);
-					view.getShlCadastroAssistido().dispose();
+				if (fachadaAssistido.cadastrarAssistido(assistido)) {
+					viewAssistido.mensagemSucesso(assistido);
+					viewAssistido.getShlCadastroAssistido().dispose();
 				}
 			} catch (PessoaInvalidaException e) {
-				view.mensagemErro(e);
+				viewAssistido.mensagemErro(e);
 			} catch (AssistidoInvalidoException e) {
-				view.mensagemErro(e);
+				viewAssistido.mensagemErro(e);
 			} catch (PessoaFisicaException e) {
-				view.mensagemErro(e);
+				viewAssistido.mensagemErro(e);
 			} catch (SQLException e) {
 				if(e.getMessage().contains("CPF já existente")) {
-					view.mensagemErro(e);
+					viewAssistido.mensagemErro(e);
 				}
 				else {
-					view.mensagemErro(new Exception("Erro na operação! Contate o suporte!"));
+					viewAssistido.mensagemErro(new Exception("Erro na operação! Contate o suporte!"));
 				}
 			}
-
 		}
 	}
 }
