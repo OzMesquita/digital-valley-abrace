@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.TableItem;
 
@@ -76,16 +77,21 @@ public class DoacaoControle {
 			}
 		}
 		if (event.getSource().toString().equals("Button {Salvar doação}")) {
+			realizarDoacao();
+		}
+	}
+
+	public void realizarDoacao() {
+		try {
 			DoacaoSingleton.setValor(Double.parseDouble(view2.getTfValor().getText()));
 			DoacaoSingleton.setDataDoacao(LocalDate.of(view2.getDateTime_1().getYear(), view2.getDateTime_1().getMonth() + 1, view2.getDateTime_1().getDay()));
-			try {
-				if(fachada.realizarDoacao(DoacaoSingleton.getDoacao())) {
-					view2.mensagemSucesso();
-					view2.getShlRealizarDoao().dispose();
-				}
-			} catch(Exception e) {
-				view2.mensagemErro(e);
+			
+			if(fachada.realizarDoacao(DoacaoSingleton.getDoacao())) {
+				view2.mensagemSucesso();
+				view2.getShlRealizarDoao().dispose();
 			}
+		} catch(Exception e) {
+			view2.mensagemErro(e);
 		}
 	}
 	
@@ -121,5 +127,13 @@ public class DoacaoControle {
 
 	public void excluirLinhasDaTabela() {
 		view1.getTable().removeAll();
+	}
+	
+	public void identificarTelasEspeciais(KeyEvent evento) {
+		if(evento.keyCode == 13 || evento.keyCode == 16777296) {
+			realizarDoacao();
+		} if(evento.keyCode == 27) {
+			view2.getShlRealizarDoao().dispose();
+		}
 	}
 }

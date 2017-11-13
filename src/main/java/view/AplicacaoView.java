@@ -65,6 +65,12 @@ public class AplicacaoView {
 		});
 		
 		Button btnGerenciarDoaes = new Button(shlOngRussasTransformando, SWT.NONE);
+		btnGerenciarDoaes.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent arg0) {
+				GerenciarDoacoesView.main();
+			}
+		});
 		btnGerenciarDoaes.setText("Gerenciar Doa\u00E7\u00F5es");
 		btnGerenciarDoaes.setImage(SWTResourceManager.getImage("C:\\Users\\Thiago Hellen\\Desktop\\src\\main\\java\\view\\img\\doadores-small.png"));
 		btnGerenciarDoaes.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));

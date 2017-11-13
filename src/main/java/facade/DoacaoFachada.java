@@ -12,7 +12,17 @@ import model.Doacao;
 public class DoacaoFachada {
 
 	public ArrayList<Doacao> listarDoacoes() {
-		return new ArrayList<Doacao>();
+		DoacaoDAO dao = new DoacaoDAO(new ConnectionFactory().getConnection());
+		ArrayList<Doacao> doacoes = null;
+		try {
+			doacoes = dao.listarDoacoes();
+			dao.getConexao().close();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}catch(DoacaoInvalidaException e) {
+			e.printStackTrace();
+		}
+		return doacoes;
 	}
 	
 	public Doacao obterDoacao(int idDoacao) throws DoacaoInvalidaException {

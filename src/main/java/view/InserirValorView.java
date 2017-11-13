@@ -18,6 +18,8 @@ import org.eclipse.swt.widgets.DateTime;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.KeyAdapter;
+import org.eclipse.swt.events.KeyEvent;
 
 public class InserirValorView {
 
@@ -166,6 +168,12 @@ public class InserirValorView {
 		tfCPFCNPJ.setBounds(266, 264, 331, 37);
 		
 		tfValor = new Text(shlRealizarDoao, SWT.BORDER);
+		tfValor.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				controle.identificarTelasEspeciais(arg0);
+			}
+		});
 		tfValor.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfValor.setBounds(267, 503, 331, 37);
 		
