@@ -77,6 +77,7 @@ public class AssistidoDAO extends ExecutaSQL {
 			String sql = "UPDATE ABRACE.Pessoa SET ativo=false WHERE idPessoa=?";
 			PreparedStatement stmt;
 			stmt = getConexao().prepareStatement(sql);
+			stmt.setInt(1, assistido.getId());
 			stmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -132,7 +133,7 @@ public class AssistidoDAO extends ExecutaSQL {
 		String sql = "SELECT * " + 
 				"FROM PESSOA " + 
 				"JOIN PESSOA_FISICA ON PESSOA.idpessoa=PESSOA_FISICA.idpessoa " + 
-				"join ASSISTIDO ON ASSISTIDO.idpessoa=PESSOA_FISICA.idpessoa";
+				"join ASSISTIDO ON ASSISTIDO.idpessoa=PESSOA_FISICA.idpessoa WHERE PESSOA.ativo = True";
 		try {
 			PreparedStatement stmt = getConexao().prepareStatement(sql);
 			ResultSet rs = stmt.executeQuery();
