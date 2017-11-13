@@ -19,16 +19,16 @@ public class UsuarioDAO extends ExecutaSQL{
 		}
 		
 		public Usuario getUsuario(String login, String senha) throws UsuarioInvalidoException, PessoaInvalidaException {
-	        try {
-	        	String sql = "SELECT idPessoa FROM ABRACE.Usuario, ABRACE.Pessoa WHERE login=? AND senha=? AND Pessoa.ativo = True";
+			try {
+	        	String sql = "SELECT ABRACE.Usuario.idPessoa FROM ABRACE.Usuario, ABRACE.Pessoa WHERE ABRACE.Usuario.login=? AND ABRACE.Usuario.senha=? AND ABRACE.Pessoa.ativo=?";
 	        	PreparedStatement stmt = getConexao().prepareStatement(sql);
-	            stmt.setString(1, login);
+	        	stmt.setString(1, login);
 	            stmt.setString(2, senha);
+	            stmt.setBoolean(3, true);
 	            ResultSet rs = stmt.executeQuery();
-	            if(rs != null){
-	                rs.next();
+	            if(rs.next()){
 	                int id = rs.getInt(1);
-	                return new Usuario(id, login, senha);
+	               return new Usuario(id, login, senha);
 	            }
 	        }catch (SQLException ex) {
 	            System.err.println("Erro com a sintaxe SQL no metodo de consulta. GerenteDAO");    
@@ -88,9 +88,9 @@ public class UsuarioDAO extends ExecutaSQL{
 			String informacaoPessoa = "ABRACE.Pessoa.idPessoa, ABRACE.Pessoa.nome, ABRACE.Pessoa.endereco, ABRACE.Pessoa.telefone1,"
 	                				+ "ABRACE.Pessoa.telefone2, ABRACE.Pessoa.email, ABRACE.Pessoa.dataCadastro,ABRACE.Pessoa.isDoador,";
 			String informacaoPessoaFisica = " ABRACE.Pessoa_Fisica.cpf, ABRACE.Pessoa_Fisica.rg, ABRACE.Pessoa_Fisica.dataNascimento,";
-			String sql = "SELECT "+informacaoPessoa+informacaoPessoaFisica+ "ABRACE.Usuario.login, ABRACE.Usuario.senha"
-					+ "FROM ABRACE.Pessoa, ABRACE.Pessoa_Fisica, ABRACE.Usuario"
-					+ "WHERE ABRACE.Pessoa.ativo=True AND ABRACE.Pessoa.idPessoa=ABRACE.Pessoa_Fisica.idPessoa"
+			String sql = "SELECT "+informacaoPessoa+informacaoPessoaFisica+ "ABRACE.Usuario.login, ABRACE.Usuario.senha "
+					+ "FROM ABRACE.Pessoa, ABRACE.Pessoa_Fisica, ABRACE.Usuario "
+					+ "WHERE ABRACE.Pessoa.ativo=True AND ABRACE.Pessoa.idPessoa=ABRACE.Pessoa_Fisica.idPessoa "
 					+ "AND ABRACE.Pessoa_Fisica.idPessoa=ABRACE.Usuario.idPessoa";
 			try {
 				PreparedStatement stmt = getConexao().prepareStatement(sql);

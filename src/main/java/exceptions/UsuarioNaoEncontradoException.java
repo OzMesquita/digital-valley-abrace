@@ -2,6 +2,6 @@ package exceptions;
 
 public class UsuarioNaoEncontradoException extends Exception {
 	public UsuarioNaoEncontradoException() {
-		super("O usuário informado não está cadastrado no sistema!");
+		super("A senha ou login incorreto");
 	}
 }
