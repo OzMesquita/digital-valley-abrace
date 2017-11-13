@@ -1,10 +1,12 @@
 package control;
 
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.MessageBox;
+import org.eclipse.swt.widgets.TableItem;
 
 import exceptions.DoacaoInvalidaException;
 import facade.DoacaoFachada;
@@ -20,6 +22,7 @@ public class GerenciarDoacoesControle {
 	
 	public GerenciarDoacoesControle(GerenciarDoacoesView view) {
 		this.setView(view);
+		this.fachada = new DoacaoFachada();
 	}
 	
 	public GerenciarDoacoesControle() {
@@ -64,7 +67,16 @@ public class GerenciarDoacoesControle {
 	
 	
 	public void preencherTabelaDoacoes(ArrayList<Doacao> doacoes) {
-		
+		excluirLinhasDaTabela();
+		DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		listaExibidaNaTabela = doacoes;
+		for(int i = 0; i < doacoes.size(); i++) {
+			TableItem item = new TableItem(view.getTable(), SWT.NONE);
+			item.setText(0, Integer.toString(doacoes.get(i).getId()));
+			item.setText(1, doacoes.get(i).getDoador().getNome());
+			item.setText(2, doacoes.get(i).getValor() + "");
+			item.setText(3, doacoes.get(i).getData().format(formatador));
+		}	
 	}
 	
 	public boolean confirmacao() {
