@@ -113,12 +113,12 @@ public class GerenciarDoadoresControle {
 			PessoaFisica a = fachada.obterDoadorFisico(listaExibidaNaTabela.get(view.getTable().getSelectionIndex()).getId());
 			if(a == null) {
 				PessoaJuridica p = fachada.obterDoadorJuridico(listaExibidaNaTabela.get(view.getTable().getSelectionIndex()).getId());
-				this.view.getShlGerenciarDoadoresFisicos().dispose();
-				new EditarDoadorJuridicoView().main(p);
+				view.getShlGerenciarDoadoresFisicos().dispose();
+				EditarDoadorJuridicoView.main(p);
 
 			}else {
-				this.view.getShlGerenciarDoadoresFisicos().dispose();
-				new EditarDoadorPFView().main(a);
+				view.getShlGerenciarDoadoresFisicos().dispose();
+				EditarDoadorPFView.main(a);
 			}
 		}
 		if(event.getSource().toString().equals("Button {Excluir Doador}")) {

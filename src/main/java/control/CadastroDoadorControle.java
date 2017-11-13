@@ -15,7 +15,7 @@ public class CadastroDoadorControle {
 	private CadastroDoadorPFisicaView view;
 	private DoadorFachada facade; 
 	
-	public void getEvent(SelectionEvent event) throws PessoaInvalidaException, PessoaFisicaException, SQLException{
+	public void getEvent(SelectionEvent event) {
 		if (event.getSource().toString().equals("Button {Cadastrar}")){
 			try {
 				PessoaFisica doador = new PessoaFisica();

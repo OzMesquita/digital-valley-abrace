@@ -280,16 +280,7 @@ public class CadastroDoadorPFisicaView {
 		btnCadastrar.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
-				try {
-					controle.getEvent(arg0);
-				} catch (PessoaInvalidaException e1) {
-					mensagemErro(e1);
-				} catch (PessoaFisicaException e) {
-					mensagemErro(e);
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				controle.getEvent(arg0);
 			}
 		});
 		btnCadastrar.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/ok.png").getAbsolutePath()));

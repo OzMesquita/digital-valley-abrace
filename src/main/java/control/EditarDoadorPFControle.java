@@ -9,6 +9,7 @@ import exceptions.PessoaInvalidaException;
 import facade.DoadorFachada;
 import model.PessoaFisica;
 import view.EditarDoadorPFView;
+import view.GerenciarDoadoresView;
 
 public class EditarDoadorPFControle {
 	private EditarDoadorPFView view;
@@ -32,11 +33,11 @@ public class EditarDoadorPFControle {
 				doador.setTelefone(view.getTfTelefone1().getText());
 				doador.setTelefone2(view.getTfTelefone2().getText());
 				doador.setEmail(view.getTfEmail().getText());
-				doador.setAtivo(view.getTfStatus());
 				doador.setDataCadastro(LocalDate.now());
 				if (facade.editarDoadorPF(doador)) {
 					view.mensagemSucesso(doador);
-					view.getShlEditarDoador().dispose();
+					view.getShlEditarDoadorPessoa().dispose();
+					GerenciarDoadoresView.main();
 				}
 			} catch (PessoaInvalidaException e) {
 				view.mensagemErro(e);

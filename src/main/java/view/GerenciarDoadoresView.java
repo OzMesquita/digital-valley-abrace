@@ -204,12 +204,12 @@ public class GerenciarDoadoresView {
 		tblclmnId.setResizable(false);
 		
 		tblclmnNomeDoDoadorFisico = new TableColumn(table, SWT.CENTER);
-		tblclmnNomeDoDoadorFisico.setWidth(275);
+		tblclmnNomeDoDoadorFisico.setWidth(250);
 		tblclmnNomeDoDoadorFisico.setText("Nome do Doador");
 		tblclmnNomeDoDoadorFisico.setResizable(false);
 		
 		tblclmnDataDeNascimento = new TableColumn(table, SWT.CENTER);
-		tblclmnDataDeNascimento.setWidth(168);
+		tblclmnDataDeNascimento.setWidth(195);
 		tblclmnDataDeNascimento.setText("CPF / CNPJ");
 		tblclmnDataDeNascimento.setResizable(false);
 		
@@ -249,7 +249,7 @@ public class GerenciarDoadoresView {
 		});
 		btnEditar.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/editar.png").getAbsolutePath()));
 		btnEditar.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
-		btnEditar.setBounds(117, 588, 223, 54);
+		btnEditar.setBounds(346, 588, 223, 54);
 		btnEditar.setText("Editar Doador");
 		
 		btnExcluir = new Button(shlGerenciarDoadoresFisicos, SWT.NONE);
@@ -262,7 +262,7 @@ public class GerenciarDoadoresView {
 		btnExcluir.setEnabled(false);
 		btnExcluir.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
 		btnExcluir.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/lixeira.png").getAbsolutePath()));
-		btnExcluir.setBounds(346, 588, 223, 54);
+		btnExcluir.setBounds(117, 588, 223, 54);
 		btnExcluir.setText("Excluir Doador");
 		
 		btnCadastrar = new Button(shlGerenciarDoadoresFisicos, SWT.NONE);

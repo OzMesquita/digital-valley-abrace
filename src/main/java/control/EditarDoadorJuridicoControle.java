@@ -8,6 +8,7 @@ import exceptions.PessoaJuridicaInvalidaException;
 import facade.DoadorFachada;
 import model.PessoaJuridica;
 import view.EditarDoadorJuridicoView;
+import view.GerenciarDoadoresView;
 
 public class EditarDoadorJuridicoControle {
 
@@ -40,7 +41,7 @@ public class EditarDoadorJuridicoControle {
 
 	
 	public void getEvent(SelectionEvent event) {
-		if (event.getSource().toString().equals("Button {Salvar altera\\u00E7\\u00F5es}")){
+		if (event.getSource().toString().equals("Button {Salvar alterações}")){
 			PessoaJuridica doador = new PessoaJuridica();
 			try {
 				doador.setId(view.getDoador().getId());
@@ -54,6 +55,7 @@ public class EditarDoadorJuridicoControle {
 				if (fachada.editarDoadorJuridico(doador)) {
 					view.mensagemSucesso(doador);
 					view.getShlCadastroDoador().dispose();
+					GerenciarDoadoresView.main();
 				}
 			} catch (PessoaInvalidaException e) {
 				view.mensagemErro(e);

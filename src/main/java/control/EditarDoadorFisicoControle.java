@@ -32,11 +32,10 @@ public class EditarDoadorFisicoControle {
 				doador.setTelefone(view.getTfTelefone1().getText());
 				doador.setTelefone2(view.getTfTelefone2().getText());
 				doador.setEmail(view.getTfEmail().getText());
-				doador.setAtivo(view.getTfStatus());
 				doador.setDataCadastro(LocalDate.now());
 				if (facade.editarDoadorPF(doador)) {
 					view.mensagemSucesso(doador);
-					view.getShlEditarDoador().dispose();
+					view.getShlEditarDoadorPessoa().dispose();
 				}
 			} catch (PessoaInvalidaException e) {
 				view.mensagemErro(e);

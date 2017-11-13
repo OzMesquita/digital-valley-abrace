@@ -20,7 +20,6 @@ public class EditarDoadorJuridicoView {
 
 	private EditarDoadorJuridicoControle controle;
 	
-	protected Shell shlEditarDoador = new Shell();
 	private Shell shlEditarDoador_1;
 	
 	private PessoaJuridica doador;
@@ -177,7 +176,7 @@ public class EditarDoadorJuridicoView {
 		label_4.setBounds(232, 305, 7, 21);
 		shlEditarDoador_1.open();
 		shlEditarDoador_1.layout();
-		while (!shlEditarDoador.isDisposed()) {
+		while (!shlEditarDoador_1.isDisposed()) {
 			if (!display.readAndDispatch()) {
 				display.sleep();
 			}
@@ -277,7 +276,7 @@ public class EditarDoadorJuridicoView {
 		btnCancelar.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
-				shlEditarDoador.dispose();
+				shlEditarDoador_1.dispose();
 			}
 		});
 		btnCancelar.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/cancelar.png").getAbsolutePath()));
@@ -286,7 +285,7 @@ public class EditarDoadorJuridicoView {
 		btnCancelar.setText("Cancelar");
 		
 		Label label_9 = new Label(shlEditarDoador_1, SWT.NONE);
-		label_9.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/doadores.png").getAbsolutePath()));
+		label_9.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/pessoa-juridica-medium.png").getAbsolutePath()));
 		label_9.setBounds(510, 10, 109, 114);
 	
 		tfNome.setText(doador.getNome());
