@@ -98,7 +98,7 @@ public class LoginView {
 		tfUsuario.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent arg0) {
-				controle.capturarEnter(arg0);
+				controle.identificarTelasEspeciais(arg0);
 			}
 		});
 		tfUsuario.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
@@ -113,7 +113,7 @@ public class LoginView {
 		tfSenha.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent arg0) {
-				controle.capturarEnter(arg0);
+				controle.identificarTelasEspeciais(arg0);
 			}
 		});
 		tfSenha.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));

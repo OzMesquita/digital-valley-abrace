@@ -65,11 +65,15 @@ public class DoacaoControle {
 			SelecionarTipoDoadorView.main();
 		}
 		if (event.getSource().toString().equals("Button {Continuar}")) {
-			int idPessoa = listaExibidaNaTabela.get(view1.getTable().getSelectionIndex()).getId();
-			DoacaoSingleton.setDoador(pessoaFachada.obterPessoa(idPessoa));
-			DoacaoSingleton.setCpfCNPJ(fachada.obterCPFCNPJ(idPessoa));
-			view1.getShlDoacao().dispose();
-			InserirValorView.main();
+			try {
+				int idPessoa = listaExibidaNaTabela.get(view1.getTable().getSelectionIndex()).getId();
+				DoacaoSingleton.setDoador(pessoaFachada.obterPessoa(idPessoa));
+				DoacaoSingleton.setCpfCNPJ(fachada.obterCPFCNPJ(idPessoa));
+				view1.getShlDoacao().dispose();
+				InserirValorView.main();
+			} catch (ArrayIndexOutOfBoundsException e) {
+				view1.mensagemErro(new Exception("Selecione um doador para continuar"));
+			}
 		}
 		if (event.getSource().toString().equals("Button {Salvar doação}")) {
 			DoacaoSingleton.setValor(Double.parseDouble(view2.getTfValor().getText()));

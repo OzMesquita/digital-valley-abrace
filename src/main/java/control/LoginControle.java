@@ -20,9 +20,11 @@ public class LoginControle {
 	private LoginFachada facade;
 	private PessoaDAO pessoaDAO = new PessoaDAO(new ConnectionFactory().getConnection());
 	
-	public void capturarEnter(KeyEvent evento) {
+	public void identificarTelasEspeciais(KeyEvent evento) {
 		if(evento.keyCode == 13 || evento.keyCode == 16777296) {
 			validarLogin();
+		} if(evento.keyCode == 27) {
+			view.getShlOngRussasTransformando().dispose();
 		}
 	}
 		
