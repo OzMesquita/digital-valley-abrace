@@ -31,8 +31,6 @@ public class GerenciarDoacoesView {
 	private Label lblPesquisarDoador;
 	private Text tfPesquisa;
 	private Button btnCadastrar;
-	private Button btnEditar;
-	
 	private Button btnExcluir;
 	private Button btnCancelar;
 	
@@ -112,14 +110,6 @@ public class GerenciarDoacoesView {
 		this.btnCadastrar = btnCadastrar;
 	}
 
-	public Button getBtnEditar() {
-		return btnEditar;
-	}
-
-	public void setBtnEditar(Button btnEditar) {
-		this.btnEditar = btnEditar;
-	}
-
 	public Button getBtnExcluir() {
 		return btnExcluir;
 	}
@@ -180,7 +170,6 @@ public class GerenciarDoacoesView {
 		table.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
-				btnEditar.setEnabled(true);
 				btnExcluir.setEnabled(true);
 			}
 		});
@@ -231,19 +220,6 @@ public class GerenciarDoacoesView {
 		btnPesquisar.setBounds(560, 133, 144, 36);
 		btnPesquisar.setText("Pesquisar");
 		
-		btnEditar = new Button(shlGerenciarDoacoes, SWT.NONE);
-		btnEditar.setEnabled(false);
-		btnEditar.addSelectionListener(new SelectionAdapter() {
-			@Override
-			public void widgetSelected(SelectionEvent arg0) {
-				controle.getEvent(arg0);
-			}
-		});
-		btnEditar.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/editar.png").getAbsolutePath()));
-		btnEditar.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
-		btnEditar.setBounds(132, 551, 208, 54);
-		btnEditar.setText("Editar Assistido");
-		
 		btnExcluir = new Button(shlGerenciarDoacoes, SWT.NONE);
 		btnExcluir.addSelectionListener(new SelectionAdapter() {
 			@Override
@@ -255,7 +231,7 @@ public class GerenciarDoacoesView {
 		btnExcluir.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
 		btnExcluir.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/lixeira.png").getAbsolutePath()));
 		btnExcluir.setBounds(346, 551, 208, 54);
-		btnExcluir.setText("Excluir Doação");
+		btnExcluir.setText("Excluir doa\u00E7\u00E3o");
 		
 		btnCadastrar = new Button(shlGerenciarDoacoes, SWT.NONE);
 		btnCadastrar.addSelectionListener(new SelectionAdapter() {
@@ -266,9 +242,9 @@ public class GerenciarDoacoesView {
 			}
 		});
 		btnCadastrar.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
-		btnCadastrar.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/assistido-small.png").getAbsolutePath()));
+		btnCadastrar.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/doacao-small.png").getAbsolutePath()));
 		btnCadastrar.setBounds(346, 615, 208, 54);
-		btnCadastrar.setText("Cadastrar Doa\u00E7\u00E3o");
+		btnCadastrar.setText("Realizar doa\u00E7\u00E3o");
 		
 		btnCancelar = new Button(shlGerenciarDoacoes, SWT.NONE);
 		btnCancelar.addSelectionListener(new SelectionAdapter() {
@@ -279,11 +255,11 @@ public class GerenciarDoacoesView {
 		});
 		btnCancelar.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/cancelar.png").getAbsolutePath()));
 		btnCancelar.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
-		btnCancelar.setBounds(132, 615, 208, 54);
+		btnCancelar.setBounds(132, 551, 208, 54);
 		btnCancelar.setText("Cancelar");
 		
 		Label label = new Label(shlGerenciarDoacoes, SWT.NONE);
-		label.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/assistidos.png").getAbsolutePath()));
+		label.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/doacoes.png").getAbsolutePath()));
 		label.setBounds(560, 10, 137, 109);
 		
 		controle.preencherTabelaDoacoes(controle.obterTodasDoacoes());

@@ -72,7 +72,7 @@ public class AplicacaoView {
 			}
 		});
 		btnGerenciarDoaes.setText("Gerenciar Doa\u00E7\u00F5es");
-		btnGerenciarDoaes.setImage(SWTResourceManager.getImage("C:\\Users\\Thiago Hellen\\Desktop\\src\\main\\java\\view\\img\\doadores-small.png"));
+		btnGerenciarDoaes.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/doacoes-small.png").getAbsolutePath()));
 		btnGerenciarDoaes.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
 		btnGerenciarDoaes.setBounds(333, 337, 243, 68);
 		

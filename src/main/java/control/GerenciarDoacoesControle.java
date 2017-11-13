@@ -12,6 +12,7 @@ import exceptions.DoacaoInvalidaException;
 import facade.DoacaoFachada;
 import model.Doacao;
 import view.GerenciarDoacoesView;
+import view.SelecionarDoadorView;
 
 public class GerenciarDoacoesControle {
 	
@@ -20,8 +21,8 @@ public class GerenciarDoacoesControle {
 	private ArrayList<Doacao> listarTodasDoacoes;
 	private ArrayList<Doacao> listaExibidaNaTabela;
 	
-	public GerenciarDoacoesControle(GerenciarDoacoesView view) {
-		this.setView(view);
+	public GerenciarDoacoesControle(GerenciarDoacoesView gerenciarDoacoesView) {
+		this.setView(gerenciarDoacoesView);
 		this.fachada = new DoacaoFachada();
 	}
 	
@@ -33,8 +34,8 @@ public class GerenciarDoacoesControle {
 		return view;
 	}
 
-	public void setView(GerenciarDoacoesView view) {
-		this.view = view;
+	public void setView(GerenciarDoacoesView gerenciarDoacoesView) {
+		this.view = gerenciarDoacoesView;
 	}
 
 	public DoacaoFachada getFachada() {
@@ -112,8 +113,10 @@ public class GerenciarDoacoesControle {
 		if (event.getSource().toString().equals("Button {Pesquisar}")) {
 			preencherTabelaDoacoes(pesquisarDoacoes(view.getTfPesquisa().getText()));
 		}
-		if (event.getSource().toString().equals("Button {Editar Doação}")) {
-			//Editar doação
+		if (event.getSource().toString().equals("Button {Realizar Doação}")) {
+			view.getShlGerenciarDoacoes().dispose();
+			SelecionarDoadorView.main();
+			GerenciarDoacoesView.main();
 		}
 		if(event.getSource().toString().equals("Button {Excluir Doação}")) {
 			if(confirmacao()) {

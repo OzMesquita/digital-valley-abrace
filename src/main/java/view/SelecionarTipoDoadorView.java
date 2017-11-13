@@ -49,8 +49,8 @@ public class SelecionarTipoDoadorView {
 		pessoaFisicabnt.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
-				CadastroDoadorPFisicaView.main();
 				shlSelecionarTipoDoador.dispose();
+				CadastroDoadorPFisicaView.main();
 			}
 		});
 		pessoaFisicabnt.setBounds(120, 162, 411, 89);
@@ -62,8 +62,8 @@ public class SelecionarTipoDoadorView {
 		pessoaJuridicabnt.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
-				CadastroDoadorPJuridicoView.main();
 				shlSelecionarTipoDoador.dispose();
+				CadastroDoadorPJuridicoView.main();
 			}
 		});
 		pessoaJuridicabnt.setText("Cadastrar Doador Pessoa Jurídica");
