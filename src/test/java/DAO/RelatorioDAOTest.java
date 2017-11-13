@@ -14,14 +14,14 @@ import exceptions.PessoaInvalidaException;
 import exceptions.PessoaJuridicaInvalidaException;
 import model.Assistido;
 import model.Pessoa;
-import relatorio.RelatorioFacade;
+import relatorio.RelatorioAssistidoFacade;
 
 public class RelatorioDAOTest {
 
 
 	public static void main(String[] args) {
 		try {
-			new RelatorioFacade().relatorioDeAssistido(new AssistidoDAO(new ConnectionFactory().getConnection()).listaAssistido(),"Relatório dos Assistidos da ONG ABRACE",true,true);
+			new RelatorioAssistidoFacade().relatorioDeAssistido(new AssistidoDAO(new ConnectionFactory().getConnection()).listaAssistido(),"Relatório dos Assistidos da ONG ABRACE",true,true);
 		} catch (DocumentException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

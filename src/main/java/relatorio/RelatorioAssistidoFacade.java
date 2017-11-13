@@ -3,6 +3,7 @@ package relatorio;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -20,7 +21,7 @@ import com.itextpdf.text.pdf.PdfWriter;
 
 import model.Assistido;
 
-public class RelatorioFacade {
+public class RelatorioAssistidoFacade {
 
 	public void relatorioDeAssistido(ArrayList<Assistido> assistidos, String Subtitulo, boolean exibirVivos, boolean exibirMortos) throws DocumentException, IOException {
 		
@@ -36,14 +37,13 @@ public class RelatorioFacade {
 		document.open();
 		// ==================================================================================================//
 		
-		Image figura = Image.getInstance("src/main/java/view/img/ABRACE.png");
-		figura.setAlignment(Element.ALIGN_CENTER);
-		document.add(figura);
-		Cabecalho(document);
-
+		
 		// ==================================================================================================//
 		//Cabecalho
 		// ==================================================================================================//
+		
+		Cabecalho(document);
+		
 		DateTimeFormatter formatadorDataCadastro = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
 		
 		Paragraph sub = new Paragraph(Subtitulo,new Font(FontFamily.UNDEFINED,12,Font.BOLD));
@@ -133,25 +133,19 @@ public class RelatorioFacade {
 		table2.addCell("");
 
 		document.add(table2);
-		// ==================================================================================================//
 		
-		
-
-		// ====================================================================================================//
-		// step 1 - fechando o documento
-		// ====================================================================================================//
 		document.close();
-		// ====================================================================================================//
 	}
 
-	private void Cabecalho(Document document) throws DocumentException {
-		// ==================================================================================================//
-		//Cabecalho
-		// ==================================================================================================//
+	private void Cabecalho(Document document) throws DocumentException, MalformedURLException, IOException {
+		
+		Image figura = Image.getInstance("src/main/java/view/img/ABRACE.png");
+		figura.setAlignment(Element.ALIGN_CENTER);
+		document.add(figura);
+		
 		Paragraph titulo = new Paragraph("ONG Russas Transformando Vidas - ABRACE",new Font(FontFamily.UNDEFINED,12,Font.BOLD));
 		titulo.setAlignment(Element.ALIGN_CENTER);
 		document.add(titulo);
-		// ==================================================================================================//  
 		    
 		PdfPTable table = new PdfPTable(2);
 		    
