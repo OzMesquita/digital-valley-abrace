@@ -1,10 +1,6 @@
 package relatorio;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -26,7 +22,7 @@ public class RelatorioAssistidoFacade extends RelatorioFacade {
 	public void relatorioDeAssistido(ArrayList<Assistido> assistidos, boolean exibirVivos, boolean exibirMortos) throws DocumentException, IOException {
 		
 		// ==================================================================================================//
-		// step 1 - Criando o documento
+		// Criando o documento
 		// ==================================================================================================//
 		Document document = new Document();
 		String subtitulo = "Relatório dos Assistidos da ONG ABRACE";
@@ -36,7 +32,7 @@ public class RelatorioAssistidoFacade extends RelatorioFacade {
 		
 		
 		// ==================================================================================================//
-		//Cabecalho
+		// Cabecalho
 		// ==================================================================================================//
 		
 		Cabecalho(document);
