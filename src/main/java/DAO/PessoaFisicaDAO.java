@@ -61,14 +61,21 @@ public class PessoaFisicaDAO extends ExecutaSQL {
 		return false;
 	}
 
-	public void editar(PessoaFisica pessoaFisica) throws SQLException {
+	private void editar(PessoaFisica pessoaFisica){
 		String sql = "UPDATE ABRACE.Pessoa_Fisica SET dataNascimento=?, rg=?, cpf=? WHERE idPessoa=?";
-		PreparedStatement stmt = getConexao().prepareStatement(sql);
-		stmt.setDate(1, Date.valueOf(pessoaFisica.getDataNasc()));
-		stmt.setString(2, pessoaFisica.getRg());
-		stmt.setString(3, pessoaFisica.getCpf());
-		stmt.setInt(4, pessoaFisica.getId());
-		stmt.executeUpdate();
+		PreparedStatement stmt;
+		try {
+			stmt = getConexao().prepareStatement(sql);
+			stmt.setDate(1, Date.valueOf(pessoaFisica.getDataNasc()));
+			stmt.setString(2, pessoaFisica.getRg());
+			stmt.setString(3, pessoaFisica.getCpf());
+			stmt.setInt(4, pessoaFisica.getId());
+			stmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 	
 	public boolean editarDoadorFisico(PessoaFisica pessoaFisica) {

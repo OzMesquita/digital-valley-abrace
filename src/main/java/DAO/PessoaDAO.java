@@ -60,8 +60,7 @@ public class PessoaDAO extends ExecutaSQL {
 				String email = rs.getString(6);
 				LocalDate dataCadastro = rs.getDate(7).toLocalDate();
 				boolean isDoador = rs.getBoolean(8);
-				// se você chegou aqui após um erro ocorrer, é porque seu banco não foi atualizado com o novo atributo encontrado (isDoador). Apague o localhost e reexecute o script de instalacao
-				listaPessoas.add(new Pessoa(id, nome, endereco, telefone1, telefone2, dataCadastro, email, true, isDoador));
+				 listaPessoas.add(new Pessoa(id, nome, endereco, telefone1, telefone2, dataCadastro, email, true, isDoador));
 			}
 			stmt.close();
 		} catch (SQLException ex) {
@@ -70,18 +69,24 @@ public class PessoaDAO extends ExecutaSQL {
 		return listaPessoas;
 	}
 
-	public boolean editarPessoa(Pessoa pessoa) throws SQLException {
-		String sql = "UPDATE ABRACE.Pessoa SET nome=?, endereco=?, telefone1=?, telefone2=?, email=?, ativo=? WHERE idPessoa=?";
-		PreparedStatement stmt = getConexao().prepareStatement(sql);
-		stmt.setString(1, pessoa.getNome());
-		stmt.setString(2, pessoa.getEndereco());
-		stmt.setString(3, pessoa.getTelefone());
-		stmt.setString(4, pessoa.getTelefone2());
-		stmt.setString(5, pessoa.getEmail());
-		stmt.setBoolean(6, pessoa.isAtivo());
-		stmt.setInt(7, pessoa.getId());
-		stmt.executeUpdate();
-		return true;
+	public boolean editarPessoa(Pessoa pessoa) {
+		String sql = "UPDATE ABRACE.Pessoa SET nome=?, endereco=?, telefone1=?, telefone2=?, email=? WHERE idPessoa=?";
+		PreparedStatement stmt;
+		try {
+			stmt = getConexao().prepareStatement(sql);
+			stmt.setString(1, pessoa.getNome());
+			stmt.setString(2, pessoa.getEndereco());
+			stmt.setString(3, pessoa.getTelefone());
+			stmt.setString(4, pessoa.getTelefone2());
+			stmt.setString(5, pessoa.getEmail());
+			stmt.setInt(6, pessoa.getId());
+			stmt.executeUpdate();
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+		
 	}
 
 	public void excluirPessoa(Pessoa pessoa) throws SQLException {

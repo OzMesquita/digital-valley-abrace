@@ -47,13 +47,11 @@ public class AssistidoDAO extends ExecutaSQL {
 		stmt.execute();
 	}
 	
-	public boolean editarAssistido(Assistido assistido) throws PessoaInvalidaException, SQLException {
+	public boolean editarAssistido(Assistido assistido) throws PessoaInvalidaException {
 		try {
 			getConexao().setAutoCommit(false);
-			PessoaDAO pessoa = new PessoaDAO(getConexao());
 			PessoaFisicaDAO pessoaFisica = new PessoaFisicaDAO(getConexao());
-			pessoa.editarPessoa(assistido);
-			pessoaFisica.editar(assistido);
+			pessoaFisica.editarDoadorFisico(assistido);
 			editar(assistido);
 			getConexao().commit();
 		} catch (SQLException e) {
@@ -63,14 +61,20 @@ public class AssistidoDAO extends ExecutaSQL {
 		return true;
 	}
 
-	public void editar(Assistido assistido) throws SQLException{
+	public void editar(Assistido assistido) {
 		String sql = "UPDATE ABRACE.Assistido SET tipoCancer=?, apelido=?, status=? WHERE idPessoa=?";
-		PreparedStatement stmt = getConexao().prepareStatement(sql);
-		stmt.setString(1, assistido.getTipoDeCancer());
-		stmt.setString(2, assistido.getApelido());
-		stmt.setBoolean(3, assistido.getSituacao());
-		stmt.setInt(4, assistido.getId());
-		stmt.executeUpdate();
+		PreparedStatement stmt;
+		try {
+			stmt = getConexao().prepareStatement(sql);
+			stmt.setString(1, assistido.getTipoDeCancer());
+			stmt.setString(2, assistido.getApelido());
+			stmt.setBoolean(3, assistido.getSituacao());
+			stmt.setInt(4, assistido.getId());
+			stmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
 	}
 	public boolean excluirAssistido(Assistido assistido) {
 		try {

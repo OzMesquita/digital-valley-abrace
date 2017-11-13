@@ -51,7 +51,7 @@ public class EditarAssistidoControle {
 				assistido.setRg(view.getTfRG().getText());
 				assistido.setEndereco(view.getTfEndereco().getText());
 				assistido.setDataNasc(LocalDate.of(view.getTfDataNascimento().getYear(),
-						view.getTfDataNascimento().getMonth() + 1, view.getTfDataNascimento().getDay()));
+						view.getTfDataNascimento().getMonth()+1, view.getTfDataNascimento().getDay()));
 				assistido.setTelefone(view.getTfTelefone1().getText());
 				assistido.setTelefone2(view.getTfTelefone2().getText());
 				assistido.setEmail(view.getTfEmail().getText());

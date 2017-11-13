@@ -374,7 +374,7 @@ public Text getTfNome() {
 		}
 		
 		tfDataNascimento.setDay(getAssistido().getDataNasc().getDayOfMonth());
-		tfDataNascimento.setMonth(getAssistido().getDataNasc().getMonthValue());
+		tfDataNascimento.setMonth(getAssistido().getDataNasc().getMonthValue()-1);
 		tfDataNascimento.setYear(getAssistido().getDataNasc().getYear());
 		
 		

@@ -42,12 +42,8 @@ public class AssistidoFachada {
 	
 	public boolean editarAssistido(Assistido a) throws PessoaInvalidaException {
 		AssistidoDAO assistido = new AssistidoDAO(new ConnectionFactory().getConnection());
-		PessoaFisicaDAO fisicaDao = new PessoaFisicaDAO(assistido.getConexao());
-		PessoaDAO pessoa = new PessoaDAO(assistido.getConexao());
 		boolean resultado= false;
 		try {
-			pessoa.editarPessoa(a);
-			fisicaDao.editarDoadorFisico(a);
 			resultado = assistido.editarAssistido(a);
 			assistido.getConexao().close();
 		} catch (SQLException e) {
