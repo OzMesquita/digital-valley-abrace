@@ -9,6 +9,7 @@ import java.net.MalformedURLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
@@ -32,16 +33,15 @@ public abstract class RelatorioFacade {
 		document.add(titulo);
 		    
 		PdfPTable table = new PdfPTable(2);
-		    
-		PdfPCell header = new PdfPCell(new Paragraph("ORGANIZAÇÃO: ONG Russas Transformando Vidas - ABRACE"));
+
 		PdfPCell email = new PdfPCell(new Paragraph("E-MAIL: abrace.russas@gmail.com"));
 	        
 		table.setSpacingBefore(20);
-		    
-		header.setColspan(2);
+		table.getDefaultCell().setBorderColor(BaseColor.WHITE);
+
 		email.setColspan(2);
-		    
-		table.addCell(header);
+		email.setBorderColor(BaseColor.WHITE);
+
 		table.addCell("CNPJ:");
 		table.addCell("ENDEREÇO: Vila Matoso, 82");
 		table.addCell("CEP: 62900-000");

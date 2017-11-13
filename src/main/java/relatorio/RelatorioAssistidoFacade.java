@@ -25,7 +25,11 @@ public class RelatorioAssistidoFacade extends RelatorioFacade {
 		// Criando o documento
 		// ==================================================================================================//
 		Document document = new Document();
-		String subtitulo = "Relatório dos Assistidos da ONG ABRACE";
+		String tipo = "";
+		if(exibirVivos)tipo+="Vivos";
+		if(exibirVivos&&exibirMortos)tipo+=" e ";
+		if(exibirMortos)tipo+="Mortos";
+		String subtitulo = "Lista de Assistidos "+tipo+" da ONG ABRACE Russas";
 		PdfWriter.getInstance(document, gravarDocumento(subtitulo));
 		document.open();
 		// ==================================================================================================//
