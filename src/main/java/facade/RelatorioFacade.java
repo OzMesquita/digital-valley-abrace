@@ -6,8 +6,6 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-
-
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
@@ -21,14 +19,13 @@ import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 
 import model.Assistido;
-import model.Pessoa;
 
 public class RelatorioFacade {
 
 	public void relatorioDeAssistido(ArrayList<Assistido> assistidos, String Subtitulo, boolean exibirVivos, boolean exibirMortos) throws DocumentException, IOException {
-
-
-
+		
+		
+		
 		// ==================================================================================================//
 		// step 1 - Criando o documento
 		// ==================================================================================================//
@@ -38,64 +35,64 @@ public class RelatorioFacade {
 		PdfWriter.getInstance(document, new FileOutputStream("Relatorios/Relatorio de Assistidos " + LocalDateTime.now().format(formatador) + ".pdf"));
 		document.open();
 		// ==================================================================================================//
-
+		
 		Image figura = Image.getInstance("src/main/java/view/img/ABRACE.png");
-		document.add(figura);
 		figura.setAlignment(Element.ALIGN_CENTER);
+		document.add(figura);
 		Cabecalho(document);
 
 		// ==================================================================================================//
 		//Cabecalho
 		// ==================================================================================================//
 		DateTimeFormatter formatadorDataCadastro = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
-
+		
 		Paragraph sub = new Paragraph(Subtitulo,new Font(FontFamily.UNDEFINED,12,Font.BOLD));
 		Paragraph emissao = new Paragraph("Emissão: " + LocalDateTime.now().format(formatadorDataCadastro));
-
+		
 		sub.setSpacingBefore(20);
-
+		
 		sub.setAlignment(Element.ALIGN_CENTER);
 		emissao.setAlignment(Element.ALIGN_CENTER);
-
+		
 		document.add(sub);
 		document.add(emissao);
 		// ==================================================================================================//
-
-
-
+		
+		
+		
 		PdfPTable table2 = new PdfPTable(new float[] { 0.4f, 0.18f, 0.14f, 0.09f });
 		table2.setSpacingBefore(20);
-
+		
 		PdfPCell nome      = new PdfPCell(new Paragraph("Nome")),
-				cpf       = new PdfPCell(new Paragraph("CPF")),
-				nascimento= new PdfPCell(new Paragraph("Nascimento")),
-				status    = new PdfPCell(new Paragraph("Status"));
-
+				 cpf       = new PdfPCell(new Paragraph("CPF")),
+				 nascimento= new PdfPCell(new Paragraph("Nascimento")),
+				 status    = new PdfPCell(new Paragraph("Status"));
+		
 		nome.setHorizontalAlignment(Element.ALIGN_CENTER);
 		cpf.setHorizontalAlignment(Element.ALIGN_CENTER);
 		nascimento.setHorizontalAlignment(Element.ALIGN_CENTER);
 		status.setHorizontalAlignment(Element.ALIGN_CENTER);
-
+		
 		nome.setBackgroundColor(BaseColor.LIGHT_GRAY);
 		cpf.setBackgroundColor(BaseColor.LIGHT_GRAY);
 		nascimento.setBackgroundColor(BaseColor.LIGHT_GRAY);
 		status.setBackgroundColor(BaseColor.LIGHT_GRAY);
-
+		
 		table2.addCell(nome);
 		table2.addCell(cpf);
 		table2.addCell(nascimento);
 		table2.addCell(status);
-
+		
 		// --------------------------------------------------------------------------------------------------//
 		DateTimeFormatter formatadorDataNascimento = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-
+		
 		int Assistidoscontados = 0;
-
+		
 		for (Assistido assistido : assistidos) {
 			PdfPCell cellNome       = new PdfPCell(new Paragraph(assistido.getNome())),
-					cellCPF        = new PdfPCell(new Paragraph(assistido.getCpf())),
-					cellNascimento = new PdfPCell(new Paragraph(assistido.getDataNasc().format(formatadorDataNascimento))),
-					cellsituacao   = new PdfPCell(new Paragraph(assistido.getSituacao() ? "vivo" : "falecido"));
+					 cellCPF        = new PdfPCell(new Paragraph(assistido.getCpf())),
+					 cellNascimento = new PdfPCell(new Paragraph(assistido.getDataNasc().format(formatadorDataNascimento))),
+					 cellsituacao   = new PdfPCell(new Paragraph(assistido.getSituacao() ? "vivo" : "falecido"));
 			if (exibirVivos && assistido.getSituacao()) {
 				table2.addCell(cellNome);
 				table2.addCell(cellCPF);
@@ -111,115 +108,21 @@ public class RelatorioFacade {
 				Assistidoscontados++;
 			}
 		}
-		PdfPCell totalAssistidos = new PdfPCell(new Paragraph("Total de assitidos"));
+		PdfPCell totalAssistidos = new PdfPCell(new Paragraph("Total de Assitidos ",new Font(FontFamily.UNDEFINED,12,Font.BOLD)));
+		PdfPCell numeroTotalAssistidos = new PdfPCell(new Paragraph(String.valueOf(Assistidoscontados)));
 		totalAssistidos.setColspan(3);
+		totalAssistidos.setHorizontalAlignment(Element.ALIGN_RIGHT);
+		totalAssistidos.setBackgroundColor(BaseColor.LIGHT_GRAY);
+		numeroTotalAssistidos.setBackgroundColor(BaseColor.LIGHT_GRAY);
 		table2.addCell(totalAssistidos);
-		table2.addCell(String.valueOf(Assistidoscontados));
+		table2.addCell(numeroTotalAssistidos);
 		table2.addCell("");
 		table2.addCell("");
 
 		document.add(table2);
 		// ==================================================================================================//
-
-
-
-		// ====================================================================================================//
-		// step 1 - fechando o documento
-		// ====================================================================================================//
-		document.close();
-		// ====================================================================================================//
-	}
-
-	public void relatorioDeDoadores(ArrayList<Pessoa> doadores, String Subtitulo, boolean exibirAtivos, boolean exibirInativos) throws DocumentException, IOException {
-
-
-
-		// ==================================================================================================//
-		// step 1 - Criando o documento
-		// ==================================================================================================//
-		Document document = new Document();
-		DateTimeFormatter formatador = DateTimeFormatter.ofPattern("'DATA['dd'_'MM'_'yyyy'] HORA['HH.mm.ss']'");
-		new File("Relatorios").mkdir();
-		PdfWriter.getInstance(document, new FileOutputStream("Relatorios/Relatorio de Doadores " + LocalDateTime.now().format(formatador) + ".pdf"));
-		document.open();
-		// ==================================================================================================//
-
-		Image figura = Image.getInstance("src/main/java/view/img/ABRACE.png");
-		document.add(figura);
-		figura.setAlignment(Element.ALIGN_CENTER);
-		Cabecalho(document);
-
-		// ==================================================================================================//
-		//Cabecalho
-		// ==================================================================================================//
-		DateTimeFormatter formatadorDataCadastro = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
-
-		Paragraph sub = new Paragraph(Subtitulo,new Font(FontFamily.UNDEFINED,12,Font.BOLD));
-		Paragraph emissao = new Paragraph("Emissão: " + LocalDateTime.now().format(formatadorDataCadastro));
-
-		sub.setSpacingBefore(20);
-
-		sub.setAlignment(Element.ALIGN_CENTER);
-		emissao.setAlignment(Element.ALIGN_CENTER);
-
-		document.add(sub);
-		document.add(emissao);
-		// ==================================================================================================//
-
-
-
-		PdfPTable table2 = new PdfPTable(new float[] { 0.4f, 0.18f, 0.14f, 0.09f });
-		table2.setSpacingBefore(20);
-
-		PdfPCell nome      = new PdfPCell(new Paragraph("Nome")),
-				cpfOrCNPJ       = new PdfPCell(new Paragraph("CPF/CNPJ")),
-				status    = new PdfPCell(new Paragraph("Status"));
-
-		nome.setHorizontalAlignment(Element.ALIGN_CENTER);
-		cpfOrCNPJ.setHorizontalAlignment(Element.ALIGN_CENTER);
-		status.setHorizontalAlignment(Element.ALIGN_CENTER);
-
-		nome.setBackgroundColor(BaseColor.LIGHT_GRAY);
-		cpfOrCNPJ.setBackgroundColor(BaseColor.LIGHT_GRAY);
-		status.setBackgroundColor(BaseColor.LIGHT_GRAY);
-
-		table2.addCell(nome);
-		table2.addCell(cpfOrCNPJ);
-		table2.addCell(status);
-
-		// --------------------------------------------------------------------------------------------------//
 		
-		// VERIFICAR A QUESTÃO DE SER UM DOADOR FISICO OU JURIDICO
-		int doadoresContados = 0;
-
-		for (Pessoa doador : doadores) {
-			PdfPCell cellNome       = new PdfPCell(new Paragraph(doador.getNome())),
-					cellCPF        = new PdfPCell(new Paragraph()),
-					cellsituacao   = new PdfPCell(new Paragraph(doador.isAtivo() ? "Ativo" : "Inativo"));
-			if (exibirAtivos && doador.isAtivo()) {
-				table2.addCell(cellNome);
-				table2.addCell(cellCPF);
-				table2.addCell(cellsituacao);
-				doadoresContados++;
-			}
-			if (exibirInativos && !doador.isAtivo()) {
-				table2.addCell(cellNome);
-				table2.addCell(cellCPF);
-				table2.addCell(cellsituacao);
-				doadoresContados++;
-			}
-		}
-		PdfPCell totalDoadores = new PdfPCell(new Paragraph("Total de Doadores"));
-		totalDoadores.setColspan(2);
-		table2.addCell(totalDoadores);
-		table2.addCell(String.valueOf(doadoresContados));
-		table2.addCell("");
-		table2.addCell("");
-
-		document.add(table2);
-		// ==================================================================================================//
-
-
+		
 
 		// ====================================================================================================//
 		// step 1 - fechando o documento
@@ -236,17 +139,17 @@ public class RelatorioFacade {
 		titulo.setAlignment(Element.ALIGN_CENTER);
 		document.add(titulo);
 		// ==================================================================================================//  
-
+		    
 		PdfPTable table = new PdfPTable(2);
-
+		    
 		PdfPCell header = new PdfPCell(new Paragraph("Organização:"));
 		PdfPCell email = new PdfPCell(new Paragraph("E-mail:"));
-
+	        
 		table.setSpacingBefore(20);
-
+		    
 		header.setColspan(2);
 		email.setColspan(2);
-
+		    
 		table.addCell(header);
 		table.addCell("CNPJ:");
 		table.addCell("Endereço:");
@@ -256,7 +159,7 @@ public class RelatorioFacade {
 		table.addCell("Telefone:");
 		table.addCell(email);
 		table.addCell("");
-
+		
 		document.add(table);
 	}
 
