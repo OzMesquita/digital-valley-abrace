@@ -12,10 +12,11 @@ import facade.DoadorFachada;
 import model.Pessoa;
 import model.PessoaFisica;
 import model.PessoaJuridica;
+import view.EditarDoadorJuridicoView;
 import view.EditarDoadorPFView;
 import view.GerenciarDoadoresView;
 
-public class GerenciarDoadoresFisicosControle {
+public class GerenciarDoadoresControle {
 	private GerenciarDoadoresView view; 
 	private DoadorFachada fachada;
 	private List<Pessoa> listaTodosDoadoresFisicos;
@@ -40,13 +41,13 @@ public class GerenciarDoadoresFisicosControle {
 		this.fachada = fachada;
 	}
 	
-	public GerenciarDoadoresFisicosControle (GerenciarDoadoresView view) {
+	public GerenciarDoadoresControle (GerenciarDoadoresView view) {
 		setView(view);
 		setFachada(new DoadorFachada());
 		
 	}
 	
-	public GerenciarDoadoresFisicosControle () {
+	public GerenciarDoadoresControle () {
 	}
 
 	public void excluirLinhasDaTabela() {
@@ -110,8 +111,15 @@ public class GerenciarDoadoresFisicosControle {
 		}
 		if (event.getSource().toString().equals("Button {Editar Doador}")) {
 			PessoaFisica a = fachada.obterDoadorFisico(listaExibidaNaTabela.get(view.getTable().getSelectionIndex()).getId());
-			this.view.getShlGerenciarDoadoresFisicos().dispose();
-			new EditarDoadorPFView().main(a);
+			if(a == null) {
+				PessoaJuridica p = fachada.obterDoadorJuridico(listaExibidaNaTabela.get(view.getTable().getSelectionIndex()).getId());
+				this.view.getShlGerenciarDoadoresFisicos().dispose();
+				new EditarDoadorJuridicoView().main(p);
+
+			}else {
+				this.view.getShlGerenciarDoadoresFisicos().dispose();
+				new EditarDoadorPFView().main(a);
+			}
 		}
 		if(event.getSource().toString().equals("Button {Excluir Doador}")) {
 			if(confirmacao()) {

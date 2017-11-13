@@ -14,11 +14,11 @@ import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.wb.swt.SWTResourceManager;
 
-import control.GerenciarDoadoresFisicosControle;
+import control.GerenciarDoadoresControle;
 
 public class GerenciarDoadoresView {
 	
-	GerenciarDoadoresFisicosControle controle;
+	GerenciarDoadoresControle controle;
 
 	protected Shell shlGerenciarDoadoresFisicos;
 	private Table table;
@@ -37,14 +37,14 @@ public class GerenciarDoadoresView {
 
 	
 	public GerenciarDoadoresView() {
-		this.controle = new GerenciarDoadoresFisicosControle(this);
+		this.controle = new GerenciarDoadoresControle(this);
 	}
 
-	public GerenciarDoadoresFisicosControle getControle() {
+	public GerenciarDoadoresControle getControle() {
 		return controle;
 	}
 
-	public void setControle(GerenciarDoadoresFisicosControle controle) {
+	public void setControle(GerenciarDoadoresControle controle) {
 		this.controle = controle;
 	}
 

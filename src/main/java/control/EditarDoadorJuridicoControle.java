@@ -40,7 +40,7 @@ public class EditarDoadorJuridicoControle {
 
 	
 	public void getEvent(SelectionEvent event) {
-		if (event.getSource().toString().equals("Button {Editar}")){
+		if (event.getSource().toString().equals("Button {Salvar altera\\u00E7\\u00F5es}")){
 			PessoaJuridica doador = new PessoaJuridica();
 			try {
 				doador.setId(view.getDoador().getId());

@@ -124,9 +124,9 @@ public class EditarDoadorJuridicoView {
 	 * @param args
 	 * @wbp.parser.entryPoint
 	 */
-	public static void main() {
+	public static void main(PessoaJuridica doador) {
 		try {
-			EditarDoadorJuridicoView window = new EditarDoadorJuridicoView();
+			EditarDoadorJuridicoView window = new EditarDoadorJuridicoView(doador);
 			window.open();
 		} catch (Exception e) {
 			e.printStackTrace();

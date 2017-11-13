@@ -20,6 +20,8 @@ public class PessoaDAO extends ExecutaSQL {
 	}
 
 	public void cadastrarPessoa(Pessoa pessoa) throws SQLException, PessoaInvalidaException {
+		Statement s = getConexao().createStatement();
+        s.executeUpdate("CALL SYSCS_UTIL.SYSCS_SET_DATABASE_PROPERTY('derby.language.sequence.preallocator', '1')");
 		PreparedStatement stmt = null;
 		String sql = "INSERT INTO ABRACE.Pessoa (ativo, datacadastro, email, telefone2, telefone1, endereco, nome,isDoador)" + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 		stmt = getConexao().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
