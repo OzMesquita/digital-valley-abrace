@@ -20,7 +20,7 @@ public class UsuarioDAO extends ExecutaSQL{
 		
 		public Usuario getUsuario(String login, String senha) throws UsuarioInvalidoException, PessoaInvalidaException {
 	        try {
-	        	String sql = "SELECT idPessoa FROM ABRACE.Usuario WHERE login=? AND senha=?";
+	        	String sql = "SELECT idPessoa FROM ABRACE.Usuario, ABRACE.Pessoa WHERE login=? AND senha=? AND Pessoa.ativo = True";
 	        	PreparedStatement stmt = getConexao().prepareStatement(sql);
 	            stmt.setString(1, login);
 	            stmt.setString(2, senha);
