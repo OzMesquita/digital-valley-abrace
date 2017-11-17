@@ -238,7 +238,7 @@ public class GerenciarDoacoesView {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
 				shlGerenciarDoacoes.dispose();
-				CadastroAssistidoView.main();
+				SelecionarDoadorView.main();
 			}
 		});
 		btnCadastrar.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
