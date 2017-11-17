@@ -1,12 +1,7 @@
 package relatorio;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.MalformedURLException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
@@ -21,7 +16,6 @@ import model.PessoaJuridica;
 import relatorio.Extenso;
 
 public class ReciboDoacaoFachada extends RelatorioFacade{
-	
 	public ReciboDoacaoFachada() {
 		
 	}
@@ -50,7 +44,7 @@ public class ReciboDoacaoFachada extends RelatorioFacade{
 				", Carteira de Identidade (RG) número: " + pessoaFisica.getRg() +
 				", CPF número: " + pessoaFisica.getCpf() +
 				" a quantia de R$ " + doacao.getValor() + " ("+new Extenso(doacao.getValor())+"), " +
-				"referente a doação para a ONG (Organização Sem Fins Lucrativos). Por ser verdade, assino a presente.";
+				"referente a doação para a ONG(Organização Sem Fins Lucrativos) Russas Transformando Vidas - ABRACE. Por ser verdade, assino a presente.";
 		
 		Paragraph declaracao = new Paragraph(conteudo,new Font(FontFamily.UNDEFINED, 11));
 		
@@ -100,7 +94,7 @@ public class ReciboDoacaoFachada extends RelatorioFacade{
 						", CNPJ número: " + pessoaJuridica.getCnpj() +
 						", com sede em " + pessoaJuridica.getEndereco() +
 						" a quantia de R$ " + doacao.getValor() + " ("+new Extenso(doacao.getValor())+"), " +
-						"referente a doação para a ONG (Organização Sem Fins Lucrativos). Por ser verdade, assino a presente.";
+						"referente a doação para a ONG(Organização Sem Fins Lucrativos) Russas Transformando Vidas - ABRACE. Por ser verdade, assino a presente.";
 				
 				Paragraph declaracao = new Paragraph(conteudo,new Font(FontFamily.UNDEFINED, 11));
 				

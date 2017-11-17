@@ -1,22 +1,22 @@
 package control;
 
 import java.time.LocalDate;
-
 import exceptions.DoacaoInvalidaException;
 import model.Doacao;
 import model.Pessoa;
 
 public class DoacaoSingleton {
 	//Essa classe armanezará os dados da doação que está sendo realizada em 3 passos. Caso em uma das telas o usuário clicar em "Cancelar" a docação será cancelada
-	
 	private static Doacao doacao = new Doacao();
 	private static String cpfCNPJ = null;
 	private DoacaoSingleton() {
 		
 	}
+	
 	public static Doacao getDoacao() {
 		return doacao;
 	}
+	
 	public static void setDoacao(Doacao doacao) {
 		DoacaoSingleton.doacao = doacao;
 	}
@@ -44,9 +44,11 @@ public class DoacaoSingleton {
 			e.printStackTrace();
 		}
 	}
+	
 	public static String getCpfCNPJ() {
 		return cpfCNPJ;
 	}
+	
 	public static void setCpfCNPJ(String cpfCNPJ) {
 		DoacaoSingleton.cpfCNPJ = cpfCNPJ;
 	}

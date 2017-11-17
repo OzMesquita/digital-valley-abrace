@@ -2,12 +2,10 @@ package control;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.TableItem;
-
 import facade.DoadorFachada;
 import model.Pessoa;
 import model.PessoaFisica;
@@ -17,46 +15,43 @@ import view.EditarDoadorPFView;
 import view.GerenciarDoadoresView;
 
 public class GerenciarDoadoresControle {
-	private GerenciarDoadoresView view; 
-	private DoadorFachada fachada;
+	
+	private GerenciarDoadoresView viewDoadores; 
+	private DoadorFachada fachadaDoadores;
 	private List<Pessoa> listaTodosDoadores;
 	private List<Pessoa> listaExibidaNaTabela;
 	
-	public GerenciarDoadoresView getView() {
-		return view;
+	public GerenciarDoadoresView getViewDoadores() {
+		return viewDoadores;
 	}
 
-
-	public void setView(GerenciarDoadoresView view) {
-		this.view = view;
+	public void setViewDoadores(GerenciarDoadoresView viewDoadores) {
+		this.viewDoadores = viewDoadores;
 	}
 
-
-	public DoadorFachada getFachada() {
-		return fachada;
+	public DoadorFachada getFachadaDoadores() {
+		return fachadaDoadores;
 	}
 
-
-	public void setFachada(DoadorFachada fachada) {
-		this.fachada = fachada;
+	public void setFachadaDoadores(DoadorFachada fachadaDoadores) {
+		this.fachadaDoadores = fachadaDoadores;
 	}
 	
-	public GerenciarDoadoresControle (GerenciarDoadoresView view) {
-		setView(view);
-		setFachada(new DoadorFachada());
-		
+	public GerenciarDoadoresControle (GerenciarDoadoresView viewDoadores) {
+		setViewDoadores(viewDoadores);
+		setFachadaDoadores(new DoadorFachada());
 	}
 	
 	public GerenciarDoadoresControle () {
 	}
 
 	public void excluirLinhasDaTabela() {
-		view.getTable().removeAll();
+		viewDoadores.getTable().removeAll();
 	}
 	
 	public List<Pessoa> obterTodosDoadores() {
 		excluirLinhasDaTabela();
-		listaTodosDoadores = fachada.getTodosDoadores();
+		listaTodosDoadores = fachadaDoadores.getTodosDoadores();
 		return listaTodosDoadores;
 	}
 	
@@ -64,7 +59,7 @@ public class GerenciarDoadoresControle {
 		excluirLinhasDaTabela();
 		listaExibidaNaTabela = list;
 		for(int i = 0; i < list.size(); i++) {
-			TableItem item = new TableItem(view.getTable(), SWT.NONE);
+			TableItem item = new TableItem(viewDoadores.getTable(), SWT.NONE);
 			item.setText(0, Integer.toString(list.get(i).getId()));
 			item.setText(1, list.get(i).getNome());
 			if(list.get(i) instanceof PessoaFisica) {
@@ -77,8 +72,7 @@ public class GerenciarDoadoresControle {
 	}
 	
 	public boolean confirmacao() {
-        MessageBox messageBox = new MessageBox(view.getShlGerenciarDoadoresFisicos(),SWT.ICON_WARNING | SWT.CANCEL | SWT.OK);
-        
+        MessageBox messageBox = new MessageBox(viewDoadores.getShlGerenciarDoadoresFisicos(),SWT.ICON_WARNING | SWT.CANCEL | SWT.OK);
         messageBox.setText("Aviso!");
         messageBox.setMessage("Você deseja realmente deletar esse doador do sistema?");
         int buttonID = messageBox.open();
@@ -90,13 +84,11 @@ public class GerenciarDoadoresControle {
           default:
         	  return false;
         }
-        
-      }
+    }
 	
 	public List<Pessoa> pesquisarDoadores(String nomePesquisa) {
 		excluirLinhasDaTabela();
 		List<Pessoa> listaPesquisaDoadoresFisicos = new ArrayList<Pessoa>();
-		
 		for(int i = 0; i < listaTodosDoadores.size(); i++) {
 			if(listaTodosDoadores.get(i).getNome().toLowerCase().contains(nomePesquisa.toLowerCase())) {
 				listaPesquisaDoadoresFisicos.add(listaTodosDoadores.get(i));
@@ -107,23 +99,22 @@ public class GerenciarDoadoresControle {
 	
 	public void getEvent(SelectionEvent event) {
 		if (event.getSource().toString().equals("Button {Pesquisar}")) {
-			preencherTabelaDoadores(pesquisarDoadores(view.getTfPesquisa().getText()));
+			preencherTabelaDoadores(pesquisarDoadores(viewDoadores.getTfPesquisa().getText()));
 		}
 		if (event.getSource().toString().equals("Button {Editar Doador}")) {
-			PessoaFisica a = fachada.obterDoadorFisico(listaExibidaNaTabela.get(view.getTable().getSelectionIndex()).getId());
-			if(a == null) {
-				PessoaJuridica p = fachada.obterDoadorJuridico(listaExibidaNaTabela.get(view.getTable().getSelectionIndex()).getId());
-				view.getShlGerenciarDoadoresFisicos().dispose();
-				EditarDoadorPJView.main(p);
-
+			PessoaFisica pessoaFisica = fachadaDoadores.obterDoadorFisico(listaExibidaNaTabela.get(viewDoadores.getTable().getSelectionIndex()).getId());
+			if(pessoaFisica == null) {
+				PessoaJuridica pessoaJuridica = fachadaDoadores.obterDoadorJuridico(listaExibidaNaTabela.get(viewDoadores.getTable().getSelectionIndex()).getId());
+				viewDoadores.getShlGerenciarDoadoresFisicos().dispose();
+				EditarDoadorPJView.main(pessoaJuridica);
 			}else {
-				view.getShlGerenciarDoadoresFisicos().dispose();
-				EditarDoadorPFView.main(a);
+				viewDoadores.getShlGerenciarDoadoresFisicos().dispose();
+				EditarDoadorPFView.main(pessoaFisica);
 			}
 		}
 		if(event.getSource().toString().equals("Button {Excluir Doador}")) {
 			if(confirmacao()) {
-				fachada.excluirDoador(listaExibidaNaTabela.get(view.getTable().getSelectionIndex()).getId());
+				fachadaDoadores.excluirDoador(listaExibidaNaTabela.get(viewDoadores.getTable().getSelectionIndex()).getId());
 				excluirLinhasDaTabela();
 				preencherTabelaDoadores(obterTodosDoadores());
 			}

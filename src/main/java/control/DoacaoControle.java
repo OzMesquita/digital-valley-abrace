@@ -20,45 +20,44 @@ import view.SelecionarTipoDoadorView;
 
 
 public class DoacaoControle {
-	
-	private SelecionarDoadorView view1;
-	private InserirValorView view2;
-	private DoacaoFachada fachada = new DoacaoFachada();
-	private DoadorFachada doadorFachada = new DoadorFachada();
+	private SelecionarDoadorView viewDoador;
+	private InserirValorView viewValor;
+	private DoacaoFachada fachadaDoacao = new DoacaoFachada();
+	private DoadorFachada fachadaDoador = new DoadorFachada();
 	private List<Pessoa> listaExibidaNaTabela;
 	private List<Pessoa> listaTodosDoadores;
 	private PessoaFachada pessoaFachada = new PessoaFachada();
 	
-	public DoacaoControle(SelecionarDoadorView view1) {
-		setView1(view1); 
+	public DoacaoControle(SelecionarDoadorView viewDoador) {
+		setViewDoador(viewDoador); 
 	}
 	
 	public DoacaoControle(InserirValorView inserirValorView) {
-		setView2(inserirValorView);
+		setViewValor(inserirValorView);
 	}
 
-	public SelecionarDoadorView getView1() {
-		return view1;
+	public SelecionarDoadorView getViewDoador() {
+		return viewDoador;
 	}
 
-	public void setView1(SelecionarDoadorView view1) {
-		this.view1 = view1;
+	public void setViewDoador(SelecionarDoadorView viewDoador) {
+		this.viewDoador = viewDoador;
 	}
 
-	public InserirValorView getView2() {
-		return view2;
+	public InserirValorView getViewValor() {
+		return viewValor;
 	}
 
-	public void setView2(InserirValorView view2) {
-		this.view2 = view2;
+	public void setViewValor(InserirValorView viewValor) {
+		this.viewValor = viewValor;
 	}
 
 	public DoacaoFachada getFachada() {
-		return fachada;
+		return fachadaDoacao;
 	}
 	
 	public void setFachada(DoacaoFachada fachada) {
-		this.fachada = fachada;
+		this.fachadaDoacao = fachada;
 	}
 	
 	public void getEvent(SelectionEvent event) {
@@ -67,13 +66,13 @@ public class DoacaoControle {
 		}
 		if (event.getSource().toString().equals("Button {Continuar}")) {
 			try {
-				int idPessoa = listaExibidaNaTabela.get(view1.getTable().getSelectionIndex()).getId();
+				int idPessoa = listaExibidaNaTabela.get(viewDoador.getTable().getSelectionIndex()).getId();
 				DoacaoSingleton.setDoador(pessoaFachada.obterPessoa(idPessoa));
-				DoacaoSingleton.setCpfCNPJ(fachada.obterCPFCNPJ(idPessoa));
-				view1.getShlDoacao().dispose();
+				DoacaoSingleton.setCpfCNPJ(fachadaDoacao.obterCPFCNPJ(idPessoa));
+				viewDoador.getShlDoacao().dispose();
 				InserirValorView.main();
 			} catch (ArrayIndexOutOfBoundsException e) {
-				view1.mensagemErro(new Exception("Selecione um doador para continuar"));
+				viewDoador.mensagemErro(new Exception("Selecione um doador para continuar"));
 			}
 		}
 		if (event.getSource().toString().equals("Button {Salvar doação}")) {
@@ -83,21 +82,20 @@ public class DoacaoControle {
 
 	public void realizarDoacao() {
 		try {
-			DoacaoSingleton.setValor(Double.parseDouble(view2.getTfValor().getText()));
-			DoacaoSingleton.setDataDoacao(LocalDate.of(view2.getDateTime_1().getYear(), view2.getDateTime_1().getMonth() + 1, view2.getDateTime_1().getDay()));
-			
-			if(fachada.realizarDoacao(DoacaoSingleton.getDoacao())) {
-				view2.mensagemSucesso();
-				view2.getShlRealizarDoao().dispose();
+			DoacaoSingleton.setValor(Double.parseDouble(viewValor.getTfValor().getText()));
+			DoacaoSingleton.setDataDoacao(LocalDate.of(viewValor.getDateTime_1().getYear(), viewValor.getDateTime_1().getMonth() + 1, viewValor.getDateTime_1().getDay()));
+			if(fachadaDoacao.realizarDoacao(DoacaoSingleton.getDoacao())) {
+				viewValor.mensagemSucesso();
+				viewValor.getShlRealizarDoao().dispose();
 			}
 		} catch(Exception e) {
-			view2.mensagemErro(e);
+			viewValor.mensagemErro(e);
 		}
 	}
 	
 	public List<Pessoa> obterTodosDoadores() {
 		excluirLinhasDaTabela();
-		listaTodosDoadores = doadorFachada.getTodosDoadores();
+		listaTodosDoadores = fachadaDoador.getTodosDoadores();
 		return listaTodosDoadores;
 	}
 	
@@ -105,7 +103,7 @@ public class DoacaoControle {
 		excluirLinhasDaTabela();
 		listaExibidaNaTabela = list;
 		for(int i = 0; i < list.size(); i++) {
-			TableItem item = new TableItem(view1.getTable(), SWT.NONE);
+			TableItem item = new TableItem(viewDoador.getTable(), SWT.NONE);
 			item.setText(0, Integer.toString(list.get(i).getId()));
 			item.setText(1, list.get(i).getNome());
 			if(list.get(i) instanceof PessoaFisica) {
@@ -126,14 +124,14 @@ public class DoacaoControle {
 	}
 
 	public void excluirLinhasDaTabela() {
-		view1.getTable().removeAll();
+		viewDoador.getTable().removeAll();
 	}
 	
 	public void identificarTelasEspeciais(KeyEvent evento) {
 		if(evento.keyCode == 13 || evento.keyCode == 16777296) {
 			realizarDoacao();
 		} if(evento.keyCode == 27) {
-			view2.getShlRealizarDoao().dispose();
+			viewValor.getShlRealizarDoao().dispose();
 		}
 	}
 }

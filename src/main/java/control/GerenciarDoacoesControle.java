@@ -16,34 +16,34 @@ import view.SelecionarDoadorView;
 
 public class GerenciarDoacoesControle {
 	
-	private GerenciarDoacoesView view;
-	private DoacaoFachada fachada;
+	private GerenciarDoacoesView viewDoacoes;
+	private DoacaoFachada fachadaDoacoes;
 	private ArrayList<Doacao> listarTodasDoacoes;
 	private ArrayList<Doacao> listaExibidaNaTabela;
 	
 	public GerenciarDoacoesControle(GerenciarDoacoesView gerenciarDoacoesView) {
-		this.setView(gerenciarDoacoesView);
-		this.fachada = new DoacaoFachada();
+		this.setViewDoacoes(gerenciarDoacoesView);
+		this.fachadaDoacoes = new DoacaoFachada();
 	}
 	
 	public GerenciarDoacoesControle() {
 		
 	}
 
-	public GerenciarDoacoesView getView() {
-		return view;
+	public GerenciarDoacoesView getViewDoacoes() {
+		return viewDoacoes;
 	}
 
-	public void setView(GerenciarDoacoesView gerenciarDoacoesView) {
-		this.view = gerenciarDoacoesView;
+	public void setViewDoacoes(GerenciarDoacoesView viewDoacoes) {
+		this.viewDoacoes = viewDoacoes;
 	}
 
-	public DoacaoFachada getFachada() {
-		return fachada;
+	public DoacaoFachada getFachadaDoacoes() {
+		return fachadaDoacoes;
 	}
 
-	public void setFachada(DoacaoFachada fachada) {
-		this.fachada = fachada;
+	public void setFachadaDoacoes(DoacaoFachada fachada) {
+		this.fachadaDoacoes = fachada;
 	}
 
 	public ArrayList<Doacao> getListarTodasDoacoes() {
@@ -63,16 +63,15 @@ public class GerenciarDoacoesControle {
 	}
 	
 	public void excluirLinhasDaTabela() {
-		view.getTable().removeAll();
+		viewDoacoes.getTable().removeAll();
 	}
-	
-	
+
 	public void preencherTabelaDoacoes(ArrayList<Doacao> doacoes) {
 		excluirLinhasDaTabela();
 		DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		listaExibidaNaTabela = doacoes;
 		for(int i = 0; i < doacoes.size(); i++) {
-			TableItem item = new TableItem(view.getTable(), SWT.NONE);
+			TableItem item = new TableItem(viewDoacoes.getTable(), SWT.NONE);
 			item.setText(0, Integer.toString(doacoes.get(i).getId()));
 			item.setText(1, doacoes.get(i).getDoador().getNome());
 			item.setText(2, doacoes.get(i).getValor() + "");
@@ -81,8 +80,7 @@ public class GerenciarDoacoesControle {
 	}
 	
 	public boolean confirmacao() {
-        MessageBox messageBox = new MessageBox(view.getShlGerenciarDoacoes(),SWT.ICON_WARNING | SWT.CANCEL | SWT.OK);
-        
+        MessageBox messageBox = new MessageBox(viewDoacoes.getShlGerenciarDoacoes(),SWT.ICON_WARNING | SWT.CANCEL | SWT.OK);
         messageBox.setText("Aviso!");
         messageBox.setMessage("Você deseja realmente deletar essa doação do sistema?");
         int buttonID = messageBox.open();
@@ -94,34 +92,33 @@ public class GerenciarDoacoesControle {
           default:
         	  return false;
         }
-        
-      }
+    }
 	
 	public ArrayList<Doacao> obterTodasDoacoes() {
 		excluirLinhasDaTabela();
-		listarTodasDoacoes = fachada.listarDoacoes();
+		listarTodasDoacoes = fachadaDoacoes.listarDoacoes();
 		return listarTodasDoacoes;
 	}
 	
 	public ArrayList<Doacao> pesquisarDoacoes(String nomePesquisa){
 		excluirLinhasDaTabela();
-		listarTodasDoacoes = fachada.listarDoacoes();
+		listarTodasDoacoes = fachadaDoacoes.listarDoacoes();
 		return listarTodasDoacoes;
 	}
 
 	public void getEvent(SelectionEvent event) {
 		if (event.getSource().toString().equals("Button {Pesquisar}")) {
-			preencherTabelaDoacoes(pesquisarDoacoes(view.getTfPesquisa().getText()));
+			preencherTabelaDoacoes(pesquisarDoacoes(viewDoacoes.getTfPesquisa().getText()));
 		}
 		if (event.getSource().toString().equals("Button {Realizar Doação}")) {
-			view.getShlGerenciarDoacoes().dispose();
+			viewDoacoes.getShlGerenciarDoacoes().dispose();
 			SelecionarDoadorView.main();
 			GerenciarDoacoesView.main();
 		}
 		if(event.getSource().toString().equals("Button {Excluir Doação}")) {
 			if(confirmacao()) {
 				try {
-					fachada.excluirDoacao(listaExibidaNaTabela.get(view.getTable().getSelectionIndex()).getId());
+					fachadaDoacoes.excluirDoacao(listaExibidaNaTabela.get(viewDoacoes.getTable().getSelectionIndex()).getId());
 					excluirLinhasDaTabela();
 					preencherTabelaDoacoes(obterTodasDoacoes());
 				} catch (DoacaoInvalidaException e) {
@@ -129,7 +126,5 @@ public class GerenciarDoacoesControle {
 				}
 			}
 		}
-		
 	}
-
 }

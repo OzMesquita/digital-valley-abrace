@@ -11,7 +11,7 @@ import view.CadastroDoadorPFisicaView;
 
 public class CadastroDoadorControle {
 	private CadastroDoadorPFisicaView viewDoador;
-	private DoadorFachada facadeDoador; 
+	private DoadorFachada fachadaDoador; 
 	
 	public void getEvent(SelectionEvent event) {
 		if (event.getSource().toString().equals("Button {Cadastrar}")){
@@ -26,7 +26,7 @@ public class CadastroDoadorControle {
 				doador.setTelefone2(viewDoador.getTfTelefone2().getText());
 				doador.setEmail(viewDoador.getTfEmail().getText());
 				doador.setDoador(true);
-				if(facadeDoador.cadastrarDoadorFisico(doador)) {
+				if(fachadaDoador.cadastrarDoadorFisico(doador)) {
 					viewDoador.mensagemSucesso(doador);
 					viewDoador.getShlCadastroDoador().dispose();
 				}
@@ -47,7 +47,7 @@ public class CadastroDoadorControle {
 	
 	public CadastroDoadorControle(CadastroDoadorPFisicaView cadastroDoadorView) {
 		setCadastroDoadorView(cadastroDoadorView);
-		setFacade(new DoadorFachada());
+		setFachadaDoador(new DoadorFachada());
 	}
 
 	private void setCadastroDoadorView(CadastroDoadorPFisicaView cadastroDoadorView) {
@@ -56,9 +56,9 @@ public class CadastroDoadorControle {
 		}
 	}
 
-	private void setFacade(DoadorFachada facadeDoador) {
-		if(facadeDoador != null) {
-			this.facadeDoador = facadeDoador; 
+	private void setFachadaDoador(DoadorFachada fachadaDoador) {
+		if(fachadaDoador != null) {
+			this.fachadaDoador = fachadaDoador; 
 		}
 	}
 }

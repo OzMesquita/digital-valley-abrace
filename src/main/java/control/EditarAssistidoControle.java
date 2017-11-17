@@ -1,9 +1,7 @@
 package control;
 
 import java.time.LocalDate;
-
 import org.eclipse.swt.events.SelectionEvent;
-
 import exceptions.AssistidoInvalidoException;
 import exceptions.PessoaFisicaException;
 import exceptions.PessoaInvalidaException;
@@ -12,63 +10,57 @@ import model.Assistido;
 import view.EditarAssistidoView;
 
 public class EditarAssistidoControle {
-	private EditarAssistidoView view;
-	private AssistidoFachada fachada;
+	private EditarAssistidoView viewAssistido;
+	private AssistidoFachada fachadaAssistido;
 	
-	public EditarAssistidoControle (EditarAssistidoView view){
-		setView(view);
-		setFachada(new AssistidoFachada());
+	public EditarAssistidoControle (EditarAssistidoView viewAssistido){
+		setViewAssistido(viewAssistido);
+		setFachadaAssistido(new AssistidoFachada());
 	}
 	
-	public EditarAssistidoView getView() {
-		return view;
+	public EditarAssistidoView getViewAssistido() {
+		return viewAssistido;
 	}
 
-
-	public void setView(EditarAssistidoView view) {
-		this.view = view;
+	public void setViewAssistido(EditarAssistidoView viewAssistido) {
+		this.viewAssistido = viewAssistido;
 	}
 
-
-	public AssistidoFachada getFachada() {
-		return fachada;
+	public AssistidoFachada getFachadaAssistido() {
+		return fachadaAssistido;
 	}
 
-
-	public void setFachada(AssistidoFachada fachada) {
-		this.fachada = fachada;
+	public void setFachadaAssistido(AssistidoFachada fachadaAssistido) {
+		this.fachadaAssistido = fachadaAssistido;
 	}
-
 	
 	public void getEvent(SelectionEvent event) {
 		if (event.getSource().toString().equals("Button {Salvar alterações}")){
 			Assistido assistido = new Assistido();
 			try {
-				assistido.setId(view.getAssistido().getId());
-				assistido.setNome(view.getTfNome().getText());
-				assistido.setApelido(view.getTfApelido().getText());
-				assistido.setCpf(view.getTfCPF().getText());
-				assistido.setRg(view.getTfRG().getText());
-				assistido.setEndereco(view.getTfEndereco().getText());
-				assistido.setDataNasc(LocalDate.of(view.getTfDataNascimento().getYear(),
-						view.getTfDataNascimento().getMonth()+1, view.getTfDataNascimento().getDay()));
-				assistido.setTelefone(view.getTfTelefone1().getText());
-				assistido.setTelefone2(view.getTfTelefone2().getText());
-				assistido.setEmail(view.getTfEmail().getText());
-				assistido.setTipoDeCancer(view.getTfTipoCancer().getText());
-				assistido.setSituacao(view.getTfSituacao());
-				if (fachada.editarAssistido(assistido)) {
-					view.mensagemSucesso(assistido);
-					view.getShlEditarAssistido().dispose();
+				assistido.setId(viewAssistido.getAssistido().getId());
+				assistido.setNome(viewAssistido.getTfNome().getText());
+				assistido.setApelido(viewAssistido.getTfApelido().getText());
+				assistido.setCpf(viewAssistido.getTfCPF().getText());
+				assistido.setRg(viewAssistido.getTfRG().getText());
+				assistido.setEndereco(viewAssistido.getTfEndereco().getText());
+				assistido.setDataNasc(LocalDate.of(viewAssistido.getTfDataNascimento().getYear(), viewAssistido.getTfDataNascimento().getMonth()+1, viewAssistido.getTfDataNascimento().getDay()));
+				assistido.setTelefone(viewAssistido.getTfTelefone1().getText());
+				assistido.setTelefone2(viewAssistido.getTfTelefone2().getText());
+				assistido.setEmail(viewAssistido.getTfEmail().getText());
+				assistido.setTipoDeCancer(viewAssistido.getTfTipoCancer().getText());
+				assistido.setSituacao(viewAssistido.getTfSituacao());
+				if (fachadaAssistido.editarAssistido(assistido)) {
+					viewAssistido.mensagemSucesso(assistido);
+					viewAssistido.getShlEditarAssistido().dispose();
 				}
 			} catch (PessoaInvalidaException e) {
-				view.mensagemErro(e);
+				viewAssistido.mensagemErro(e);
 			} catch (AssistidoInvalidoException e) {
-				view.mensagemErro(e);
+				viewAssistido.mensagemErro(e);
 			} catch (PessoaFisicaException e) {
-				view.mensagemErro(e);
+				viewAssistido.mensagemErro(e);
 			}
 		}
 	}
-	
 }

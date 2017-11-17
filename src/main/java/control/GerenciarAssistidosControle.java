@@ -2,12 +2,10 @@ package control;
 
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.TableItem;
-
 import facade.AssistidoFachada;
 import model.Assistido;
 import view.CadastroAssistidoView;
@@ -15,46 +13,42 @@ import view.EditarAssistidoView;
 import view.GerenciarAssistidosView;
 
 public class GerenciarAssistidosControle {
-	private GerenciarAssistidosView view; 
-	private AssistidoFachada fachada;
+	private GerenciarAssistidosView viewAssistido; 
+	private AssistidoFachada fachadaAssistido;
 	private ArrayList<Assistido> listaTodosAssistidos;
 	private ArrayList<Assistido> listaExibidaNaTabela;
 	
-	public GerenciarAssistidosView getView() {
-		return view;
+	public GerenciarAssistidosView getViewAssistido() {
+		return viewAssistido;
 	}
 
-
-	public void setView(GerenciarAssistidosView view) {
-		this.view = view;
+	public void setViewAssistido(GerenciarAssistidosView viewAssistido) {
+		this.viewAssistido = viewAssistido;
 	}
 
-
-	public AssistidoFachada getFachada() {
-		return fachada;
+	public AssistidoFachada getFachadaAssistido() {
+		return fachadaAssistido;
 	}
 
-
-	public void setFachada(AssistidoFachada fachada) {
-		this.fachada = fachada;
+	public void setFachadaAssistido(AssistidoFachada fachadaAssistido) {
+		this.fachadaAssistido = fachadaAssistido;
 	}
 	
-	public GerenciarAssistidosControle (GerenciarAssistidosView view) {
-		setView(view);
-		setFachada(new AssistidoFachada());
-		
+	public GerenciarAssistidosControle (GerenciarAssistidosView viewAssistido) {
+		setViewAssistido(viewAssistido);
+		setFachadaAssistido(new AssistidoFachada());
 	}
 	
 	public GerenciarAssistidosControle () {
 	}
 
 	public void excluirLinhasDaTabela() {
-		view.getTable().removeAll();
+		viewAssistido.getTable().removeAll();
 	}
 	
 	public ArrayList<Assistido> obterTodosAssistidos() {
 		excluirLinhasDaTabela();
-		listaTodosAssistidos = fachada.listarTodosAssistidos();
+		listaTodosAssistidos = fachadaAssistido.listarTodosAssistidos();
 		return listaTodosAssistidos;
 	}
 	
@@ -63,7 +57,7 @@ public class GerenciarAssistidosControle {
 		DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		listaExibidaNaTabela = assistidos;
 		for(int i = 0; i < assistidos.size(); i++) {
-			TableItem item = new TableItem(view.getTable(), SWT.NONE);
+			TableItem item = new TableItem(viewAssistido.getTable(), SWT.NONE);
 			item.setText(0, Integer.toString(assistidos.get(i).getId()));
 			item.setText(1, assistidos.get(i).getNome());
 			item.setText(2, assistidos.get(i).getDataNasc().format(formatador));
@@ -72,8 +66,7 @@ public class GerenciarAssistidosControle {
 	}
 	
 	public boolean confirmacao() {
-        MessageBox messageBox = new MessageBox(view.getShlGerenciarAssistidos(),SWT.ICON_WARNING | SWT.CANCEL | SWT.OK);
-        
+        MessageBox messageBox = new MessageBox(viewAssistido.getShlGerenciarAssistidos(),SWT.ICON_WARNING | SWT.CANCEL | SWT.OK);
         messageBox.setText("Aviso!");
         messageBox.setMessage("Você deseja realmente deletar o assistido do sistema?");
         int buttonID = messageBox.open();
@@ -85,13 +78,11 @@ public class GerenciarAssistidosControle {
           default:
         	  return false;
         }
-        
-      }
+    }
 	
 	public ArrayList<Assistido> pesquisarAssistidos(String nomePesquisa) {
 		excluirLinhasDaTabela();
 		ArrayList<Assistido> listaPesquisaAssistidos = new ArrayList<Assistido>();
-		
 		for(int i = 0; i < listaTodosAssistidos.size(); i++) {
 			if(listaTodosAssistidos.get(i).getNome().toLowerCase().contains(nomePesquisa.toLowerCase())) {
 				listaPesquisaAssistidos.add(listaTodosAssistidos.get(i));
@@ -102,22 +93,22 @@ public class GerenciarAssistidosControle {
 	
 	public void getEvent(SelectionEvent event) {
 		if (event.getSource().toString().equals("Button {Pesquisar}")) {
-			preencherTabelaAssistidos(pesquisarAssistidos(view.getTfPesquisa().getText()));
+			preencherTabelaAssistidos(pesquisarAssistidos(viewAssistido.getTfPesquisa().getText()));
 		}
 		if (event.getSource().toString().equals("Button {Editar Assistido}")) {
-			Assistido a = fachada.obterAssistido(listaExibidaNaTabela.get(view.getTable().getSelectionIndex()).getId());
-			this.view.getShlGerenciarAssistidos().dispose();
-			new EditarAssistidoView(a).open();
+			Assistido assistido = fachadaAssistido.obterAssistido(listaExibidaNaTabela.get(viewAssistido.getTable().getSelectionIndex()).getId());
+			this.viewAssistido.getShlGerenciarAssistidos().dispose();
+			new EditarAssistidoView(assistido).open();
 		}
 		if(event.getSource().toString().equals("Button {Excluir Assistido}")) {
 			if(confirmacao()) {
-				fachada.excluirAssistido(listaExibidaNaTabela.get(view.getTable().getSelectionIndex()).getId());
+				fachadaAssistido.excluirAssistido(listaExibidaNaTabela.get(viewAssistido.getTable().getSelectionIndex()).getId());
 				excluirLinhasDaTabela();
 				preencherTabelaAssistidos(obterTodosAssistidos());
 			}
 		}
 		if(event.getSource().toString().equals("Button {Cadastrar Assistido}")) {
-			view.getShlGerenciarAssistidos().dispose();
+			viewAssistido.getShlGerenciarAssistidos().dispose();
 			CadastroAssistidoView.main();
 			GerenciarAssistidosView.main();
 		}

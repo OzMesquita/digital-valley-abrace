@@ -12,39 +12,40 @@ import view.EditarDoadorPFView;
 import view.GerenciarDoadoresView;
 
 public class EditarDoadorPFControle {
-	private EditarDoadorPFView view;
-	private DoadorFachada facade;
+	private EditarDoadorPFView viewDoador;
+	private DoadorFachada fachadaDoador;
+	
 	public EditarDoadorPFControle(EditarDoadorPFView editarDoadorFisicoView) {
 		if(editarDoadorFisicoView != null) {
-			this.view = editarDoadorFisicoView;
-			this.facade = new DoadorFachada();
+			this.viewDoador = editarDoadorFisicoView;
+			this.fachadaDoador = new DoadorFachada();
 		}
 	}
+	
 	public void getEvent(SelectionEvent event) {
 		if (event.getSource().toString().equals("Button {Salvar alterações}")){
 			PessoaFisica doador = new PessoaFisica();
 			try {
-				doador.setId(view.getDoador().getId());
-				doador.setNome(view.getTfNome().getText());
-				doador.setCpf(view.getTfCPF().getText());
-				doador.setRg(view.getTfRG().getText());
-				doador.setEndereco(view.getTfEndereco().getText());
-				doador.setDataNasc(LocalDate.of(view.getTfDataNascimento().getYear(), view.getTfDataNascimento().getMonth() + 1, view.getTfDataNascimento().getDay()));
-				doador.setTelefone(view.getTfTelefone1().getText());
-				doador.setTelefone2(view.getTfTelefone2().getText());
-				doador.setEmail(view.getTfEmail().getText());
+				doador.setId(viewDoador.getDoador().getId());
+				doador.setNome(viewDoador.getTfNome().getText());
+				doador.setCpf(viewDoador.getTfCPF().getText());
+				doador.setRg(viewDoador.getTfRG().getText());
+				doador.setEndereco(viewDoador.getTfEndereco().getText());
+				doador.setDataNasc(LocalDate.of(viewDoador.getTfDataNascimento().getYear(), viewDoador.getTfDataNascimento().getMonth() + 1, viewDoador.getTfDataNascimento().getDay()));
+				doador.setTelefone(viewDoador.getTfTelefone1().getText());
+				doador.setTelefone2(viewDoador.getTfTelefone2().getText());
+				doador.setEmail(viewDoador.getTfEmail().getText());
 				doador.setDataCadastro(LocalDate.now());
-				if (facade.editarDoadorFisico(doador)) {
-					view.mensagemSucesso(doador);
-					view.getShlEditarDoadorPessoa().dispose();
+				if (fachadaDoador.editarDoadorFisico(doador)) {
+					viewDoador.mensagemSucesso(doador);
+					viewDoador.getShlEditarDoadorPessoa().dispose();
 					GerenciarDoadoresView.main();
 				}
 			} catch (PessoaInvalidaException e) {
-				view.mensagemErro(e);
+				viewDoador.mensagemErro(e);
 			} catch (PessoaFisicaException e) {
-				view.mensagemErro(e);;
+				viewDoador.mensagemErro(e);;
 			}
 		}
 	}
-
 }
