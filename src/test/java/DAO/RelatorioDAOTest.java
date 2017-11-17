@@ -1,25 +1,17 @@
 package DAO;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Date;
 
 import com.itextpdf.text.DocumentException;
 
-import exceptions.AssistidoInvalidoException;
 import exceptions.DoacaoInvalidaException;
 import exceptions.PessoaFisicaException;
 import exceptions.PessoaInvalidaException;
-import exceptions.PessoaJuridicaInvalidaException;
 import facade.DoadorFachada;
-import model.Assistido;
 import model.Doacao;
-import model.Pessoa;
 import model.PessoaFisica;
 import relatorio.ReciboDoacaoFachada;
-import relatorio.RelatorioAssistidoFacade;
 import relatorio.RelatorioDoadoresFacade;
 
 public class RelatorioDAOTest {
@@ -45,7 +37,7 @@ public class RelatorioDAOTest {
 		//TESTES RELATORIO DE DOADORES
 		DoadorFachada doadores = new DoadorFachada();
 		try {
-			new RelatorioDoadoresFacade().relatorioDeDoadores(doadores.getTodosDoadores(), false, true, true, true);
+			new RelatorioDoadoresFacade().relatorioDeDoadores(doadores.getTodosDoadores(), true, true, true, true);
 		} catch (DocumentException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
