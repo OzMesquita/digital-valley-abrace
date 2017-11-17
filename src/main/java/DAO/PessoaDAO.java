@@ -23,9 +23,8 @@ public class PessoaDAO extends ExecutaSQL {
 		Statement s = getConexao().createStatement();
         s.executeUpdate("CALL SYSCS_UTIL.SYSCS_SET_DATABASE_PROPERTY('derby.language.sequence.preallocator', '1')");
 		PreparedStatement stmt = null;
-		String sql = "INSERT INTO ABRACE.Pessoa (ativo, datacadastro, email, telefone2, telefone1, endereco, nome,isDoador)" + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO ABRACE.Pessoa (ativo, datacadastro, email, telefone2, telefone1, endereco, nome, isDoador)" + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 		stmt = getConexao().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-		// se você chegou aqui após um erro ocorrer, é porque seu banco não foi atualizado com o novo atributo encontrado (isDoador). Apague o localhost e reexecute o script de instalacao
 		pessoa.setDataCadastro(LocalDate.now());
 		stmt.setBoolean(1, true);
 		stmt.setDate(2, Date.valueOf(pessoa.getDataCadastro()));
@@ -35,9 +34,7 @@ public class PessoaDAO extends ExecutaSQL {
 		stmt.setString(6, pessoa.getEndereco());
 		stmt.setString(7, pessoa.getNome());
 		stmt.setBoolean(8, pessoa.isDoador());
-		// execute
 		stmt.execute();
-		// get DB id
 		ResultSet rs = stmt.getGeneratedKeys();
 		if (rs.next()) {
 			pessoa.setId(rs.getInt(1));

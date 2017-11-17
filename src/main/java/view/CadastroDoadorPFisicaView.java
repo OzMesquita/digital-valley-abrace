@@ -5,15 +5,12 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.wb.swt.SWTResourceManager;
 
 import control.CadastroDoadorControle;
-import exceptions.PessoaFisicaException;
-import exceptions.PessoaInvalidaException;
 import model.PessoaFisica;
 
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.MessageBox;
 
 import java.io.File;
-import java.sql.SQLException;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Text;
