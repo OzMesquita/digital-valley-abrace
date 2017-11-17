@@ -1,7 +1,6 @@
 package view;
 
 import java.io.File;
-
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -9,37 +8,25 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.wb.swt.SWTResourceManager;
-
 import control.LoginSingleton;
-
 import org.eclipse.swt.widgets.Label;
-public class AplicacaoView {
 
+public class AplicacaoView {
 	protected Shell shlOngRussasTransformando;
 
-	/**
-	 * Launch the application.
-	 * @param args
-	 * @wbp.parser.entryPoint
-	 */
 	public static void main() {
 		try {
 			AplicacaoView window = new AplicacaoView();
-			
 			window.open();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-	/**
-	 * Open the window.
-	 */
 	public void open() {
 		Display display = Display.getDefault();
 		createContents();
 		Centralize.centralize(shlOngRussasTransformando);
-		
 		Button btnListarDoadores = new Button(shlOngRussasTransformando, SWT.NONE);
 		btnListarDoadores.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
 		btnListarDoadores.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/doadores-small.png").getAbsolutePath()));
@@ -51,7 +38,6 @@ public class AplicacaoView {
 		});
 		btnListarDoadores.setText("Gerenciar Doadores");
 		btnListarDoadores.setBounds(333, 251, 243, 68);
-		
 		Button btnRealizarDoacao = new Button(shlOngRussasTransformando, SWT.NONE);
 		btnRealizarDoacao.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/doacao-small.png").getAbsolutePath()));
 		btnRealizarDoacao.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
@@ -75,7 +61,6 @@ public class AplicacaoView {
 		btnGerenciarDoaes.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/doacoes-small.png").getAbsolutePath()));
 		btnGerenciarDoaes.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
 		btnGerenciarDoaes.setBounds(333, 337, 243, 68);
-		
 		Label label = new Label(shlOngRussasTransformando, SWT.NONE);
 		label.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/ABRACE.png").getAbsolutePath()));
 		label.setBounds(530, 51, 64, 64);
@@ -88,9 +73,6 @@ public class AplicacaoView {
 		}
 	}
 
-	/**
-	 * Create contents of the window.
-	 */
 	protected void createContents() {
 		shlOngRussasTransformando = new Shell(SWT.SHELL_TRIM & (~SWT.RESIZE) & (~SWT.MAX));
 		shlOngRussasTransformando.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/ABRACE.png").getAbsolutePath()));

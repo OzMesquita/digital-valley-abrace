@@ -3,17 +3,13 @@ package view;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.MessageBox;
-
 import java.io.File;
-
 import org.eclipse.swt.SWT;
 import org.eclipse.wb.swt.SWTResourceManager;
-
 import control.DoacaoControle;
 import model.Doacao;
 import model.PessoaFisica;
 import model.PessoaJuridica;
-
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Label;
@@ -24,7 +20,6 @@ import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 
 public class  SelecionarDoadorView{
-
 	protected Shell shlDoacao;
 	private PessoaFisica doadorFisico;
 	private PessoaJuridica doadorJuridico;
@@ -32,7 +27,6 @@ public class  SelecionarDoadorView{
 	private Combo tfAtivo;
 	private Text tfPesquisar;
 	private Table table;
-	
 	private DoacaoControle controle;
 	
 	public PessoaFisica getDoadorFisico() {
@@ -120,10 +114,7 @@ public class  SelecionarDoadorView{
 	public SelecionarDoadorView() {
 		this.setControle(new DoacaoControle(this));
 	}
-	
-	/**
-	 * Open the window.
-	 */
+
 	public void open() {
 		Display display = Display.getDefault();
 		createContents();
@@ -241,24 +232,14 @@ public class  SelecionarDoadorView{
 				display.sleep();
 			}
 		}
-		
 	}
 
-	/**
-	 * Create contents of the window.
-	 */
 	protected void createContents() {
 		shlDoacao = new Shell();
 		shlDoacao.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/ABRACE.png").getAbsolutePath()));
 		shlDoacao.setSize(730, 762);
 		shlDoacao.setText("Realizar Doa\u00E7\u00E3o - Passo 1 de 2 - ABRACE");
 	}
-	
-	/**
-	 * Launch the application.
-	 * @param args
-	 * @wbp.parser.entryPoint
-	 */
 	
 	public static void main() {
 		try {
@@ -276,7 +257,7 @@ public class  SelecionarDoadorView{
       messageBox.open();
 	}
 	
-	public void mensagemSucesso(PessoaFisica p){
+	public void mensagemSucesso(PessoaFisica pessoaFisica){
 		MessageBox messageBox = new MessageBox(shlDoacao,SWT.ICON_WORKING | SWT.OK); 
 		messageBox.setText("Operação realizada com sucesso!");
 		messageBox.setMessage("A doação foi realizada com sucesso!");

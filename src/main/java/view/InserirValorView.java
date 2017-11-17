@@ -4,15 +4,11 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.MessageBox;
-
 import java.io.File;
-
 import org.eclipse.swt.SWT;
 import org.eclipse.wb.swt.SWTResourceManager;
-
 import control.DoacaoControle;
 import control.DoacaoSingleton;
-
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.DateTime;
 import org.eclipse.swt.widgets.Button;
@@ -22,7 +18,6 @@ import org.eclipse.swt.events.KeyAdapter;
 import org.eclipse.swt.events.KeyEvent;
 
 public class InserirValorView {
-
 	protected Shell shlRealizarDoao;
 	private DateTime tfDataDoacao;
 	DoacaoControle controle = new DoacaoControle(this);
@@ -89,11 +84,6 @@ public class InserirValorView {
 		this.dateTime_1 = dateTime_1;
 	}
 
-	/**
-	 * Launch the application.
-	 * @param args
-	 * @wbp.parser.entryPoint
-	 */
 	public static void main() {
 		try {
 			InserirValorView window = new InserirValorView();
@@ -103,9 +93,6 @@ public class InserirValorView {
 		}
 	}
 
-	/**
-	 * Open the window.
-	 */
 	public void open() {
 		Display display = Display.getDefault();
 		createContents();
@@ -131,9 +118,6 @@ public class InserirValorView {
 		this.tfDataDoacao = tfDataDoacao;
 	}
 
-	/**
-	 * Create contents of the window.
-	 */
 	protected void createContents() {
 		shlRealizarDoao = new Shell();
 		shlRealizarDoao.setSize(730, 762);

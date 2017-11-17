@@ -3,13 +3,10 @@ package view;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
-
 import java.io.File;
 import java.sql.SQLException;
-
 import org.eclipse.swt.SWT;
 import org.eclipse.wb.swt.SWTResourceManager;
-
 import control.CadastroAssistidoControle;
 import exceptions.PessoaFisicaException;
 import exceptions.PessoaInvalidaException;
@@ -24,7 +21,6 @@ import org.eclipse.swt.events.SelectionEvent;
 
 public class CadastroAssistidoView{
 	CadastroAssistidoControle controle;
-
 	protected Shell shlCadastroAssistido;
 	private Text tfRG;
 	private Text tfCPF;
@@ -37,8 +33,6 @@ public class CadastroAssistidoView{
 	private Text tfApelido;
 	private Text tfTipoCancer;
 	private Combo tfSituacao;
-	
-	
 
 	public CadastroAssistidoView() throws ClassNotFoundException {
 		this.controle= new CadastroAssistidoControle(this);
@@ -148,11 +142,6 @@ public class CadastroAssistidoView{
 		this.shlCadastroAssistido = shlCadastroAssistido;
 	}
 
-	/**
-	 * Launch the application.
-	 * @param args
-	 * @wbp.parser.entryPoint
-	 */
 	public static void main() {
 		try {
 			CadastroAssistidoView window = new CadastroAssistidoView();
@@ -162,14 +151,10 @@ public class CadastroAssistidoView{
 		}
 	}
 
-	/**
-	 * Open the window.
-	 */
 	public void open() {
 		Display display = Display.getDefault();
 		createContents();
 		Centralize.centralize(shlCadastroAssistido);
-		
 		Button button = new Button(shlCadastroAssistido, SWT.NONE);
 		button.addSelectionListener(new SelectionAdapter() {
 			@Override
@@ -243,9 +228,6 @@ public class CadastroAssistidoView{
 		}
 	}
 
-	/**
-	 * Create contents of the window.
-	 */
 	protected void createContents() {
 		shlCadastroAssistido = new Shell(SWT.SHELL_TRIM & (~SWT.RESIZE) & (~SWT.MAX));
 		shlCadastroAssistido.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/ABRACE.png").getAbsolutePath()));
@@ -400,10 +382,10 @@ public class CadastroAssistidoView{
        messageBox.open();
 	}
 	
-	public void mensagemSucesso(PessoaFisica p){
+	public void mensagemSucesso(PessoaFisica pessoaFisica){
 		MessageBox messageBox = new MessageBox(shlCadastroAssistido,SWT.ICON_WORKING | SWT.OK); 
 		messageBox.setText("Assistido cadastrado com sucesso!");
-		messageBox.setMessage("Cadastro realizado com sucesso!\n" + p.getNome()+", agora é um de nossos assistidos! :)");
+		messageBox.setMessage("Cadastro realizado com sucesso!\n" + pessoaFisica.getNome()+", agora é um de nossos assistidos! :)");
 		messageBox.open();
 	}
 }

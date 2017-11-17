@@ -1,7 +1,6 @@
 package view;
 
 import java.io.File;
-
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -11,33 +10,24 @@ import org.eclipse.wb.swt.SWTResourceManager;
 import org.eclipse.swt.widgets.Label;
 
 public class SelecionarTipoDoadorView {
-
 	protected Shell shlSelecionarTipoDoador = new Shell(SWT.SHELL_TRIM & (~SWT.RESIZE) & (~SWT.MAX));
+	
 	public static void main() {
 		try {
 			SelecionarTipoDoadorView window = new SelecionarTipoDoadorView();
-			
 			window.open();
 			window.shlSelecionarTipoDoador.open();
 			window.shlSelecionarTipoDoador.layout();
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-	/**
-	 * Open the window.
-	 */
 	public void open() {
 		this.createContents();
 		Centralize.centralize(shlSelecionarTipoDoador);
 	}
 
-	/**
-	 * Create contents of the window.
-	 * @wbp.parser.entryPoint
-	 */
 	protected void createContents() {
 		shlSelecionarTipoDoador.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/ABRACE.png").getAbsolutePath()));
 		shlSelecionarTipoDoador.setSize(657, 503);
@@ -91,5 +81,4 @@ public class SelecionarTipoDoadorView {
 		button.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
 		button.setBounds(221, 398, 208, 54);
 	}
-
 }

@@ -1,7 +1,6 @@
 package view;
 
 import java.io.File;
-
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -12,17 +11,21 @@ import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.wb.swt.SWTResourceManager;
-
 import control.EditarDoadorJuridicoControle;
 import model.PessoaJuridica;
 
 public class EditarDoadorPJView {
-
 	private EditarDoadorJuridicoControle controle;
-	
 	private Shell shlEditarDoador_1;
-	
 	private PessoaJuridica doador;
+	private Text tfNome;
+	private Text tfCNPJ;
+	private Text tfFantasia;
+	private Text tfEndereco;
+	private Text tfTelefone1;
+	private Text tfTelefone2;
+	private Text tfEmail;
+	
 	public EditarDoadorPJView(PessoaJuridica doador) {
 		this.setControle(new EditarDoadorJuridicoControle(this));
 		this.setDoador(doador);
@@ -47,14 +50,7 @@ public class EditarDoadorPJView {
 	public void setDoador(PessoaJuridica doador) {
 		this.doador = doador;
 	}
-
-	private Text tfNome;
-	private Text tfCNPJ;
-	private Text tfFantasia;
-	private Text tfEndereco;
-	private Text tfTelefone1;
-	private Text tfTelefone2;
-	private Text tfEmail;
+	
 	public Shell getShlCadastroDoador() {
 		return shlEditarDoador_1;
 	}
@@ -62,6 +58,7 @@ public class EditarDoadorPJView {
 	public void setShlCadastroDoador(Shell shlCadastroDoador) {
 		this.shlEditarDoador_1 = shlCadastroDoador;
 	}
+	
 	public Text getTfNome() {
 		return tfNome;
 	}
@@ -118,11 +115,6 @@ public class EditarDoadorPJView {
 		this.tfEmail = tfEmail;
 	}
 
-	/**
-	 * Launch the application.
-	 * @param args
-	 * @wbp.parser.entryPoint
-	 */
 	public static void main(PessoaJuridica doador) {
 		try {
 			EditarDoadorPJView window = new EditarDoadorPJView(doador);
@@ -132,9 +124,6 @@ public class EditarDoadorPJView {
 		}
 	}
 
-	/**
-	 * Open the window.
-	 */
 	public void open() {
 		Display display = Display.getDefault();
 		createContents();
@@ -183,9 +172,6 @@ public class EditarDoadorPJView {
 		}
 	}
 
-	/**
-	 * Create contents of the window.
-	 */
 	protected void createContents() {
 		shlEditarDoador_1 = new Shell(SWT.SHELL_TRIM & (~SWT.RESIZE) & (~SWT.MAX));
 		shlEditarDoador_1.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/ABRACE.png").getAbsolutePath()));
@@ -296,17 +282,18 @@ public class EditarDoadorPJView {
 		tfTelefone2.setText(doador.getTelefone2());
 		tfEmail.setText(doador.getEmail());
 	}
+	
 	public void mensagemErro(Exception e){
 		 MessageBox messageBox = new MessageBox(shlEditarDoador_1,SWT.ICON_ERROR | SWT.OK); 
 		 messageBox.setText("Problemas ao editar dados do doador jurídico!");
 		 messageBox.setMessage(/*e.getMessage()+*/"Não foi possível editar este doador pessoa jurídica. \nConsulte o suporte.");
 		 messageBox.open();
 	}
-	public void mensagemSucesso(PessoaJuridica p){
+	
+	public void mensagemSucesso(PessoaJuridica pessoaJuridica){
 		MessageBox messageBox = new MessageBox(shlEditarDoador_1,SWT.ICON_WORKING | SWT.OK); 
 		messageBox.setText("Doador editado com sucesso!");
 		messageBox.setMessage("As informações do doador foram alteradas com sucesso");
 		messageBox.open();
 	}
-
 }

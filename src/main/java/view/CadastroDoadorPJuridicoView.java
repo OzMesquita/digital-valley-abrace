@@ -1,7 +1,6 @@
 package view;
 
 import java.io.File;
-
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -13,17 +12,12 @@ import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.wb.swt.SWTResourceManager;
-
 import control.CadastroDoadorJuridicoControle;
 import model.PessoaJuridica;
 
 public class CadastroDoadorPJuridicoView {
-
 	private CadastroDoadorJuridicoControle controle;
-	
 	protected Shell shlCadastroDoador;
-	
-
 	private Text tfNome;
 	private Text tfCNPJ;
 	private Text tfFantasia;
@@ -32,6 +26,7 @@ public class CadastroDoadorPJuridicoView {
 	private Text tfTelefone1;
 	private Text tfTelefone2;
 	private Text tfEmail;
+	
 	public Shell getShlCadastroDoador() {
 		return shlCadastroDoador;
 	}
@@ -39,9 +34,9 @@ public class CadastroDoadorPJuridicoView {
 	public void setShlCadastroDoador(Shell shlCadastroDoador) {
 		this.shlCadastroDoador = shlCadastroDoador;
 	}
+	
 	public Text getTfNome() {
 		return tfNome;
-		
 	}
 
 	public void setTfNome(Text tfNome) {
@@ -100,11 +95,6 @@ public class CadastroDoadorPJuridicoView {
 		this.controle = new CadastroDoadorJuridicoControle(this);
 	}
 
-	/**
-	 * Launch the application.
-	 * @param args
-	 * @wbp.parser.entryPoint
-	 */
 	public static void main() {
 		try {
 			CadastroDoadorPJuridicoView window = new CadastroDoadorPJuridicoView();
@@ -114,9 +104,6 @@ public class CadastroDoadorPJuridicoView {
 		}
 	}
 
-	/**
-	 * Open the window.
-	 */
 	public void open() {
 		Display display = Display.getDefault();
 		createContents();
@@ -156,9 +143,6 @@ public class CadastroDoadorPJuridicoView {
 		label_5.setForeground(SWTResourceManager.getColor(SWT.COLOR_RED));
 		label_5.setFont(SWTResourceManager.getFont("Segoe UI", 12, SWT.NORMAL));
 		label_5.setBounds(222, 318, 7, 21);
-		
-		
-		
 		shlCadastroDoador.open();
 		shlCadastroDoador.layout();
 		while (!shlCadastroDoador.isDisposed()) {
@@ -168,9 +152,6 @@ public class CadastroDoadorPJuridicoView {
 		}
 	}
 
-	/**
-	 * Create contents of the window.
-	 */
 	protected void createContents() {
 		shlCadastroDoador = new Shell(SWT.SHELL_TRIM & (~SWT.RESIZE) & (~SWT.MAX));
 		shlCadastroDoador.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/ABRACE.png").getAbsolutePath()));
@@ -282,16 +263,16 @@ public class CadastroDoadorPJuridicoView {
 	}
 	
 	public void mensagemErro(Exception e){
-		 MessageBox messageBox = new MessageBox(shlCadastroDoador,SWT.ICON_ERROR | SWT.OK); 
-        messageBox.setText("Problemas no cadastro do doador jurídico!");
-        messageBox.setMessage(e.getMessage()+"\nNão foi possível cadastrar este doador pessoa jurídica.");
-       messageBox.open();
+		MessageBox messageBox = new MessageBox(shlCadastroDoador,SWT.ICON_ERROR | SWT.OK); 
+		messageBox.setText("Problemas no cadastro do doador jurídico!");
+		messageBox.setMessage(e.getMessage()+"\nNão foi possível cadastrar este doador pessoa jurídica.");
+		messageBox.open();
 	}
 	
-	public void mensagemSucesso(PessoaJuridica p){
+	public void mensagemSucesso(PessoaJuridica pessoaJuridica){
 		MessageBox messageBox = new MessageBox(shlCadastroDoador,SWT.ICON_WORKING | SWT.OK); 
 		messageBox.setText("Assistido cadastrado com sucesso!");
-		messageBox.setMessage("Cadastro realizado com sucesso!\n" + p.getNome()+", agora é um de nossos doadores! :)");
+		messageBox.setMessage("Cadastro realizado com sucesso!\n" + pessoaJuridica.getNome()+", agora é um de nossos doadores! :)");
 		messageBox.open();
 	}
 }

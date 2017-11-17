@@ -4,14 +4,10 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.MessageBox;
-
 import java.io.File;
-
 import org.eclipse.swt.SWT;
 import org.eclipse.wb.swt.SWTResourceManager;
-
 import control.LoginControle;
-
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -20,7 +16,6 @@ import org.eclipse.swt.events.KeyAdapter;
 import org.eclipse.swt.events.KeyEvent;
 
 public class LoginView {
-
 	protected Shell shlOngRussasTransformando;
 	private Text tfUsuario;
 	private Text tfSenha;
@@ -50,10 +45,7 @@ public class LoginView {
 		return shlOngRussasTransformando;
 		
 	}
-	/**
-	 * Launch the application.
-	 * @param args
-	 */
+
 	public static void main(String[] args) {
 		try {
 			LoginView window = new LoginView();
@@ -63,9 +55,6 @@ public class LoginView {
 		}
 	}
 
-	/**
-	 * Open the window.
-	 */
 	public void open() {
 		Display display = Display.getDefault();
 		createContents();
@@ -75,14 +64,10 @@ public class LoginView {
 		while (!shlOngRussasTransformando.isDisposed()) {
 			if (!display.readAndDispatch()) {
 				display.sleep();
-				
 			}
 		}
 	}
-
-	/**
-	 * Create contents of the window.
-	 */
+	
 	protected void createContents() {
 		shlOngRussasTransformando = new Shell(SWT.SHELL_TRIM & (~SWT.RESIZE) & (~SWT.MAX));
 		shlOngRussasTransformando.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/ABRACE.png").getAbsolutePath()));
@@ -153,7 +138,5 @@ public class LoginView {
          messageBox.setText("Login inválido");
          messageBox.setMessage(e.getMessage()+".\nTente novamente");
         messageBox.open();
-	}
-	
-	
+	}	
 }

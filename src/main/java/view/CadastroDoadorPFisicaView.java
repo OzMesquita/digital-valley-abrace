@@ -3,15 +3,11 @@ package view;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.wb.swt.SWTResourceManager;
-
 import control.CadastroDoadorControle;
 import model.PessoaFisica;
-
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.MessageBox;
-
 import java.io.File;
-
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.DateTime;
@@ -21,7 +17,6 @@ import org.eclipse.swt.events.SelectionEvent;
 
 public class CadastroDoadorPFisicaView {
 	CadastroDoadorControle controle;
-	
 	protected Shell shlCadastroDoador;
 	private Text tfNome;
 	private Text tfCPF;
@@ -34,7 +29,6 @@ public class CadastroDoadorPFisicaView {
 	
 	public Text getTfNome() {
 		return tfNome;
-		
 	}
 
 	public void setTfNome(Text tfNome) {
@@ -101,11 +95,6 @@ public class CadastroDoadorPFisicaView {
 		this.controle = new CadastroDoadorControle(this);
 	}
 
-	/**
-	 * Launch the application.
-	 * @param args
-	 * @wbp.parser.entryPoint
-	 */
 	public static void main() {
 		try {
 			CadastroDoadorPFisicaView window = new CadastroDoadorPFisicaView();
@@ -115,9 +104,6 @@ public class CadastroDoadorPFisicaView {
 		}
 	}
 
-	/**
-	 * Open the window.
-	 */
 	public void open() {
 		Display display = Display.getDefault();
 		createContents();
@@ -180,9 +166,6 @@ public class CadastroDoadorPFisicaView {
 		this.shlCadastroDoador = shlCadastroDoador;
 	}
 
-	/**
-	 * Create contents of the window.
-	 */
 	protected void createContents() {
 		shlCadastroDoador = new Shell(SWT.SHELL_TRIM & (~SWT.RESIZE) & (~SWT.MAX));
 		shlCadastroDoador.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/ABRACE.png").getAbsolutePath()));
@@ -309,10 +292,10 @@ public class CadastroDoadorPFisicaView {
         messageBox.open();
 	}
 	
-	public void mensagemSucesso(PessoaFisica p){
+	public void mensagemSucesso(PessoaFisica pessoaFisica){
 		MessageBox messageBox = new MessageBox(shlCadastroDoador,SWT.ICON_WORKING | SWT.OK); 
 		messageBox.setText("Doador cadastrado com sucesso!");
-		messageBox.setMessage("Cadastro realizado com sucesso!\n" + p.getNome()+", agora é um de nossos doadores! :)");
+		messageBox.setMessage("Cadastro realizado com sucesso!\n" + pessoaFisica.getNome()+", agora é um de nossos doadores! :)");
 		messageBox.open();
 	}
 }

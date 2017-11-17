@@ -4,15 +4,11 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.MessageBox;
-
 import java.io.File;
-
 import org.eclipse.swt.SWT;
 import org.eclipse.wb.swt.SWTResourceManager;
-
 import control.EditarDoadorPFControle;
 import model.PessoaFisica;
-
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.DateTime;
 import org.eclipse.swt.widgets.Button;
@@ -20,7 +16,6 @@ import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 
 public class EditarDoadorPFView {
-
 	protected Shell shlEditarDoadorPessoa;
 	private Text tfNome;
 	private Text tfCPF;
@@ -120,24 +115,16 @@ public class EditarDoadorPFView {
 		this.shlEditarDoadorPessoa = shlEditarDoadorPessoa;
 	}
 
-	/**
-	 * Launch the application.
-	 * @param args
-	 * @wbp.parser.entryPoint
-	 */
-	public static void main(PessoaFisica p) {
+	public static void main(PessoaFisica pessoaFisica) {
 		try {
 			EditarDoadorPFView window = new EditarDoadorPFView();
-			window.setDoador(p);
+			window.setDoador(pessoaFisica);
 			window.open();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-	/**
-	 * Open the window.
-	 */
 	public void open() {
 		Display display = Display.getDefault();
 		createContents();
@@ -150,9 +137,6 @@ public class EditarDoadorPFView {
 		}
 	}
 
-	/**
-	 * Create contents of the window.
-	 */
 	protected void createContents() {
 		shlEditarDoadorPessoa = new Shell();
 		shlEditarDoadorPessoa.setSize(715, 674);
@@ -331,7 +315,7 @@ public class EditarDoadorPFView {
 	     messageBox.open();
 	}
 	
-	public void mensagemSucesso(PessoaFisica p){
+	public void mensagemSucesso(PessoaFisica pessoaFisica){
 		MessageBox messageBox = new MessageBox(shlEditarDoadorPessoa,SWT.ICON_WORKING | SWT.OK); 
 		messageBox.setText("Operação realizada com sucesso!");
 		messageBox.setMessage("Os dados do assitido foram alterados com sucesso!");

@@ -5,13 +5,8 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 
 public class EditarDoacaoView {
-
 	protected Shell shell;
 
-	/**
-	 * Launch the application.
-	 * @param args
-	 */
 	public static void main() {
 		try {
 			EditarDoacaoView window = new EditarDoacaoView();
@@ -21,9 +16,6 @@ public class EditarDoacaoView {
 		}
 	}
 
-	/**
-	 * Open the window.
-	 */
 	public void open() {
 		Display display = Display.getDefault();
 		createContents();
@@ -36,14 +28,9 @@ public class EditarDoacaoView {
 		}
 	}
 
-	/**
-	 * Create contents of the window.
-	 */
 	protected void createContents() {
 		shell = new Shell(SWT.SHELL_TRIM & (~SWT.RESIZE) & (~SWT.MAX));
 		shell.setSize(450, 300);
 		shell.setText("SWT Application");
-
 	}
-
 }

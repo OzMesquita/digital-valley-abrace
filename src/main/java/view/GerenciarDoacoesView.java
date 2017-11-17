@@ -1,13 +1,10 @@
 package view;
 
 import java.io.File;
-
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.wb.swt.SWTResourceManager;
-
 import control.GerenciarDoacoesControle;
-
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Table;
@@ -18,9 +15,7 @@ import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 
 public class GerenciarDoacoesView {
-	
 	GerenciarDoacoesControle controle;
-
 	protected Shell shlGerenciarDoacoes;
 	private Table table;
 	private TableColumn tblclmnId;
@@ -134,11 +129,6 @@ public class GerenciarDoacoesView {
 		this.shlGerenciarDoacoes = shlGerenciarDoacoes;
 	}
 
-	/**
-	 * Launch the application.
-	 * @param args
-	 * @wbp.parser.entryPoint
-	 */
 	public static void main() {
 		try {
 			GerenciarDoacoesView window = new GerenciarDoacoesView();
@@ -148,9 +138,6 @@ public class GerenciarDoacoesView {
 		}
 	}
 
-	/**
-	 * Open the window.
-	 */
 	public void open() {
 		Display display = Display.getDefault();
 		createContents();
@@ -272,16 +259,11 @@ public class GerenciarDoacoesView {
 			}
 		}
 	}
-	
 
-	/**
-	 * Create contents of the window.
-	 */
 	protected void createContents() {
 		shlGerenciarDoacoes = new Shell(SWT.SHELL_TRIM & (~SWT.RESIZE) & (~SWT.MAX));
 		shlGerenciarDoacoes.setSize(730, 730);
 		shlGerenciarDoacoes.setText("Gerenciar Doações - ABRACE");
 		shlGerenciarDoacoes.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/ABRACE.png").getAbsolutePath()));
-
 	}
 }

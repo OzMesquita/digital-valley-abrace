@@ -1,7 +1,6 @@
 package view;
 
 import java.io.File;
-
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -13,13 +12,10 @@ import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.wb.swt.SWTResourceManager;
-
 import control.GerenciarDoadoresControle;
 
 public class GerenciarDoadoresView {
-	
 	GerenciarDoadoresControle controle;
-
 	protected Shell shlGerenciarDoadoresFisicos;
 	private Table table;
 	private TableColumn tblclmnId;
@@ -31,10 +27,8 @@ public class GerenciarDoadoresView {
 	private Text tfPesquisa;
 	private Button btnCadastrar;
 	private Button btnEditar;
-	
 	private Button btnExcluir;
 	private Button btnCancelar;
-
 	
 	public GerenciarDoadoresView() {
 		this.controle = new GerenciarDoadoresControle(this);
@@ -152,11 +146,6 @@ public class GerenciarDoadoresView {
 		this.btnCancelar = btnCancelar;
 	}
 
-	/**
-	 * Launch the application.
-	 * @param args
-	 * @wbp.parser.entryPoint
-	 */
 	public static void main() {
 		try {
 			GerenciarDoadoresView window = new GerenciarDoadoresView();
@@ -166,9 +155,6 @@ public class GerenciarDoadoresView {
 		}
 	}
 
-	/**
-	 * Open the window.
-	 */
 	public void open() {
 		Display display = Display.getDefault();
 		createContents();
@@ -304,15 +290,10 @@ public class GerenciarDoadoresView {
 		}
 	}
 
-	/**
-	 * Create contents of the window.
-	 */
 	protected void createContents() {
 		shlGerenciarDoadoresFisicos = new Shell(SWT.SHELL_TRIM & (~SWT.RESIZE) & (~SWT.MAX));
 		shlGerenciarDoadoresFisicos.setSize(730, 762);
 		shlGerenciarDoadoresFisicos.setText("Gerenciar Assistidos - ABRACE");
 		shlGerenciarDoadoresFisicos.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/ABRACE.png").getAbsolutePath()));
-
 	}
-
 }

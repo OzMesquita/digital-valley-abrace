@@ -1,13 +1,10 @@
 package view;
 
 import java.io.File;
-
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.wb.swt.SWTResourceManager;
-
 import control.GerenciarAssistidosControle;
-
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Table;
@@ -18,9 +15,7 @@ import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 
 public class GerenciarAssistidosView {
-	
 	GerenciarAssistidosControle controle;
-
 	private Shell shlGerenciarAssistidos;
 	private Table table;
 	private TableColumn tblclmnId;
@@ -32,7 +27,6 @@ public class GerenciarAssistidosView {
 	private Text tfPesquisa;
 	private Button btnCadastrar;
 	private Button btnEditar;
-	
 	private Button btnExcluir;
 	private Button btnCancelar;
 	
@@ -144,11 +138,6 @@ public class GerenciarAssistidosView {
 		this.shlGerenciarAssistidos = shlGerenciarAssistidos;
 	}
 
-	/**
-	 * Launch the application.
-	 * @param args
-	 * @wbp.parser.entryPoint
-	 */
 	public static void main() {
 		try {
 			GerenciarAssistidosView window = new GerenciarAssistidosView();
@@ -158,9 +147,6 @@ public class GerenciarAssistidosView {
 		}
 	}
 
-	/**
-	 * Open the window.
-	 */
 	public void open() {
 		Display display = Display.getDefault();
 		createContents();
@@ -295,16 +281,11 @@ public class GerenciarAssistidosView {
 			}
 		}
 	}
-	
 
-	/**
-	 * Create contents of the window.
-	 */
 	protected void createContents() {
 		shlGerenciarAssistidos = new Shell(SWT.SHELL_TRIM & (~SWT.RESIZE) & (~SWT.MAX));
 		shlGerenciarAssistidos.setSize(730, 730);
 		shlGerenciarAssistidos.setText("Gerenciar Assistidos - ABRACE");
 		shlGerenciarAssistidos.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/ABRACE.png").getAbsolutePath()));
-
 	}
 }
