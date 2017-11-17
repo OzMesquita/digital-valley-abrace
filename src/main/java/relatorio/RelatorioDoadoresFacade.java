@@ -21,17 +21,24 @@ import model.PessoaJuridica;
 
 public class RelatorioDoadoresFacade extends RelatorioFacade{
 
-	public void relatorioDeDoadores(List<Pessoa> list, boolean exibirAtivos, boolean exibirInativos) throws DocumentException, IOException{
+	public void relatorioDeDoadores(List<Pessoa> list, boolean exibirAtivos, boolean exibirInativos, boolean exibirPessoasFisicas, boolean exibirPessoasJuridicas) throws DocumentException, IOException{
 
 		// ==================================================================================================//
 		// Criando o documento
 		// ==================================================================================================//
 		Document document = new Document();
 		String tipo = "";
-		if(exibirAtivos)tipo+="Ativos";
-		if(exibirAtivos&&exibirInativos)tipo+=" e ";
-		if(exibirInativos)tipo+="Inativos";
-		String subtitulo = "Lista de Doadores "+tipo+" da ONG ABRACE Russas";
+		
+		if(exibirPessoasFisicas) tipo+=" Fisicos ";
+		if(exibirPessoasFisicas&&exibirPessoasJuridicas) tipo+="e";
+		if(exibirPessoasJuridicas) tipo+=" Juridicos ";
+		
+		if(exibirAtivos)tipo+=" Ativos ";
+		if(exibirAtivos&&exibirInativos)tipo+="e";
+		if(exibirInativos)tipo+=" Inativos ";
+		
+		String subtitulo = "Lista de Doadores"+tipo+"da ONG ABRACE Russas";
+		
 		PdfWriter.getInstance(document, gravarDocumento(subtitulo));
 
 		document.open();
@@ -89,7 +96,7 @@ public class RelatorioDoadoresFacade extends RelatorioFacade{
 			cellCPForCNPJ.setHorizontalAlignment(Element.ALIGN_CENTER);
 			cellsituacao.setHorizontalAlignment(Element.ALIGN_CENTER);
 
-			if(p instanceof PessoaFisica){
+			if(p instanceof PessoaFisica&&exibirPessoasFisicas){
 				cellNomeOrNomeFantasia = new PdfPCell(new Paragraph(p.getNome()));
 				cellCPForCNPJ          = new PdfPCell(new Paragraph(((PessoaFisica) p).getCpf()));
 				cellsituacao           = new PdfPCell(new Paragraph(p.isAtivo() ? "ativo" : "inativo"));
@@ -108,7 +115,7 @@ public class RelatorioDoadoresFacade extends RelatorioFacade{
 					doadoresContados++;
 				}
 			}else
-				if(p instanceof PessoaJuridica){
+				if(p instanceof PessoaJuridica&&exibirPessoasJuridicas){
 					cellNomeOrNomeFantasia = new PdfPCell(new Paragraph(((PessoaJuridica) p).getNomeFantasia()));
 					cellCPForCNPJ          = new PdfPCell(new Paragraph(((PessoaJuridica) p).getCnpj()));
 					cellsituacao           = new PdfPCell(new Paragraph(p.isAtivo() ? "ativo" : "inativo"));
