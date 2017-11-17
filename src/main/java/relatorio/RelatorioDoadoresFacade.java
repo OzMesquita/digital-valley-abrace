@@ -28,17 +28,18 @@ public class RelatorioDoadoresFacade extends RelatorioFacade{
 		// ==================================================================================================//
 		Document document = new Document();
 		String tipo = "";
+		String tipoPessoa = "";
 		
-		if(exibirPessoasFisicas) tipo+=" Fisicos ";
-		if(exibirPessoasFisicas&&exibirPessoasJuridicas) tipo+="e";
-		if(exibirPessoasJuridicas) tipo+=" Juridicos ";
+		if(exibirPessoasFisicas) tipoPessoa+=" Fisicas ";
+		if(exibirPessoasFisicas&&exibirPessoasJuridicas) tipoPessoa+="e";
+		if(exibirPessoasJuridicas) tipoPessoa+=" Juridicas ";
 		
 		if(exibirAtivos)tipo+=" Ativos ";
 		if(exibirAtivos&&exibirInativos)tipo+="e";
 		if(exibirInativos)tipo+=" Inativos ";
 		
 		String subtitulo = "Lista de Doadores"+tipo+"da ONG ABRACE Russas";
-		
+		String subtitulo2 = "Pessoas "+tipoPessoa+"";
 		PdfWriter.getInstance(document, gravarDocumento(subtitulo));
 
 		document.open();
@@ -54,14 +55,17 @@ public class RelatorioDoadoresFacade extends RelatorioFacade{
 		DateTimeFormatter formatadorDataCadastro = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
 
 		Paragraph sub = new Paragraph(subtitulo,new Font(FontFamily.UNDEFINED,12,Font.BOLD));
+		Paragraph sub2 = new Paragraph(subtitulo2,new Font(FontFamily.UNDEFINED,12,Font.BOLD));
 		Paragraph emissao = new Paragraph("Emissão: " + LocalDateTime.now().format(formatadorDataCadastro));
 
 		sub.setSpacingBefore(20);
 
 		sub.setAlignment(Element.ALIGN_CENTER);
+		sub2.setAlignment(Element.ALIGN_CENTER);
 		emissao.setAlignment(Element.ALIGN_CENTER);
 
 		document.add(sub);
+		document.add(sub2);
 		document.add(emissao);
 		// ==================================================================================================//
 
