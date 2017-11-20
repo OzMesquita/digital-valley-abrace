@@ -138,6 +138,9 @@ public class GerenciarDoacoesView {
 		}
 	}
 
+	/**
+	 * @wbp.parser.entryPoint
+	 */
 	public void open() {
 		Display display = Display.getDefault();
 		createContents();
@@ -168,7 +171,6 @@ public class GerenciarDoacoesView {
 		
 		tblclmnId = new TableColumn(table, SWT.CENTER);
 		tblclmnId.setWidth(47);
-		tblclmnId.setText("ID");
 		tblclmnId.setResizable(false);
 		
 		tblclmnNomeDoDoador = new TableColumn(table, SWT.CENTER);

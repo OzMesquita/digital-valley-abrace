@@ -72,7 +72,7 @@ public class GerenciarDoacoesControle {
 		listaExibidaNaTabela = doacoes;
 		for(int i = 0; i < doacoes.size(); i++) {
 			TableItem item = new TableItem(viewDoacoes.getTable(), SWT.NONE);
-			item.setText(0, Integer.toString(doacoes.get(i).getId()));
+			item.setText(0, Integer.toString(i+1));
 			item.setText(1, doacoes.get(i).getDoador().getNome());
 			item.setText(2, doacoes.get(i).getValor() + "");
 			item.setText(3, doacoes.get(i).getData().format(formatador));

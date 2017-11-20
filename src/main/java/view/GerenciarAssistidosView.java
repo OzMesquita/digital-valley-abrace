@@ -146,7 +146,10 @@ public class GerenciarAssistidosView {
 			e.printStackTrace();
 		}
 	}
-
+	
+	/**
+	 * @wbp.parser.entryPoint
+	 */
 	public void open() {
 		Display display = Display.getDefault();
 		createContents();
@@ -178,7 +181,6 @@ public class GerenciarAssistidosView {
 		
 		tblclmnId = new TableColumn(table, SWT.CENTER);
 		tblclmnId.setWidth(47);
-		tblclmnId.setText("ID");
 		tblclmnId.setResizable(false);
 		
 		tblclmnNomeDoAssistido = new TableColumn(table, SWT.CENTER);
