@@ -91,7 +91,7 @@ public class Pessoa {
 	}
 	public void setTelefone(String telefone) throws PessoaInvalidaException{
 		if(telefone == null) {
-			throw new PessoaInvalidaException("O telefone 1 informado é inválido");
+			telefone="";
 		}
 		this.telefone = telefone;
 	}
@@ -100,7 +100,7 @@ public class Pessoa {
 	}
 	public void setTelefone2(String telefone2) throws PessoaInvalidaException{
 		if(telefone2 == null) {
-			throw new PessoaInvalidaException("O telefone 2 informado é inválido");
+			telefone2="";
 		}
 		this.telefone2 = telefone2;
 	}
