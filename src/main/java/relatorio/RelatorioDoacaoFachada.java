@@ -2,9 +2,11 @@ package relatorio;
 
 import java.io.IOException;
 import java.text.NumberFormat;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Locale;
 
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
@@ -22,7 +24,7 @@ import model.PessoaFisica;
 import model.PessoaJuridica;
 
 public class RelatorioDoacaoFachada extends RelatorioFacade{
-	public void relatorioDoacaoMensal(ArrayList<Doacao> list) throws DocumentException, IOException{
+	public void relatorioDoacaoMensal(ArrayList<Doacao> list, LocalDate dataInicial, LocalDate dataFinal) throws DocumentException, IOException{
 
 		// ==================================================================================================//
 		// Criando o documento
@@ -42,10 +44,10 @@ public class RelatorioDoacaoFachada extends RelatorioFacade{
 
 		Cabecalho(document);
 
-		DateTimeFormatter formatadorDataCadastro = DateTimeFormatter.ofPattern("MM");
+		DateTimeFormatter formatadorDataCadastro = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
 		Paragraph sub = new Paragraph(subtitulo,new Font(FontFamily.UNDEFINED,12,Font.BOLD));
-		Paragraph emissao = new Paragraph("Referente ao mês " + LocalDateTime.now().format(formatadorDataCadastro));
+		Paragraph emissao = new Paragraph("Referente a " + dataInicial.format(formatadorDataCadastro)+" até "+dataFinal.format(formatadorDataCadastro));
 
 		sub.setSpacingBefore(20);
 
@@ -85,37 +87,24 @@ public class RelatorioDoacaoFachada extends RelatorioFacade{
 		float valorContado = 0;
 		
 		for (Doacao d : list) {
-			PdfPCell cellDoador 			  = new PdfPCell(new Paragraph()), 
-					 cellCPForCNPJ            = new PdfPCell(new Paragraph()), 
-					 cellDataDoacao           = new PdfPCell(new Paragraph()),
-					 cellValor			      = new PdfPCell(new Paragraph());
-
-			if(d.getDoador() instanceof PessoaFisica){
-				cellDoador 				= new PdfPCell(new Paragraph(d.getDoador().getNome()));
-				cellCPForCNPJ          	= new PdfPCell(new Paragraph(((PessoaFisica)d.getDoador()).getCpf()));
-				cellDataDoacao          = new PdfPCell(new Paragraph(d.getData().format(formatadorDataDoacao)));
-				cellValor				= new PdfPCell(new Paragraph((NumberFormat.getCurrencyInstance().format(d.getValor()))));
-				
-				cellCPForCNPJ.setHorizontalAlignment(Element.ALIGN_CENTER);
-				cellDataDoacao.setHorizontalAlignment(Element.ALIGN_CENTER);
-
-				if (d.isAtivo()) {
-					table2.addCell(cellDoador);
-					table2.addCell(cellCPForCNPJ);
-					table2.addCell(cellDataDoacao);
-					table2.addCell(cellValor);
-					valorContado += d.getValor(); 
-				}
-			}else
-				if(d.getDoador() instanceof PessoaJuridica){
-					cellDoador 				= new PdfPCell(new Paragraph(((PessoaJuridica) d.getDoador()).getNomeFantasia()));
-					cellCPForCNPJ          	= new PdfPCell(new Paragraph(((PessoaJuridica) d.getDoador()).getCnpj()));
+			if(		d.getData().isBefore(dataFinal)&&
+					d.getData().isAfter(dataInicial)||
+					d.getData().isEqual(dataInicial)||
+					d.getData().isEqual(dataFinal)) {
+				PdfPCell cellDoador 			  = new PdfPCell(new Paragraph()), 
+						 cellCPForCNPJ            = new PdfPCell(new Paragraph()), 
+						 cellDataDoacao           = new PdfPCell(new Paragraph()),
+						 cellValor			      = new PdfPCell(new Paragraph());
+	
+				if(d.getDoador() instanceof PessoaFisica){
+					cellDoador 				= new PdfPCell(new Paragraph(d.getDoador().getNome()));
+					cellCPForCNPJ          	= new PdfPCell(new Paragraph(((PessoaFisica)d.getDoador()).getCpf()));
 					cellDataDoacao          = new PdfPCell(new Paragraph(d.getData().format(formatadorDataDoacao)));
 					cellValor				= new PdfPCell(new Paragraph((NumberFormat.getCurrencyInstance().format(d.getValor()))));
 					
 					cellCPForCNPJ.setHorizontalAlignment(Element.ALIGN_CENTER);
 					cellDataDoacao.setHorizontalAlignment(Element.ALIGN_CENTER);
-
+	
 					if (d.isAtivo()) {
 						table2.addCell(cellDoador);
 						table2.addCell(cellCPForCNPJ);
@@ -123,7 +112,25 @@ public class RelatorioDoacaoFachada extends RelatorioFacade{
 						table2.addCell(cellValor);
 						valorContado += d.getValor(); 
 					}
-				}
+				}else
+					if(d.getDoador() instanceof PessoaJuridica){
+						cellDoador 				= new PdfPCell(new Paragraph(((PessoaJuridica) d.getDoador()).getNomeFantasia()));
+						cellCPForCNPJ          	= new PdfPCell(new Paragraph(((PessoaJuridica) d.getDoador()).getCnpj()));
+						cellDataDoacao          = new PdfPCell(new Paragraph(d.getData().format(formatadorDataDoacao)));
+						cellValor				= new PdfPCell(new Paragraph((NumberFormat.getCurrencyInstance().format(d.getValor()))));
+						
+						cellCPForCNPJ.setHorizontalAlignment(Element.ALIGN_CENTER);
+						cellDataDoacao.setHorizontalAlignment(Element.ALIGN_CENTER);
+	
+						if (d.isAtivo()) {
+							table2.addCell(cellDoador);
+							table2.addCell(cellCPForCNPJ);
+							table2.addCell(cellDataDoacao);
+							table2.addCell(cellValor);
+							valorContado += d.getValor(); 
+						}
+					}
+			}
 		}
 		PdfPCell cellValorTotal = new PdfPCell(new Paragraph("Valor total ",new Font(FontFamily.UNDEFINED,12,Font.BOLD)));
 		PdfPCell valorTotalDoado = new PdfPCell(new Paragraph(NumberFormat.getCurrencyInstance().format(valorContado)));

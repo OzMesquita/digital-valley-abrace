@@ -39,20 +39,9 @@ public class RelatorioDAOTest {
 //		//recibo.reciboDoadorFisico(isa, doa);
 //		
 //		//TESTES RELATORIO DE DOADORES
-		DoadorFachada doadores = new DoadorFachada();
-		try {
-			new RelatorioDoadoresFacade().relatorioDeDoadores(doadores.getTodosDoadores(), true, true, true, true);
-		} catch (DocumentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		//TESTES RELATORIO MENSAL
+//		DoadorFachada doadores = new DoadorFachada();
 //		try {
-//			new RelatorioDoacaoFachada().relatorioDoacaoMensal(new DoacaoDAO(new ConnectionFactory().getConnection()).listarDoacoes());
+//			new RelatorioDoadoresFacade().relatorioDeDoadores(doadores.getTodosDoadores(), true, true, true, true);
 //		} catch (DocumentException e) {
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
@@ -60,6 +49,17 @@ public class RelatorioDAOTest {
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
 //		}
+		
+		//TESTES RELATORIO MENSAL
+		try {
+			new RelatorioDoacaoFachada().relatorioDoacaoMensal(new DoacaoDAO(new ConnectionFactory().getConnection()).listarDoacoes(),LocalDate.of(2017, 10, 20),LocalDate.of(2017, 10, 30));
+		} catch (DocumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 }
