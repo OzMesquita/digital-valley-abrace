@@ -1,6 +1,8 @@
 package DAO;
 
+import java.sql.DatabaseMetaData;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class Instalacao {
@@ -77,6 +79,21 @@ public class Instalacao {
 				   " PRIMARY KEY (idPessoa)," + 
 				   " FOREIGN KEY (idPessoa) REFERENCES ABRACE.Pessoa_Fisica (idPessoa) ON DELETE CASCADE ON UPDATE RESTRICT" + 
 				   ")"
+				   //-----------------------------------//
+				   ,
+				   //-----------------------------------//
+				   "INSERT INTO ABRACE.PESSOA ( NOME,  ENDERECO,          TELEFONE1,             TELEFONE2,  EMAIL,                     DATACADASTRO,  ATIVO, ISDOADOR)" + 
+				   "VALUES                    ('adm', 'Vila Matoso, 82', '(85) 99935-7677',      NULL,      'abrace.russas@gmail.com',  CURRENT_DATE, 'true', 'true'  )"
+				   //-----------------------------------//
+				   ,
+				   //-----------------------------------//
+				   "INSERT INTO ABRACE.PESSOA_FISICA (IDPESSOA,                             CPF,              RG,      DATANASCIMENTO)" + 
+				   "VALUES                           ((SELECT IDPESSOA FROM ABRACE.PESSOA), '270.845.437-40', '00000', '2017-01-01'  )"
+				   //-----------------------------------//
+				   ,
+				   //-----------------------------------//
+				   "INSERT INTO ABRACE.USUARIO (IDPESSOA,                             LOGIN,    SENHA)" + 
+				   " VALUES                    ((SELECT IDPESSOA FROM ABRACE.PESSOA), 'abrace', 'abrace')"
 				   };
 		try {
 			for (String sql : createTable) {
@@ -88,7 +105,13 @@ public class Instalacao {
 			e.printStackTrace();
 		}
 	}
-	public static void main(String[] args) {
-		instalarBanco();
+	public static void main(String[] args) throws SQLException {
+
+		DatabaseMetaData dbm = new ConnectionFactory().getConnection().getMetaData();
+		// Verifica se o Schema"ABRACE" existe
+		ResultSet tables = dbm.getSchemas(null, "ABRACE");
+		// Se Schema"ABRACE" não existe então instala o banco
+		if (!tables.next())
+			instalarBanco();
 	}
 }
