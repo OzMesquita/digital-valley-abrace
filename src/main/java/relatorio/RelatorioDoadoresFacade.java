@@ -40,7 +40,7 @@ public class RelatorioDoadoresFacade extends RelatorioFacade{
 		
 		String subtitulo = "Lista de Doadores"+tipo+"da ONG ABRACE Russas";
 		String subtitulo2 = "Pessoas "+tipoPessoa+"";
-		PdfWriter.getInstance(document, gravarDocumento(subtitulo));
+		PdfWriter.getInstance(document, gravarDocumento("Lista de Doadores"+tipoPessoa+tipo+"da ONG ABRACE Russas"));
 
 		document.open();
 		// ==================================================================================================//
