@@ -83,7 +83,7 @@ public class Instalacao {
 				   ,
 				   //-----------------------------------//
 				   "INSERT INTO ABRACE.PESSOA ( NOME,  ENDERECO,          TELEFONE1,             TELEFONE2,  EMAIL,                     DATACADASTRO,  ATIVO, ISDOADOR)" + 
-				   "VALUES                    ('adm', 'Vila Matoso, 82', '(85) 99935-7677',      NULL,      'abrace.russas@gmail.com',  CURRENT_DATE, 'true', 'true'  )"
+				   "VALUES                    ('adm', 'Vila Matoso, 82', '85999357677',      NULL,      'abrace.russas@gmail.com',  CURRENT_DATE, 'true', 'true'  )"
 				   //-----------------------------------//
 				   ,
 				   //-----------------------------------//
