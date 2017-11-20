@@ -2,6 +2,7 @@ package view;
 
 import java.io.File;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.Button;
@@ -13,6 +14,7 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.wb.swt.SWTResourceManager;
 import control.EditarDoadorJuridicoControle;
 import model.PessoaJuridica;
+import org.eclipse.swt.events.KeyAdapter;
 
 public class EditarDoadorPJView {
 	private EditarDoadorJuridicoControle controle;
@@ -124,6 +126,9 @@ public class EditarDoadorPJView {
 		}
 	}
 
+	/**
+	 * @wbp.parser.entryPoint
+	 */
 	public void open() {
 		Display display = Display.getDefault();
 		createContents();
@@ -174,6 +179,12 @@ public class EditarDoadorPJView {
 
 	protected void createContents() {
 		shlEditarDoador_1 = new Shell(SWT.SHELL_TRIM & (~SWT.RESIZE) & (~SWT.MAX));
+		shlEditarDoador_1.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				identificarESC(arg0);
+			}
+		});
 		shlEditarDoador_1.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/ABRACE.png").getAbsolutePath()));
 		shlEditarDoador_1.setSize(715, 635);
 		shlEditarDoador_1.setText("Editar Doador - ABRACE");
@@ -189,6 +200,12 @@ public class EditarDoadorPJView {
 		lblRazoSocial.setBounds(105, 173, 122, 28);
 		
 		tfNome = new Text(shlEditarDoador_1, SWT.BORDER);
+		tfNome.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				identificarESC(arg0);
+			}
+		});
 		tfNome.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfNome.setBounds(244, 168, 369, 38);
 		
@@ -198,6 +215,12 @@ public class EditarDoadorPJView {
 		label_1.setBounds(172, 261, 55, 28);
 		
 		tfCNPJ = new Text(shlEditarDoador_1, SWT.BORDER);
+		tfCNPJ.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				identificarESC(arg0);
+			}
+		});
 		tfCNPJ.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfCNPJ.setBounds(244, 256, 369, 38);
 		
@@ -207,6 +230,12 @@ public class EditarDoadorPJView {
 		label_2.setBounds(146, 217, 81, 28);
 		
 		tfFantasia = new Text(shlEditarDoador_1, SWT.BORDER);
+		tfFantasia.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				identificarESC(arg0);
+			}
+		});
 		tfFantasia.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfFantasia.setBounds(244, 212, 369, 38);
 		
@@ -216,6 +245,12 @@ public class EditarDoadorPJView {
 		label_3.setBounds(136, 305, 91, 28);
 		
 		tfEndereco = new Text(shlEditarDoador_1, SWT.BORDER);
+		tfEndereco.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				identificarESC(arg0);
+			}
+		});
 		tfEndereco.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfEndereco.setBounds(244, 300, 369, 38);
 		
@@ -225,6 +260,12 @@ public class EditarDoadorPJView {
 		lblTelefone_1.setBounds(125, 349, 102, 28);
 		
 		tfTelefone1 = new Text(shlEditarDoador_1, SWT.BORDER);
+		tfTelefone1.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				identificarESC(arg0);
+			}
+		});
 		tfTelefone1.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfTelefone1.setBounds(244, 344, 369, 38);
 		
@@ -234,6 +275,12 @@ public class EditarDoadorPJView {
 		lblTelefone.setBounds(125, 393, 102, 28);
 		
 		tfTelefone2 = new Text(shlEditarDoador_1, SWT.BORDER);
+		tfTelefone2.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				identificarESC(arg0);
+			}
+		});
 		tfTelefone2.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfTelefone2.setBounds(244, 388, 369, 38);
 		
@@ -243,10 +290,22 @@ public class EditarDoadorPJView {
 		label_7.setBounds(172, 437, 55, 28);
 		
 		tfEmail = new Text(shlEditarDoador_1, SWT.BORDER);
+		tfEmail.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				identificarESC(arg0);
+			}
+		});
 		tfEmail.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfEmail.setBounds(244, 432, 369, 38);
 		
 		Button btnCadastrar = new Button(shlEditarDoador_1, SWT.NONE);
+		btnCadastrar.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				identificarESC(arg0);
+			}
+		});
 		btnCadastrar.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
@@ -259,6 +318,12 @@ public class EditarDoadorPJView {
 		btnCadastrar.setText("Salvar altera\u00E7\u00F5es");
 		
 		Button btnCancelar = new Button(shlEditarDoador_1, SWT.NONE);
+		btnCancelar.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				identificarESC(arg0);
+			}
+		});
 		btnCancelar.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
@@ -295,5 +360,11 @@ public class EditarDoadorPJView {
 		messageBox.setText("Doador editado com sucesso!");
 		messageBox.setMessage("As informações do doador foram alteradas com sucesso");
 		messageBox.open();
+	}
+	
+	public void identificarESC(KeyEvent arg0) {
+		if(arg0.keyCode == 27) {
+			shlEditarDoador_1.dispose();
+		}
 	}
 }

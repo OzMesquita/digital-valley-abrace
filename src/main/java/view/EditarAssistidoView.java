@@ -17,6 +17,7 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.KeyAdapter;
 
 public class EditarAssistidoView {
 	protected Shell shlEditarAssistido;
@@ -164,6 +165,9 @@ public class EditarAssistidoView {
     	this.setControle(new EditarAssistidoControle(this));
     }
 
+	/**
+	 * @wbp.parser.entryPoint
+	 */
 	public void open() {
 		Display display = Display.getDefault();
 		createContents();
@@ -232,6 +236,12 @@ public class EditarAssistidoView {
 	
 	protected void createContents() {
 		shlEditarAssistido = new Shell(SWT.SHELL_TRIM & (~SWT.RESIZE) & (~SWT.MAX));
+		shlEditarAssistido.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				identificarESC(arg0);
+			}
+		});
 		shlEditarAssistido.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/ABRACE.png").getAbsolutePath()));
 		shlEditarAssistido.setSize(715, 819);
 		shlEditarAssistido.setText("Editar Assistido - ABRACE");
@@ -251,6 +261,12 @@ public class EditarAssistidoView {
 		label_2.setBounds(185, 175, 62, 28);
 		
 		tfNome = new Text(shlEditarAssistido, SWT.BORDER);
+		tfNome.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				identificarESC(arg0);
+			}
+		});
 		tfNome.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfNome.setBounds(261, 170, 369, 38);
 		
@@ -260,6 +276,12 @@ public class EditarAssistidoView {
 		label_3.setBounds(171, 219, 76, 28);
 		
 		tfApelido = new Text(shlEditarAssistido, SWT.BORDER);
+		tfApelido.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				identificarESC(arg0);
+			}
+		});
 		tfApelido.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfApelido.setBounds(261, 214, 369, 38);
 		
@@ -269,6 +291,12 @@ public class EditarAssistidoView {
 		label_4.setBounds(207, 267, 40, 28);
 		
 		tfCPF = new Text(shlEditarAssistido, SWT.BORDER);
+		tfCPF.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				identificarESC(arg0);
+			}
+		});
 		tfCPF.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfCPF.setBounds(261, 262, 369, 38);
 		
@@ -278,6 +306,12 @@ public class EditarAssistidoView {
 		label_5.setBounds(215, 311, 32, 28);
 		
 		tfRG = new Text(shlEditarAssistido, SWT.BORDER);
+		tfRG.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				identificarESC(arg0);
+			}
+		});
 		tfRG.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfRG.setBounds(261, 306, 369, 38);
 		
@@ -287,6 +321,12 @@ public class EditarAssistidoView {
 		label_6.setBounds(156, 355, 91, 28);
 		
 		tfEndereco = new Text(shlEditarAssistido, SWT.BORDER);
+		tfEndereco.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				identificarESC(arg0);
+			}
+		});
 		tfEndereco.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfEndereco.setBounds(261, 350, 369, 38);
 		
@@ -296,6 +336,12 @@ public class EditarAssistidoView {
 		label_7.setBounds(52, 399, 195, 28);
 		
 		tfDataNascimento = new DateTime(shlEditarAssistido, SWT.BORDER);
+		tfDataNascimento.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				identificarESC(arg0);
+			}
+		});
 		tfDataNascimento.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfDataNascimento.setBounds(261, 394, 369, 38);
 		
@@ -305,6 +351,12 @@ public class EditarAssistidoView {
 		label_8.setBounds(145, 443, 102, 28);
 		
 		tfTelefone1 = new Text(shlEditarAssistido, SWT.BORDER);
+		tfTelefone1.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				identificarESC(arg0);
+			}
+		});
 		tfTelefone1.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfTelefone1.setBounds(261, 438, 369, 38);
 		
@@ -314,6 +366,12 @@ public class EditarAssistidoView {
 		label_9.setBounds(145, 487, 102, 28);
 		
 		tfTelefone2 = new Text(shlEditarAssistido, SWT.BORDER);
+		tfTelefone2.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				identificarESC(arg0);
+			}
+		});
 		tfTelefone2.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfTelefone2.setBounds(261, 482, 369, 38);
 		
@@ -323,6 +381,12 @@ public class EditarAssistidoView {
 		label_10.setBounds(192, 531, 55, 28);
 		
 		tfEmail = new Text(shlEditarAssistido, SWT.BORDER);
+		tfEmail.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				identificarESC(arg0);
+			}
+		});
 		tfEmail.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfEmail.setBounds(261, 526, 369, 38);
 		
@@ -332,6 +396,12 @@ public class EditarAssistidoView {
 		label_11.setBounds(103, 577, 144, 28);
 		
 		tfTipoCancer = new Text(shlEditarAssistido, SWT.BORDER);
+		tfTipoCancer.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				identificarESC(arg0);
+			}
+		});
 		tfTipoCancer.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfTipoCancer.setBounds(261, 572, 369, 38);
 		
@@ -341,6 +411,12 @@ public class EditarAssistidoView {
 		label_13.setBounds(163, 625, 84, 28);
 		
 		tfSituacao = new Combo(shlEditarAssistido, SWT.READ_ONLY);
+		tfSituacao.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				identificarESC(arg0);
+			}
+		});
 		tfSituacao.setItems(new String[] {"Vivo", "Falecido"});
 		tfSituacao.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfSituacao.setBounds(261, 620, 99, 38);
@@ -364,6 +440,12 @@ public class EditarAssistidoView {
 		tfDataNascimento.setYear(getAssistido().getDataNasc().getYear());
 		
 		Button btnSalvarAlteraes = new Button(shlEditarAssistido, SWT.NONE);
+		btnSalvarAlteraes.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				identificarESC(arg0);
+			}
+		});
 		btnSalvarAlteraes.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
@@ -377,6 +459,12 @@ public class EditarAssistidoView {
 		btnSalvarAlteraes.setBounds(372, 702, 217, 60);
 		
 		Button button_1 = new Button(shlEditarAssistido, SWT.NONE);
+		button_1.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				identificarESC(arg0);
+			}
+		});
 		button_1.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
