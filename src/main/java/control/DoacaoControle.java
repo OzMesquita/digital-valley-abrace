@@ -1,6 +1,7 @@
 package control;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.swt.SWT;
@@ -77,6 +78,11 @@ public class DoacaoControle {
 		}
 		if (event.getSource().toString().equals("Button {Salvar doação}")) {
 			realizarDoacao();
+		}if(event.getSource().toString().equals("Button {Pesquisar}")) {
+			if(getViewDoador().getTfPesquisar().getText() == "") {
+				preencherTabelaDoadores(obterTodosDoadores());
+			}
+			preencherTabelaDoadores(pesquisarDoadores(getViewDoador().getTfPesquisar().getText()));
 		}
 	}
 
@@ -93,6 +99,16 @@ public class DoacaoControle {
 		}
 	}
 	
+	public List<Pessoa> pesquisarDoadores(String nomePesquisa) {
+		excluirLinhasDaTabela();
+		List<Pessoa> listaPesquisaDoadoresFisicos = new ArrayList<Pessoa>();
+		for(int i = 0; i < listaTodosDoadores.size(); i++) {
+			if(listaTodosDoadores.get(i).getNome().toLowerCase().contains(nomePesquisa.toLowerCase())) {
+				listaPesquisaDoadoresFisicos.add(listaTodosDoadores.get(i));
+			}
+		}
+		return listaPesquisaDoadoresFisicos;
+	}
 	public List<Pessoa> obterTodosDoadores() {
 		excluirLinhasDaTabela();
 		listaTodosDoadores = fachadaDoador.getTodosDoadores();

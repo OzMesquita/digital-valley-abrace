@@ -150,6 +150,13 @@ public class  SelecionarDoadorView{
 		btnPesquisar.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
 		btnPesquisar.setBounds(560, 163, 144, 36);
 		
+		btnPesquisar.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent arg0) {
+				controle.getEvent(arg0);
+			}
+		});
+		
 		table = new Table(shlDoacao, SWT.BORDER | SWT.FULL_SELECTION);
 		table.setToolTipText("");
 		table.setLinesVisible(true);
