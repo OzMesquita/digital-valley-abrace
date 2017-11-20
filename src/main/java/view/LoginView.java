@@ -136,7 +136,7 @@ public class LoginView {
 	public void mensagemErro(Exception e){
 		 MessageBox messageBox = new MessageBox(shlOngRussasTransformando,SWT.ICON_ERROR | SWT.OK); 
          messageBox.setText("Login inválido");
-         messageBox.setMessage(e.getMessage()+".\nTente novamente");
-        messageBox.open();
+         messageBox.setMessage(e.getMessage()+"\nTente novamente");
+         messageBox.open();
 	}	
 }
