@@ -14,6 +14,8 @@ import org.eclipse.swt.widgets.DateTime;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.FocusAdapter;
+import org.eclipse.swt.events.FocusEvent;
 
 public class CadastroDoadorPFisicaView {
 	CadastroDoadorControle controle;
@@ -104,6 +106,9 @@ public class CadastroDoadorPFisicaView {
 		}
 	}
 
+	/**
+	 * @wbp.parser.entryPoint
+	 */
 	public void open() {
 		Display display = Display.getDefault();
 		createContents();
@@ -193,6 +198,12 @@ public class CadastroDoadorPFisicaView {
 		label_1.setBounds(205, 228, 40, 28);
 		
 		tfCPF = new Text(shlCadastroDoador, SWT.BORDER);
+		tfCPF.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent arg0) {
+				controle.getFocus(arg0);
+			}
+		});
 		tfCPF.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfCPF.setBounds(262, 223, 369, 38);
 		tfCPF.setTextLimit(14);

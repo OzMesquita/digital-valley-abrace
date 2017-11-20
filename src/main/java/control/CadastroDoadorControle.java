@@ -2,6 +2,8 @@ package control;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
+
+import org.eclipse.swt.events.FocusEvent;
 import org.eclipse.swt.events.SelectionEvent;
 import exceptions.PessoaFisicaException;
 import exceptions.PessoaInvalidaException;
@@ -43,6 +45,12 @@ public class CadastroDoadorControle {
 				}
 			}
 		}
+	}
+	
+	public void getFocus(FocusEvent arg0) {
+		//Verificar se o CPF digitado em tfCPF já está cadastrado, se cadastrado e com status inativo, exibir uma mensagem perguntando 
+		// se quer reativar o usuário (exibe os dados dele Nome, CPf, Data de Nascimento), se tiver com status ativo, deve exibir uma mensagem
+		//dizendo que já existe um usuário com aquele cpf cadastrado no sistema 
 	}
 	
 	public CadastroDoadorControle(CadastroDoadorPFisicaView cadastroDoadorView) {

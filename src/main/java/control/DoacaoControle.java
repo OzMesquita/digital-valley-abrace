@@ -120,7 +120,7 @@ public class DoacaoControle {
 		listaExibidaNaTabela = list;
 		for(int i = 0; i < list.size(); i++) {
 			TableItem item = new TableItem(viewDoador.getTable(), SWT.NONE);
-			item.setText(0, Integer.toString(list.get(i).getId()));
+			item.setText(0, Integer.toString(i+1));
 			item.setText(1, list.get(i).getNome());
 			if(list.get(i) instanceof PessoaFisica) {
 				item.setText(2, ((PessoaFisica)list.get(i)).getCpf());
