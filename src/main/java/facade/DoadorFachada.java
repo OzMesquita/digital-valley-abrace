@@ -195,4 +195,24 @@ public class DoadorFachada {
 		}
 		return doadoresFisicos;
 	}
+	
+	public boolean verificaCNPJ(String CNPJ) throws SQLException {
+		PessoaJuridicaDAO dao = new PessoaJuridicaDAO(new ConnectionFactory().getConnection());
+		boolean resultado = dao.getPessoaPeloCNPJ(CNPJ);
+		dao.getConexao().close();
+		return resultado;
+	}
+
+	
+	public ArrayList<PessoaJuridica> listarTabelaPessoaJuridica() {
+		PessoaJuridicaDAO dao = new PessoaJuridicaDAO(new ConnectionFactory().getConnection());
+		ArrayList<PessoaJuridica> doadoresJuridicos = new ArrayList<PessoaJuridica>();
+		try {
+			doadoresJuridicos = dao.listarTabelaDoadorJuridico();
+			dao.getConexao().close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return doadoresJuridicos;
+	}
 }

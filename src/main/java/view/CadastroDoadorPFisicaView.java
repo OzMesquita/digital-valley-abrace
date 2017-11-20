@@ -379,14 +379,14 @@ public class CadastroDoadorPFisicaView {
 	}
 
 	public boolean reativarDoador(PessoaFisica pessoa) {
-		MessageBox messageBox = new MessageBox(shlCadastroDoador,SWT.ICON_WORKING | SWT.CANCEL | SWT.OK); 
+		MessageBox messageBox = new MessageBox(shlCadastroDoador,SWT.ICON_WORKING | SWT.NO | SWT.YES); 
 		messageBox.setText("O CPF informado é de uma pessoa inativa no sistema!");
 		messageBox.setMessage("Deseja reativar " + pessoa.getNome()+" CPF:"+ pessoa.getCpf()+"?");
 		int buttonID = messageBox.open();
         switch(buttonID) {
-          case SWT.CANCEL:
+          case SWT.NO:
         	  return false;
-          case SWT.OK:
+          case SWT.YES:
             return true;
           default:
         	  return false;

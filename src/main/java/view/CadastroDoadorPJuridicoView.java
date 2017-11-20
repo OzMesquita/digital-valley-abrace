@@ -14,7 +14,11 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.wb.swt.SWTResourceManager;
 import control.CadastroDoadorJuridicoControle;
+import model.PessoaFisica;
 import model.PessoaJuridica;
+
+import org.eclipse.swt.events.FocusAdapter;
+import org.eclipse.swt.events.FocusEvent;
 import org.eclipse.swt.events.KeyAdapter;
 
 public class CadastroDoadorPJuridicoView {
@@ -218,6 +222,12 @@ public class CadastroDoadorPJuridicoView {
 				identificarESC(arg0);
 			}
 		});
+		tfCNPJ.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent arg0) {
+				controle.getFocus(arg0);
+			}
+		});
 		tfCNPJ.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfCNPJ.setBounds(235, 269, 369, 38);
 		tfCNPJ.setTextLimit(32);
@@ -345,5 +355,21 @@ public class CadastroDoadorPJuridicoView {
 		if(arg0.keyCode == 27) {
 			shlCadastroDoador.dispose();
 		}
+	}
+
+	public boolean reativarDoador(PessoaJuridica pessoa) {
+		MessageBox messageBox = new MessageBox(shlCadastroDoador,SWT.ICON_WORKING | SWT.YES | SWT.NO); 
+		messageBox.setText("O CPF informado é dse uma pessoa inativa no sistema!");
+		messageBox.setMessage("Deseja reativar " + pessoa.getNome()+" CNPJ:"+ pessoa.getCnpj()+"?");
+		int buttonID = messageBox.open();
+        switch(buttonID) {
+          case SWT.NO:
+        	  return false;
+          case SWT.YES:
+            return true;
+          default:
+        	  return false;
+        }
+
 	}
 }

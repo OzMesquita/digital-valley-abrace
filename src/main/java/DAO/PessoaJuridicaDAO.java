@@ -130,6 +130,40 @@ public class PessoaJuridicaDAO extends ExecutaSQL{
 		return listaPessoasJuridicas;
 	}
 
+	
+	public ArrayList<PessoaJuridica> listarTabelaDoadorJuridico() {
+		ArrayList<PessoaJuridica> listaPessoasJuridicas = new ArrayList<PessoaJuridica>();
+		String informacaoPessoa = "ABRACE.PESSOA.idPessoa, ABRACE.PESSOA.nome, ABRACE.PESSOA.endereco, ABRACE.PESSOA.telefone1,"
+				+ "ABRACE.PESSOA.telefone2, ABRACE.PESSOA.email, ABRACE.PESSOA.dataCadastro,ABRACE.Pessoa.isDoador, ABRACE.Pessoa.ativo,";
+		String sql = "SELECT " + informacaoPessoa+ 
+				"ABRACE.PESSOA_JURIDICA.cnpj, ABRACE.PESSOA_JURIDICA.fantasia FROM ABRACE.PESSOA_JURIDICA, ABRACE.PESSOA WHERE ABRACE.PESSOA_JURIDICA.idPessoa=ABRACE.PESSOA.idPessoa";
+		try {
+			PreparedStatement stmt = getConexao().prepareStatement(sql);
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+				int id = rs.getInt(1);
+				String nome = rs.getString(2);
+				String endereco = rs.getString(3);
+				String telefone1 = rs.getString(4);
+				String telefone2 = rs.getString(5);
+				String email = rs.getString(6);
+				LocalDate dataCadastro = rs.getDate(7).toLocalDate();
+				boolean isDoador = rs.getBoolean(8);
+				boolean ativo = rs.getBoolean(9);
+				String cnpj = rs.getString(10);
+				String nomeFantasia = rs.getString(11);
+				listaPessoasJuridicas.add(new PessoaJuridica(id, nome, endereco, telefone1, telefone2, dataCadastro, email, ativo, isDoador, cnpj, nomeFantasia));
+			}
+			stmt.close();
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage());
+		} catch (PessoaInvalidaException e) {
+			e.printStackTrace();
+		} catch (PessoaJuridicaInvalidaException e) {
+			e.printStackTrace();
+		} 
+		return listaPessoasJuridicas;
+	}
 	public PessoaJuridica getPessoaJuridica(int id) {
 		String informacaoPessoa = "ABRACE.Pessoa.ativo, ABRACE.Pessoa.nome, ABRACE.Pessoa.endereco, ABRACE.Pessoa.telefone1,"
 				+ "ABRACE.Pessoa.telefone2, ABRACE.Pessoa.email, ABRACE.Pessoa.dataCadastro,ABRACE.Pessoa.isDoador,";

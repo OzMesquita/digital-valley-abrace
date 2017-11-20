@@ -158,7 +158,7 @@ public class PessoaFisicaDAO extends ExecutaSQL {
 	public ArrayList<PessoaFisica> listarTabelaPessoasFisicas() throws SQLException {
 		ArrayList<PessoaFisica> listaPessoasFisicas = new ArrayList<PessoaFisica>();
 		String informacaoPessoa = "ABRACE.PESSOA.idPessoa, ABRACE.PESSOA.nome, ABRACE.PESSOA.endereco, ABRACE.PESSOA.telefone1,"
-				+ "ABRACE.PESSOA.telefone2, ABRACE.PESSOA.email, ABRACE.PESSOA.dataCadastro, ABRACE.PESSOA.isDoador,";
+				+ "ABRACE.PESSOA.telefone2, ABRACE.PESSOA.email, ABRACE.PESSOA.dataCadastro, ABRACE.PESSOA.isDoador, ABRACE.Pessoa.ativo,";
 		String sql = "SELECT " + informacaoPessoa
 				+ "ABRACE.PESSOA_FISICA.cpf, ABRACE.PESSOA_FISICA.rg, ABRACE.PESSOA_FISICA.dataNascimento FROM ABRACE.PESSOA_FISICA, ABRACE.PESSOA WHERE ABRACE.PESSOA_FISICA.idPessoa=ABRACE.PESSOA.idPessoa";
 		try {
@@ -173,10 +173,11 @@ public class PessoaFisicaDAO extends ExecutaSQL {
 				String email = rs.getString(6);
 				LocalDate dataCadastro = rs.getDate(7).toLocalDate();
 				boolean isDoador = rs.getBoolean(8);
-				String cpf = rs.getString(9);
-				String rg = rs.getString(10);
-				LocalDate dataNasc = rs.getDate(11).toLocalDate();
-				listaPessoasFisicas.add(new PessoaFisica(id, nome, endereco, dataCadastro, telefone1, telefone2, email, true, isDoador, cpf, rg, dataNasc));
+				boolean ativo = rs.getBoolean(9);
+				String cpf = rs.getString(10);
+				String rg = rs.getString(11);
+				LocalDate dataNasc = rs.getDate(12).toLocalDate();
+				listaPessoasFisicas.add(new PessoaFisica(id, nome, endereco, dataCadastro, telefone1, telefone2, email, ativo, isDoador, cpf, rg, dataNasc));
 			}
 			stmt.close();
 		} catch (SQLException e) {

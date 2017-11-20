@@ -56,9 +56,10 @@ public class CadastroDoadorControle {
 				if(fachadaDoador.verificaCPF(viewDoador.getTfCPF().getText())) {
 					List<PessoaFisica> lista = fachadaDoador.listarTabelaPessoasFisicas();
 					for(PessoaFisica pessoa : lista) {
-						if(pessoa.getCpf().equals(viewDoador.getTfCPF().getText())) {
+						if(pessoa.getCpf().equals(viewDoador.getTfCPF().getText()) && !(pessoa.isAtivo())) {
 							if(viewDoador.reativarDoador(pessoa)) {
 								fachadaDoador.ativaDoador(pessoa.getId());
+								viewDoador.mensagemSucesso(fachadaDoador.obterDoadorFisico(pessoa.getId()));
 								viewDoador.getShlCadastroDoador().dispose();
 							}
 							break;
@@ -68,10 +69,7 @@ public class CadastroDoadorControle {
 			} catch (SQLException e) {
 				viewDoador.mensagemErro(new Exception("Erro na operação! Contate o suporte!"));
 			}
-		}
-		//Verificar se o CPF digitado em tfCPF já está cadastrado, se cadastrado e com status inativo, exibir uma mensagem perguntando 
-		// se quer reativar o usuário (exibe os dados dele Nome, CPf, Data de Nascimento), se tiver com status ativo, deve exibir uma mensagem
-		//dizendo que já existe um usuário com aquele cpf cadastrado no sistema 
+		} 
 	}
 	
 	public CadastroDoadorControle(CadastroDoadorPFisicaView cadastroDoadorView) {

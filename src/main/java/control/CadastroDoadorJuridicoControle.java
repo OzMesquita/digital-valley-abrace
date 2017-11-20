@@ -1,12 +1,15 @@
 package control;
 
 import java.sql.SQLException;
+import java.util.List;
 
+import org.eclipse.swt.events.FocusEvent;
 import org.eclipse.swt.events.SelectionEvent;
 
 import exceptions.PessoaInvalidaException;
 import exceptions.PessoaJuridicaInvalidaException;
 import facade.DoadorFachada;
+import model.PessoaFisica;
 import model.PessoaJuridica;
 import view.CadastroDoadorPJuridicoView;
 
@@ -50,6 +53,30 @@ public class CadastroDoadorJuridicoControle {
 		}
 	}
 	
+	public void getFocus(FocusEvent arg0) {
+		if(viewDoadorJuridico.getTfCNPJ().getText() == "") {
+			return;
+		}else {
+			try {
+				if(fachadaDoadorJuridico.verificaCNPJ(viewDoadorJuridico.getTfCNPJ().getText())) {
+					List<PessoaJuridica> lista = fachadaDoadorJuridico.listarTabelaPessoaJuridica();
+					for(PessoaJuridica pessoa : lista) {
+						if(pessoa.getCnpj().equals(viewDoadorJuridico.getTfCNPJ().getText()) && !(pessoa.isAtivo())) {
+							if(viewDoadorJuridico.reativarDoador(pessoa)) {
+								fachadaDoadorJuridico.ativaDoador(pessoa.getId());
+								viewDoadorJuridico.mensagemSucesso(fachadaDoadorJuridico.obterDoadorJuridico(pessoa.getId()));
+								viewDoadorJuridico.getShlCadastroDoador().dispose();
+							}
+							break;
+						}
+					}
+				}
+			} catch (SQLException e) {
+				viewDoadorJuridico.mensagemErro(new Exception("Erro na operação! Contate o suporte!"));
+			}
+		}
+	}
+	
 	public CadastroDoadorPJuridicoView getViewDoadorJuridico() {
 		return viewDoadorJuridico;
 	}
@@ -67,4 +94,6 @@ public class CadastroDoadorJuridicoControle {
 		if(fachadaDoadorJuridico!=null)
 		this.fachadaDoadorJuridico = fachadaDoadorJuridico;
 	}
+	
+	
 }
