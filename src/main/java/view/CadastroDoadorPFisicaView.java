@@ -16,6 +16,8 @@ import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.FocusAdapter;
 import org.eclipse.swt.events.FocusEvent;
+import org.eclipse.swt.events.KeyAdapter;
+import org.eclipse.swt.events.KeyEvent;
 
 public class CadastroDoadorPFisicaView {
 	CadastroDoadorControle controle;
@@ -173,6 +175,12 @@ public class CadastroDoadorPFisicaView {
 
 	protected void createContents() {
 		shlCadastroDoador = new Shell(SWT.SHELL_TRIM & (~SWT.RESIZE) & (~SWT.MAX));
+		shlCadastroDoador.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				identificarESC(arg0);
+			}
+		});
 		shlCadastroDoador.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/ABRACE.png").getAbsolutePath()));
 		shlCadastroDoador.setSize(694, 668);
 		shlCadastroDoador.setText("Cadastro Doador - ABRACE");
@@ -188,6 +196,12 @@ public class CadastroDoadorPFisicaView {
 		label.setBounds(183, 184, 62, 28);
 		
 		tfNome = new Text(shlCadastroDoador, SWT.BORDER);
+		tfNome.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				identificarESC(arg0);
+			}
+		});
 		tfNome.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfNome.setBounds(262, 179, 369, 38);
 		tfNome.setTextLimit(128);
@@ -198,6 +212,12 @@ public class CadastroDoadorPFisicaView {
 		label_1.setBounds(205, 228, 40, 28);
 		
 		tfCPF = new Text(shlCadastroDoador, SWT.BORDER);
+		tfCPF.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				identificarESC(arg0);
+			}
+		});
 		tfCPF.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent arg0) {
@@ -214,6 +234,12 @@ public class CadastroDoadorPFisicaView {
 		label_2.setBounds(213, 272, 32, 28);
 		
 		tfRG = new Text(shlCadastroDoador, SWT.BORDER);
+		tfRG.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				identificarESC(arg0);
+			}
+		});
 		tfRG.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfRG.setBounds(262, 267, 369, 38);
 		tfRG.setTextLimit(16);
@@ -224,6 +250,12 @@ public class CadastroDoadorPFisicaView {
 		label_3.setBounds(154, 316, 91, 28);
 		
 		tfEndereco = new Text(shlCadastroDoador, SWT.BORDER);
+		tfEndereco.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				identificarESC(arg0);
+			}
+		});
 		tfEndereco.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfEndereco.setBounds(262, 311, 369, 38);
 		tfEndereco.setTextLimit(268);
@@ -234,6 +266,12 @@ public class CadastroDoadorPFisicaView {
 		label_4.setBounds(50, 360, 195, 28);
 		
 		tfDataNascimento = new DateTime(shlCadastroDoador, SWT.BORDER);
+		tfDataNascimento.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				identificarESC(arg0);
+			}
+		});
 		tfDataNascimento.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfDataNascimento.setBounds(262, 355, 369, 38);
 		
@@ -243,6 +281,12 @@ public class CadastroDoadorPFisicaView {
 		lblTelefone_1.setBounds(143, 404, 102, 28);
 		
 		tfTelefone1 = new Text(shlCadastroDoador, SWT.BORDER);
+		tfTelefone1.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				identificarESC(arg0);
+			}
+		});
 		tfTelefone1.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfTelefone1.setBounds(262, 399, 369, 38);
 		tfTelefone1.setTextLimit(16);
@@ -253,6 +297,12 @@ public class CadastroDoadorPFisicaView {
 		lblTelefone.setBounds(143, 448, 102, 28);
 		
 		tfTelefone2 = new Text(shlCadastroDoador, SWT.BORDER);
+		tfTelefone2.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				identificarESC(arg0);
+			}
+		});
 		tfTelefone2.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfTelefone2.setBounds(262, 443, 369, 38);
 		tfTelefone2.setTextLimit(16);
@@ -263,11 +313,23 @@ public class CadastroDoadorPFisicaView {
 		label_7.setBounds(190, 492, 55, 28);
 		
 		tfEmail = new Text(shlCadastroDoador, SWT.BORDER);
+		tfEmail.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				identificarESC(arg0);
+			}
+		});
 		tfEmail.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfEmail.setBounds(262, 487, 369, 38);
 		tfEmail.setTextLimit(128);
 		
 		Button btnCadastrar = new Button(shlCadastroDoador, SWT.NONE);
+		btnCadastrar.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				identificarESC(arg0);
+			}
+		});
 		btnCadastrar.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
@@ -280,6 +342,12 @@ public class CadastroDoadorPFisicaView {
 		btnCadastrar.setText("Cadastrar");
 		
 		Button btnCancelar = new Button(shlCadastroDoador, SWT.NONE);
+		btnCancelar.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				identificarESC(arg0);
+			}
+		});
 		btnCancelar.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
@@ -323,6 +391,11 @@ public class CadastroDoadorPFisicaView {
           default:
         	  return false;
         }
-
+	}
+	
+	public void identificarESC(KeyEvent arg0) {
+		if(arg0.keyCode == 27) {
+			shlCadastroDoador.dispose();
+		}
 	}
 }

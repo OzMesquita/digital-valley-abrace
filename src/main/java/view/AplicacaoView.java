@@ -36,9 +36,7 @@ public class AplicacaoView {
 		btnListarDoadores.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent arg0) {
-				if(arg0.keyCode == 27) {
-					shlOngRussasTransformando.dispose();
-				}
+				identificarESC(arg0);
 			}
 		});
 		btnListarDoadores.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
@@ -55,9 +53,7 @@ public class AplicacaoView {
 		btnRealizarDoacao.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent arg0) {
-				if(arg0.keyCode == 27) {
-					shlOngRussasTransformando.dispose();
-				}
+				identificarESC(arg0);
 			}
 		});
 		btnRealizarDoacao.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/doacao-small.png").getAbsolutePath()));
@@ -75,9 +71,7 @@ public class AplicacaoView {
 		btnGerenciarDoaes.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent arg0) {
-				if(arg0.keyCode == 27) {
-					shlOngRussasTransformando.dispose();
-				}
+				identificarESC(arg0);
 			}
 		});
 		btnGerenciarDoaes.addSelectionListener(new SelectionAdapter() {
@@ -107,9 +101,7 @@ public class AplicacaoView {
 		shlOngRussasTransformando.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent evento) {
-				if(evento.keyCode == 27) {
-					shlOngRussasTransformando.dispose();
-				}
+				identificarESC(evento);
 			}
 		});
 		shlOngRussasTransformando.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/ABRACE.png").getAbsolutePath()));
@@ -130,9 +122,7 @@ public class AplicacaoView {
 		btnCadastrarAssistido.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent evento) {
-				if(evento.keyCode == 27) {
-					shlOngRussasTransformando.dispose();
-				}
+				identificarESC(evento);
 			}
 		});
 		btnCadastrarAssistido.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
@@ -150,9 +140,7 @@ public class AplicacaoView {
 		btnListarAssistidos.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent arg0) {
-				if(arg0.keyCode == 27) {
-					shlOngRussasTransformando.dispose();
-				}
+				identificarESC(arg0);
 			}
 		});
 		btnListarAssistidos.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
@@ -170,9 +158,7 @@ public class AplicacaoView {
 		btnCadastrarDoador.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent arg0) {
-				if(arg0.keyCode == 27) {
-					shlOngRussasTransformando.dispose();
-				}
+				identificarESC(arg0);
 			}
 		});
 		btnCadastrarDoador.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
@@ -185,5 +171,11 @@ public class AplicacaoView {
 		});
 		btnCadastrarDoador.setText("Cadastrar Doador");
 		btnCadastrarDoador.setBounds(72, 251, 243, 68);
+	}
+	
+	public void identificarESC(KeyEvent arg0) {
+		if(arg0.keyCode == 27) {
+			shlOngRussasTransformando.dispose();
+		}
 	}
 }
