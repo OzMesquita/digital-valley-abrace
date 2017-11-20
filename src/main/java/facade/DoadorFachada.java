@@ -165,4 +165,34 @@ public class DoadorFachada {
 			return null;
 		}
 	}
+	
+	public boolean verificaCPF(String CPF) throws SQLException {
+		PessoaFisicaDAO dao = new PessoaFisicaDAO(new ConnectionFactory().getConnection());
+		boolean resultado = dao.getPessoaPeloCPF(CPF);
+		dao.getConexao().close();
+		return resultado;
+	}
+
+	public boolean ativaDoador(int id) {
+		PessoaFisicaDAO dao = new PessoaFisicaDAO(new ConnectionFactory().getConnection());
+		boolean resultado = dao.ativaDoador(id);
+		try {
+			dao.getConexao().close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return resultado;
+	}
+
+	public List<PessoaFisica> listarTabelaPessoasFisicas() {
+		PessoaFisicaDAO dao = new PessoaFisicaDAO(new ConnectionFactory().getConnection());
+		ArrayList<PessoaFisica> doadoresFisicos = new ArrayList<PessoaFisica>();
+		try {
+			doadoresFisicos = dao.listarTabelaPessoasFisicas();
+			dao.getConexao().close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return doadoresFisicos;
+	}
 }

@@ -309,4 +309,20 @@ public class CadastroDoadorPFisicaView {
 		messageBox.setMessage("Cadastro realizado com sucesso!\n" + pessoaFisica.getNome()+", agora é um de nossos doadores! :)");
 		messageBox.open();
 	}
+
+	public boolean reativarDoador(PessoaFisica pessoa) {
+		MessageBox messageBox = new MessageBox(shlCadastroDoador,SWT.ICON_WORKING | SWT.CANCEL | SWT.OK); 
+		messageBox.setText("O CPF informado é de uma pessoa inativa no sistema!");
+		messageBox.setMessage("Deseja reativar " + pessoa.getNome()+" CPF:"+ pessoa.getCpf()+"?");
+		int buttonID = messageBox.open();
+        switch(buttonID) {
+          case SWT.CANCEL:
+        	  return false;
+          case SWT.OK:
+            return true;
+          default:
+        	  return false;
+        }
+
+	}
 }

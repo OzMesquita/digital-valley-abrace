@@ -2,6 +2,7 @@ package control;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.List;
 
 import org.eclipse.swt.events.FocusEvent;
 import org.eclipse.swt.events.SelectionEvent;
@@ -48,6 +49,26 @@ public class CadastroDoadorControle {
 	}
 	
 	public void getFocus(FocusEvent arg0) {
+		if(viewDoador.getTfCPF().getText() == "") {
+			return;
+		}else {
+			try {
+				if(fachadaDoador.verificaCPF(viewDoador.getTfCPF().getText())) {
+					List<PessoaFisica> lista = fachadaDoador.listarTabelaPessoasFisicas();
+					for(PessoaFisica pessoa : lista) {
+						if(pessoa.getCpf().equals(viewDoador.getTfCPF().getText())) {
+							if(viewDoador.reativarDoador(pessoa)) {
+								fachadaDoador.ativaDoador(pessoa.getId());
+								viewDoador.getShlCadastroDoador().dispose();
+							}
+							break;
+						}
+					}
+				}
+			} catch (SQLException e) {
+				viewDoador.mensagemErro(new Exception("Erro na operação! Contate o suporte!"));
+			}
+		}
 		//Verificar se o CPF digitado em tfCPF já está cadastrado, se cadastrado e com status inativo, exibir uma mensagem perguntando 
 		// se quer reativar o usuário (exibe os dados dele Nome, CPf, Data de Nascimento), se tiver com status ativo, deve exibir uma mensagem
 		//dizendo que já existe um usuário com aquele cpf cadastrado no sistema 
