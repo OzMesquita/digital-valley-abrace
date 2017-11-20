@@ -14,6 +14,7 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.DateTime;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 
@@ -410,5 +411,11 @@ public class EditarAssistidoView {
 		messageBox.setText("Operação realizada com sucesso!");
 		messageBox.setMessage("Os dados do assitido foram alterados com sucesso!");
 		messageBox.open();
+	}
+	
+	public void identificarESC(KeyEvent arg0) {
+		if(arg0.keyCode == 27) {
+			shlEditarAssistido.dispose();
+		}
 	}
 }

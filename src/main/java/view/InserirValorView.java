@@ -93,6 +93,9 @@ public class InserirValorView {
 		}
 	}
 
+	/**
+	 * @wbp.parser.entryPoint
+	 */
 	public void open() {
 		Display display = Display.getDefault();
 		createContents();
@@ -120,6 +123,12 @@ public class InserirValorView {
 
 	protected void createContents() {
 		shlRealizarDoao = new Shell();
+		shlRealizarDoao.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				identificarESC(arg0);
+			}
+		});
 		shlRealizarDoao.setSize(730, 762);
 		shlRealizarDoao.setText("Realizar Doa\u00E7\u00E3o - Passo 2 de 2 - ABRACE");
 		shlRealizarDoao.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/ABRACE.png").getAbsolutePath()));
@@ -172,6 +181,12 @@ public class InserirValorView {
 		lblDataDaDoacao.setText("Data da doa\u00E7\u00E3o:");
 		
 		dateTime_1 = new DateTime(shlRealizarDoao, SWT.BORDER);
+		dateTime_1.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				identificarESC(arg0);
+			}
+		});
 		dateTime_1.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		dateTime_1.setBounds(267, 546, 331, 37);
 		
@@ -220,6 +235,12 @@ public class InserirValorView {
 		lblDadosDaDoao.setBounds(263, 452, 188, 32);
 		
 		Button button = new Button(shlRealizarDoao, SWT.NONE);
+		button.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				identificarESC(arg0);
+			}
+		});
 		button.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
@@ -232,6 +253,12 @@ public class InserirValorView {
 		button.setBounds(155, 626, 214, 54);
 		
 		Button btnSalvarDoao = new Button(shlRealizarDoao, SWT.NONE);
+		btnSalvarDoao.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				identificarESC(arg0);
+			}
+		});
 		btnSalvarDoao.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
@@ -261,5 +288,11 @@ public class InserirValorView {
 		messageBox.setText("Doação realizada com sucesso!");
 		messageBox.setMessage("A doação foi realizada com sucesso! :)");
 		messageBox.open();
+	}
+	
+	public void identificarESC(KeyEvent arg0) {
+		if(arg0.keyCode == 27) {
+			shlRealizarDoao.dispose();
+		}
 	}
 }

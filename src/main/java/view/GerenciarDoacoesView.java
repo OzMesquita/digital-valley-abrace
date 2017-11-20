@@ -13,6 +13,8 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.KeyAdapter;
+import org.eclipse.swt.events.KeyEvent;
 
 public class GerenciarDoacoesView {
 	GerenciarDoacoesControle controle;
@@ -156,7 +158,41 @@ public class GerenciarDoacoesView {
 		lblSelecioneUmDoador.setBounds(209, 88, 296, 25);
 		lblSelecioneUmDoador.setText("Selecione ou pesquise uma doa\u00E7\u00E3o");
 		
+		tfPesquisa = new Text(shlGerenciarDoacoes, SWT.BORDER);
+		tfPesquisa.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				identificarESC(arg0);
+			}
+		});
+		tfPesquisa.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
+		tfPesquisa.setBounds(196, 133, 360, 36);
+		
+		Button btnPesquisar = new Button(shlGerenciarDoacoes, SWT.NONE);
+		btnPesquisar.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				identificarESC(arg0);
+			}
+		});
+		btnPesquisar.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent arg0) {
+				controle.getEvent(arg0);
+			}
+		});
+		btnPesquisar.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
+		btnPesquisar.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/pesquisar.png").getAbsolutePath()));
+		btnPesquisar.setBounds(560, 133, 144, 36);
+		btnPesquisar.setText("Pesquisar");
+		
 		table = new Table(shlGerenciarDoacoes, SWT.BORDER | SWT.FULL_SELECTION);
+		table.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				identificarESC(arg0);
+			}
+		});
 		table.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
@@ -193,23 +229,13 @@ public class GerenciarDoacoesView {
 		lblPesquisarDoador.setBounds(10, 136, 180, 30);
 		lblPesquisarDoador.setText("Pesquisar Doador:");
 		
-		tfPesquisa = new Text(shlGerenciarDoacoes, SWT.BORDER);
-		tfPesquisa.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
-		tfPesquisa.setBounds(196, 133, 360, 36);
-		
-		Button btnPesquisar = new Button(shlGerenciarDoacoes, SWT.NONE);
-		btnPesquisar.addSelectionListener(new SelectionAdapter() {
+		btnExcluir = new Button(shlGerenciarDoacoes, SWT.NONE);
+		btnExcluir.addKeyListener(new KeyAdapter() {
 			@Override
-			public void widgetSelected(SelectionEvent arg0) {
-				controle.getEvent(arg0);
+			public void keyReleased(KeyEvent arg0) {
+				identificarESC(arg0);
 			}
 		});
-		btnPesquisar.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
-		btnPesquisar.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/pesquisar.png").getAbsolutePath()));
-		btnPesquisar.setBounds(560, 133, 144, 36);
-		btnPesquisar.setText("Pesquisar");
-		
-		btnExcluir = new Button(shlGerenciarDoacoes, SWT.NONE);
 		btnExcluir.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
@@ -223,6 +249,12 @@ public class GerenciarDoacoesView {
 		btnExcluir.setText("Excluir doa\u00E7\u00E3o");
 		
 		btnCadastrar = new Button(shlGerenciarDoacoes, SWT.NONE);
+		btnCadastrar.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				identificarESC(arg0);
+			}
+		});
 		btnCadastrar.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
@@ -236,6 +268,12 @@ public class GerenciarDoacoesView {
 		btnCadastrar.setText("Realizar doa\u00E7\u00E3o");
 		
 		btnCancelar = new Button(shlGerenciarDoacoes, SWT.NONE);
+		btnCancelar.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				identificarESC(arg0);
+			}
+		});
 		btnCancelar.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
@@ -264,8 +302,20 @@ public class GerenciarDoacoesView {
 
 	protected void createContents() {
 		shlGerenciarDoacoes = new Shell(SWT.SHELL_TRIM & (~SWT.RESIZE) & (~SWT.MAX));
+		shlGerenciarDoacoes.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				identificarESC(arg0);
+			}
+		});
 		shlGerenciarDoacoes.setSize(730, 730);
 		shlGerenciarDoacoes.setText("Gerenciar Doações - ABRACE");
 		shlGerenciarDoacoes.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/ABRACE.png").getAbsolutePath()));
+	}
+	
+	public void identificarESC(KeyEvent arg0) {
+		if(arg0.keyCode == 27) {
+			shlGerenciarDoacoes.dispose();
+		}
 	}
 }

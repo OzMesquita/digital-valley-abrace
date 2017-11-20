@@ -13,6 +13,8 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.KeyAdapter;
+import org.eclipse.swt.events.KeyEvent;
 
 public class GerenciarAssistidosView {
 	GerenciarAssistidosControle controle;
@@ -165,7 +167,41 @@ public class GerenciarAssistidosView {
 		lblSelecioneUmAssistido.setBounds(209, 88, 296, 25);
 		lblSelecioneUmAssistido.setText("Selecione ou pesquise um assistido");
 		
+		tfPesquisa = new Text(shlGerenciarAssistidos, SWT.BORDER);
+		tfPesquisa.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				identificarESC(arg0);
+			}
+		});
+		tfPesquisa.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
+		tfPesquisa.setBounds(196, 133, 360, 36);
+		
+		Button btnPesquisar = new Button(shlGerenciarAssistidos, SWT.NONE);
+		btnPesquisar.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				identificarESC(arg0);
+			}
+		});
+		btnPesquisar.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent arg0) {
+				controle.getEvent(arg0);
+			}
+		});
+		btnPesquisar.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
+		btnPesquisar.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/pesquisar.png").getAbsolutePath()));
+		btnPesquisar.setBounds(560, 133, 144, 36);
+		btnPesquisar.setText("Pesquisar");
+		
 		table = new Table(shlGerenciarAssistidos, SWT.BORDER | SWT.FULL_SELECTION);
+		table.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				identificarESC(arg0);
+			}
+		});
 		table.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
@@ -203,23 +239,13 @@ public class GerenciarAssistidosView {
 		lblPesquisarAssistido.setBounds(10, 136, 180, 30);
 		lblPesquisarAssistido.setText("Pesquisar Assistido:");
 		
-		tfPesquisa = new Text(shlGerenciarAssistidos, SWT.BORDER);
-		tfPesquisa.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
-		tfPesquisa.setBounds(196, 133, 360, 36);
-		
-		Button btnPesquisar = new Button(shlGerenciarAssistidos, SWT.NONE);
-		btnPesquisar.addSelectionListener(new SelectionAdapter() {
+		btnEditar = new Button(shlGerenciarAssistidos, SWT.NONE);
+		btnEditar.addKeyListener(new KeyAdapter() {
 			@Override
-			public void widgetSelected(SelectionEvent arg0) {
-				controle.getEvent(arg0);
+			public void keyReleased(KeyEvent arg0) {
+				identificarESC(arg0);
 			}
 		});
-		btnPesquisar.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
-		btnPesquisar.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/pesquisar.png").getAbsolutePath()));
-		btnPesquisar.setBounds(560, 133, 144, 36);
-		btnPesquisar.setText("Pesquisar");
-		
-		btnEditar = new Button(shlGerenciarAssistidos, SWT.NONE);
 		btnEditar.setEnabled(false);
 		btnEditar.addSelectionListener(new SelectionAdapter() {
 			@Override
@@ -233,6 +259,12 @@ public class GerenciarAssistidosView {
 		btnEditar.setText("Editar Assistido");
 		
 		btnExcluir = new Button(shlGerenciarAssistidos, SWT.NONE);
+		btnExcluir.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				identificarESC(arg0);
+			}
+		});
 		btnExcluir.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
@@ -246,6 +278,12 @@ public class GerenciarAssistidosView {
 		btnExcluir.setText("Excluir Assistido");
 		
 		btnCadastrar = new Button(shlGerenciarAssistidos, SWT.NONE);
+		btnCadastrar.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				identificarESC(arg0);
+			}
+		});
 		btnCadastrar.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
@@ -258,6 +296,12 @@ public class GerenciarAssistidosView {
 		btnCadastrar.setText("Cadastrar Assistido");
 		
 		btnCancelar = new Button(shlGerenciarAssistidos, SWT.NONE);
+		btnCancelar.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				identificarESC(arg0);
+			}
+		});
 		btnCancelar.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
@@ -286,8 +330,20 @@ public class GerenciarAssistidosView {
 
 	protected void createContents() {
 		shlGerenciarAssistidos = new Shell(SWT.SHELL_TRIM & (~SWT.RESIZE) & (~SWT.MAX));
+		shlGerenciarAssistidos.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				identificarESC(arg0);
+			}
+		});
 		shlGerenciarAssistidos.setSize(730, 730);
 		shlGerenciarAssistidos.setText("Gerenciar Assistidos - ABRACE");
 		shlGerenciarAssistidos.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/ABRACE.png").getAbsolutePath()));
+	}
+	
+	public void identificarESC(KeyEvent arg0) {
+		if(arg0.keyCode == 27) {
+			shlGerenciarAssistidos.dispose();
+		}
 	}
 }

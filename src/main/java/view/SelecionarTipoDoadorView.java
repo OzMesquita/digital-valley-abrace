@@ -8,6 +8,8 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.wb.swt.SWTResourceManager;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.events.KeyAdapter;
+import org.eclipse.swt.events.KeyEvent;
 
 public class SelecionarTipoDoadorView {
 	protected Shell shlSelecionarTipoDoador = new Shell(SWT.SHELL_TRIM & (~SWT.RESIZE) & (~SWT.MAX));
@@ -23,17 +25,32 @@ public class SelecionarTipoDoadorView {
 		}
 	}
 
+	/**
+	 * @wbp.parser.entryPoint
+	 */
 	public void open() {
 		this.createContents();
 		Centralize.centralize(shlSelecionarTipoDoador);
 	}
 
 	protected void createContents() {
+		shlSelecionarTipoDoador.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				identificarESC(arg0);
+			}
+		});
 		shlSelecionarTipoDoador.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/ABRACE.png").getAbsolutePath()));
 		shlSelecionarTipoDoador.setSize(657, 503);
 		shlSelecionarTipoDoador.setText("ONG Russas Transformando Vidas - ABRACE");
 		
 		Button pessoaFisicabnt = new Button(shlSelecionarTipoDoador, SWT.FLAT | SWT.CENTER);
+		pessoaFisicabnt.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				identificarESC(arg0);
+			}
+		});
 		pessoaFisicabnt.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
 		pessoaFisicabnt.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/pessoa-fisica-medium.png").getAbsolutePath()));
 		pessoaFisicabnt.addSelectionListener(new SelectionAdapter() {
@@ -47,6 +64,12 @@ public class SelecionarTipoDoadorView {
 		pessoaFisicabnt.setText("Cadastrar Doador Pessoa Física");
 		
 		Button pessoaJuridicabnt = new Button(shlSelecionarTipoDoador, SWT.NONE);
+		pessoaJuridicabnt.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				identificarESC(arg0);
+			}
+		});
 		pessoaJuridicabnt.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/pessoa-juridica-medium.png").getAbsolutePath()));
 		pessoaJuridicabnt.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
 		pessoaJuridicabnt.addSelectionListener(new SelectionAdapter() {
@@ -70,6 +93,12 @@ public class SelecionarTipoDoadorView {
 		lblSelecioneOTipo.setText("Selecione o tipo do doador\r\nque deseja cadastrar");
 		
 		Button button = new Button(shlSelecionarTipoDoador, SWT.NONE);
+		button.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				identificarESC(arg0);
+			}
+		});
 		button.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
@@ -80,5 +109,11 @@ public class SelecionarTipoDoadorView {
 		button.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/cancelar.png").getAbsolutePath()));
 		button.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
 		button.setBounds(221, 398, 208, 54);
+	}
+	
+	public void identificarESC(KeyEvent arg0) {
+		if(arg0.keyCode == 27) {
+			shlSelecionarTipoDoador.dispose();
+		}
 	}
 }

@@ -18,6 +18,8 @@ import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.KeyAdapter;
+import org.eclipse.swt.events.KeyEvent;
 
 public class CadastroAssistidoView{
 	CadastroAssistidoControle controle;
@@ -151,11 +153,20 @@ public class CadastroAssistidoView{
 		}
 	}
 
+	/**
+	 * @wbp.parser.entryPoint
+	 */
 	public void open() {
 		Display display = Display.getDefault();
 		createContents();
 		Centralize.centralize(shlCadastroAssistido);
 		Button button = new Button(shlCadastroAssistido, SWT.NONE);
+		button.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				identificarESC(arg0);
+			}
+		});
 		button.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
@@ -230,60 +241,132 @@ public class CadastroAssistidoView{
 
 	protected void createContents() {
 		shlCadastroAssistido = new Shell(SWT.SHELL_TRIM & (~SWT.RESIZE) & (~SWT.MAX));
+		shlCadastroAssistido.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				identificarESC(arg0);
+			}
+		});
 		shlCadastroAssistido.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/ABRACE.png").getAbsolutePath()));
 		shlCadastroAssistido.setSize(694, 806);
 		shlCadastroAssistido.setText("Cadastro Assistido - ABRACE");
 		
 		tfNome = new Text(shlCadastroAssistido, SWT.BORDER);
+		tfNome.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				identificarESC(arg0);
+			}
+		});
 		tfNome.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfNome.setBounds(254, 169, 369, 38);
 		tfNome.setTextLimit(128);
 		
 		tfApelido = new Text(shlCadastroAssistido, SWT.BORDER);
+		tfApelido.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				identificarESC(arg0);
+			}
+		});
 		tfApelido.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfApelido.setBounds(254, 213, 369, 38);
 		tfApelido.setTextLimit(32);
 		
 		tfCPF = new Text(shlCadastroAssistido, SWT.BORDER);
+		tfCPF.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				identificarESC(arg0);
+			}
+		});
 		tfCPF.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfCPF.setBounds(254, 258, 369, 38);
 		tfCPF.setTextLimit(14);
 		
 		tfRG = new Text(shlCadastroAssistido, SWT.BORDER);
+		tfRG.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				identificarESC(arg0);
+			}
+		});
 		tfRG.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfRG.setBounds(254, 302, 369, 38);
 		tfRG.setTextLimit(16);
 		
 		tfEndereco = new Text(shlCadastroAssistido, SWT.BORDER);
+		tfEndereco.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				identificarESC(arg0);
+			}
+		});
 		tfEndereco.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfEndereco.setBounds(254, 346, 369, 38);
 		tfEndereco.setTextLimit(256);
 		
 		tfDataNascimento = new DateTime(shlCadastroAssistido, SWT.BORDER);
+		tfDataNascimento.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				identificarESC(arg0);
+			}
+		});
 		tfDataNascimento.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfDataNascimento.setBounds(254, 390, 369, 38);
 		
 		tfTelefone1 = new Text(shlCadastroAssistido, SWT.BORDER);
+		tfTelefone1.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				identificarESC(arg0);
+			}
+		});
 		tfTelefone1.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfTelefone1.setBounds(254, 434, 369, 38);
 		tfTelefone1.setTextLimit(16);
 		
 		tfTelefone2 = new Text(shlCadastroAssistido, SWT.BORDER);
+		tfTelefone2.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				identificarESC(arg0);
+			}
+		});
 		tfTelefone2.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfTelefone2.setBounds(254, 478, 369, 38);
 		tfTelefone2.setTextLimit(16);
 		
 		tfEmail = new Text(shlCadastroAssistido, SWT.BORDER);
+		tfEmail.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				identificarESC(arg0);
+			}
+		});
 		tfEmail.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfEmail.setBounds(254, 522, 369, 38);
 		tfEmail.setTextLimit(128);
 		
 		tfTipoCancer = new Text(shlCadastroAssistido, SWT.BORDER);
+		tfTipoCancer.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				identificarESC(arg0);
+			}
+		});
 		tfTipoCancer.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfTipoCancer.setBounds(254, 566, 369, 38);
 		tfTipoCancer.setTextLimit(64);
 		
 		tfSituacao = new Combo(shlCadastroAssistido, SWT.READ_ONLY);
+		tfSituacao.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				identificarESC(arg0);
+			}
+		});
 		tfSituacao.setItems(new String[] {"Vivo", "Falecido"});
 		tfSituacao.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfSituacao.setBounds(254, 611, 99, 38);
@@ -355,6 +438,12 @@ public class CadastroAssistidoView{
 		lblSituao.setBounds(154, 616, 84, 28);
 		
 		Button button_1 = new Button(shlCadastroAssistido, SWT.NONE);
+		button_1.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				identificarESC(arg0);
+			}
+		});
 		button_1.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
@@ -387,5 +476,11 @@ public class CadastroAssistidoView{
 		messageBox.setText("Assistido cadastrado com sucesso!");
 		messageBox.setMessage("Cadastro realizado com sucesso!\n" + pessoaFisica.getNome()+", agora é um de nossos assistidos! :)");
 		messageBox.open();
+	}
+	
+	public void identificarESC(KeyEvent arg0) {
+		if(arg0.keyCode == 27) {
+			shlCadastroAssistido.dispose();
+		}
 	}
 }

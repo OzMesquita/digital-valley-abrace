@@ -2,6 +2,7 @@ package view;
 
 import java.io.File;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.Button;
@@ -13,6 +14,7 @@ import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.wb.swt.SWTResourceManager;
 import control.GerenciarDoadoresControle;
+import org.eclipse.swt.events.KeyAdapter;
 
 public class GerenciarDoadoresView {
 	GerenciarDoadoresControle controle;
@@ -173,7 +175,41 @@ public class GerenciarDoadoresView {
 		lblSelecioneUmDoadorFisico.setBounds(214, 88, 285, 25);
 		lblSelecioneUmDoadorFisico.setText("Selecione ou pesquise um doador");
 		
+		tfPesquisa = new Text(shlGerenciarDoadoresFisicos, SWT.BORDER);
+		tfPesquisa.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				identificarESC(arg0);
+			}
+		});
+		tfPesquisa.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
+		tfPesquisa.setBounds(113, 141, 448, 36);
+		
+		Button btnPesquisar = new Button(shlGerenciarDoadoresFisicos, SWT.NONE);
+		btnPesquisar.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				identificarESC(arg0);
+			}
+		});
+		btnPesquisar.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent arg0) {
+				controle.getEvent(arg0);
+			}
+		});
+		btnPesquisar.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
+		btnPesquisar.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/pesquisar.png").getAbsolutePath()));
+		btnPesquisar.setBounds(565, 141, 144, 36);
+		btnPesquisar.setText("Pesquisar");
+		
 		table = new Table(shlGerenciarDoadoresFisicos, SWT.BORDER | SWT.FULL_SELECTION);
+		table.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				identificarESC(arg0);
+			}
+		});
 		table.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
@@ -211,23 +247,13 @@ public class GerenciarDoadoresView {
 		lblPesquisarDoadorFisico.setBounds(15, 144, 92, 30);
 		lblPesquisarDoadorFisico.setText("Pesquisar:");
 		
-		tfPesquisa = new Text(shlGerenciarDoadoresFisicos, SWT.BORDER);
-		tfPesquisa.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
-		tfPesquisa.setBounds(113, 141, 448, 36);
-		
-		Button btnPesquisar = new Button(shlGerenciarDoadoresFisicos, SWT.NONE);
-		btnPesquisar.addSelectionListener(new SelectionAdapter() {
+		btnEditar = new Button(shlGerenciarDoadoresFisicos, SWT.NONE);
+		btnEditar.addKeyListener(new KeyAdapter() {
 			@Override
-			public void widgetSelected(SelectionEvent arg0) {
-				controle.getEvent(arg0);
+			public void keyReleased(KeyEvent arg0) {
+				identificarESC(arg0);
 			}
 		});
-		btnPesquisar.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
-		btnPesquisar.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/pesquisar.png").getAbsolutePath()));
-		btnPesquisar.setBounds(565, 141, 144, 36);
-		btnPesquisar.setText("Pesquisar");
-		
-		btnEditar = new Button(shlGerenciarDoadoresFisicos, SWT.NONE);
 		btnEditar.setEnabled(false);
 		btnEditar.addSelectionListener(new SelectionAdapter() {
 			@Override
@@ -241,6 +267,12 @@ public class GerenciarDoadoresView {
 		btnEditar.setText("Editar Doador");
 		
 		btnExcluir = new Button(shlGerenciarDoadoresFisicos, SWT.NONE);
+		btnExcluir.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				identificarESC(arg0);
+			}
+		});
 		btnExcluir.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
@@ -254,6 +286,12 @@ public class GerenciarDoadoresView {
 		btnExcluir.setText("Excluir Doador");
 		
 		btnCadastrar = new Button(shlGerenciarDoadoresFisicos, SWT.NONE);
+		btnCadastrar.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				identificarESC(arg0);
+			}
+		});
 		btnCadastrar.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
@@ -267,6 +305,12 @@ public class GerenciarDoadoresView {
 		btnCadastrar.setText("Cadastrar Doador");
 		
 		btnCancelar = new Button(shlGerenciarDoadoresFisicos, SWT.NONE);
+		btnCancelar.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				identificarESC(arg0);
+			}
+		});
 		btnCancelar.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
@@ -294,8 +338,20 @@ public class GerenciarDoadoresView {
 
 	protected void createContents() {
 		shlGerenciarDoadoresFisicos = new Shell(SWT.SHELL_TRIM & (~SWT.RESIZE) & (~SWT.MAX));
+		shlGerenciarDoadoresFisicos.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				identificarESC(arg0);
+			}
+		});
 		shlGerenciarDoadoresFisicos.setSize(730, 762);
 		shlGerenciarDoadoresFisicos.setText("Gerenciar Assistidos - ABRACE");
 		shlGerenciarDoadoresFisicos.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/ABRACE.png").getAbsolutePath()));
+	}
+	
+	public void identificarESC(KeyEvent arg0) {
+		if(arg0.keyCode == 27) {
+			shlGerenciarDoadoresFisicos.dispose();
+		}
 	}
 }

@@ -2,6 +2,7 @@ package view;
 
 import java.io.File;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.Button;
@@ -14,6 +15,7 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.wb.swt.SWTResourceManager;
 import control.CadastroDoadorJuridicoControle;
 import model.PessoaJuridica;
+import org.eclipse.swt.events.KeyAdapter;
 
 public class CadastroDoadorPJuridicoView {
 	private CadastroDoadorJuridicoControle controle;
@@ -104,6 +106,9 @@ public class CadastroDoadorPJuridicoView {
 		}
 	}
 
+	/**
+	 * @wbp.parser.entryPoint
+	 */
 	public void open() {
 		Display display = Display.getDefault();
 		createContents();
@@ -154,6 +159,12 @@ public class CadastroDoadorPJuridicoView {
 
 	protected void createContents() {
 		shlCadastroDoador = new Shell(SWT.SHELL_TRIM & (~SWT.RESIZE) & (~SWT.MAX));
+		shlCadastroDoador.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				identificarESC(arg0);
+			}
+		});
 		shlCadastroDoador.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/ABRACE.png").getAbsolutePath()));
 		shlCadastroDoador.setSize(694, 640);
 		shlCadastroDoador.setText("Cadastro Doador - ABRACE");
@@ -169,6 +180,12 @@ public class CadastroDoadorPJuridicoView {
 		lblRazoSocial.setBounds(98, 186, 122, 28);
 		
 		tfNome = new Text(shlCadastroDoador, SWT.BORDER);
+		tfNome.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				identificarESC(arg0);
+			}
+		});
 		tfNome.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfNome.setBounds(235, 181, 369, 38);
 		tfNome.setTextLimit(128);
@@ -179,6 +196,12 @@ public class CadastroDoadorPJuridicoView {
 		label_2.setBounds(139, 230, 81, 28);
 		
 		tfFantasia = new Text(shlCadastroDoador, SWT.BORDER);
+		tfFantasia.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				identificarESC(arg0);
+			}
+		});
 		tfFantasia.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfFantasia.setBounds(235, 225, 369, 38);
 		tfFantasia.setTextLimit(128);
@@ -189,6 +212,12 @@ public class CadastroDoadorPJuridicoView {
 		label_1.setBounds(165, 274, 55, 28);
 		
 		tfCNPJ = new Text(shlCadastroDoador, SWT.BORDER);
+		tfCNPJ.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				identificarESC(arg0);
+			}
+		});
 		tfCNPJ.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfCNPJ.setBounds(235, 269, 369, 38);
 		tfCNPJ.setTextLimit(32);
@@ -199,6 +228,12 @@ public class CadastroDoadorPJuridicoView {
 		label_3.setBounds(129, 318, 91, 28);
 		
 		tfEndereco = new Text(shlCadastroDoador, SWT.BORDER);
+		tfEndereco.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				identificarESC(arg0);
+			}
+		});
 		tfEndereco.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfEndereco.setBounds(235, 313, 369, 38);
 		tfEndereco.setTextLimit(256);
@@ -209,6 +244,12 @@ public class CadastroDoadorPJuridicoView {
 		lblTelefone_1.setBounds(118, 363, 102, 28);
 		
 		tfTelefone1 = new Text(shlCadastroDoador, SWT.BORDER);
+		tfTelefone1.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				identificarESC(arg0);
+			}
+		});
 		tfTelefone1.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfTelefone1.setBounds(235, 358, 369, 38);
 		tfTelefone1.setTextLimit(16);
@@ -219,6 +260,12 @@ public class CadastroDoadorPJuridicoView {
 		lblTelefone.setBounds(118, 407, 102, 28);
 		
 		tfTelefone2 = new Text(shlCadastroDoador, SWT.BORDER);
+		tfTelefone2.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				identificarESC(arg0);
+			}
+		});
 		tfTelefone2.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfTelefone2.setBounds(235, 402, 369, 38);
 		tfTelefone2.setTextLimit(16);
@@ -229,11 +276,23 @@ public class CadastroDoadorPJuridicoView {
 		label_7.setBounds(165, 451, 55, 28);
 		
 		tfEmail = new Text(shlCadastroDoador, SWT.BORDER);
+		tfEmail.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				identificarESC(arg0);
+			}
+		});
 		tfEmail.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfEmail.setBounds(235, 446, 369, 38);
 		tfEmail.setTextLimit(128);
 		
 		Button btnCadastrar = new Button(shlCadastroDoador, SWT.NONE);
+		btnCadastrar.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				identificarESC(arg0);
+			}
+		});
 		btnCadastrar.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
@@ -246,6 +305,12 @@ public class CadastroDoadorPJuridicoView {
 		btnCadastrar.setText("Cadastrar");
 		
 		Button btnCancelar = new Button(shlCadastroDoador, SWT.NONE);
+		btnCancelar.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				identificarESC(arg0);
+			}
+		});
 		btnCancelar.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
@@ -274,5 +339,11 @@ public class CadastroDoadorPJuridicoView {
 		messageBox.setText("Assistido cadastrado com sucesso!");
 		messageBox.setMessage("Cadastro realizado com sucesso!\n" + pessoaJuridica.getNome()+", agora é um de nossos doadores! :)");
 		messageBox.open();
+	}
+	
+	public void identificarESC(KeyEvent arg0) {
+		if(arg0.keyCode == 27) {
+			shlCadastroDoador.dispose();
+		}
 	}
 }

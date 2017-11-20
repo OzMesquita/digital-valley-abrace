@@ -10,6 +10,8 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.wb.swt.SWTResourceManager;
 import control.LoginSingleton;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.events.KeyAdapter;
+import org.eclipse.swt.events.KeyEvent;
 
 public class AplicacaoView {
 	protected Shell shlOngRussasTransformando;
@@ -23,11 +25,22 @@ public class AplicacaoView {
 		}
 	}
 
+	/**
+	 * @wbp.parser.entryPoint
+	 */
 	public void open() {
 		Display display = Display.getDefault();
 		createContents();
 		Centralize.centralize(shlOngRussasTransformando);
 		Button btnListarDoadores = new Button(shlOngRussasTransformando, SWT.NONE);
+		btnListarDoadores.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				if(arg0.keyCode == 27) {
+					shlOngRussasTransformando.dispose();
+				}
+			}
+		});
 		btnListarDoadores.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
 		btnListarDoadores.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/doadores-small.png").getAbsolutePath()));
 		btnListarDoadores.addSelectionListener(new SelectionAdapter() {
@@ -39,6 +52,14 @@ public class AplicacaoView {
 		btnListarDoadores.setText("Gerenciar Doadores");
 		btnListarDoadores.setBounds(333, 251, 243, 68);
 		Button btnRealizarDoacao = new Button(shlOngRussasTransformando, SWT.NONE);
+		btnRealizarDoacao.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				if(arg0.keyCode == 27) {
+					shlOngRussasTransformando.dispose();
+				}
+			}
+		});
 		btnRealizarDoacao.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/doacao-small.png").getAbsolutePath()));
 		btnRealizarDoacao.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
 		btnRealizarDoacao.setText("Realizar Doação");
@@ -51,6 +72,14 @@ public class AplicacaoView {
 		});
 		
 		Button btnGerenciarDoaes = new Button(shlOngRussasTransformando, SWT.NONE);
+		btnGerenciarDoaes.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				if(arg0.keyCode == 27) {
+					shlOngRussasTransformando.dispose();
+				}
+			}
+		});
 		btnGerenciarDoaes.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
@@ -75,6 +104,14 @@ public class AplicacaoView {
 
 	protected void createContents() {
 		shlOngRussasTransformando = new Shell(SWT.SHELL_TRIM & (~SWT.RESIZE) & (~SWT.MAX));
+		shlOngRussasTransformando.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent evento) {
+				if(evento.keyCode == 27) {
+					shlOngRussasTransformando.dispose();
+				}
+			}
+		});
 		shlOngRussasTransformando.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/ABRACE.png").getAbsolutePath()));
 		shlOngRussasTransformando.setSize(657, 503);
 		shlOngRussasTransformando.setText("ONG Russas Transformando Vidas - ABRACE");
@@ -90,6 +127,14 @@ public class AplicacaoView {
 		lblSelecioneAOpo.setBounds(197, 91, 256, 30);
 		
 		Button btnCadastrarAssistido = new Button(shlOngRussasTransformando, SWT.NONE);
+		btnCadastrarAssistido.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent evento) {
+				if(evento.keyCode == 27) {
+					shlOngRussasTransformando.dispose();
+				}
+			}
+		});
 		btnCadastrarAssistido.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
 		btnCadastrarAssistido.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/assistido-small.png").getAbsolutePath()));
 		btnCadastrarAssistido.addSelectionListener(new SelectionAdapter() {
@@ -102,6 +147,14 @@ public class AplicacaoView {
 		btnCadastrarAssistido.setText("Cadastrar Assistido");
 		
 		Button btnListarAssistidos = new Button(shlOngRussasTransformando, SWT.NONE);
+		btnListarAssistidos.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				if(arg0.keyCode == 27) {
+					shlOngRussasTransformando.dispose();
+				}
+			}
+		});
 		btnListarAssistidos.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
 		btnListarAssistidos.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/assistidos-small.png").getAbsolutePath()));
 		btnListarAssistidos.addSelectionListener(new SelectionAdapter() {
@@ -114,6 +167,14 @@ public class AplicacaoView {
 		btnListarAssistidos.setText("Gerenciar Assistidos");
 		
 		Button btnCadastrarDoador = new Button(shlOngRussasTransformando, SWT.NONE);
+		btnCadastrarDoador.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				if(arg0.keyCode == 27) {
+					shlOngRussasTransformando.dispose();
+				}
+			}
+		});
 		btnCadastrarDoador.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
 		btnCadastrarDoador.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/doador-small.png").getAbsolutePath()));
 		btnCadastrarDoador.addSelectionListener(new SelectionAdapter() {
