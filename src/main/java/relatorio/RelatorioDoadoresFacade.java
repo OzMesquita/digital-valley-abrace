@@ -97,14 +97,14 @@ public class RelatorioDoadoresFacade extends RelatorioFacade{
 					 cellCPForCNPJ          = new PdfPCell(new Paragraph()), 
 					 cellsituacao           = new PdfPCell(new Paragraph());
 
-			cellCPForCNPJ.setHorizontalAlignment(Element.ALIGN_CENTER);
-			cellsituacao.setHorizontalAlignment(Element.ALIGN_CENTER);
-
 			if(p instanceof PessoaFisica&&exibirPessoasFisicas){
 				cellNomeOrNomeFantasia = new PdfPCell(new Paragraph(p.getNome()));
 				cellCPForCNPJ          = new PdfPCell(new Paragraph(((PessoaFisica) p).getCpf()));
 				cellsituacao           = new PdfPCell(new Paragraph(p.isAtivo() ? "ativo" : "inativo"));
-
+				
+				cellCPForCNPJ.setHorizontalAlignment(Element.ALIGN_CENTER);
+				cellsituacao.setHorizontalAlignment(Element.ALIGN_CENTER);
+				
 				if (exibirAtivos && p.isAtivo()) {
 					table2.addCell(cellNomeOrNomeFantasia);
 					table2.addCell(cellCPForCNPJ);
@@ -124,6 +124,9 @@ public class RelatorioDoadoresFacade extends RelatorioFacade{
 					cellCPForCNPJ          = new PdfPCell(new Paragraph(((PessoaJuridica) p).getCnpj()));
 					cellsituacao           = new PdfPCell(new Paragraph(p.isAtivo() ? "ativo" : "inativo"));
 
+					cellCPForCNPJ.setHorizontalAlignment(Element.ALIGN_CENTER);
+					cellsituacao.setHorizontalAlignment(Element.ALIGN_CENTER);
+					
 					if (exibirAtivos && p.isAtivo()) {
 						table2.addCell(cellNomeOrNomeFantasia);
 						table2.addCell(cellCPForCNPJ);
