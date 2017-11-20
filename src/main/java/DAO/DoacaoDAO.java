@@ -13,11 +13,11 @@ import model.Doacao;
 import model.Pessoa;
 
 public class DoacaoDAO extends ExecutaSQL{
-	
+
 	public DoacaoDAO(Connection connection) {
 		super(connection);
 	}
-	
+
 	public boolean cadastrarDoacao(Doacao doacao) {
 		PreparedStatement stmt = null;
 		String sql = "INSERT INTO ABRACE.Doacao (idPessoa, valor, data, ativo)" + "VALUES (?, ?, ?, ?)";
@@ -34,7 +34,7 @@ public class DoacaoDAO extends ExecutaSQL{
 		}
 		return true;
 	}
-	
+
 	public boolean editarDoacao(Doacao doacao) {
 		String sql = "UPDATE ABRACE.Doacao SET valor=?, data=?, ativo=?, idPessoa=? WHERE idDoacao=?";
 		PreparedStatement stmt = null;
@@ -52,7 +52,7 @@ public class DoacaoDAO extends ExecutaSQL{
 		}
 		return true;
 	}
-	
+
 	public boolean excluirDoacao(Doacao doacao) {
 		try{
 			String sql = "UPDATE ABRACE.Doacao SET ativo=false WHERE idDoacao=?";
@@ -65,7 +65,7 @@ public class DoacaoDAO extends ExecutaSQL{
 		}
 		return true;
 	}
-	
+
 	public ArrayList<Doacao> listarDoacoes() throws DoacaoInvalidaException{
 		ArrayList<Doacao> doacoes = new ArrayList<Doacao>();
 		String sql = "SELECT ABRACE.DOACAO.idDoacao, ABRACE.DOACAO.valor, ABRACE.DOACAO.data, ABRACE.DOACAO.idPessoa FROM ABRACE.DOACAO WHERE ativo=?";
@@ -79,7 +79,11 @@ public class DoacaoDAO extends ExecutaSQL{
 				Double valor = rs.getDouble(2);
 				LocalDate data = rs.getDate(3).toLocalDate();
 				int idDoador = rs.getInt(4);
-				Pessoa doador = new PessoaDAO(new ConnectionFactory().getConnection()).getPessoa(idDoador);
+				Pessoa doador;
+				doador = new PessoaJuridicaDAO(new ConnectionFactory().getConnection()).getPessoaJuridica(idDoador);
+				if(doador == null){
+					doador = new PessoaFisicaDAO(new ConnectionFactory().getConnection()).getPessoaFisica(idDoador);
+				}
 				doacoes.add(new Doacao(id, valor, data,true , doador));
 			}
 			stmt.close();
@@ -88,7 +92,7 @@ public class DoacaoDAO extends ExecutaSQL{
 		}
 		return doacoes;
 	}
-	
+
 	public Doacao getDoacao(int idDoacao) throws DoacaoInvalidaException {
 		String sql = "SELECT ABRACE.DOACAO.valor, ABRACE.DOACAO.data, ABRACE.DOACAO.idPessoa WHERE idDoacao=?";
 		try {
@@ -111,5 +115,5 @@ public class DoacaoDAO extends ExecutaSQL{
 		}
 		return null;
 	}
-	
+
 }
