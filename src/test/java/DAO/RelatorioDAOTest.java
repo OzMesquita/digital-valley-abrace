@@ -14,6 +14,7 @@ import model.Doacao;
 import model.PessoaFisica;
 import model.PessoaJuridica;
 import relatorio.ReciboDoacaoFachada;
+import relatorio.RelatorioAnualPessoaFachada;
 import relatorio.RelatorioAssistidoFacade;
 import relatorio.RelatorioDoacaoFachada;
 import relatorio.RelatorioDoadoresFacade;
@@ -27,7 +28,8 @@ public class RelatorioDAOTest {
 		//gerarRelatorioDoadores();
 		//gerarRecibos();
 		//gerarRelatorioMensal();
-		gerarRelatorioAnual();
+		//gerarRelatorioAnual();
+		gerarRelatorioAnualPessoa();
 	}
 
 	public static void gerarRelatorioAssistido(){
@@ -80,6 +82,18 @@ public class RelatorioDAOTest {
 	public static void gerarRelatorioAnual() throws DoacaoInvalidaException {
 		try {
 			new RelatorioDoacaoFachada().relatorioDoacaoAnual(new DoacaoDAO(new ConnectionFactory().getConnection()).listarDoacoes(), LocalDate.now().getYear());
+		} catch (DocumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public static void gerarRelatorioAnualPessoa() throws DoacaoInvalidaException {
+		try {
+			new RelatorioAnualPessoaFachada().relatorioAnualPessoa(new PessoaFisicaDAO(new ConnectionFactory().getConnection()).getPessoaFisica(1), LocalDate.of(2017, 1, 1).getYear());
 		} catch (DocumentException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
