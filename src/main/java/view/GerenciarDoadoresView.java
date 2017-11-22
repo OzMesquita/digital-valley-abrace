@@ -236,12 +236,12 @@ public class GerenciarDoadoresView {
 		tblclmnId.setResizable(false);
 		
 		tblclmnNomeDoDoadorFisico = new TableColumn(table, SWT.CENTER);
-		tblclmnNomeDoDoadorFisico.setWidth(250);
+		tblclmnNomeDoDoadorFisico.setWidth(232);
 		tblclmnNomeDoDoadorFisico.setText("Nome do Doador");
 		tblclmnNomeDoDoadorFisico.setResizable(false);
 		
 		tblclmnDataDeNascimento = new TableColumn(table, SWT.CENTER);
-		tblclmnDataDeNascimento.setWidth(195);
+		tblclmnDataDeNascimento.setWidth(221);
 		tblclmnDataDeNascimento.setText("CPF / CNPJ");
 		tblclmnDataDeNascimento.setResizable(false);
 		

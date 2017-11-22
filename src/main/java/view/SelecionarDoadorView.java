@@ -193,12 +193,12 @@ public class  SelecionarDoadorView{
 		tableColumn.setResizable(false);
 		
 		TableColumn tblclmnNomeDoDoador = new TableColumn(table, SWT.CENTER);
-		tblclmnNomeDoDoador.setWidth(275);
+		tblclmnNomeDoDoador.setWidth(253);
 		tblclmnNomeDoDoador.setText("Nome do Doador");
 		tblclmnNomeDoDoador.setResizable(false);
 		
 		TableColumn tblclmnCpfCnpj_1 = new TableColumn(table, SWT.CENTER);
-		tblclmnCpfCnpj_1.setWidth(155);
+		tblclmnCpfCnpj_1.setWidth(183);
 		tblclmnCpfCnpj_1.setText("CPF / CNPJ");
 		tblclmnCpfCnpj_1.setResizable(false);
 		
