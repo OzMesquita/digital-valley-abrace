@@ -377,11 +377,18 @@ public class CadastroDoadorPFisicaView {
 		messageBox.setMessage("Cadastro realizado com sucesso!\n" + pessoaFisica.getNome()+", agora é um de nossos doadores! :)");
 		messageBox.open();
 	}
+	
+	public void mensagemSucessoReativacao(PessoaFisica pessoaFisica){
+		MessageBox messageBox = new MessageBox(shlCadastroDoador,SWT.ICON_WORKING | SWT.OK); 
+		messageBox.setText("Doador reativado com sucesso!");
+		messageBox.setMessage("Reativação realizada com sucesso!\n" + pessoaFisica.getNome()+", voltou a ser um de nossos doadores! :)");
+		messageBox.open();
+	}
 
 	public boolean reativarDoador(PessoaFisica pessoa) {
 		MessageBox messageBox = new MessageBox(shlCadastroDoador,SWT.ICON_WORKING | SWT.NO | SWT.YES); 
-		messageBox.setText("O CPF informado é de uma pessoa inativa no sistema!");
-		messageBox.setMessage("Deseja reativar " + pessoa.getNome()+" CPF:"+ pessoa.getCpf()+"?");
+		messageBox.setText("O CPF informado já está cadastrado");
+		messageBox.setMessage("O CPF informado é de uma pessoa inativa no sistema. Deseja reativá-la?\nNome: " + pessoa.getNome()+"\nCPF:"+ pessoa.getCpf()+"\nData de Nascimento: " + pessoa.getDataNasc() + "?");
 		int buttonID = messageBox.open();
         switch(buttonID) {
           case SWT.NO:

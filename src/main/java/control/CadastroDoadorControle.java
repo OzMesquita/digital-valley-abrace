@@ -59,7 +59,7 @@ public class CadastroDoadorControle {
 						if(pessoa.getCpf().equals(viewDoador.getTfCPF().getText()) && !(pessoa.isAtivo())) {
 							if(viewDoador.reativarDoador(pessoa)) {
 								fachadaDoador.ativaDoador(pessoa.getId());
-								viewDoador.mensagemSucesso(fachadaDoador.obterDoadorFisico(pessoa.getId()));
+								viewDoador.mensagemSucessoReativacao(fachadaDoador.obterDoadorFisico(pessoa.getId()));
 								viewDoador.getShlCadastroDoador().dispose();
 							}
 							break;

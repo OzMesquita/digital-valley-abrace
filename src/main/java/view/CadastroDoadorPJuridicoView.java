@@ -351,6 +351,13 @@ public class CadastroDoadorPJuridicoView {
 		messageBox.open();
 	}
 	
+	public void mensagemSucessoReativacao(PessoaJuridica pessoaJuridica){
+		MessageBox messageBox = new MessageBox(shlCadastroDoador,SWT.ICON_WORKING | SWT.OK); 
+		messageBox.setText("Doador reativado com sucesso!");
+		messageBox.setMessage("Reativação realizada com sucesso!\n" + pessoaJuridica.getNome()+", voltou a ser um de nossos doadores! :)");
+		messageBox.open();
+	}
+	
 	public void identificarESC(KeyEvent arg0) {
 		if(arg0.keyCode == 27) {
 			shlCadastroDoador.dispose();

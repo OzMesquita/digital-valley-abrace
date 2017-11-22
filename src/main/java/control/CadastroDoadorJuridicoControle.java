@@ -64,7 +64,7 @@ public class CadastroDoadorJuridicoControle {
 						if(pessoa.getCnpj().equals(viewDoadorJuridico.getTfCNPJ().getText()) && !(pessoa.isAtivo())) {
 							if(viewDoadorJuridico.reativarDoador(pessoa)) {
 								fachadaDoadorJuridico.ativaDoador(pessoa.getId());
-								viewDoadorJuridico.mensagemSucesso(fachadaDoadorJuridico.obterDoadorJuridico(pessoa.getId()));
+								viewDoadorJuridico.mensagemSucessoReativacao(fachadaDoadorJuridico.obterDoadorJuridico(pessoa.getId()));
 								viewDoadorJuridico.getShlCadastroDoador().dispose();
 							}
 							break;
