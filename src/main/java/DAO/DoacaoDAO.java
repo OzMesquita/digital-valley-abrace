@@ -115,5 +115,33 @@ public class DoacaoDAO extends ExecutaSQL{
 		}
 		return null;
 	}
+	
+	public ArrayList<Doacao> listarDoacoes(Pessoa pessoa) throws DoacaoInvalidaException{
+		ArrayList<Doacao> doacoes = new ArrayList<Doacao>();
+		String sql = "SELECT * FROM ABRACE.DOACAO WHERE IDPESSOA=?";
+		PreparedStatement stmt = null;
+		try {
+			stmt = getConexao().prepareStatement(sql);
+			stmt.setInt(1, pessoa.getId());
+			ResultSet rs = stmt.executeQuery();
+			while(rs.next()) {
+				int id = rs.getInt("IDDOACAO");
+				Double valor = rs.getDouble("VALOR");
+				LocalDate data = rs.getDate("DATA").toLocalDate();
+				doacoes.add(new Doacao(id, valor, data,true , pessoa));
+			}
+			stmt.close();
+		}catch(SQLException e) {
+			throw new RuntimeException(e.getMessage());
+		}
+		return doacoes;
+	}
+	
+	public static void main(String[] args) throws DoacaoInvalidaException {
+		for(Doacao d : new DoacaoDAO(new ConnectionFactory().getConnection()).listarDoacoes(new PessoaFisicaDAO(new ConnectionFactory().getConnection()).getPessoaFisica(1))) {
+			System.out.println(d.getDoador().getNome()+" "+d.getId()+" "+d.getValor()+" "+d.getData());
+		}
+		
+	}
 
 }
