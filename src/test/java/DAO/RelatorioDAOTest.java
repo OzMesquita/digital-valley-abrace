@@ -93,7 +93,9 @@ public class RelatorioDAOTest {
 	
 	public static void gerarRelatorioAnualPessoa() throws DoacaoInvalidaException {
 		try {
-			new RelatorioAnualPessoaFachada().relatorioAnualPessoa(new PessoaFisicaDAO(new ConnectionFactory().getConnection()).getPessoaFisica(1), LocalDate.of(2017, 1, 1).getYear());
+			RelatorioAnualPessoaFachada relatorioAnualPessoaFachada = new RelatorioAnualPessoaFachada();
+			relatorioAnualPessoaFachada.relatorioAnualPessoa(new PessoaFisicaDAO(new ConnectionFactory().getConnection()).getPessoaFisica(1), LocalDate.of(2017, 1, 1).getYear());
+			relatorioAnualPessoaFachada.AbrirPDF();
 		} catch (DocumentException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -1,11 +1,17 @@
 package relatorio;
 
+import java.awt.Desktop;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.MalformedURLException;
+import java.nio.channels.FileChannel;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -19,6 +25,7 @@ import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Font.FontFamily;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
 
 public abstract class RelatorioFacade {
 
@@ -56,8 +63,52 @@ public abstract class RelatorioFacade {
 	
 	protected OutputStream gravarDocumento(String subtitulo) throws FileNotFoundException {
 		DateTimeFormatter formatador = DateTimeFormatter.ofPattern("'DATA['dd'_'MM'_'yyyy'] HORA['HH.mm.ss']'");
-		new File("Relatorios").mkdir();
-		return new FileOutputStream("Relatorios/"+subtitulo+" " + LocalDateTime.now().format(formatador) + ".pdf");
+		String caminho = System.getProperty ("java.io.tmpdir")+"/Relatorios";
+		new File(caminho).mkdir();
+		arquivoTMP = caminho+"/"+subtitulo+" " + LocalDateTime.now().format(formatador) + ".pdf";
+		
+		System.out.println(arquivoTMP.replace("/", "\\"));
+		System.out.println(arquivoTMP.replace(System.getProperty ("java.io.tmpdir")+"/", ""));
+		System.out.println("Relatorios/"+subtitulo+" " + LocalDateTime.now().format(formatador) + ".pdf");
+		
+		
+		return new FileOutputStream(arquivoTMP);
 	}
+
+	
+	private String arquivoTMP;
+	
+	public void AbrirPDF() {
+		File pdf = new File(arquivoTMP);
+        try {
+          Desktop.getDesktop().open(pdf);
+        } catch(Exception ex) {
+          ex.printStackTrace();
+        }
+	}
+//	public void salvarPDF() throws DocumentException, IOException {
+//        new File("Relatorios").mkdir();
+//        Path source = Paths.get(arquivoTMP);
+//        Path destination = Paths.get(arquivoTMP.replace(System.getProperty ("java.io.tmpdir")+"/", ""));
+//        Files.copy(source, destination);
+//	}
+//	
+//	private void copiarArquivo(File source, File destination) throws IOException {
+//        if (destination.exists())
+//            destination.delete();
+//        FileChannel sourceChannel = null;
+//        FileChannel destinationChannel = null;
+//        try {
+//            sourceChannel = new FileInputStream(source).getChannel();
+//            destinationChannel = new FileOutputStream(destination).getChannel();
+//            sourceChannel.transferTo(0, sourceChannel.size(),
+//                    destinationChannel);
+//        } finally {
+//            if (sourceChannel != null && sourceChannel.isOpen())
+//                sourceChannel.close();
+//            if (destinationChannel != null && destinationChannel.isOpen())
+//                destinationChannel.close();
+//       }
+//   }
 
 }
