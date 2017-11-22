@@ -85,8 +85,8 @@ public class AplicacaoView {
 		btnGerenciarDoaes.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
 		btnGerenciarDoaes.setBounds(333, 337, 243, 68);
 		Label label = new Label(shlOngRussasTransformando, SWT.NONE);
-		label.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/ABRACE.png").getAbsolutePath()));
-		label.setBounds(530, 51, 64, 64);
+		label.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/abrace-logo.png").getAbsolutePath()));
+		label.setBounds(482, 28, 101, 101);
 		shlOngRussasTransformando.open();
 		shlOngRussasTransformando.layout();
 		while (!shlOngRussasTransformando.isDisposed()) {
@@ -110,7 +110,7 @@ public class AplicacaoView {
 		
 		Label lblBemVindo = new Label(shlOngRussasTransformando, SWT.NONE);
 		lblBemVindo.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
-		lblBemVindo.setBounds(72, 39, 222, 30);
+		lblBemVindo.setBounds(72, 39, 404, 30);
 		lblBemVindo.setText("Bem vindo, " + LoginSingleton.getUsuario().getNome());
 		
 		Label lblSelecioneAOpo = new Label(shlOngRussasTransformando, SWT.NONE);

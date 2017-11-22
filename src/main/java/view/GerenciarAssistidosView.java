@@ -263,7 +263,7 @@ public class GerenciarAssistidosView {
 		});
 		btnEditar.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/editar.png").getAbsolutePath()));
 		btnEditar.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
-		btnEditar.setBounds(132, 551, 208, 54);
+		btnEditar.setBounds(152, 551, 208, 54);
 		btnEditar.setText("Editar Assistido");
 		
 		btnExcluir = new Button(shlGerenciarAssistidos, SWT.NONE);
@@ -282,7 +282,7 @@ public class GerenciarAssistidosView {
 		btnExcluir.setEnabled(false);
 		btnExcluir.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
 		btnExcluir.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/lixeira.png").getAbsolutePath()));
-		btnExcluir.setBounds(346, 551, 208, 54);
+		btnExcluir.setBounds(372, 551, 208, 54);
 		btnExcluir.setText("Excluir Assistido");
 		
 		btnCadastrar = new Button(shlGerenciarAssistidos, SWT.NONE);
@@ -300,7 +300,7 @@ public class GerenciarAssistidosView {
 		});
 		btnCadastrar.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
 		btnCadastrar.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/assistido-small.png").getAbsolutePath()));
-		btnCadastrar.setBounds(346, 615, 208, 54);
+		btnCadastrar.setBounds(372, 611, 208, 54);
 		btnCadastrar.setText("Cadastrar Assistido");
 		
 		btnCancelar = new Button(shlGerenciarAssistidos, SWT.NONE);
@@ -318,7 +318,7 @@ public class GerenciarAssistidosView {
 		});
 		btnCancelar.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/cancelar.png").getAbsolutePath()));
 		btnCancelar.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
-		btnCancelar.setBounds(132, 615, 208, 54);
+		btnCancelar.setBounds(152, 611, 208, 54);
 		btnCancelar.setText("Cancelar");
 		
 		Label label = new Label(shlGerenciarAssistidos, SWT.NONE);
@@ -344,7 +344,7 @@ public class GerenciarAssistidosView {
 				identificarESC(arg0);
 			}
 		});
-		shlGerenciarAssistidos.setSize(730, 730);
+		shlGerenciarAssistidos.setSize(730, 713);
 		shlGerenciarAssistidos.setText("Gerenciar Assistidos - ABRACE");
 		shlGerenciarAssistidos.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/ABRACE.png").getAbsolutePath()));
 	}

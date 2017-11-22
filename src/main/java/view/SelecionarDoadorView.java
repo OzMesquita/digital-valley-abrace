@@ -127,23 +127,23 @@ public class  SelecionarDoadorView{
 		
 		Label lblRealizarDoao = new Label(shlDoacao, SWT.NONE);
 		lblRealizarDoao.setFont(SWTResourceManager.getFont("Segoe UI", 28, SWT.NORMAL));
-		lblRealizarDoao.setBounds(142, 28, 280, 50);
+		lblRealizarDoao.setBounds(145, 16, 280, 50);
 		lblRealizarDoao.setText("Registrar Doa\u00E7\u00E3o");
 		
 		Label lblParaRegistrarUma = new Label(shlDoacao, SWT.NONE);
 		lblParaRegistrarUma.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
-		lblParaRegistrarUma.setBounds(27, 82, 511, 25);
+		lblParaRegistrarUma.setBounds(30, 70, 511, 25);
 		lblParaRegistrarUma.setText("Para registrar uma doa\u00E7\u00E3o, \u00E9 necess\u00E1rio informar um doador");
 		
 		Label lblSelecioneOuPesquise = new Label(shlDoacao, SWT.NONE);
 		lblSelecioneOuPesquise.setText("Selecione ou pesquise um doador e clique em \"continuar\"");
 		lblSelecioneOuPesquise.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
-		lblSelecioneOuPesquise.setBounds(39, 113, 487, 25);
+		lblSelecioneOuPesquise.setBounds(42, 101, 487, 25);
 		
 		Label label_1 = new Label(shlDoacao, SWT.NONE);
 		label_1.setText("Pesquisar:");
 		label_1.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
-		label_1.setBounds(10, 166, 92, 30);
+		label_1.setBounds(10, 152, 92, 30);
 		
 		tfPesquisar = new Text(shlDoacao, SWT.BORDER);
 		tfPesquisar.addKeyListener(new KeyAdapter() {
@@ -153,7 +153,7 @@ public class  SelecionarDoadorView{
 			}
 		});
 		tfPesquisar.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
-		tfPesquisar.setBounds(108, 163, 448, 36);
+		tfPesquisar.setBounds(108, 149, 448, 36);
 		
 		Button btnPesquisar = new Button(shlDoacao, SWT.NONE);
 		btnPesquisar.addKeyListener(new KeyAdapter() {
@@ -165,7 +165,7 @@ public class  SelecionarDoadorView{
 		btnPesquisar.setText("Pesquisar");
 		btnPesquisar.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/pesquisar.png").getAbsolutePath()));
 		btnPesquisar.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
-		btnPesquisar.setBounds(560, 163, 144, 36);
+		btnPesquisar.setBounds(560, 149, 144, 36);
 		
 		btnPesquisar.addSelectionListener(new SelectionAdapter() {
 			@Override
@@ -185,7 +185,7 @@ public class  SelecionarDoadorView{
 		table.setLinesVisible(true);
 		table.setHeaderVisible(true);
 		table.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
-		table.setBounds(10, 205, 694, 356);
+		table.setBounds(10, 194, 694, 321);
 		
 		TableColumn tableColumn = new TableColumn(table, SWT.CENTER);
 		tableColumn.setWidth(47);
@@ -223,7 +223,7 @@ public class  SelecionarDoadorView{
 		btnCancelar.setText("Cancelar");
 		btnCancelar.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/cancelar.png").getAbsolutePath()));
 		btnCancelar.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
-		btnCancelar.setBounds(140, 590, 214, 54);
+		btnCancelar.setBounds(143, 532, 214, 54);
 		
 		Button btnCadastrar = new Button(shlDoacao, SWT.NONE);
 		btnCadastrar.addKeyListener(new KeyAdapter() {
@@ -241,7 +241,7 @@ public class  SelecionarDoadorView{
 		btnCadastrar.setText("Cadastrar doador");
 		btnCadastrar.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/assistido-small.png").getAbsolutePath()));
 		btnCadastrar.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
-		btnCadastrar.setBounds(360, 650, 214, 54);
+		btnCadastrar.setBounds(363, 592, 214, 54);
 		
 		Button btnPrximo = new Button(shlDoacao, SWT.NONE);
 		btnPrximo.addKeyListener(new KeyAdapter() {
@@ -259,12 +259,12 @@ public class  SelecionarDoadorView{
 		btnPrximo.setText("Continuar");
 		btnPrximo.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/botao-proximo.png").getAbsolutePath()));
 		btnPrximo.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
-		btnPrximo.setBounds(360, 590, 214, 54);
+		btnPrximo.setBounds(363, 532, 214, 54);
 		
 		Label lblNoEncontrouTente = new Label(shlDoacao, SWT.NONE);
 		lblNoEncontrouTente.setAlignment(SWT.RIGHT);
 		lblNoEncontrouTente.setFont(SWTResourceManager.getFont("Segoe UI", 12, SWT.NORMAL));
-		lblNoEncontrouTente.setBounds(130, 656, 224, 42);
+		lblNoEncontrouTente.setBounds(133, 598, 224, 42);
 		lblNoEncontrouTente.setText("N\u00E3o encontrou o doador?\r\nTente cadastrar um novo");
 		
 		Label label = new Label(shlDoacao, SWT.NONE);
@@ -291,7 +291,7 @@ public class  SelecionarDoadorView{
 			}
 		});
 		shlDoacao.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/ABRACE.png").getAbsolutePath()));
-		shlDoacao.setSize(730, 762);
+		shlDoacao.setSize(730, 695);
 		shlDoacao.setText("Realizar Doa\u00E7\u00E3o - Passo 1 de 2 - ABRACE");
 	}
 	

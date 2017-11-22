@@ -308,7 +308,7 @@ public class GerenciarDoacoesView {
 				identificarESC(arg0);
 			}
 		});
-		shlGerenciarDoacoes.setSize(730, 730);
+		shlGerenciarDoacoes.setSize(730, 711);
 		shlGerenciarDoacoes.setText("Gerenciar Doações - ABRACE");
 		shlGerenciarDoacoes.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/ABRACE.png").getAbsolutePath()));
 	}

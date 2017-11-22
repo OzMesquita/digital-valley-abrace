@@ -121,7 +121,7 @@ public class LoginView {
 		
 		Label lblBemVindo = new Label(shlOngRussasTransformando, SWT.NONE);
 		lblBemVindo.setFont(SWTResourceManager.getFont("Segoe UI", 18, SWT.NORMAL));
-		lblBemVindo.setBounds(199, 133, 125, 32);
+		lblBemVindo.setBounds(199, 149, 125, 32);
 		lblBemVindo.setText("Bem Vindo!");
 		
 		
@@ -131,8 +131,8 @@ public class LoginView {
 		lblDigiteSeusDados.setText("Digite seus dados de acesso");
 		
 		Label label = new Label(shlOngRussasTransformando, SWT.NONE);
-		label.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/ABRACE.png").getAbsolutePath()));
-		label.setBounds(230, 57, 64, 64);
+		label.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/abrace-logo.png").getAbsolutePath()));
+		label.setBounds(208, 27, 108, 112);
 
 	}
 	

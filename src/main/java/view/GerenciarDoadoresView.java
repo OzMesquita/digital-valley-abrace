@@ -228,7 +228,7 @@ public class GerenciarDoadoresView {
 		table.setLinesVisible(true);
 		table.setToolTipText("");
 		table.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
-		table.setBounds(15, 183, 694, 385);
+		table.setBounds(15, 183, 694, 323);
 		table.setHeaderVisible(true);
 		
 		tblclmnId = new TableColumn(table, SWT.CENTER);
@@ -271,7 +271,7 @@ public class GerenciarDoadoresView {
 		});
 		btnEditar.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/editar.png").getAbsolutePath()));
 		btnEditar.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
-		btnEditar.setBounds(346, 588, 223, 54);
+		btnEditar.setBounds(358, 536, 223, 54);
 		btnEditar.setText("Editar Doador");
 		
 		btnExcluir = new Button(shlGerenciarDoadoresFisicos, SWT.NONE);
@@ -290,7 +290,7 @@ public class GerenciarDoadoresView {
 		btnExcluir.setEnabled(false);
 		btnExcluir.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
 		btnExcluir.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/lixeira.png").getAbsolutePath()));
-		btnExcluir.setBounds(117, 588, 223, 54);
+		btnExcluir.setBounds(129, 536, 223, 54);
 		btnExcluir.setText("Excluir Doador");
 		
 		btnCadastrar = new Button(shlGerenciarDoadoresFisicos, SWT.NONE);
@@ -309,7 +309,7 @@ public class GerenciarDoadoresView {
 		});
 		btnCadastrar.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
 		btnCadastrar.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/doador-small.png").getAbsolutePath()));
-		btnCadastrar.setBounds(346, 652, 223, 54);
+		btnCadastrar.setBounds(358, 600, 223, 54);
 		btnCadastrar.setText("Cadastrar Doador");
 		
 		btnCancelar = new Button(shlGerenciarDoadoresFisicos, SWT.NONE);
@@ -327,7 +327,7 @@ public class GerenciarDoadoresView {
 		});
 		btnCancelar.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/cancelar.png").getAbsolutePath()));
 		btnCancelar.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
-		btnCancelar.setBounds(117, 652, 223, 54);
+		btnCancelar.setBounds(129, 600, 223, 54);
 		btnCancelar.setText("Cancelar");
 		
 		Label label = new Label(shlGerenciarDoadoresFisicos, SWT.NONE);
@@ -352,7 +352,7 @@ public class GerenciarDoadoresView {
 				identificarESC(arg0);
 			}
 		});
-		shlGerenciarDoadoresFisicos.setSize(730, 762);
+		shlGerenciarDoadoresFisicos.setSize(730, 702);
 		shlGerenciarDoadoresFisicos.setText("Gerenciar Assistidos - ABRACE");
 		shlGerenciarDoadoresFisicos.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/ABRACE.png").getAbsolutePath()));
 	}
