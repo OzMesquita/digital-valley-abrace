@@ -24,7 +24,7 @@ public abstract class RelatorioFacade {
 
 	protected void Cabecalho(Document document) throws DocumentException, MalformedURLException, IOException {
 		
-		Image figura = Image.getInstance("src/main/java/view/img/ABRACE.png");
+		Image figura = Image.getInstance("src/main/java/view/img/abrace-big.png");
 		figura.setAlignment(Element.ALIGN_CENTER);
 		document.add(figura);
 		
