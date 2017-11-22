@@ -1,13 +1,9 @@
 package relatorio;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.text.NumberFormat;
-import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
@@ -18,7 +14,6 @@ import com.itextpdf.text.Font.FontFamily;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
-
 import DAO.ConnectionFactory;
 import DAO.DoacaoDAO;
 import DAO.PessoaFisicaDAO;
@@ -37,10 +32,12 @@ public class RelatorioAnualPessoaFachada extends RelatorioFacade{
 		document.open();
 
 		Cabecalho(document);
+		
 
 		//========================================================================================
 		//		Cabeçalho de dados do doador
 		//========================================================================================
+		
 		DateTimeFormatter formatadorData = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
 		PdfPTable table = new PdfPTable(2);
@@ -74,7 +71,17 @@ public class RelatorioAnualPessoaFachada extends RelatorioFacade{
 		document.add(table);
 
 		//========================================================================================
+		
+		Paragraph sub = new Paragraph(subtitulo,new Font(FontFamily.UNDEFINED,12,Font.BOLD));
+		Paragraph emissao = new Paragraph("Referente ao ano de " + ano);
 
+		sub.setSpacingBefore(20);
+
+		sub.setAlignment(Element.ALIGN_CENTER);
+		emissao.setAlignment(Element.ALIGN_CENTER);
+
+		document.add(sub);
+		document.add(emissao);
 
 		//========================================================================================
 		//				Tabela de doações
