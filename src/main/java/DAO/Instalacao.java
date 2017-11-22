@@ -4,6 +4,12 @@ import java.sql.DatabaseMetaData;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+
+import exceptions.PessoaFisicaException;
+import exceptions.PessoaInvalidaException;
+import exceptions.UsuarioInvalidoException;
+import model.Usuario;
 
 public class Instalacao {
 	public static void instalarBanco() {
@@ -83,12 +89,12 @@ public class Instalacao {
 				   ,
 				   //-----------------------------------//
 				   "INSERT INTO ABRACE.PESSOA ( NOME,  ENDERECO,          TELEFONE1,             TELEFONE2,  EMAIL,                     DATACADASTRO,  ATIVO, ISDOADOR)" + 
-				   "VALUES                    ('adm', 'Vila Matoso, 82', '85999357677',      NULL,      'abrace.russas@gmail.com',  CURRENT_DATE, 'true', 'true'  )"
+				   "VALUES                    ('Usuário Teste', 'Vila Matoso, 82', '(88)99999-9999',      NULL,      'teste@n2s.com',  CURRENT_DATE, 'true', 'true'  )"
 				   //-----------------------------------//
 				   ,
 				   //-----------------------------------//
 				   "INSERT INTO ABRACE.PESSOA_FISICA (IDPESSOA,                             CPF,              RG,      DATANASCIMENTO)" + 
-				   "VALUES                           ((SELECT IDPESSOA FROM ABRACE.PESSOA), '270.845.437-40', '00000', '2017-01-01'  )"
+				   "VALUES                           ((SELECT IDPESSOA FROM ABRACE.PESSOA), '089.612.933-03', '00000', '2017-01-01'  )"
 				   //-----------------------------------//
 				   ,
 				   //-----------------------------------//
@@ -105,8 +111,8 @@ public class Instalacao {
 			e.printStackTrace();
 		}
 	}
-	public static void main(String[] args) throws SQLException {
-
+	
+	public static void executarInstalacao() throws SQLException {
 		DatabaseMetaData dbm = new ConnectionFactory().getConnection().getMetaData();
 		// Verifica se o Schema"ABRACE" existe
 		ResultSet tables = dbm.getSchemas(null, "ABRACE");

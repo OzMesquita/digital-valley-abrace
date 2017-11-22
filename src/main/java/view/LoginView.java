@@ -46,7 +46,7 @@ public class LoginView {
 		
 	}
 
-	public static void main(String[] args) {
+	public static void main() {
 		try {
 			LoginView window = new LoginView();
 			window.open();
@@ -55,6 +55,9 @@ public class LoginView {
 		}
 	}
 
+	/**
+	 * @wbp.parser.entryPoint
+	 */
 	public void open() {
 		Display display = Display.getDefault();
 		createContents();

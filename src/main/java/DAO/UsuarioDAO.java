@@ -122,4 +122,12 @@ public class UsuarioDAO extends ExecutaSQL{
 			}
 			return usuarios;
 		}
+		
+		public static void main(String[] args) {
+			UsuarioDAO u = new UsuarioDAO(new ConnectionFactory().getConnection());
+			ArrayList<Usuario> user = u.listarUsuarios();
+			for(int i = 0; i < user.size(); i++) {
+				user.get(i).getNome();
+			}
+		}
 }
