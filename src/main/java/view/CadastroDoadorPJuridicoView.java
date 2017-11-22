@@ -14,7 +14,6 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.wb.swt.SWTResourceManager;
 import control.CadastroDoadorJuridicoControle;
-import model.PessoaFisica;
 import model.PessoaJuridica;
 
 import org.eclipse.swt.events.FocusAdapter;

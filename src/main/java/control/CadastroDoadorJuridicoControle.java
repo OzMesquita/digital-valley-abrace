@@ -9,7 +9,6 @@ import org.eclipse.swt.events.SelectionEvent;
 import exceptions.PessoaInvalidaException;
 import exceptions.PessoaJuridicaInvalidaException;
 import facade.DoadorFachada;
-import model.PessoaFisica;
 import model.PessoaJuridica;
 import view.CadastroDoadorPJuridicoView;
 

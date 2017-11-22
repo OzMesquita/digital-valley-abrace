@@ -97,20 +97,16 @@ public class GerenciarDoadoresControle {
 		return listaPesquisaDoadoresFisicos;
 	}
 	
+	public void getMouseEvent(org.eclipse.swt.events.MouseEvent arg0) {
+		editarDoador();
+	}
+	
 	public void getEvent(SelectionEvent event) {
 		if (event.getSource().toString().equals("Button {Pesquisar}")) {
 			preencherTabelaDoadores(pesquisarDoadores(viewDoadores.getTfPesquisa().getText()));
 		}
 		if (event.getSource().toString().equals("Button {Editar Doador}")) {
-			PessoaFisica pessoaFisica = fachadaDoadores.obterDoadorFisico(listaExibidaNaTabela.get(viewDoadores.getTable().getSelectionIndex()).getId());
-			if(pessoaFisica == null) {
-				PessoaJuridica pessoaJuridica = fachadaDoadores.obterDoadorJuridico(listaExibidaNaTabela.get(viewDoadores.getTable().getSelectionIndex()).getId());
-				viewDoadores.getShlGerenciarDoadoresFisicos().dispose();
-				EditarDoadorPJView.main(pessoaJuridica);
-			}else {
-				viewDoadores.getShlGerenciarDoadoresFisicos().dispose();
-				EditarDoadorPFView.main(pessoaFisica);
-			}
+			editarDoador();
 		}
 		if(event.getSource().toString().equals("Button {Excluir Doador}")) {
 			if(confirmacao()) {
@@ -118,6 +114,18 @@ public class GerenciarDoadoresControle {
 				excluirLinhasDaTabela();
 				preencherTabelaDoadores(obterTodosDoadores());
 			}
+		}
+	}
+	
+	public void editarDoador() {
+		PessoaFisica pessoaFisica = fachadaDoadores.obterDoadorFisico(listaExibidaNaTabela.get(viewDoadores.getTable().getSelectionIndex()).getId());
+		if(pessoaFisica == null) {
+			PessoaJuridica pessoaJuridica = fachadaDoadores.obterDoadorJuridico(listaExibidaNaTabela.get(viewDoadores.getTable().getSelectionIndex()).getId());
+			viewDoadores.getShlGerenciarDoadoresFisicos().dispose();
+			EditarDoadorPJView.main(pessoaJuridica);
+		}else {
+			viewDoadores.getShlGerenciarDoadoresFisicos().dispose();
+			EditarDoadorPFView.main(pessoaFisica);
 		}
 	}
 }

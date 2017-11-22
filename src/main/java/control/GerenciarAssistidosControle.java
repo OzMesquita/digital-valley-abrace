@@ -91,14 +91,16 @@ public class GerenciarAssistidosControle {
 		return listaPesquisaAssistidos;
 	}
 	
+	public void getMouseEvent(org.eclipse.swt.events.MouseEvent arg0) {
+		editarAssistido();
+	}
+	
 	public void getEvent(SelectionEvent event) {
 		if (event.getSource().toString().equals("Button {Pesquisar}")) {
 			preencherTabelaAssistidos(pesquisarAssistidos(viewAssistido.getTfPesquisa().getText()));
 		}
 		if (event.getSource().toString().equals("Button {Editar Assistido}")) {
-			Assistido assistido = fachadaAssistido.obterAssistido(listaExibidaNaTabela.get(viewAssistido.getTable().getSelectionIndex()).getId());
-			this.viewAssistido.getShlGerenciarAssistidos().dispose();
-			new EditarAssistidoView(assistido).open();
+			editarAssistido();
 		}
 		if(event.getSource().toString().equals("Button {Excluir Assistido}")) {
 			if(confirmacao()) {
@@ -112,5 +114,11 @@ public class GerenciarAssistidosControle {
 			CadastroAssistidoView.main();
 			GerenciarAssistidosView.main();
 		}
+	}
+	
+	public void editarAssistido() {
+		Assistido assistido = fachadaAssistido.obterAssistido(listaExibidaNaTabela.get(viewAssistido.getTable().getSelectionIndex()).getId());
+		this.viewAssistido.getShlGerenciarAssistidos().dispose();
+		new EditarAssistidoView(assistido).open();
 	}
 }

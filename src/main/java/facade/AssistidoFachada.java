@@ -5,8 +5,6 @@ import java.util.ArrayList;
 
 import DAO.AssistidoDAO;
 import DAO.ConnectionFactory;
-import DAO.PessoaDAO;
-import DAO.PessoaFisicaDAO;
 import exceptions.PessoaInvalidaException;
 import model.Assistido;
 

@@ -15,6 +15,8 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.wb.swt.SWTResourceManager;
 import control.GerenciarDoadoresControle;
 import org.eclipse.swt.events.KeyAdapter;
+import org.eclipse.swt.events.MouseAdapter;
+import org.eclipse.swt.events.MouseEvent;
 
 public class GerenciarDoadoresView {
 	GerenciarDoadoresControle controle;
@@ -204,6 +206,12 @@ public class GerenciarDoadoresView {
 		btnPesquisar.setText("Pesquisar");
 		
 		table = new Table(shlGerenciarDoadoresFisicos, SWT.BORDER | SWT.FULL_SELECTION);
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseDoubleClick(MouseEvent arg0) {
+				controle.getMouseEvent(arg0);
+			}
+		});
 		table.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent arg0) {

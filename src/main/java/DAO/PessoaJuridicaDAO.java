@@ -196,12 +196,4 @@ public class PessoaJuridicaDAO extends ExecutaSQL{
 		}
 		return null;
 	}
-	
-	public static void main(String[] args) {
-		PessoaJuridicaDAO dao = new PessoaJuridicaDAO(new ConnectionFactory().getConnection());
-		ArrayList<PessoaJuridica> ps = dao.listarDoadorJuridico();
-		for(PessoaJuridica p : ps) {
-			System.out.println(p);
-		}
-	}
 }

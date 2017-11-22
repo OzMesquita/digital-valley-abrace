@@ -15,6 +15,8 @@ import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.KeyAdapter;
 import org.eclipse.swt.events.KeyEvent;
+import org.eclipse.swt.events.MouseAdapter;
+import org.eclipse.swt.events.MouseEvent;
 
 public class GerenciarAssistidosView {
 	GerenciarAssistidosControle controle;
@@ -196,6 +198,12 @@ public class GerenciarAssistidosView {
 		btnPesquisar.setText("Pesquisar");
 		
 		table = new Table(shlGerenciarAssistidos, SWT.BORDER | SWT.FULL_SELECTION);
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseDoubleClick(MouseEvent arg0) {
+				controle.getMouseEvent(arg0);
+			}
+		});
 		table.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent arg0) {

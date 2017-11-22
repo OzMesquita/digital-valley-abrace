@@ -23,9 +23,9 @@ public class ExecutaSQL {
 		if (getConexao() != null) {
 			try {
 				getConexao().rollback();
-				System.out.println(e.getMessage() + " Transação está retornando ao estado anterior");
+				//System.out.println(e.getMessage() + " Transação está retornando ao estado anterior");
 			} catch (SQLException e1) {
-				System.out.println(e1.getMessage());
+				//System.out.println(e1.getMessage());
 			}
 		}
 	}
@@ -37,7 +37,7 @@ public class ExecutaSQL {
 		}
 		getConexao().setAutoCommit(true);
 		} catch (SQLException e1) {
-			System.out.println(e1.getMessage());
+			//System.out.println(e1.getMessage());
 		}
 	}
 }

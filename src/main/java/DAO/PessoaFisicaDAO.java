@@ -28,7 +28,6 @@ public class PessoaFisicaDAO extends ExecutaSQL {
 			rollBack(e);
 			throw e;
 		}catch(PessoaInvalidaException e1) {
-			System.out.println(e1.getMessage());
 			throw e1;
 		}
 		return true;

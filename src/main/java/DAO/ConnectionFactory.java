@@ -17,7 +17,7 @@ public class ConnectionFactory {
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		} catch (ClassNotFoundException e) {
-			System.out.println(e.getMessage());
+			//System.out.println(e.getMessage());
 		}
 		return connection;
 	}
