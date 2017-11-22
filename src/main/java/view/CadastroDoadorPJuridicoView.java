@@ -332,8 +332,8 @@ public class CadastroDoadorPJuridicoView {
 		btnCancelar.setText("Cancelar");
 		
 		Label label_9 = new Label(shlCadastroDoador, SWT.NONE);
-		label_9.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/doadores.png").getAbsolutePath()));
-		label_9.setBounds(513, 29, 109, 114);
+		label_9.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/pessoa-juridica-medium.png").getAbsolutePath()));
+		label_9.setBounds(550, 18, 109, 114);
 	}
 	
 	public void mensagemErro(Exception e){
