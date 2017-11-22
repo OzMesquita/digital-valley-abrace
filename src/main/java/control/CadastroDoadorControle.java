@@ -53,10 +53,14 @@ public class CadastroDoadorControle {
 			return;
 		}else {
 			try {
-				if(fachadaDoador.verificaCPF(viewDoador.getTfCPF().getText())) {
+				StringBuilder sb = new StringBuilder(viewDoador.getTfCPF().getText().replace(".", "").replace("-", ""));
+				sb.insert(3, ".");
+				sb.insert(7, ".");
+				sb.insert(11, "-");
+				if(fachadaDoador.verificaCPF(sb.toString())) {
 					List<PessoaFisica> lista = fachadaDoador.listarTabelaPessoasFisicas();
 					for(PessoaFisica pessoa : lista) {
-						if(pessoa.getCpf().equals(viewDoador.getTfCPF().getText()) && !(pessoa.isAtivo())) {
+						if(pessoa.getCpf().equals(sb.toString()) && !(pessoa.isAtivo())) {
 							if(viewDoador.reativarDoador(pessoa)) {
 								fachadaDoador.ativaDoador(pessoa.getId());
 								viewDoador.mensagemSucessoReativacao(fachadaDoador.obterDoadorFisico(pessoa.getId()));

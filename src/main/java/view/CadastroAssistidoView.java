@@ -18,6 +18,8 @@ import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.FocusAdapter;
+import org.eclipse.swt.events.FocusEvent;
 import org.eclipse.swt.events.KeyAdapter;
 import org.eclipse.swt.events.KeyEvent;
 
@@ -280,6 +282,12 @@ public class CadastroAssistidoView{
 				identificarESC(arg0);
 			}
 		});
+		tfCPF.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent arg0) {
+				controle.getFocus(arg0);
+			}
+		});
 		tfCPF.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfCPF.setBounds(254, 258, 369, 38);
 		tfCPF.setTextLimit(14);
@@ -482,5 +490,20 @@ public class CadastroAssistidoView{
 		if(arg0.keyCode == 27) {
 			shlCadastroAssistido.dispose();
 		}
+	}
+	
+	public boolean reativarDoador(PessoaFisica pessoa) {
+		MessageBox messageBox = new MessageBox(shlCadastroAssistido,SWT.ICON_WORKING | SWT.NO | SWT.YES); 
+		messageBox.setText("O CPF informado é de uma pessoa inativa no sistema!");
+		messageBox.setMessage("Deseja reativar " + pessoa.getNome()+" CPF:"+ pessoa.getCpf()+"?");
+		int buttonID = messageBox.open();
+        switch(buttonID) {
+          case SWT.NO:
+        	  return false;
+          case SWT.YES:
+            return true;
+          default:
+        	  return false;
+        }
 	}
 }

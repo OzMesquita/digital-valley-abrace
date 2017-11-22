@@ -42,10 +42,15 @@ public class PessoaFisica extends Pessoa {
 
 	public void setCpf(String cpf) throws PessoaFisicaException {
 		CNP validador = new CNP();
+		
+		StringBuilder sb = new StringBuilder(cpf.replace(".", "").replace("-", ""));
+		sb.insert(3, ".");
+		sb.insert(7, ".");
+		sb.insert(11, "-");
 		if ((cpf == null) || !(validador.isValidCPF(cpf.replace(".", "").replace("-", "")))) {
 			throw new PessoaFisicaException("O CPF informado é inválido!");
 		}
-		this.cpf = cpf;
+		this.cpf = sb.toString();
 	}
 
 	public String getRg() {

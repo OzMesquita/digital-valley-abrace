@@ -2,7 +2,9 @@ package control;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.List;
 
+import org.eclipse.swt.events.FocusEvent;
 import org.eclipse.swt.events.SelectionEvent;
 
 import exceptions.AssistidoInvalidoException;
@@ -10,6 +12,7 @@ import exceptions.PessoaFisicaException;
 import exceptions.PessoaInvalidaException;
 import facade.AssistidoFachada;
 import model.Assistido;
+import model.PessoaFisica;
 import view.CadastroAssistidoView;
 
 public class CadastroAssistidoControle {
@@ -72,5 +75,33 @@ public class CadastroAssistidoControle {
 				}
 			}
 		}
+	}
+	
+	public void getFocus(FocusEvent arg0) {
+		if(viewAssistido.getTfCPF().getText() == "") {
+			return;
+		}else {
+			try {
+				StringBuilder sb = new StringBuilder(viewAssistido.getTfCPF().getText().replace(".", "").replace("-", ""));
+				sb.insert(3, ".");
+				sb.insert(7, ".");
+				sb.insert(11, "-");
+				if(fachadaAssistido.verificaCPF(sb.toString())) {
+					List<PessoaFisica> lista = fachadaAssistido.listarTabelaPessoasFisicas();
+					for(PessoaFisica pessoa : lista) {
+						if(pessoa.getCpf().equals(sb.toString()) && !(pessoa.isAtivo())) {
+							if(viewAssistido.reativarDoador(pessoa)) {
+								fachadaAssistido.ativaDoador(pessoa.getId());
+								viewAssistido.mensagemSucesso(fachadaAssistido.obterAssistido(pessoa.getId()));
+								viewAssistido.getShlCadastroAssistido().dispose();
+							}
+							break;
+						}
+					}
+				}
+			} catch (SQLException e) {
+				viewAssistido.mensagemErro(new Exception("Erro na operação! Contate o suporte!"));
+			}
+		} 
 	}
 }

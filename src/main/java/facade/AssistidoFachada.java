@@ -2,11 +2,14 @@ package facade;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import DAO.AssistidoDAO;
 import DAO.ConnectionFactory;
+import DAO.PessoaFisicaDAO;
 import exceptions.PessoaInvalidaException;
 import model.Assistido;
+import model.PessoaFisica;
 
 public class AssistidoFachada {
 	public boolean cadastrarAssistido(Assistido assistido) throws PessoaInvalidaException, SQLException{
@@ -60,4 +63,36 @@ public class AssistidoFachada {
 		}
 		return resultado;
 	}
+	
+	public boolean ativaDoador(int id) {
+		PessoaFisicaDAO dao = new PessoaFisicaDAO(new ConnectionFactory().getConnection());
+		boolean resultado = dao.ativaDoador(id);
+		try {
+			dao.getConexao().close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return resultado;
+	}
+	
+	public boolean verificaCPF(String CPF) throws SQLException {
+		PessoaFisicaDAO dao = new PessoaFisicaDAO(new ConnectionFactory().getConnection());
+		boolean resultado = dao.getPessoaPeloCPF(CPF);
+		dao.getConexao().close();
+		return resultado;
+	}
+	
+	public List<PessoaFisica> listarTabelaPessoasFisicas() {
+		PessoaFisicaDAO dao = new PessoaFisicaDAO(new ConnectionFactory().getConnection());
+		ArrayList<PessoaFisica> doadoresFisicos = new ArrayList<PessoaFisica>();
+		try {
+			doadoresFisicos = dao.listarTabelaPessoasFisicas();
+			dao.getConexao().close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return doadoresFisicos;
+	}
+	
+	
 }
