@@ -99,12 +99,12 @@ public class DoacaoControle {
 					p = fachadaDoador.obterDoadorJuridico(DoacaoSingleton.getDoacao().getDoador().getId());
 					viewValor.mensagemSucesso();
 					viewValor.getShlRealizarDoao().dispose();
-					ApresentaPDFView.main(new ReciboDoacaoFachada().reciboDoadorJuridico((PessoaJuridica)p, DoacaoSingleton.getDoacao()));
+					ApresentaPDFView.main(new ReciboDoacaoFachada().reciboDoadorJuridico(DoacaoSingleton.getDoacao()));
 				}
 				else {
 					viewValor.mensagemSucesso();
 					viewValor.getShlRealizarDoao().dispose();
-					ApresentaPDFView.main(new ReciboDoacaoFachada().reciboDoadorFisico((PessoaFisica)p, DoacaoSingleton.getDoacao()));
+					ApresentaPDFView.main(new ReciboDoacaoFachada().reciboDoadorFisico(DoacaoSingleton.getDoacao()));
 				}
 				
 			}

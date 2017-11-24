@@ -20,7 +20,7 @@ public class ReciboDoacaoFachada extends RelatorioFacade{
 		
 	}
 	
-	public String reciboDoadorFisico(PessoaFisica pessoaFisica, Doacao doacao) throws DocumentException, IOException {
+	public String reciboDoadorFisico(Doacao doacao) throws DocumentException, IOException {
 		// ==================================================================================================//
 		// Criando o documento
 		// ==================================================================================================//
@@ -40,13 +40,14 @@ public class ReciboDoacaoFachada extends RelatorioFacade{
 		titulo.setSpacingBefore(20);
 		document.add(titulo);
 		
-		String conteudo = "Através deste documento, declaro, para todos os fins e a quem possa interessar que recebi de " + pessoaFisica.getNome() + 
-				", Carteira de Identidade (RG) número: " + pessoaFisica.getRg() +
-				", CPF número: " + pessoaFisica.getCpf() +
+		String conteudo = "Através deste documento, declaro, para todos os fins e a quem possa interessar que recebi de " + doacao.getDoador().getNome() + 
+				", Carteira de Identidade (RG) número: " + (((PessoaFisica) doacao.getDoador()).getRg()) +
+				", CPF número: " + (((PessoaFisica) doacao.getDoador()).getCpf()) +
 				" a quantia de R$ " + doacao.getValor() + " ("+new Extenso(doacao.getValor())+"), " +
 				"referente a doação para a ONG(Organização Sem Fins Lucrativos) Russas Transformando Vidas - ABRACE. Por ser verdade, assino a presente.";
 		
 		Paragraph declaracao = new Paragraph(conteudo,new Font(FontFamily.UNDEFINED, 11));
+		declaracao.setAlignment(Element.ALIGN_JUSTIFIED);
 		
 		document.add(declaracao);
 		
@@ -71,7 +72,7 @@ public class ReciboDoacaoFachada extends RelatorioFacade{
 		return arquivoTMP;
 	}
 	
-	public String reciboDoadorJuridico(PessoaJuridica pessoaJuridica, Doacao doacao) throws DocumentException, MalformedURLException, IOException {
+	public String reciboDoadorJuridico(Doacao doacao) throws DocumentException, MalformedURLException, IOException {
 		// ==================================================================================================//
 				// Criando o documento
 				// ==================================================================================================//
@@ -91,13 +92,14 @@ public class ReciboDoacaoFachada extends RelatorioFacade{
 				titulo.setSpacingBefore(20);
 				document.add(titulo);
 				
-				String conteudo = "Através deste documento, declaro, para todos os fins e a quem possa interessar que recebi de " + pessoaJuridica.getNome() + 
-						", CNPJ número: " + pessoaJuridica.getCnpj() +
-						", com sede em " + pessoaJuridica.getEndereco() +
+				String conteudo = "Através deste documento, declaro, para todos os fins e a quem possa interessar que recebi de " + doacao.getDoador().getNome() + 
+						", CNPJ número: " + (((PessoaJuridica) doacao.getDoador()).getCnpj()) +
+						", com sede em " + doacao.getDoador().getEndereco() +
 						" a quantia de R$ " + doacao.getValor() + " ("+new Extenso(doacao.getValor())+"), " +
 						"referente a doação para a ONG(Organização Sem Fins Lucrativos) Russas Transformando Vidas - ABRACE. Por ser verdade, assino a presente.";
 				
 				Paragraph declaracao = new Paragraph(conteudo,new Font(FontFamily.UNDEFINED, 11));
+				declaracao.setAlignment(Element.ALIGN_JUSTIFIED);
 				
 				document.add(declaracao);
 				
