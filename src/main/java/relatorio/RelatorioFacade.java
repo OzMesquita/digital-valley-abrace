@@ -71,7 +71,7 @@ public abstract class RelatorioFacade {
 		return new FileOutputStream(arquivoTMP);
 	}
 	
-	public void AbrirPDF() {
+	public void abrirPDF() {
 		File pdf = new File(arquivoTMP);
         try {
           Desktop.getDesktop().open(pdf);
