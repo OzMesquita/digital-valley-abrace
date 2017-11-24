@@ -28,7 +28,9 @@ import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 
 public abstract class RelatorioFacade {
-
+	
+	protected String arquivoTMP;
+	
 	protected void Cabecalho(Document document) throws DocumentException, MalformedURLException, IOException {
 		
 		Image figura = Image.getInstance("src/main/java/view/img/abrace-big.png");
@@ -65,18 +67,9 @@ public abstract class RelatorioFacade {
 		DateTimeFormatter formatador = DateTimeFormatter.ofPattern("'DATA['dd'_'MM'_'yyyy'] HORA['HH.mm.ss']'");
 		String caminho = System.getProperty ("java.io.tmpdir")+"/Relatorios";
 		new File(caminho).mkdir();
-		arquivoTMP = caminho+"/"+subtitulo+" " + LocalDateTime.now().format(formatador) + ".pdf";
-		
-		System.out.println(arquivoTMP.replace("/", "\\"));
-		System.out.println(arquivoTMP.replace(System.getProperty ("java.io.tmpdir")+"/", ""));
-		System.out.println("Relatorios/"+subtitulo+" " + LocalDateTime.now().format(formatador) + ".pdf");
-		
-		
+		arquivoTMP = caminho+"/"+subtitulo+" " + LocalDateTime.now().format(formatador) + ".pdf";		
 		return new FileOutputStream(arquivoTMP);
 	}
-
-	
-	protected String arquivoTMP;
 	
 	public void AbrirPDF() {
 		File pdf = new File(arquivoTMP);
@@ -86,29 +79,10 @@ public abstract class RelatorioFacade {
           ex.printStackTrace();
         }
 	}
-//	public void salvarPDF() throws DocumentException, IOException {
-//        new File("Relatorios").mkdir();
-//        Path source = Paths.get(arquivoTMP);
-//        Path destination = Paths.get(arquivoTMP.replace(System.getProperty ("java.io.tmpdir")+"/", ""));
-//        Files.copy(source, destination);
-//	}
-//	
-//	private void copiarArquivo(File source, File destination) throws IOException {
-//        if (destination.exists())
-//            destination.delete();
-//        FileChannel sourceChannel = null;
-//        FileChannel destinationChannel = null;
-//        try {
-//            sourceChannel = new FileInputStream(source).getChannel();
-//            destinationChannel = new FileOutputStream(destination).getChannel();
-//            sourceChannel.transferTo(0, sourceChannel.size(),
-//                    destinationChannel);
-//        } finally {
-//            if (sourceChannel != null && sourceChannel.isOpen())
-//                sourceChannel.close();
-//            if (destinationChannel != null && destinationChannel.isOpen())
-//                destinationChannel.close();
-//       }
-//   }
+	public void salvarPDF() throws DocumentException, IOException {
+        new File("Relatorios").mkdir();
+        Files.copy(Paths.get(arquivoTMP), Paths.get(arquivoTMP.replace(System.getProperty ("java.io.tmpdir")+"/", "")));       
+       
+	}
 
 }
