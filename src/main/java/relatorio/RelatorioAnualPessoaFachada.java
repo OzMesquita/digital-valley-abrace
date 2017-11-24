@@ -24,7 +24,7 @@ import model.PessoaFisica;
 import model.PessoaJuridica;
 
 public class RelatorioAnualPessoaFachada extends RelatorioFacade{
-	public void relatorioAnualPessoa(Pessoa pessoa, int ano) throws DocumentException, MalformedURLException, IOException, DoacaoInvalidaException {
+	public String relatorioAnualPessoa(Pessoa pessoa, int ano) throws DocumentException, MalformedURLException, IOException, DoacaoInvalidaException {
 		Document document = new Document();
 		String subtitulo = "Relatório anual de doações do doador "+ pessoa.getNome() +" para a ONG ABRACE Russas";
 		PdfWriter.getInstance(document, gravarDocumento(subtitulo));
@@ -148,6 +148,7 @@ public class RelatorioAnualPessoaFachada extends RelatorioFacade{
 		document.add(table2);
 		//========================================================================================
 		document.close();
+		return arquivoTMP;
 
 	}
 }

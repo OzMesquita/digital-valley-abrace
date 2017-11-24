@@ -24,7 +24,7 @@ import model.PessoaFisica;
 import model.PessoaJuridica;
 
 public class RelatorioDoacaoFachada extends RelatorioFacade{
-	public void relatorioDoacaoMensal(ArrayList<Doacao> list, LocalDate dataInicial, LocalDate dataFinal) throws DocumentException, IOException{
+	public String relatorioDoacaoMensal(ArrayList<Doacao> list, LocalDate dataInicial, LocalDate dataFinal) throws DocumentException, IOException{
 
 
 		// ==================================================================================================//
@@ -150,9 +150,11 @@ public class RelatorioDoacaoFachada extends RelatorioFacade{
 		document.add(table2);
 
 		document.close();
+		
+		return arquivoTMP;
 	}
 
-	public void relatorioDoacaoAnual(ArrayList<Doacao> list, int ano) throws DocumentException, IOException{
+	public String relatorioDoacaoAnual(ArrayList<Doacao> list, int ano) throws DocumentException, IOException{
 
 
 		// ==================================================================================================//
@@ -273,5 +275,7 @@ public class RelatorioDoacaoFachada extends RelatorioFacade{
 		document.add(table2);
 
 		document.close();
+		
+		return arquivoTMP;
 	}
 }

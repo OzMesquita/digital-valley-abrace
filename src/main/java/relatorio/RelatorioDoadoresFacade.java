@@ -21,7 +21,7 @@ import model.PessoaJuridica;
 
 public class RelatorioDoadoresFacade extends RelatorioFacade{
 
-	public void relatorioDeDoadores(List<Pessoa> list, boolean exibirAtivos, boolean exibirInativos, boolean exibirPessoasFisicas, boolean exibirPessoasJuridicas) throws DocumentException, IOException{
+	public String relatorioDeDoadores(List<Pessoa> list, boolean exibirAtivos, boolean exibirInativos, boolean exibirPessoasFisicas, boolean exibirPessoasJuridicas) throws DocumentException, IOException{
 
 		// ==================================================================================================//
 		// Criando o documento
@@ -159,5 +159,7 @@ public class RelatorioDoadoresFacade extends RelatorioFacade{
 		document.add(table2);
 
 		document.close();
+		
+		return arquivoTMP;
 	}
 }

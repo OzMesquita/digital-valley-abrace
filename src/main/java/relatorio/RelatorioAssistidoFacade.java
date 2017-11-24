@@ -19,7 +19,7 @@ import model.Assistido;
 
 public class RelatorioAssistidoFacade extends RelatorioFacade {
 	
-	public void relatorioDeAssistido(ArrayList<Assistido> assistidos, boolean exibirVivos, boolean exibirMortos) throws DocumentException, IOException {
+	public String relatorioDeAssistido(ArrayList<Assistido> assistidos, boolean exibirVivos, boolean exibirMortos) throws DocumentException, IOException {
 		
 		// ==================================================================================================//
 		// Criando o documento
@@ -132,6 +132,7 @@ public class RelatorioAssistidoFacade extends RelatorioFacade {
 		document.add(table2);
 		
 		document.close();
+		return arquivoTMP;
 	}
 
 	
