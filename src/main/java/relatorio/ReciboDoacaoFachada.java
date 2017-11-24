@@ -20,7 +20,7 @@ public class ReciboDoacaoFachada extends RelatorioFacade{
 		
 	}
 	
-	public void reciboDoadorFisico(PessoaFisica pessoaFisica, Doacao doacao) throws DocumentException, IOException {
+	public String reciboDoadorFisico(PessoaFisica pessoaFisica, Doacao doacao) throws DocumentException, IOException {
 		// ==================================================================================================//
 		// Criando o documento
 		// ==================================================================================================//
@@ -68,9 +68,10 @@ public class ReciboDoacaoFachada extends RelatorioFacade{
 		document.add(assinatura);
 		
 		document.close();
+		return arquivoTMP;
 	}
 	
-	public void reciboDoadorJuridico(PessoaJuridica pessoaJuridica, Doacao doacao) throws DocumentException, MalformedURLException, IOException {
+	public String reciboDoadorJuridico(PessoaJuridica pessoaJuridica, Doacao doacao) throws DocumentException, MalformedURLException, IOException {
 		// ==================================================================================================//
 				// Criando o documento
 				// ==================================================================================================//
@@ -118,5 +119,6 @@ public class ReciboDoacaoFachada extends RelatorioFacade{
 				document.add(assinatura);
 				
 				document.close();
+				return arquivoTMP;
 	}
 }

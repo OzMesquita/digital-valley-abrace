@@ -15,6 +15,9 @@ import facade.PessoaFachada;
 import model.Pessoa;
 import model.PessoaFisica;
 import model.PessoaJuridica;
+import relatorio.ReciboDoacaoFachada;
+import view.AplicacaoView;
+import view.ApresentaPDFView;
 import view.InserirValorView;
 import view.SelecionarDoadorView;
 import view.SelecionarTipoDoadorView;
@@ -91,8 +94,19 @@ public class DoacaoControle {
 			DoacaoSingleton.setValor(Double.parseDouble(viewValor.getTfValor().getText()));
 			DoacaoSingleton.setDataDoacao(LocalDate.of(viewValor.getDateTime_1().getYear(), viewValor.getDateTime_1().getMonth() + 1, viewValor.getDateTime_1().getDay()));
 			if(fachadaDoacao.realizarDoacao(DoacaoSingleton.getDoacao())) {
-				viewValor.mensagemSucesso();
-				viewValor.getShlRealizarDoao().dispose();
+				Pessoa p = fachadaDoador.obterDoadorFisico(DoacaoSingleton.getDoacao().getDoador().getId());
+				if(p == null) {
+					p = fachadaDoador.obterDoadorJuridico(DoacaoSingleton.getDoacao().getDoador().getId());
+					viewValor.mensagemSucesso();
+					viewValor.getShlRealizarDoao().dispose();
+					ApresentaPDFView.main(new ReciboDoacaoFachada().reciboDoadorJuridico((PessoaJuridica)p, DoacaoSingleton.getDoacao()));
+				}
+				else {
+					viewValor.mensagemSucesso();
+					viewValor.getShlRealizarDoao().dispose();
+					ApresentaPDFView.main(new ReciboDoacaoFachada().reciboDoadorFisico((PessoaFisica)p, DoacaoSingleton.getDoacao()));
+				}
+				
 			}
 		} catch(Exception e) {
 			viewValor.mensagemErro(e);

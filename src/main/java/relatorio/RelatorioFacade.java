@@ -76,7 +76,7 @@ public abstract class RelatorioFacade {
 	}
 
 	
-	private String arquivoTMP;
+	protected String arquivoTMP;
 	
 	public void AbrirPDF() {
 		File pdf = new File(arquivoTMP);
