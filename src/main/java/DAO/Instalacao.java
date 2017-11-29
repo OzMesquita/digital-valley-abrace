@@ -80,8 +80,7 @@ public class Instalacao {
 				   "CREATE TABLE ABRACE.Assistido (" + 
 				   " idPessoa INT NOT NULL," + 
 				   " tipoCancer VARCHAR(64) NOT NULL," + 
-				   " apelido VARCHAR(32)," +
-				   " dataEntrada DATE," +
+				   " apelido VARCHAR(32)," + 
 				   " status BOOLEAN NOT NULL," + 
 				   " PRIMARY KEY (idPessoa)," + 
 				   " FOREIGN KEY (idPessoa) REFERENCES ABRACE.Pessoa_Fisica (idPessoa) ON DELETE CASCADE ON UPDATE RESTRICT" + 
