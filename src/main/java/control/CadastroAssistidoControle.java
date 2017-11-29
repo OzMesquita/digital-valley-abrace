@@ -157,22 +157,22 @@ public class CadastroAssistidoControle {
 				if (fachadaAssistido.verificaCPF(viewAssistido.getTfCPF().getText())) {
 					List<PessoaFisica> lista = fachadaAssistido.listarTabelaPessoasFisicas();
 					for (PessoaFisica pessoa : lista) {
-						if (pessoa.getCpf().equals(viewAssistido.getTfCPF().getText()) && !(pessoa.isAtivo())) {
-							if (viewAssistido.reativarDoador(pessoa)) {
-								fachadaAssistido.ativaDoador(pessoa.getId());
-								viewAssistido.mensagemSucesso(fachadaAssistido.obterAssistido(pessoa.getId()));
-								viewAssistido.getShlCadastroAssistido().dispose();
-							} else {
-								if (pessoa.getCpf().equals(viewAssistido.getTfCPF().getText())) {
-									viewAssistido.mensagemErro(
-											new Exception("O CPF pertence a um assistido ativo do sistema"));
+						if (pessoa.getCpf().equals(viewAssistido.getTfCPF().getText())) {
+							if (! (pessoa.isAtivo())) {
+								if(viewAssistido.reativarDoador(pessoa)) {
+									fachadaAssistido.ativaDoador(pessoa.getId());
+									viewAssistido.mensagemSucesso(fachadaAssistido.obterAssistido(pessoa.getId()));
+									viewAssistido.getShlCadastroAssistido().dispose();
 								}
+							}else {
+								viewAssistido.mensagemErro(new Exception("CPF informado pertence a uma pessoa ativa do sistema \nVocê pode consultar os assistidos do sistema em Gerenciar assistidos!"));
 							}
 							break;
 						}
 					}
 				}
-			} catch (SQLException e) {
+			}
+			 catch (SQLException e) {
 				viewAssistido.mensagemErro(new Exception("Erro na operação! Contate o suporte!"));
 			}
 		}
