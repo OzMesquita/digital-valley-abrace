@@ -390,7 +390,7 @@ public class EditarDoadorPFView {
 	public void mensagemSucesso(PessoaFisica pessoaFisica){
 		MessageBox messageBox = new MessageBox(shlEditarDoadorPessoa,SWT.ICON_WORKING | SWT.OK); 
 		messageBox.setText("Operação realizada com sucesso!");
-		messageBox.setMessage("Os dados do assitido foram alterados com sucesso!");
+		messageBox.setMessage("Os dados do doador foram alterados com sucesso!");
 		messageBox.open();
 	}
 	
