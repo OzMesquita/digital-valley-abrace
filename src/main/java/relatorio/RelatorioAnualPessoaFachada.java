@@ -110,7 +110,7 @@ public class RelatorioAnualPessoaFachada extends RelatorioFacade{
 		//----------------------------------------------------------------------------------------
 
 		double valorContado = 0;
-		for(Doacao d : new DoacaoDAO(new ConnectionFactory().getConnection()).listarDoacoes(new PessoaFisicaDAO(new ConnectionFactory().getConnection()).getPessoaFisica(1))) {
+		for(Doacao d : new DoacaoDAO(new ConnectionFactory().getConnection()).listarDoacoes(pessoa)) {
 			if(d.getData().getYear() == ano) {
 				PdfPCell cellIdDoacao 	   = new PdfPCell(new Paragraph()), 
 						cellDataDoacao     = new PdfPCell(new Paragraph()),
