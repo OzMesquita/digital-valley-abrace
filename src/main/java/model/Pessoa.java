@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 import exceptions.PessoaInvalidaException;
 
-public class Pessoa {
+public class Pessoa implements Comparable<Pessoa>{
 	private int id;
     private String nome;
     private String endereco;
@@ -134,6 +134,10 @@ public class Pessoa {
 	
 	public String getInformacaoDoador() {
 		return null;
+	}
+
+	public int compareTo(Pessoa o) {
+		return this.getNome().compareTo(o.getNome());
 	}
 	
 }

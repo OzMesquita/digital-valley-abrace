@@ -2,6 +2,8 @@ package control;
 
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collections;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.MessageBox;
@@ -49,6 +51,7 @@ public class GerenciarAssistidosControle {
 	public ArrayList<Assistido> obterTodosAssistidos() {
 		excluirLinhasDaTabela();
 		listaTodosAssistidos = fachadaAssistido.listarTodosAssistidos();
+		Collections.sort(listaTodosAssistidos);
 		return listaTodosAssistidos;
 	}
 	
