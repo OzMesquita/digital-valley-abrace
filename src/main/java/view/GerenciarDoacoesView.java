@@ -20,7 +20,6 @@ public class GerenciarDoacoesView {
 	GerenciarDoacoesControle controle;
 	protected Shell shlGerenciarDoacoes;
 	private Table table;
-	private TableColumn tblclmnId;
 	private TableColumn tblclmnNomeDoDoador;
 	private TableColumn tblclmnDataDoacao;
 	private TableColumn tblclmnValor;
@@ -30,6 +29,10 @@ public class GerenciarDoacoesView {
 	private Button btnCadastrar;
 	private Button btnExcluir;
 	private Button btnCancelar;
+	private Table table_1;
+	private TableColumn tableColumn_1;
+	private TableColumn tableColumn_2;
+	private TableColumn tableColumn_3;
 	
 	public GerenciarDoacoesView() {
 		this.controle = new GerenciarDoacoesControle(this);
@@ -41,14 +44,6 @@ public class GerenciarDoacoesView {
 
 	public void setTable(Table table) {
 		this.table = table;
-	}
-
-	public TableColumn getTblclmnId() {
-		return tblclmnId;
-	}
-
-	public void setTblclmnId(TableColumn tblclmnId) {
-		this.tblclmnId = tblclmnId;
 	}
 
 	public TableColumn getTblclmnNomeDoDoador() {
@@ -202,14 +197,9 @@ public class GerenciarDoacoesView {
 		table.setLinesVisible(true);
 		table.setToolTipText("");
 		table.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
-		table.setBounds(10, 175, 694, 356);
-		table.setHeaderVisible(true);
+		table.setBounds(10, 206, 681, 322);
 		
-		tblclmnId = new TableColumn(table, SWT.CENTER);
-		tblclmnId.setWidth(47);
-		tblclmnId.setResizable(false);
-		
-		tblclmnNomeDoDoador = new TableColumn(table, SWT.CENTER);
+		tblclmnNomeDoDoador = new TableColumn(table, SWT.LEFT);
 		tblclmnNomeDoDoador.setWidth(275);
 		tblclmnNomeDoDoador.setText("Nome do Doador");
 		tblclmnNomeDoDoador.setResizable(false);
@@ -220,7 +210,7 @@ public class GerenciarDoacoesView {
 		tblclmnValor.setResizable(false);
 		
 		tblclmnDataDoacao = new TableColumn(table, SWT.CENTER);
-		tblclmnDataDoacao.setWidth(222);
+		tblclmnDataDoacao.setWidth(254);
 		tblclmnDataDoacao.setText("Data da doação");
 		tblclmnDataDoacao.setResizable(false);
 		
@@ -288,6 +278,28 @@ public class GerenciarDoacoesView {
 		Label label = new Label(shlGerenciarDoacoes, SWT.NONE);
 		label.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/doacoes.png").getAbsolutePath()));
 		label.setBounds(560, 10, 137, 109);
+		
+		table_1 = new Table(shlGerenciarDoacoes, SWT.BORDER | SWT.FULL_SELECTION);
+		table_1.setToolTipText("");
+		table_1.setLinesVisible(true);
+		table_1.setHeaderVisible(true);
+		table_1.setFont(SWTResourceManager.getFont("Segoe UI Semibold", 14, SWT.NORMAL));
+		table_1.setBounds(10, 175, 681, 36);
+		
+		tableColumn_1 = new TableColumn(table_1, SWT.CENTER);
+		tableColumn_1.setWidth(275);
+		tableColumn_1.setText("Nome do Doador");
+		tableColumn_1.setResizable(false);
+		
+		tableColumn_2 = new TableColumn(table_1, SWT.CENTER);
+		tableColumn_2.setWidth(147);
+		tableColumn_2.setText("Valor");
+		tableColumn_2.setResizable(false);
+		
+		tableColumn_3 = new TableColumn(table_1, SWT.CENTER);
+		tableColumn_3.setWidth(254);
+		tableColumn_3.setText("Data da doa\u00E7\u00E3o");
+		tableColumn_3.setResizable(false);
 		
 		controle.preencherTabelaDoacoes(controle.obterTodasDoacoes());
 		

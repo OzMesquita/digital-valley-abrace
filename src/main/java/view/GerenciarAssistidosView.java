@@ -22,7 +22,6 @@ public class GerenciarAssistidosView {
 	GerenciarAssistidosControle controle;
 	private Shell shlGerenciarAssistidos;
 	private Table table;
-	private TableColumn tblclmnId;
 	private TableColumn tblclmnNomeDoAssistido;
 	private TableColumn tblclmnDataDeNascimento;
 	private TableColumn tblclmnCpf;
@@ -34,7 +33,6 @@ public class GerenciarAssistidosView {
 	private Button btnExcluir;
 	private Button btnCancelar;
 	private Table table_1;
-	private TableColumn tableColumn;
 	private TableColumn tableColumn_1;
 	private TableColumn tableColumn_2;
 	private TableColumn tableColumn_3;
@@ -49,14 +47,6 @@ public class GerenciarAssistidosView {
 
 	public void setTable(Table table) {
 		this.table = table;
-	}
-
-	public TableColumn getTblclmnId() {
-		return tblclmnId;
-	}
-
-	public void setTblclmnId(TableColumn tblclmnId) {
-		this.tblclmnId = tblclmnId;
 	}
 
 	public TableColumn getTblclmnNomeDoAssistido() {
@@ -227,10 +217,6 @@ public class GerenciarAssistidosView {
 		table.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
 		table.setBounds(10, 206, 694, 320);
 		
-		tblclmnId = new TableColumn(table, SWT.CENTER);
-		tblclmnId.setWidth(47);
-		tblclmnId.setResizable(false);
-		
 		tblclmnNomeDoAssistido = new TableColumn(table, SWT.LEFT);
 		tblclmnNomeDoAssistido.setWidth(275);
 		tblclmnNomeDoAssistido.setText("Nome do Assistido");
@@ -242,7 +228,7 @@ public class GerenciarAssistidosView {
 		tblclmnDataDeNascimento.setResizable(false);
 		
 		tblclmnCpf = new TableColumn(table, SWT.CENTER);
-		tblclmnCpf.setWidth(147);
+		tblclmnCpf.setWidth(227);
 		tblclmnCpf.setText("CPF");
 		tblclmnCpf.setResizable(false);
 		
@@ -336,10 +322,6 @@ public class GerenciarAssistidosView {
 		table_1.setFont(SWTResourceManager.getFont("Segoe UI Semibold", 14, SWT.NORMAL));
 		table_1.setBounds(10, 175, 694, 36);
 		
-		tableColumn = new TableColumn(table_1, SWT.CENTER);
-		tableColumn.setWidth(47);
-		tableColumn.setResizable(false);
-		
 		tableColumn_1 = new TableColumn(table_1, SWT.CENTER);
 		tableColumn_1.setWidth(275);
 		tableColumn_1.setText("Nome do Assistido");
@@ -351,7 +333,7 @@ public class GerenciarAssistidosView {
 		tableColumn_2.setResizable(false);
 		
 		tableColumn_3 = new TableColumn(table_1, SWT.CENTER);
-		tableColumn_3.setWidth(147);
+		tableColumn_3.setWidth(227);
 		tableColumn_3.setText("CPF");
 		tableColumn_3.setResizable(false);
 		

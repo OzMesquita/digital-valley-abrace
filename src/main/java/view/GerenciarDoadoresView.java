@@ -22,7 +22,6 @@ public class GerenciarDoadoresView {
 	GerenciarDoadoresControle controle;
 	protected Shell shlGerenciarDoadoresFisicos;
 	private Table table;
-	private TableColumn tblclmnId;
 	private TableColumn tblclmnNomeDoDoadorFisico;
 	private TableColumn tblclmnDataDeNascimento;
 	private TableColumn tblclmnCpf;
@@ -33,6 +32,10 @@ public class GerenciarDoadoresView {
 	private Button btnEditar;
 	private Button btnExcluir;
 	private Button btnCancelar;
+	private Table table_1;
+	private TableColumn tableColumn_1;
+	private TableColumn tableColumn_2;
+	private TableColumn tableColumn_3;
 	
 	public GerenciarDoadoresView() {
 		this.controle = new GerenciarDoadoresControle(this);
@@ -62,13 +65,6 @@ public class GerenciarDoadoresView {
 		this.table = table;
 	}
 
-	public TableColumn getTblclmnId() {
-		return tblclmnId;
-	}
-
-	public void setTblclmnId(TableColumn tblclmnId) {
-		this.tblclmnId = tblclmnId;
-	}
 
 	public TableColumn getTblclmnNomeDoDoadorFisico() {
 		return tblclmnNomeDoDoadorFisico;
@@ -228,14 +224,9 @@ public class GerenciarDoadoresView {
 		table.setLinesVisible(true);
 		table.setToolTipText("");
 		table.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
-		table.setBounds(15, 183, 694, 323);
-		table.setHeaderVisible(true);
+		table.setBounds(15, 213, 694, 323);
 		
-		tblclmnId = new TableColumn(table, SWT.CENTER);
-		tblclmnId.setWidth(47);
-		tblclmnId.setResizable(false);
-		
-		tblclmnNomeDoDoadorFisico = new TableColumn(table, SWT.CENTER);
+		tblclmnNomeDoDoadorFisico = new TableColumn(table, SWT.LEFT);
 		tblclmnNomeDoDoadorFisico.setWidth(232);
 		tblclmnNomeDoDoadorFisico.setText("Nome do Doador");
 		tblclmnNomeDoDoadorFisico.setResizable(false);
@@ -246,7 +237,7 @@ public class GerenciarDoadoresView {
 		tblclmnDataDeNascimento.setResizable(false);
 		
 		tblclmnCpf = new TableColumn(table, SWT.CENTER);
-		tblclmnCpf.setWidth(186);
+		tblclmnCpf.setWidth(236);
 		tblclmnCpf.setText("Endere\u00E7o");
 		tblclmnCpf.setResizable(false);
 		
@@ -333,6 +324,29 @@ public class GerenciarDoadoresView {
 		Label label = new Label(shlGerenciarDoadoresFisicos, SWT.NONE);
 		label.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/assistidos.png").getAbsolutePath()));
 		label.setBounds(560, 10, 137, 109);
+		
+		table_1 = new Table(shlGerenciarDoadoresFisicos, SWT.BORDER | SWT.FULL_SELECTION);
+		table_1.setToolTipText("");
+		table_1.setLinesVisible(true);
+		table_1.setHeaderVisible(true);
+		table_1.setFont(SWTResourceManager.getFont("Segoe UI Semibold", 14, SWT.NORMAL));
+		table_1.setBounds(15, 183, 694, 36);
+		
+		tableColumn_1 = new TableColumn(table_1, SWT.LEFT);
+		tableColumn_1.setToolTipText("");
+		tableColumn_1.setWidth(232);
+		tableColumn_1.setText("Nome do Doador");
+		tableColumn_1.setResizable(false);
+		
+		tableColumn_2 = new TableColumn(table_1, SWT.CENTER);
+		tableColumn_2.setWidth(221);
+		tableColumn_2.setText("CPF / CNPJ");
+		tableColumn_2.setResizable(false);
+		
+		tableColumn_3 = new TableColumn(table_1, SWT.CENTER);
+		tableColumn_3.setWidth(237);
+		tableColumn_3.setText("Endere\u00E7o");
+		tableColumn_3.setResizable(false);
 		
 		controle.preencherTabelaDoadores(controle.obterTodosDoadores());
 		shlGerenciarDoadoresFisicos.open();
