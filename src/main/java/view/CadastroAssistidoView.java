@@ -6,8 +6,6 @@ import org.eclipse.swt.widgets.Text;
 import java.io.File;
 import java.sql.SQLException;
 
-import javax.swing.text.MaskFormatter;
-
 import org.eclipse.swt.SWT;
 import org.eclipse.wb.swt.SWTResourceManager;
 import control.CadastroAssistidoControle;
@@ -57,8 +55,8 @@ public class CadastroAssistidoView{
 		return tfCPF;
 	}
 
-	public void setTfCPF(Text tfCPF) {
-		this.tfCPF = tfCPF;
+	public void setTfCPF(String tfCPF) {
+		this.tfCPF.setText(tfCPF);
 	}
 
 	public Text getTfNome() {
@@ -244,27 +242,6 @@ public class CadastroAssistidoView{
 		}
 	}
 
-	public void filtrarCpf(KeyEvent evt) {
-		String k = tfCPF.getText();
-		String j = new String();
-		for(int i=0;i<k.length();i++) {
-			char[] caractere= {k.charAt(i)};
-			if("0123456789".contains(new String(caractere)))
-				j+=k.charAt(i);
-		}
-        String temp = new String();
-        for (int i = 0; i < j.length(); i++) {
-            if(i==3||i==6){
-                temp+="."+j.charAt(i);
-            }else if(i==9){
-                temp+="-"+j.charAt(i);
-            }else{
-                temp+=j.charAt(i);
-            }
-        }
-        tfCPF.setText(temp);
-        tfCPF.setSelection(tfCPF.getText().length());
-    }
 	protected void createContents() {
 		shlCadastroAssistido = new Shell(SWT.SHELL_TRIM & (~SWT.RESIZE) & (~SWT.MAX));
 		shlCadastroAssistido.addKeyListener(new KeyAdapter() {
@@ -303,7 +280,7 @@ public class CadastroAssistidoView{
 		tfCPF.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent arg0) {
-				filtrarCpf(arg0);
+				controle.filtrarCpf(arg0);
 				identificarESC(arg0);
 			}
 		});

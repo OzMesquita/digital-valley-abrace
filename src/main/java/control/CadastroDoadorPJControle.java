@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import org.eclipse.swt.events.FocusEvent;
+import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.SelectionEvent;
 
 import exceptions.PessoaInvalidaException;
@@ -12,11 +13,11 @@ import facade.DoadorFachada;
 import model.PessoaJuridica;
 import view.CadastroDoadorPJuridicoView;
 
-public class CadastroDoadorJuridicoControle {
+public class CadastroDoadorPJControle {
 	private CadastroDoadorPJuridicoView viewDoadorJuridico;
 	private DoadorFachada fachadaDoadorJuridico;
 	
-	public CadastroDoadorJuridicoControle(CadastroDoadorPJuridicoView viewDoadorJuridico) {
+	public CadastroDoadorPJControle(CadastroDoadorPJuridicoView viewDoadorJuridico) {
 		setViewDoadorJuridico(viewDoadorJuridico);
 		setFachadaDoadorJuridico(new DoadorFachada());
 	}
@@ -75,6 +76,30 @@ public class CadastroDoadorJuridicoControle {
 			}
 		}
 	}
+	
+	public void filtrarCnpj(KeyEvent evt) {
+		String k = viewDoadorJuridico.getTfCNPJ().getText();
+		String j = new String();
+		for(int i=0;i<k.length();i++) {
+			char[] caractere= {k.charAt(i)};
+			if("0123456789".contains(new String(caractere)))
+				j+=k.charAt(i);
+		}
+        String temp = new String();
+        for (int i = 0; i < j.length(); i++) {
+            if(i==2||i==5){
+                temp+="."+j.charAt(i);
+            }else if(i==8){
+                temp+="/"+j.charAt(i);
+            }else if(i==12){
+                temp+="-"+j.charAt(i);
+            }else if(i<14){
+                temp+=j.charAt(i);
+            }
+        }
+        viewDoadorJuridico.setTfCNPJ(temp);
+        viewDoadorJuridico.getTfCNPJ().setSelection(viewDoadorJuridico.getTfCNPJ().getText().length());
+    }
 	
 	public CadastroDoadorPJuridicoView getViewDoadorJuridico() {
 		return viewDoadorJuridico;

@@ -1,6 +1,8 @@
 package control;
 
 import java.time.LocalDate;
+
+import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.SelectionEvent;
 import exceptions.AssistidoInvalidoException;
 import exceptions.PessoaFisicaException;
@@ -63,4 +65,26 @@ public class EditarAssistidoControle {
 			}
 		}
 	}
+	
+	public void filtrarCpf(KeyEvent evt) {
+		String k = viewAssistido.getTfCPF().getText();
+		String j = new String();
+		for(int i=0;i<k.length();i++) {
+			char[] caractere= {k.charAt(i)};
+			if("0123456789".contains(new String(caractere)))
+				j+=k.charAt(i);
+		}
+        String temp = new String();
+        for (int i = 0; i < j.length(); i++) {
+            if(i==3||i==6){
+                temp+="."+j.charAt(i);
+            }else if(i==9){
+                temp+="-"+j.charAt(i);
+            }else if(i<11){
+                temp+=j.charAt(i);
+            }
+        }
+        viewAssistido.setTfCPF(temp);
+        viewAssistido.getTfCPF().setSelection(viewAssistido.getTfCPF().getText().length());
+    }
 }

@@ -1,6 +1,7 @@
 package control;
 
 
+import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.SelectionEvent;
 import exceptions.PessoaInvalidaException;
 import exceptions.PessoaJuridicaInvalidaException;
@@ -9,11 +10,11 @@ import model.PessoaJuridica;
 import view.EditarDoadorPJView;
 import view.GerenciarDoadoresView;
 
-public class EditarDoadorJuridicoControle {
+public class EditarDoadorPJControle {
 	private EditarDoadorPJView viewDoador;
 	private DoadorFachada fachadaDoador;
 	
-	public EditarDoadorJuridicoControle (EditarDoadorPJView viewDoador){
+	public EditarDoadorPJControle (EditarDoadorPJView viewDoador){
 		setViewDoador(viewDoador);
 		setFachadaDoador(new DoadorFachada());
 	}
@@ -58,4 +59,28 @@ public class EditarDoadorJuridicoControle {
 			}
 		}
 	}
+	
+	public void filtrarCnpj(KeyEvent evt) {
+		String k = viewDoador.getTfCNPJ().getText();
+		String j = new String();
+		for(int i=0;i<k.length();i++) {
+			char[] caractere= {k.charAt(i)};
+			if("0123456789".contains(new String(caractere)))
+				j+=k.charAt(i);
+		}
+        String temp = new String();
+        for (int i = 0; i < j.length(); i++) {
+            if(i==2||i==5){
+                temp+="."+j.charAt(i);
+            }else if(i==8){
+                temp+="/"+j.charAt(i);
+            }else if(i==12){
+                temp+="-"+j.charAt(i);
+            }else if(i<14){
+                temp+=j.charAt(i);
+            }
+        }
+        viewDoador.setTfCNPJ(temp);
+        viewDoador.getTfCNPJ().setSelection(viewDoador.getTfCNPJ().getText().length());
+    }
 }

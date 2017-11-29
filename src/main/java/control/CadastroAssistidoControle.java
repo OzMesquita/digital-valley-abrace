@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import org.eclipse.swt.events.FocusEvent;
+import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.SelectionEvent;
 
 import exceptions.AssistidoInvalidoException;
@@ -39,6 +40,28 @@ public class CadastroAssistidoControle {
 	public void setFachadaAssistido(AssistidoFachada fachadaAssistido) {
 		this.fachadaAssistido = fachadaAssistido;
 	}
+	
+	public void filtrarCpf(KeyEvent evt) {
+		String k = viewAssistido.getTfCPF().getText();
+		String j = new String();
+		for(int i=0;i<k.length();i++) {
+			char[] caractere= {k.charAt(i)};
+			if("0123456789".contains(new String(caractere)))
+				j+=k.charAt(i);
+		}
+        String temp = new String();
+        for (int i = 0; i < j.length(); i++) {
+            if(i==3||i==6){
+                temp+="."+j.charAt(i);
+            }else if(i==9){
+                temp+="-"+j.charAt(i);
+            }else{
+                temp+=j.charAt(i);
+            }
+        }
+        viewAssistido.setTfCPF(temp);
+        viewAssistido.getTfCPF().setSelection(viewAssistido.getTfCPF().getText().length());
+    }
 
 	public void getEvent(SelectionEvent event) throws PessoaInvalidaException, PessoaFisicaException, SQLException {
 		if (event.getSource().toString().equals("Button {Cadastrar}")) {

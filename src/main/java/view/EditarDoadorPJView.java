@@ -12,12 +12,12 @@ import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.wb.swt.SWTResourceManager;
-import control.EditarDoadorJuridicoControle;
+import control.EditarDoadorPJControle;
 import model.PessoaJuridica;
 import org.eclipse.swt.events.KeyAdapter;
 
 public class EditarDoadorPJView {
-	private EditarDoadorJuridicoControle controle;
+	private EditarDoadorPJControle controle;
 	private Shell shlEditarDoador_1;
 	private PessoaJuridica doador;
 	private Text tfNome;
@@ -29,19 +29,19 @@ public class EditarDoadorPJView {
 	private Text tfEmail;
 	
 	public EditarDoadorPJView(PessoaJuridica doador) {
-		this.setControle(new EditarDoadorJuridicoControle(this));
+		this.setControle(new EditarDoadorPJControle(this));
 		this.setDoador(doador);
 	}
 
 	public EditarDoadorPJView() {
-		this.setControle(new EditarDoadorJuridicoControle(this));
+		this.setControle(new EditarDoadorPJControle(this));
 	}
 
-	public EditarDoadorJuridicoControle getControle() {
+	public EditarDoadorPJControle getControle() {
 		return controle;
 	}
 
-	public void setControle(EditarDoadorJuridicoControle controle) {
+	public void setControle(EditarDoadorPJControle controle) {
 		this.controle = controle;
 	}
 
@@ -73,8 +73,8 @@ public class EditarDoadorPJView {
 		return tfCNPJ;
 	}
 
-	public void setTfCNPJ(Text tfCNPJ) {
-		this.tfCNPJ = tfCNPJ;
+	public void setTfCNPJ(String tfCNPJ) {
+		this.tfCNPJ.setText(tfCNPJ);
 	}
 
 	public Text gettfFantasia() {
@@ -218,6 +218,7 @@ public class EditarDoadorPJView {
 		tfCNPJ.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent arg0) {
+				controle.filtrarCnpj(arg0);
 				identificarESC(arg0);
 			}
 		});

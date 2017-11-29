@@ -13,7 +13,7 @@ import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.wb.swt.SWTResourceManager;
-import control.CadastroDoadorJuridicoControle;
+import control.CadastroDoadorPJControle;
 import model.PessoaJuridica;
 
 import org.eclipse.swt.events.FocusAdapter;
@@ -21,7 +21,7 @@ import org.eclipse.swt.events.FocusEvent;
 import org.eclipse.swt.events.KeyAdapter;
 
 public class CadastroDoadorPJuridicoView {
-	private CadastroDoadorJuridicoControle controle;
+	private CadastroDoadorPJControle controle;
 	protected Shell shlCadastroDoador;
 	private Text tfNome;
 	private Text tfCNPJ;
@@ -52,8 +52,8 @@ public class CadastroDoadorPJuridicoView {
 		return tfCNPJ;
 	}
 
-	public void setTfCNPJ(Text tfCNPJ) {
-		this.tfCNPJ = tfCNPJ;
+	public void setTfCNPJ(String tfCNPJ) {
+		this.tfCNPJ.setText(tfCNPJ);
 	}
 
 	public Text gettfFantasia() {
@@ -97,7 +97,7 @@ public class CadastroDoadorPJuridicoView {
 	}
 
 	public CadastroDoadorPJuridicoView() {
-		this.controle = new CadastroDoadorJuridicoControle(this);
+		this.controle = new CadastroDoadorPJControle(this);
 	}
 
 	public static void main() {
@@ -218,6 +218,7 @@ public class CadastroDoadorPJuridicoView {
 		tfCNPJ.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent arg0) {
+				controle.filtrarCnpj(arg0);
 				identificarESC(arg0);
 			}
 		});

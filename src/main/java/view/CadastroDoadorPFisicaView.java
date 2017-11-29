@@ -3,7 +3,7 @@ package view;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.wb.swt.SWTResourceManager;
-import control.CadastroDoadorControle;
+import control.CadastroDoadorPFControle;
 import model.PessoaFisica;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.MessageBox;
@@ -20,7 +20,7 @@ import org.eclipse.swt.events.KeyAdapter;
 import org.eclipse.swt.events.KeyEvent;
 
 public class CadastroDoadorPFisicaView {
-	CadastroDoadorControle controle;
+	CadastroDoadorPFControle controle;
 	protected Shell shlCadastroDoador;
 	private Text tfNome;
 	private Text tfCPF;
@@ -43,8 +43,8 @@ public class CadastroDoadorPFisicaView {
 		return tfCPF;
 	}
 
-	public void setTfCPF(Text tfCPF) {
-		this.tfCPF = tfCPF;
+	public void setTfCPF(String tfCPF) {
+		this.tfCPF.setText(tfCPF);
 	}
 
 	public Text getTfRG() {
@@ -96,7 +96,7 @@ public class CadastroDoadorPFisicaView {
 	}
 
 	public CadastroDoadorPFisicaView() {
-		this.controle = new CadastroDoadorControle(this);
+		this.controle = new CadastroDoadorPFControle(this);
 	}
 
 	public static void main() {
@@ -215,6 +215,7 @@ public class CadastroDoadorPFisicaView {
 		tfCPF.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent arg0) {
+				controle.filtrarCpf(arg0);
 				identificarESC(arg0);
 			}
 		});

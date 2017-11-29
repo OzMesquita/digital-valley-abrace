@@ -294,6 +294,7 @@ public class EditarAssistidoView {
 		tfCPF.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent arg0) {
+				controle.filtrarCpf(arg0);
 				identificarESC(arg0);
 			}
 		});

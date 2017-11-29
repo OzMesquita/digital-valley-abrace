@@ -245,7 +245,7 @@ public class GerenciarDoacoesView {
 		btnExcluir.setEnabled(false);
 		btnExcluir.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
 		btnExcluir.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/lixeira.png").getAbsolutePath()));
-		btnExcluir.setBounds(158, 615, 208, 54);
+		btnExcluir.setBounds(158, 550, 208, 54);
 		btnExcluir.setText("Excluir doa\u00E7\u00E3o");
 		
 		btnCadastrar = new Button(shlGerenciarDoacoes, SWT.NONE);
@@ -282,7 +282,7 @@ public class GerenciarDoacoesView {
 		});
 		btnCancelar.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/cancelar.png").getAbsolutePath()));
 		btnCancelar.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
-		btnCancelar.setBounds(158, 550, 208, 54);
+		btnCancelar.setBounds(158, 610, 208, 54);
 		btnCancelar.setText("Cancelar");
 		
 		Label label = new Label(shlGerenciarDoacoes, SWT.NONE);

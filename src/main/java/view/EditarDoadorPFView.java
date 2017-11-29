@@ -50,8 +50,8 @@ public class EditarDoadorPFView {
 		return tfCPF;
 	}
 
-	public void setTfCPF(Text tfCPF) {
-		this.tfCPF = tfCPF;
+	public void setTfCPF(String tfCPF) {
+		this.tfCPF.setText(tfCPF);
 	}
 
 	public Text getTfRG() {
@@ -211,6 +211,7 @@ public class EditarDoadorPFView {
 		tfCPF.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent arg0) {
+				controle.filtrarCpf(arg0);
 				identificarESC(arg0);
 			}
 		});

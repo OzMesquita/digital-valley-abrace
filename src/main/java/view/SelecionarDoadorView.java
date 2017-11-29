@@ -239,7 +239,7 @@ public class  SelecionarDoadorView{
 			}
 		});
 		btnCadastrar.setText("Cadastrar doador");
-		btnCadastrar.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/assistido-small.png").getAbsolutePath()));
+		btnCadastrar.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/doador-small.png").getAbsolutePath()));
 		btnCadastrar.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
 		btnCadastrar.setBounds(363, 592, 214, 54);
 		
