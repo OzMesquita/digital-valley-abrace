@@ -60,14 +60,13 @@ public class GerenciarDoadoresControle {
 		listaExibidaNaTabela = list;
 		for(int i = 0; i < list.size(); i++) {
 			TableItem item = new TableItem(viewDoadores.getTable(), SWT.NONE);
-			item.setText(0, Integer.toString(i+1));
-			item.setText(1, list.get(i).getNome());
+			item.setText(0, list.get(i).getNome());
 			if(list.get(i) instanceof PessoaFisica) {
-				item.setText(2, ((PessoaFisica)list.get(i)).getCpf());
+				item.setText(1, ((PessoaFisica)list.get(i)).getCpf());
 			}else {
-				item.setText(2, ((PessoaJuridica)list.get(i)).getCnpj());	
+				item.setText(1, ((PessoaJuridica)list.get(i)).getCnpj());	
 			}
-			item.setText(3, list.get(i).getEndereco());
+			item.setText(2, list.get(i).getEndereco());
 		}	
 	}
 	

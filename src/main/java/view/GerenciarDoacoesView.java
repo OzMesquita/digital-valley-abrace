@@ -181,7 +181,8 @@ public class GerenciarDoacoesView {
 		btnPesquisar.setBounds(560, 133, 144, 36);
 		btnPesquisar.setText("Pesquisar");
 		
-		table = new Table(shlGerenciarDoacoes, SWT.BORDER | SWT.FULL_SELECTION);
+		table = new Table(shlGerenciarDoacoes, SWT.BORDER | SWT.FULL_SELECTION | SWT.NO_SCROLL | SWT.V_SCROLL);
+		table.setHeaderVisible(true);
 		table.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent arg0) {
@@ -197,7 +198,7 @@ public class GerenciarDoacoesView {
 		table.setLinesVisible(true);
 		table.setToolTipText("");
 		table.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
-		table.setBounds(10, 206, 681, 322);
+		table.setBounds(10, 206, 672, 322);
 		
 		tblclmnNomeDoDoador = new TableColumn(table, SWT.LEFT);
 		tblclmnNomeDoDoador.setWidth(275);
@@ -205,14 +206,14 @@ public class GerenciarDoacoesView {
 		tblclmnNomeDoDoador.setResizable(false);
 		
 		tblclmnValor = new TableColumn(table, SWT.CENTER);
-		tblclmnValor.setWidth(147);
-		tblclmnValor.setText("Valor");
 		tblclmnValor.setResizable(false);
+		tblclmnValor.setWidth(144);
+		tblclmnValor.setText("Valor");
 		
 		tblclmnDataDoacao = new TableColumn(table, SWT.CENTER);
-		tblclmnDataDoacao.setWidth(254);
-		tblclmnDataDoacao.setText("Data da doação");
 		tblclmnDataDoacao.setResizable(false);
+		tblclmnDataDoacao.setWidth(250);
+		tblclmnDataDoacao.setText("Data da doação");
 		
 		lblPesquisarDoador = new Label(shlGerenciarDoacoes, SWT.NONE);
 		lblPesquisarDoador.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
@@ -284,7 +285,7 @@ public class GerenciarDoacoesView {
 		table_1.setLinesVisible(true);
 		table_1.setHeaderVisible(true);
 		table_1.setFont(SWTResourceManager.getFont("Segoe UI Semibold", 14, SWT.NORMAL));
-		table_1.setBounds(10, 175, 681, 36);
+		table_1.setBounds(10, 175, 672, 36);
 		
 		tableColumn_1 = new TableColumn(table_1, SWT.CENTER);
 		tableColumn_1.setWidth(275);
@@ -292,12 +293,12 @@ public class GerenciarDoacoesView {
 		tableColumn_1.setResizable(false);
 		
 		tableColumn_2 = new TableColumn(table_1, SWT.CENTER);
-		tableColumn_2.setWidth(147);
+		tableColumn_2.setWidth(144);
 		tableColumn_2.setText("Valor");
 		tableColumn_2.setResizable(false);
 		
 		tableColumn_3 = new TableColumn(table_1, SWT.CENTER);
-		tableColumn_3.setWidth(254);
+		tableColumn_3.setWidth(249);
 		tableColumn_3.setText("Data da doa\u00E7\u00E3o");
 		tableColumn_3.setResizable(false);
 		

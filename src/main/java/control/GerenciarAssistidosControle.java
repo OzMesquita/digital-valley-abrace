@@ -61,10 +61,9 @@ public class GerenciarAssistidosControle {
 		listaExibidaNaTabela = assistidos;
 		for(int i = 0; i < assistidos.size(); i++) {
 			TableItem item = new TableItem(viewAssistido.getTable(), SWT.NONE);
-			item.setText(0, Integer.toString(i+1));
-			item.setText(1, assistidos.get(i).getNome());
-			item.setText(2, assistidos.get(i).getDataNasc().format(formatador));
-			item.setText(3, assistidos.get(i).getCpf());
+			item.setText(0, assistidos.get(i).getNome());
+			item.setText(1, assistidos.get(i).getDataNasc().format(formatador));
+			item.setText(2, assistidos.get(i).getCpf());
 		}	
 	}
 	
