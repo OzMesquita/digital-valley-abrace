@@ -149,15 +149,21 @@ public class DoacaoDAO extends ExecutaSQL{
 		
 	}
 	
-	public ArrayList<Doacao> listarDoacoes(Pessoa pessoa,LocalDate data) throws DoacaoInvalidaException{
+	public ArrayList<Doacao> listarDoacoes(Pessoa pessoa,LocalDate mes,LocalDate ano) throws DoacaoInvalidaException{
         ArrayList<Doacao> doacoes = new ArrayList<Doacao>();
         String sql = "SELECT * FROM ABRACE.DOACAO WHERE IDPESSOA =? and DATA>=? and DATA<=? and ativo=?";
         PreparedStatement stmt = null;
         try {
             stmt = getConexao().prepareStatement(sql);
             stmt.setInt(1, pessoa.getId());
-            stmt.setDate(2, Date.valueOf(data.withDayOfMonth(1)));
-            stmt.setDate(3, Date.valueOf(data.withDayOfMonth(data.lengthOfMonth())));
+            if(mes!=null) {
+            	stmt.setDate(2, Date.valueOf(mes.withDayOfMonth(1)));
+            	stmt.setDate(3, Date.valueOf(mes.withDayOfMonth(mes.lengthOfMonth())));
+            }else {
+            	stmt.setDate(2, Date.valueOf(ano.withDayOfYear(1)));
+            	stmt.setDate(3, Date.valueOf(ano.withDayOfYear(ano.lengthOfYear())));
+            }
+            
             stmt.setBoolean(4, true);
             ResultSet rs = stmt.executeQuery();
             while(rs.next()) {
