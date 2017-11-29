@@ -83,4 +83,52 @@ public class EditarDoadorPJControle {
         viewDoador.setTfCNPJ(temp);
         viewDoador.getTfCNPJ().setSelection(viewDoador.getTfCNPJ().getText().length());
     }
+	
+	public void filtrarTelefone1(KeyEvent evt) {
+		String k = viewDoador.getTfTelefone1().getText();
+		String j = new String();
+		for (int i = 0; i < k.length(); i++) {
+			char[] caractere = { k.charAt(i) };
+			if ("0123456789".contains(new String(caractere)))
+				j += k.charAt(i);
+		}
+		String temp = new String();
+		for (int i = 0; i < j.length(); i++) {
+			if (i == 0) {
+				temp += "(" + j.charAt(i);
+			} else if (i == 2) {
+				temp += ")" + j.charAt(i);
+			} else if (i == 6) {
+				temp += "-" + j.charAt(i);
+			} else if (i == 12 || i < 11) {
+				temp += j.charAt(i);
+			}
+		}
+		viewDoador.setTfTelefone1(temp);
+		viewDoador.getTfTelefone1().setSelection(viewDoador.getTfTelefone1().getText().length());
+	}
+
+	public void filtrarTelefone2(KeyEvent evt) {
+		String k = viewDoador.getTfTelefone2().getText();
+		String j = new String();
+		for (int i = 0; i < k.length(); i++) {
+			char[] caractere = { k.charAt(i) };
+			if ("0123456789".contains(new String(caractere)))
+				j += k.charAt(i);
+		}
+		String temp = new String();
+		for (int i = 0; i < j.length(); i++) {
+			if (i == 0) {
+				temp += "(" + j.charAt(i);
+			} else if (i == 2) {
+				temp += ")" + j.charAt(i);
+			} else if (i == 6) {
+				temp += "-" + j.charAt(i);
+			} else if (i == 12 || i < 11) {
+				temp += j.charAt(i);
+			}
+		}
+		viewDoador.setTfTelefone2(temp);
+		viewDoador.getTfTelefone2().setSelection(viewDoador.getTfTelefone2().getText().length());
+	}
 }

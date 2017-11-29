@@ -355,6 +355,7 @@ public class EditarAssistidoView {
 		tfTelefone1.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent arg0) {
+				controle.filtrarTelefone1(arg0);
 				identificarESC(arg0);
 			}
 		});
@@ -370,7 +371,7 @@ public class EditarAssistidoView {
 		tfTelefone2.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent arg0) {
-				controle.filtrarTelefone1(arg0);
+				controle.filtrarTelefone2(arg0);
 				identificarESC(arg0);
 			}
 		});

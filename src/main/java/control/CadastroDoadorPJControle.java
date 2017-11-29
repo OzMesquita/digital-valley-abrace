@@ -101,6 +101,54 @@ public class CadastroDoadorPJControle {
         viewDoadorJuridico.getTfCNPJ().setSelection(viewDoadorJuridico.getTfCNPJ().getText().length());
     }
 	
+	public void filtrarTelefone1(KeyEvent evt) {
+		String k = viewDoadorJuridico.getTfTelefone1().getText();
+		String j = new String();
+		for (int i = 0; i < k.length(); i++) {
+			char[] caractere = { k.charAt(i) };
+			if ("0123456789".contains(new String(caractere)))
+				j += k.charAt(i);
+		}
+		String temp = new String();
+		for (int i = 0; i < j.length(); i++) {
+			if (i == 0) {
+				temp += "(" + j.charAt(i);
+			} else if (i == 2) {
+				temp += ")" + j.charAt(i);
+			} else if (i == 6) {
+				temp += "-" + j.charAt(i);
+			} else if (i == 12 || i < 11) {
+				temp += j.charAt(i);
+			}
+		}
+		viewDoadorJuridico.setTfTelefone1(temp);
+		viewDoadorJuridico.getTfTelefone1().setSelection(viewDoadorJuridico.getTfTelefone1().getText().length());
+	}
+
+	public void filtrarTelefone2(KeyEvent evt) {
+		String k = viewDoadorJuridico.getTfTelefone2().getText();
+		String j = new String();
+		for (int i = 0; i < k.length(); i++) {
+			char[] caractere = { k.charAt(i) };
+			if ("0123456789".contains(new String(caractere)))
+				j += k.charAt(i);
+		}
+		String temp = new String();
+		for (int i = 0; i < j.length(); i++) {
+			if (i == 0) {
+				temp += "(" + j.charAt(i);
+			} else if (i == 2) {
+				temp += ")" + j.charAt(i);
+			} else if (i == 6) {
+				temp += "-" + j.charAt(i);
+			} else if (i == 12 || i < 11) {
+				temp += j.charAt(i);
+			}
+		}
+		viewDoadorJuridico.setTfTelefone2(temp);
+		viewDoadorJuridico.getTfTelefone2().setSelection(viewDoadorJuridico.getTfTelefone2().getText().length());
+	}
+	
 	public CadastroDoadorPJuridicoView getViewDoadorJuridico() {
 		return viewDoadorJuridico;
 	}

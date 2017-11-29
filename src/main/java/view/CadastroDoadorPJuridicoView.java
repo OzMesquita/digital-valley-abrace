@@ -76,16 +76,16 @@ public class CadastroDoadorPJuridicoView {
 		return tfTelefone1;
 	}
 
-	public void setTfTelefone1(Text tfTelefone1) {
-		this.tfTelefone1 = tfTelefone1;
+	public void setTfTelefone1(String tfTelefone1) {
+		this.tfTelefone1.setText(tfTelefone1);
 	}
 
 	public Text getTfTelefone2() {
 		return tfTelefone2;
 	}
 
-	public void setTfTelefone2(Text tfTelefone2) {
-		this.tfTelefone2 = tfTelefone2;
+	public void setTfTelefone2(String tfTelefone2) {
+		this.tfTelefone2.setText(tfTelefone2);
 	}
 
 	public Text getTfEmail() {
@@ -257,6 +257,7 @@ public class CadastroDoadorPJuridicoView {
 		tfTelefone1.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent arg0) {
+				controle.filtrarTelefone1(arg0);
 				identificarESC(arg0);
 			}
 		});
@@ -273,6 +274,7 @@ public class CadastroDoadorPJuridicoView {
 		tfTelefone2.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent arg0) {
+				controle.filtrarTelefone2(arg0);
 				identificarESC(arg0);
 			}
 		});
