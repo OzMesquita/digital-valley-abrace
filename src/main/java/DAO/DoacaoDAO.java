@@ -1,5 +1,6 @@
 package DAO;
 
+import java.sql.Statement;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -18,7 +19,9 @@ public class DoacaoDAO extends ExecutaSQL{
 		super(connection);
 	}
 
-	public boolean cadastrarDoacao(Doacao doacao) {
+	public boolean cadastrarDoacao(Doacao doacao) throws SQLException {
+		Statement s = getConexao().createStatement();
+        s.executeUpdate("CALL SYSCS_UTIL.SYSCS_SET_DATABASE_PROPERTY('derby.language.sequence.preallocator', '1')");
 		PreparedStatement stmt = null;
 		String sql = "INSERT INTO ABRACE.Doacao (idPessoa, valor, data, ativo)" + "VALUES (?, ?, ?, ?)";
 		try {
