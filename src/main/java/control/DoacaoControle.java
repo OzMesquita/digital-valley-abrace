@@ -91,24 +91,27 @@ public class DoacaoControle {
 
 	public void realizarDoacao() {
 		try {
-			DoacaoSingleton.setValor(Double.parseDouble(viewValor.getTfValor().getText()));
+			DoacaoSingleton.setValor(Double.parseDouble(viewValor.getTfValor().getText().replace(",", ".")));
 			DoacaoSingleton.setDataDoacao(LocalDate.of(viewValor.getDateTime_1().getYear(), viewValor.getDateTime_1().getMonth() + 1, viewValor.getDateTime_1().getDay()));
 			if(fachadaDoacao.realizarDoacao(DoacaoSingleton.getDoacao())) {
-				Pessoa p = fachadaDoador.obterDoadorFisico(DoacaoSingleton.getDoacao().getDoador().getId());
-				if(p == null) {
-					p = fachadaDoador.obterDoadorJuridico(DoacaoSingleton.getDoacao().getDoador().getId());
+				PessoaFisica pf = fachadaDoador.obterDoadorFisico(DoacaoSingleton.getDoacao().getDoador().getId());
+				if(pf == null) {
+					PessoaJuridica pj = fachadaDoador.obterDoadorJuridico(DoacaoSingleton.getDoacao().getDoador().getId());
 					viewValor.mensagemSucesso();
 					viewValor.getShlRealizarDoao().dispose();
+					DoacaoSingleton.setDoador(pj);
 					ApresentaPDFView.main(new ReciboDoacaoFachada().reciboDoadorJuridico(DoacaoSingleton.getDoacao()));
 				}
 				else {
 					viewValor.mensagemSucesso();
 					viewValor.getShlRealizarDoao().dispose();
+					DoacaoSingleton.setDoador(pf);
 					ApresentaPDFView.main(new ReciboDoacaoFachada().reciboDoadorFisico(DoacaoSingleton.getDoacao()));
 				}
 				
 			}
 		} catch(Exception e) {
+			System.out.println(e.getMessage());
 			viewValor.mensagemErro(e);
 		}
 	}

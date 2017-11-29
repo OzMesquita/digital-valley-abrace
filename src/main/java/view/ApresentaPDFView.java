@@ -20,7 +20,7 @@ public class ApresentaPDFView {
 	
 	    // add interactive mouse link annotation support via callback
 	    controller.getDocumentViewController().setAnnotationCallback(new org.icepdf.ri.common.MyAnnotationCallback(controller.getDocumentViewController()));
-	
+	    
 	    JFrame applicationFrame = new JFrame();
 	    applicationFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    applicationFrame.getContentPane().add(viewerComponentPanel);
