@@ -40,28 +40,76 @@ public class CadastroAssistidoControle {
 	public void setFachadaAssistido(AssistidoFachada fachadaAssistido) {
 		this.fachadaAssistido = fachadaAssistido;
 	}
-	
+
 	public void filtrarCpf(KeyEvent evt) {
 		String k = viewAssistido.getTfCPF().getText();
 		String j = new String();
-		for(int i=0;i<k.length();i++) {
-			char[] caractere= {k.charAt(i)};
-			if("0123456789".contains(new String(caractere)))
-				j+=k.charAt(i);
+		for (int i = 0; i < k.length(); i++) {
+			char[] caractere = { k.charAt(i) };
+			if ("0123456789".contains(new String(caractere)))
+				j += k.charAt(i);
 		}
-        String temp = new String();
-        for (int i = 0; i < j.length(); i++) {
-            if(i==3||i==6){
-                temp+="."+j.charAt(i);
-            }else if(i==9){
-                temp+="-"+j.charAt(i);
-            }else{
-                temp+=j.charAt(i);
-            }
-        }
-        viewAssistido.setTfCPF(temp);
-        viewAssistido.getTfCPF().setSelection(viewAssistido.getTfCPF().getText().length());
-    }
+		String temp = new String();
+		for (int i = 0; i < j.length(); i++) {
+			if (i == 3 || i == 6) {
+				temp += "." + j.charAt(i);
+			} else if (i == 9) {
+				temp += "-" + j.charAt(i);
+			} else {
+				temp += j.charAt(i);
+			}
+		}
+		viewAssistido.setTfCPF(temp);
+		viewAssistido.getTfCPF().setSelection(viewAssistido.getTfCPF().getText().length());
+	}
+
+	public void filtrarTelefone1(KeyEvent evt) {
+		String k = viewAssistido.getTfTelefone1().getText();
+		String j = new String();
+		for (int i = 0; i < k.length(); i++) {
+			char[] caractere = { k.charAt(i) };
+			if ("0123456789".contains(new String(caractere)))
+				j += k.charAt(i);
+		}
+		String temp = new String();
+		for (int i = 0; i < j.length(); i++) {
+			if (i == 0) {
+				temp += "(" + j.charAt(i);
+			} else if (i == 2) {
+				temp += ")" + j.charAt(i);
+			} else if (i == 6) {
+				temp += "-" + j.charAt(i);
+			} else if (i == 12 || i < 11) {
+				temp += j.charAt(i);
+			}
+		}
+		viewAssistido.setTfTelefone1(temp);
+		viewAssistido.getTfTelefone1().setSelection(viewAssistido.getTfTelefone1().getText().length());
+	}
+
+	public void filtrarTelefone2(KeyEvent evt) {
+		String k = viewAssistido.getTfTelefone2().getText();
+		String j = new String();
+		for (int i = 0; i < k.length(); i++) {
+			char[] caractere = { k.charAt(i) };
+			if ("0123456789".contains(new String(caractere)))
+				j += k.charAt(i);
+		}
+		String temp = new String();
+		for (int i = 0; i < j.length(); i++) {
+			if (i == 0) {
+				temp += "(" + j.charAt(i);
+			} else if (i == 2) {
+				temp += ")" + j.charAt(i);
+			} else if (i == 6) {
+				temp += "-" + j.charAt(i);
+			} else if (i == 12 || i < 11) {
+				temp += j.charAt(i);
+			}
+		}
+		viewAssistido.setTfTelefone2(temp);
+		viewAssistido.getTfTelefone2().setSelection(viewAssistido.getTfTelefone2().getText().length());
+	}
 
 	public void getEvent(SelectionEvent event) throws PessoaInvalidaException, PessoaFisicaException, SQLException {
 		if (event.getSource().toString().equals("Button {Cadastrar}")) {
@@ -72,7 +120,9 @@ public class CadastroAssistidoControle {
 				assistido.setCpf(viewAssistido.getTfCPF().getText());
 				assistido.setRg(viewAssistido.getTfRG().getText());
 				assistido.setEndereco(viewAssistido.getTfEndereco().getText());
-				assistido.setDataNasc(LocalDate.of(viewAssistido.getTfDataNascimento().getYear(), viewAssistido.getTfDataNascimento().getMonth() + 1, viewAssistido.getTfDataNascimento().getDay()));
+				assistido.setDataNasc(LocalDate.of(viewAssistido.getTfDataNascimento().getYear(),
+						viewAssistido.getTfDataNascimento().getMonth() + 1,
+						viewAssistido.getTfDataNascimento().getDay()));
 				assistido.setTelefone(viewAssistido.getTfTelefone1().getText());
 				assistido.setTelefone2(viewAssistido.getTfTelefone2().getText());
 				assistido.setEmail(viewAssistido.getTfEmail().getText());
@@ -90,33 +140,33 @@ public class CadastroAssistidoControle {
 			} catch (PessoaFisicaException e) {
 				viewAssistido.mensagemErro(e);
 			} catch (SQLException e) {
-				if(e.getMessage().contains("CPF já existente")) {
+				if (e.getMessage().contains("CPF já existente")) {
 					viewAssistido.mensagemErro(e);
-				}
-				else {
+				} else {
 					viewAssistido.mensagemErro(new Exception("Erro na operação! Contate o suporte!"));
 				}
 			}
 		}
 	}
-	
+
 	public void getFocus(FocusEvent arg0) {
-		if(viewAssistido.getTfCPF().getText() == "") {
+		if (viewAssistido.getTfCPF().getText() == "") {
 			return;
-		}else {
+		} else {
 			try {
-				StringBuilder sb = new StringBuilder(viewAssistido.getTfCPF().getText().replace(".", "").replace("-", ""));
-				sb.insert(3, ".");
-				sb.insert(7, ".");
-				sb.insert(11, "-");
-				if(fachadaAssistido.verificaCPF(sb.toString())) {
+				if (fachadaAssistido.verificaCPF(viewAssistido.getTfCPF().getText())) {
 					List<PessoaFisica> lista = fachadaAssistido.listarTabelaPessoasFisicas();
-					for(PessoaFisica pessoa : lista) {
-						if(pessoa.getCpf().equals(sb.toString()) && !(pessoa.isAtivo())) {
-							if(viewAssistido.reativarDoador(pessoa)) {
+					for (PessoaFisica pessoa : lista) {
+						if (pessoa.getCpf().equals(viewAssistido.getTfCPF().getText()) && !(pessoa.isAtivo())) {
+							if (viewAssistido.reativarDoador(pessoa)) {
 								fachadaAssistido.ativaDoador(pessoa.getId());
 								viewAssistido.mensagemSucesso(fachadaAssistido.obterAssistido(pessoa.getId()));
 								viewAssistido.getShlCadastroAssistido().dispose();
+							} else {
+								if (pessoa.getCpf().equals(viewAssistido.getTfCPF().getText())) {
+									viewAssistido.mensagemErro(
+											new Exception("O CPF pertence a um assistido ativo do sistema"));
+								}
 							}
 							break;
 						}
@@ -125,6 +175,6 @@ public class CadastroAssistidoControle {
 			} catch (SQLException e) {
 				viewAssistido.mensagemErro(new Exception("Erro na operação! Contate o suporte!"));
 			}
-		} 
+		}
 	}
 }
