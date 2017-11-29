@@ -148,5 +148,29 @@ public class DoacaoDAO extends ExecutaSQL{
 		}
 		
 	}
+	
+	public ArrayList<Doacao> listarDoacoes(Pessoa pessoa,LocalDate data) throws DoacaoInvalidaException{
+        ArrayList<Doacao> doacoes = new ArrayList<Doacao>();
+        String sql = "SELECT * FROM ABRACE.DOACAO WHERE IDPESSOA=? and DATA>=? and DATA<=? and ativo=?";
+        PreparedStatement stmt = null;
+        try {
+            stmt = getConexao().prepareStatement(sql);
+            stmt.setInt(1, pessoa.getId());
+            stmt.setDate(2, Date.valueOf(data.withDayOfMonth(1)));
+            stmt.setDate(3, Date.valueOf(data.withDayOfMonth(data.lengthOfMonth())));
+            stmt.setBoolean(4, true);
+            ResultSet rs = stmt.executeQuery();
+            while(rs.next()) {
+                int id = rs.getInt("IDDOACAO");
+                Double valor = rs.getDouble("VALOR");
+                LocalDate datadoacao = rs.getDate("DATA").toLocalDate();
+                doacoes.add(new Doacao(id, valor, datadoacao,true , pessoa));
+            }
+            stmt.close();
+        }catch(SQLException e) {
+            throw new RuntimeException(e.getMessage());
+        }
+        return doacoes;
+    }
 
 }
