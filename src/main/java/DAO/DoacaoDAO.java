@@ -151,7 +151,7 @@ public class DoacaoDAO extends ExecutaSQL{
 	
 	public ArrayList<Doacao> listarDoacoes(Pessoa pessoa,LocalDate data) throws DoacaoInvalidaException{
         ArrayList<Doacao> doacoes = new ArrayList<Doacao>();
-        String sql = "SELECT * FROM ABRACE.DOACAO WHERE IDPESSOA=? and DATA>=? and DATA<=? and ativo=?";
+        String sql = "SELECT * FROM ABRACE.DOACAO WHERE IDPESSOA =? and DATA>=? and DATA<=? and ativo=?";
         PreparedStatement stmt = null;
         try {
             stmt = getConexao().prepareStatement(sql);
