@@ -94,16 +94,18 @@ public class DoacaoDAO extends ExecutaSQL{
 	}
 
 	public Doacao getDoacao(int idDoacao) throws DoacaoInvalidaException {
-		String sql = "SELECT ABRACE.DOACAO.valor, ABRACE.DOACAO.data, ABRACE.DOACAO.idPessoa WHERE idDoacao=?";
+		String sql = "SELECT IDPESSOA, VALOR, DATA FROM ABRACE.DOACAO WHERE IDDOACAO = ?";
 		try {
 			PreparedStatement stmt = getConexao().prepareStatement(sql);
+			stmt.setInt(1, idDoacao);
 			ResultSet rs = stmt.executeQuery();
+
 			if(rs.next()) {
-				double valor = rs.getDouble(1);
-				LocalDate data = rs.getDate(2).toLocalDate();
-				Pessoa doador = new PessoaFisicaDAO(getConexao()).getPessoaFisica(rs.getInt(3));
+				double valor = rs.getDouble("valor");
+				LocalDate data = rs.getDate("data").toLocalDate();
+				Pessoa doador = new PessoaFisicaDAO(getConexao()).getPessoaFisica(rs.getInt("idpessoa"));
 				if(doador == null) {
-					doador = new PessoaJuridicaDAO(getConexao()).getPessoaJuridica(rs.getInt(3));
+					doador = new PessoaJuridicaDAO(getConexao()).getPessoaJuridica(rs.getInt("idpessoa"));
 					if(doador == null) {
 						return null;
 					}
