@@ -16,7 +16,6 @@ import model.Pessoa;
 import model.PessoaFisica;
 import model.PessoaJuridica;
 import relatorio.ReciboDoacaoFachada;
-import view.AplicacaoView;
 import view.ApresentaPDFView;
 import view.InserirValorView;
 import view.SelecionarDoadorView;
