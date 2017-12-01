@@ -32,6 +32,15 @@ public class CadastroAssistidoView{
 	private Text tfNome;
 	private Text tfEndereco;
 	private DateTime tfDataNascimento;
+	private DateTime tfDataCadastro;
+	public DateTime getTfDataCadastro() {
+		return tfDataCadastro;
+	}
+
+	public void setTfDataCadastro(DateTime tfDataCadastro) {
+		this.tfDataCadastro = tfDataCadastro;
+	}
+
 	private Text tfTelefone2;
 	private Text tfTelefone1;
 	private Text tfEmail;
@@ -179,7 +188,7 @@ public class CadastroAssistidoView{
 		button.setText("Cancelar");
 		button.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/cancelar.png").getAbsolutePath()));
 		button.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
-		button.setBounds(176, 617, 184, 60);
+		button.setBounds(147, 654, 184, 60);
 		
 		Label lblPessoaFsica = new Label(shlCadastroAssistido, SWT.NONE);
 		lblPessoaFsica.setFont(SWTResourceManager.getFont("Segoe UI", 19, SWT.NORMAL));
@@ -220,19 +229,28 @@ public class CadastroAssistidoView{
 		label_8.setText("*");
 		label_8.setForeground(SWTResourceManager.getColor(SWT.COLOR_RED));
 		label_8.setFont(SWTResourceManager.getFont("Segoe UI", 12, SWT.NORMAL));
-		label_8.setBounds(241, 527, 7, 21);
+		label_8.setBounds(241, 569, 7, 21);
 		
 		Label label_9 = new Label(shlCadastroAssistido, SWT.NONE);
 		label_9.setText("*");
 		label_9.setForeground(SWTResourceManager.getColor(SWT.COLOR_RED));
 		label_9.setFont(SWTResourceManager.getFont("Segoe UI", 12, SWT.NORMAL));
-		label_9.setBounds(241, 572, 7, 21);
+		label_9.setBounds(241, 614, 7, 21);
 		
 		Label lblCamposObrigatrios = new Label(shlCadastroAssistido, SWT.NONE);
 		lblCamposObrigatrios.setText("* Campos Obrigat\u00F3rios");
 		lblCamposObrigatrios.setForeground(SWTResourceManager.getColor(SWT.COLOR_RED));
 		lblCamposObrigatrios.setFont(SWTResourceManager.getFont("Segoe UI", 12, SWT.NORMAL));
 		lblCamposObrigatrios.setBounds(254, 98, 160, 21);
+		
+		DateTime dateTime = new DateTime(shlCadastroAssistido, SWT.BORDER);
+		dateTime.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
+		dateTime.setBounds(254, 390, 369, 38);
+		
+		Label lblDataDeCadastro = new Label(shlCadastroAssistido, SWT.NONE);
+		lblDataDeCadastro.setText("Data de Cadastro:");
+		lblDataDeCadastro.setFont(SWTResourceManager.getFont("Segoe UI Emoji", 16, SWT.NORMAL));
+		lblDataDeCadastro.setBounds(73, 395, 175, 28);
 		shlCadastroAssistido.open();
 		shlCadastroAssistido.layout();
 		while (!shlCadastroAssistido.isDisposed()) {
@@ -251,7 +269,7 @@ public class CadastroAssistidoView{
 			}
 		});
 		shlCadastroAssistido.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/ABRACE.png").getAbsolutePath()));
-		shlCadastroAssistido.setSize(694, 720);
+		shlCadastroAssistido.setSize(698, 764);
 		shlCadastroAssistido.setText("Cadastro Assistido - ABRACE");
 		
 		tfNome = new Text(shlCadastroAssistido, SWT.BORDER);
@@ -326,6 +344,15 @@ public class CadastroAssistidoView{
 		tfDataNascimento.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfDataNascimento.setBounds(254, 346, 369, 38);
 		
+		tfDataCadastro = new DateTime(shlCadastroAssistido, SWT.BORDER);
+		tfDataCadastro.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
+		tfDataCadastro.setBounds(254, 390, 369, 38);
+		
+		Label lblDataDeCadastro = new Label(shlCadastroAssistido, SWT.NONE);
+		lblDataDeCadastro.setText("Data de Cadastro:");
+		lblDataDeCadastro.setFont(SWTResourceManager.getFont("Segoe UI Emoji", 16, SWT.NORMAL));
+		lblDataDeCadastro.setBounds(73, 395, 175, 28);
+		
 		tfTelefone1 = new Text(shlCadastroAssistido, SWT.BORDER);
 		tfTelefone1.addKeyListener(new KeyAdapter() {
 			@Override
@@ -335,7 +362,7 @@ public class CadastroAssistidoView{
 			}
 		});
 		tfTelefone1.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
-		tfTelefone1.setBounds(254, 390, 369, 38);
+		tfTelefone1.setBounds(254, 432, 369, 38);
 		tfTelefone1.setTextLimit(16);
 		
 		tfTelefone2 = new Text(shlCadastroAssistido, SWT.BORDER);
@@ -347,7 +374,7 @@ public class CadastroAssistidoView{
 			}
 		});
 		tfTelefone2.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
-		tfTelefone2.setBounds(254, 434, 369, 38);
+		tfTelefone2.setBounds(254, 476, 369, 38);
 		tfTelefone2.setTextLimit(16);
 		
 		tfEmail = new Text(shlCadastroAssistido, SWT.BORDER);
@@ -358,7 +385,7 @@ public class CadastroAssistidoView{
 			}
 		});
 		tfEmail.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
-		tfEmail.setBounds(254, 478, 369, 38);
+		tfEmail.setBounds(254, 520, 369, 38);
 		tfEmail.setTextLimit(128);
 		
 		tfTipoCancer = new Text(shlCadastroAssistido, SWT.BORDER);
@@ -369,7 +396,7 @@ public class CadastroAssistidoView{
 			}
 		});
 		tfTipoCancer.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
-		tfTipoCancer.setBounds(254, 522, 369, 38);
+		tfTipoCancer.setBounds(254, 564, 369, 38);
 		tfTipoCancer.setTextLimit(64);
 		
 		tfSituacao = new Combo(shlCadastroAssistido, SWT.READ_ONLY);
@@ -381,23 +408,23 @@ public class CadastroAssistidoView{
 		});
 		tfSituacao.setItems(new String[] {"Vivo", "Falecido"});
 		tfSituacao.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
-		tfSituacao.setBounds(254, 567, 99, 38);
+		tfSituacao.setBounds(254, 609, 99, 38);
 		tfSituacao.select(0);
 		
 		Label label_1 = new Label(shlCadastroAssistido, SWT.NONE);
 		label_1.setText("Email:");
 		label_1.setFont(SWTResourceManager.getFont("Segoe UI Emoji", 16, SWT.NORMAL));
-		label_1.setBounds(183, 483, 55, 28);
+		label_1.setBounds(183, 525, 55, 28);
 		
 		Label label_2 = new Label(shlCadastroAssistido, SWT.NONE);
 		label_2.setText("Telefone 2:");
 		label_2.setFont(SWTResourceManager.getFont("Segoe UI Emoji", 16, SWT.NORMAL));
-		label_2.setBounds(136, 439, 102, 28);
+		label_2.setBounds(136, 481, 102, 28);
 		
 		Label label_3 = new Label(shlCadastroAssistido, SWT.NONE);
 		label_3.setText("Telefone 1:");
 		label_3.setFont(SWTResourceManager.getFont("Segoe UI Emoji", 16, SWT.NORMAL));
-		label_3.setBounds(136, 395, 102, 28);
+		label_3.setBounds(136, 437, 102, 28);
 		
 		Label label_4 = new Label(shlCadastroAssistido, SWT.NONE);
 		label_4.setText("Data de Nascimento:");
@@ -442,12 +469,12 @@ public class CadastroAssistidoView{
 		Label lblTipoDeCncer = new Label(shlCadastroAssistido, SWT.NONE);
 		lblTipoDeCncer.setText("Tipo de C\u00E2ncer:");
 		lblTipoDeCncer.setFont(SWTResourceManager.getFont("Segoe UI Emoji", 16, SWT.NORMAL));
-		lblTipoDeCncer.setBounds(94, 527, 144, 28);
+		lblTipoDeCncer.setBounds(94, 569, 144, 28);
 		
 		Label lblSituao = new Label(shlCadastroAssistido, SWT.NONE);
 		lblSituao.setText("Situa\u00E7\u00E3o:");
 		lblSituao.setFont(SWTResourceManager.getFont("Segoe UI Emoji", 16, SWT.NORMAL));
-		lblSituao.setBounds(154, 572, 84, 28);
+		lblSituao.setBounds(154, 614, 84, 28);
 		
 		Button button_1 = new Button(shlCadastroAssistido, SWT.NONE);
 		button_1.addKeyListener(new KeyAdapter() {
@@ -473,7 +500,7 @@ public class CadastroAssistidoView{
 		button_1.setText("Cadastrar");
 		button_1.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/ok.png").getAbsolutePath()));
 		button_1.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
-		button_1.setBounds(377, 617, 184, 60);
+		button_1.setBounds(348, 654, 184, 60);
 	}
 	
 	public void mensagemErro(Exception e){
@@ -482,6 +509,13 @@ public class CadastroAssistidoView{
        messageBox.setMessage(e.getMessage()+"\nNão foi possível cadastrar este assistido.");
        messageBox.open();
 	}
+	
+	public void mensagemCPFJaCadastrado(Exception e){
+        MessageBox messageBox = new MessageBox(shlCadastroAssistido,SWT.ICON_ERROR | SWT.OK);
+     messageBox.setText("Problemas no cadastro do assistido!");
+     messageBox.setMessage(e.getMessage());
+     messageBox.open();
+   }
 	
 	public void mensagemSucesso(PessoaFisica pessoaFisica){
 		MessageBox messageBox = new MessageBox(shlCadastroAssistido,SWT.ICON_WORKING | SWT.OK); 

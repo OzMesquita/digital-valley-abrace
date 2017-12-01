@@ -25,7 +25,7 @@ public class PessoaDAO extends ExecutaSQL {
 		PreparedStatement stmt = null;
 		String sql = "INSERT INTO ABRACE.Pessoa (ativo, datacadastro, email, telefone2, telefone1, endereco, nome, isDoador)" + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 		stmt = getConexao().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-		pessoa.setDataCadastro(LocalDate.now());
+		pessoa.setDataCadastro(pessoa.getDataCadastro());
 		stmt.setBoolean(1, true);
 		stmt.setDate(2, Date.valueOf(pessoa.getDataCadastro()));
 		stmt.setString(3, pessoa.getEmail());

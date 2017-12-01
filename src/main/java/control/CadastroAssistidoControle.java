@@ -129,6 +129,9 @@ public class CadastroAssistidoControle {
 				assistido.setTipoDeCancer(viewAssistido.getTfTipoCancer().getText());
 				assistido.setSituacao(viewAssistido.getTfSituacao());
 				assistido.setDoador(true);
+				assistido.setDataCadastro(LocalDate.of(viewAssistido.getTfDataCadastro().getYear(),
+						viewAssistido.getTfDataCadastro().getMonth() + 1,
+						viewAssistido.getTfDataCadastro().getDay()));
 				if (fachadaAssistido.cadastrarAssistido(assistido)) {
 					viewAssistido.mensagemSucesso(assistido);
 					viewAssistido.getShlCadastroAssistido().dispose();
@@ -165,8 +168,7 @@ public class CadastroAssistidoControle {
 									viewAssistido.getShlCadastroAssistido().dispose();
 								}
 							}else {
-								viewAssistido.mensagemErro(new Exception("CPF informado pertence a uma pessoa ativa do sistema \nVocê pode consultar os assistidos do sistema em Gerenciar assistidos!"));
-							}
+								viewAssistido.mensagemCPFJaCadastrado(new Exception("CPF informado pertence a uma pessoa ativa do sistema \nVocê pode consulta-las em \"Gerenciar assistidos\"!"));							}
 							break;
 						}
 					}
