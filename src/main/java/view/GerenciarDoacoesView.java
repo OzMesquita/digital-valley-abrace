@@ -311,8 +311,9 @@ public class GerenciarDoacoesView {
 		lblporNome.setText("(por nome)");
 		
 		lblTotalDeDoaes = new Label(shlGerenciarDoacoes, SWT.NONE);
+		lblTotalDeDoaes.setAlignment(SWT.CENTER);
 		lblTotalDeDoaes.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
-		lblTotalDeDoaes.setBounds(239, 502, 246, 25);
+		lblTotalDeDoaes.setBounds(10, 502, 694, 25);
 		
 		controle.preencherTabelaDoacoes(controle.obterTodasDoacoes());
 		

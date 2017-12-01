@@ -75,10 +75,10 @@ public class GerenciarDoacoesControle {
 		for(int i = 0; i < doacoes.size(); i++) {
 			TableItem item = new TableItem(viewDoacoes.getTable(), SWT.NONE);
 			item.setText(0, doacoes.get(i).getDoador().getNome());
-			item.setText(1, new Extenso(new BigDecimal(doacoes.get(i).getValor())).DecimalFormat());
+			item.setText(1, new Extenso(new BigDecimal(doacoes.get(i).getValor())).DecimalFormat().trim());
 			item.setText(2, doacoes.get(i).getData().format(formatador));
 		}
-		viewDoacoes.setLblTotalDeDoaes("Total de doações: " + new Extenso(new BigDecimal(somarTotalExibido())).DecimalFormat());
+		viewDoacoes.setLblTotalDeDoaes("Total de doações: " + new Extenso(new BigDecimal(somarTotalExibido())).DecimalFormat().trim());
 	}
 	
 	public double somarTotalExibido() {
@@ -112,10 +112,14 @@ public class GerenciarDoacoesControle {
 	
 	public ArrayList<Doacao> pesquisarDoacoes(String nomePesquisa){
 		excluirLinhasDaTabela();
-		listarTodasDoacoes = fachadaDoacoes.listarDoacoes();
-		return listarTodasDoacoes;
+		ArrayList<Doacao> doacoes = new ArrayList<Doacao>();
+		for(int i = 0; i < listarTodasDoacoes.size(); i++) {
+			if(listarTodasDoacoes.get(i).getDoador().getNome().toLowerCase().contains(nomePesquisa.toLowerCase())) {
+				doacoes.add(listarTodasDoacoes.get(i));
+			}
+		}
+		return doacoes;
 	}
-
 	public void getEvent(SelectionEvent event) {
 		if (event.getSource().toString().equals("Button {Pesquisar}")) {
 			preencherTabelaDoacoes(pesquisarDoacoes(viewDoacoes.getTfPesquisa().getText()));
