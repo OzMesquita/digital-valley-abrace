@@ -182,7 +182,6 @@ public class GerenciarDoacoesView {
 		btnPesquisar.setText("Pesquisar");
 		
 		table = new Table(shlGerenciarDoacoes, SWT.BORDER | SWT.FULL_SELECTION | SWT.NO_SCROLL | SWT.V_SCROLL);
-		table.setHeaderVisible(true);
 		table.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent arg0) {

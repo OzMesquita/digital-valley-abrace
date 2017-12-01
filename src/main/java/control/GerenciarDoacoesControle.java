@@ -71,6 +71,7 @@ public class GerenciarDoacoesControle {
 		DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		listaExibidaNaTabela = doacoes;
 		for(int i = 0; i < doacoes.size(); i++) {
+			System.out.println(doacoes.get(i));
 			TableItem item = new TableItem(viewDoacoes.getTable(), SWT.NONE);
 			item.setText(0, doacoes.get(i).getDoador().getNome());
 			item.setText(1, doacoes.get(i).getValor() + "");

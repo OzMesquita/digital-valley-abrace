@@ -59,7 +59,7 @@ public class DoacaoFachada {
 	}
 	
 	@SuppressWarnings("finally")
-	public boolean realizarDoacao(Doacao doacao) {
+	public boolean realizarDoacao(Doacao doacao) throws SQLException {
 		DoacaoDAO dao = new DoacaoDAO(new ConnectionFactory().getConnection());
 		if(dao.cadastrarDoacao(doacao)) {
 			try {
