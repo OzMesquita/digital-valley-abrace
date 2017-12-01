@@ -168,7 +168,9 @@ public class CadastroAssistidoControle {
 									viewAssistido.getShlCadastroAssistido().dispose();
 								}
 							}else {
-								viewAssistido.mensagemCPFJaCadastrado(new Exception("CPF informado pertence a uma pessoa ativa do sistema \nVocê pode consulta-las em \"Gerenciar assistidos\"!"));							}
+								viewAssistido.mensagemCPFJaCadastrado(new Exception("CPF informado pertence a uma pessoa ativa do sistema \nVocê pode consulta-las em \"Gerenciar assistidos\"!"));							
+								viewAssistido.setTfCPF("");
+							}
 							break;
 						}
 					}

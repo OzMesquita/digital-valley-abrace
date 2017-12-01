@@ -50,31 +50,33 @@ public class CadastroDoadorPFControle {
 	}
 	
 	public void getFocus(FocusEvent arg0) {
-		if(viewDoador.getTfCPF().getText() == "") {
+		if (viewDoador.getTfCPF().getText() == "") {
 			return;
-		}else {
+		} else {
 			try {
-				StringBuilder sb = new StringBuilder(viewDoador.getTfCPF().getText().replace(".", "").replace("-", ""));
-				sb.insert(3, ".");
-				sb.insert(7, ".");
-				sb.insert(11, "-");
-				if(fachadaDoador.verificaCPF(sb.toString())) {
+				if (fachadaDoador.verificaCPF(viewDoador.getTfCPF().getText())) {
 					List<PessoaFisica> lista = fachadaDoador.listarTabelaPessoasFisicas();
-					for(PessoaFisica pessoa : lista) {
-						if(pessoa.getCpf().equals(sb.toString()) && !(pessoa.isAtivo())) {
-							if(viewDoador.reativarDoador(pessoa)) {
-								fachadaDoador.ativaDoador(pessoa.getId());
-								viewDoador.mensagemSucessoReativacao(fachadaDoador.obterDoadorFisico(pessoa.getId()));
-								viewDoador.getShlCadastroDoador().dispose();
+					for (PessoaFisica pessoa : lista) {
+						if (pessoa.getCpf().equals(viewDoador.getTfCPF().getText())) {
+							if (! (pessoa.isAtivo())) {
+								if(viewDoador.reativarDoador(pessoa)) {
+									fachadaDoador.ativaDoador(pessoa.getId());
+									viewDoador.mensagemSucesso(fachadaDoador.obterDoadorFisico(pessoa.getId()));
+									viewDoador.getShlCadastroDoador().dispose();
+								}
+							}else {
+								viewDoador.mensagemCPFJaCadastrado(new Exception("CPF informado pertence a uma pessoa ativa do sistema \nVocê pode consulta-las em \"Gerenciar doadores pessoa física\"!"));							
+								viewDoador.setTfCPF("");
 							}
 							break;
 						}
 					}
 				}
-			} catch (SQLException e) {
+			}
+			 catch (SQLException e) {
 				viewDoador.mensagemErro(new Exception("Erro na operação! Contate o suporte!"));
 			}
-		} 
+		}
 	}
 	
 	public void filtrarCpf(KeyEvent evt) {

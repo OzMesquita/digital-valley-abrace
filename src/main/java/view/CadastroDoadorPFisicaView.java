@@ -381,6 +381,13 @@ public class CadastroDoadorPFisicaView {
 		messageBox.open();
 	}
 	
+	public void mensagemCPFJaCadastrado(Exception e){
+        MessageBox messageBox = new MessageBox(shlCadastroDoador,SWT.ICON_ERROR | SWT.OK);
+     messageBox.setText("Problemas no cadastro do doador pessoa física!");
+     messageBox.setMessage(e.getMessage());
+     messageBox.open();
+   }
+	
 	public void mensagemSucessoReativacao(PessoaFisica pessoaFisica){
 		MessageBox messageBox = new MessageBox(shlCadastroDoador,SWT.ICON_WORKING | SWT.OK); 
 		messageBox.setText("Doador reativado com sucesso!");
