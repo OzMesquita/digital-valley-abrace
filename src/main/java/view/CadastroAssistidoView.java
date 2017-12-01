@@ -188,7 +188,7 @@ public class CadastroAssistidoView{
 		button.setText("Cancelar");
 		button.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/cancelar.png").getAbsolutePath()));
 		button.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
-		button.setBounds(147, 654, 184, 60);
+		button.setBounds(162, 665, 184, 60);
 		
 		Label lblPessoaFsica = new Label(shlCadastroAssistido, SWT.NONE);
 		lblPessoaFsica.setFont(SWTResourceManager.getFont("Segoe UI", 19, SWT.NORMAL));
@@ -500,7 +500,7 @@ public class CadastroAssistidoView{
 		button_1.setText("Cadastrar");
 		button_1.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/ok.png").getAbsolutePath()));
 		button_1.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
-		button_1.setBounds(348, 654, 184, 60);
+		button_1.setBounds(363, 665, 184, 60);
 	}
 	
 	public void mensagemErro(Exception e){

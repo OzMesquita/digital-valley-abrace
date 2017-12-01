@@ -33,7 +33,12 @@ public class GerenciarDoacoesView {
 	private TableColumn tableColumn_1;
 	private TableColumn tableColumn_2;
 	private TableColumn tableColumn_3;
+	private Label lblTotalDeDoaes;
 	
+	public void setLblTotalDeDoaes(String lblTotalDeDoaes) {
+		this.lblTotalDeDoaes.setText(lblTotalDeDoaes);
+	}
+
 	public GerenciarDoacoesView() {
 		this.controle = new GerenciarDoacoesControle(this);
 	}
@@ -145,12 +150,12 @@ public class GerenciarDoacoesView {
 		
 		Label lblGerenciarDoacoes = new Label(shlGerenciarDoacoes, SWT.NONE);
 		lblGerenciarDoacoes.setFont(SWTResourceManager.getFont("Segoe UI", 30, SWT.NORMAL));
-		lblGerenciarDoacoes.setBounds(180, 28, 354, 54);
+		lblGerenciarDoacoes.setBounds(185, 24, 354, 54);
 		lblGerenciarDoacoes.setText("Gerenciar Doações");
 		
 		lblSelecioneUmDoador = new Label(shlGerenciarDoacoes, SWT.NONE);
 		lblSelecioneUmDoador.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
-		lblSelecioneUmDoador.setBounds(209, 88, 296, 25);
+		lblSelecioneUmDoador.setBounds(214, 94, 296, 25);
 		lblSelecioneUmDoador.setText("Selecione ou pesquise uma doa\u00E7\u00E3o");
 		
 		tfPesquisa = new Text(shlGerenciarDoacoes, SWT.BORDER);
@@ -161,7 +166,7 @@ public class GerenciarDoacoesView {
 			}
 		});
 		tfPesquisa.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
-		tfPesquisa.setBounds(196, 133, 360, 36);
+		tfPesquisa.setBounds(180, 139, 374, 36);
 		
 		Button btnPesquisar = new Button(shlGerenciarDoacoes, SWT.NONE);
 		btnPesquisar.addKeyListener(new KeyAdapter() {
@@ -178,7 +183,7 @@ public class GerenciarDoacoesView {
 		});
 		btnPesquisar.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
 		btnPesquisar.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/pesquisar.png").getAbsolutePath()));
-		btnPesquisar.setBounds(560, 133, 144, 36);
+		btnPesquisar.setBounds(560, 139, 144, 36);
 		btnPesquisar.setText("Pesquisar");
 		
 		table = new Table(shlGerenciarDoacoes, SWT.BORDER | SWT.FULL_SELECTION | SWT.NO_SCROLL | SWT.V_SCROLL);
@@ -197,7 +202,7 @@ public class GerenciarDoacoesView {
 		table.setLinesVisible(true);
 		table.setToolTipText("");
 		table.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
-		table.setBounds(10, 206, 672, 322);
+		table.setBounds(10, 222, 694, 267);
 		
 		tblclmnNomeDoDoador = new TableColumn(table, SWT.LEFT);
 		tblclmnNomeDoDoador.setWidth(275);
@@ -216,7 +221,7 @@ public class GerenciarDoacoesView {
 		
 		lblPesquisarDoador = new Label(shlGerenciarDoacoes, SWT.NONE);
 		lblPesquisarDoador.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
-		lblPesquisarDoador.setBounds(10, 136, 180, 30);
+		lblPesquisarDoador.setBounds(10, 142, 167, 30);
 		lblPesquisarDoador.setText("Pesquisar Doador:");
 		
 		btnExcluir = new Button(shlGerenciarDoacoes, SWT.NONE);
@@ -235,7 +240,7 @@ public class GerenciarDoacoesView {
 		btnExcluir.setEnabled(false);
 		btnExcluir.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
 		btnExcluir.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/lixeira.png").getAbsolutePath()));
-		btnExcluir.setBounds(158, 550, 208, 54);
+		btnExcluir.setBounds(158, 558, 208, 54);
 		btnExcluir.setText("Excluir doa\u00E7\u00E3o");
 		
 		btnCadastrar = new Button(shlGerenciarDoacoes, SWT.NONE);
@@ -254,7 +259,7 @@ public class GerenciarDoacoesView {
 		});
 		btnCadastrar.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
 		btnCadastrar.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/doacao-small.png").getAbsolutePath()));
-		btnCadastrar.setBounds(372, 550, 208, 54);
+		btnCadastrar.setBounds(372, 558, 208, 54);
 		btnCadastrar.setText("Realizar doa\u00E7\u00E3o");
 		
 		btnCancelar = new Button(shlGerenciarDoacoes, SWT.NONE);
@@ -272,22 +277,22 @@ public class GerenciarDoacoesView {
 		});
 		btnCancelar.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/cancelar.png").getAbsolutePath()));
 		btnCancelar.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
-		btnCancelar.setBounds(158, 610, 208, 54);
+		btnCancelar.setBounds(158, 618, 208, 54);
 		btnCancelar.setText("Cancelar");
 		
 		Label label = new Label(shlGerenciarDoacoes, SWT.NONE);
 		label.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/doacoes.png").getAbsolutePath()));
-		label.setBounds(560, 10, 137, 109);
+		label.setBounds(560, 15, 137, 109);
 		
 		table_1 = new Table(shlGerenciarDoacoes, SWT.BORDER | SWT.FULL_SELECTION);
 		table_1.setToolTipText("");
 		table_1.setLinesVisible(true);
 		table_1.setHeaderVisible(true);
 		table_1.setFont(SWTResourceManager.getFont("Segoe UI Semibold", 14, SWT.NORMAL));
-		table_1.setBounds(10, 175, 672, 36);
+		table_1.setBounds(10, 191, 694, 36);
 		
 		tableColumn_1 = new TableColumn(table_1, SWT.CENTER);
-		tableColumn_1.setWidth(275);
+		tableColumn_1.setWidth(276);
 		tableColumn_1.setText("Nome do Doador");
 		tableColumn_1.setResizable(false);
 		
@@ -300,6 +305,14 @@ public class GerenciarDoacoesView {
 		tableColumn_3.setWidth(249);
 		tableColumn_3.setText("Data da doa\u00E7\u00E3o");
 		tableColumn_3.setResizable(false);
+		
+		Label lblporNome = new Label(shlGerenciarDoacoes, SWT.NONE);
+		lblporNome.setBounds(58, 170, 60, 15);
+		lblporNome.setText("(por nome)");
+		
+		lblTotalDeDoaes = new Label(shlGerenciarDoacoes, SWT.NONE);
+		lblTotalDeDoaes.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
+		lblTotalDeDoaes.setBounds(239, 502, 246, 25);
 		
 		controle.preencherTabelaDoacoes(controle.obterTodasDoacoes());
 		

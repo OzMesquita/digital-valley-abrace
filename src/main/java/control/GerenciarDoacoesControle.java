@@ -1,5 +1,6 @@
 package control;
 
+import java.math.BigDecimal;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
@@ -11,6 +12,7 @@ import org.eclipse.swt.widgets.TableItem;
 import exceptions.DoacaoInvalidaException;
 import facade.DoacaoFachada;
 import model.Doacao;
+import relatorio.Extenso;
 import view.GerenciarDoacoesView;
 import view.SelecionarDoadorView;
 
@@ -73,9 +75,18 @@ public class GerenciarDoacoesControle {
 		for(int i = 0; i < doacoes.size(); i++) {
 			TableItem item = new TableItem(viewDoacoes.getTable(), SWT.NONE);
 			item.setText(0, doacoes.get(i).getDoador().getNome());
-			item.setText(1, doacoes.get(i).getValor() + "");
+			item.setText(1, new Extenso(new BigDecimal(doacoes.get(i).getValor())).DecimalFormat());
 			item.setText(2, doacoes.get(i).getData().format(formatador));
-		}	
+		}
+		viewDoacoes.setLblTotalDeDoaes("Total de doações: " + new Extenso(new BigDecimal(somarTotalExibido())).DecimalFormat());
+	}
+	
+	public double somarTotalExibido() {
+		double total = 0;
+		for(int i = 0; i < listaExibidaNaTabela.size(); i++) {
+			total += listaExibidaNaTabela.get(i).getValor();
+		}
+		return total;
 	}
 	
 	public boolean confirmacao() {
