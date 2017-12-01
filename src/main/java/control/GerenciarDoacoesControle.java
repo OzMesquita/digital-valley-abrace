@@ -129,7 +129,7 @@ public class GerenciarDoacoesControle {
 			SelecionarDoadorView.main();
 			GerenciarDoacoesView.main();
 		}
-		if(event.getSource().toString().equals("Button {Excluir Doação}")) {
+		if(event.getSource().toString().equals("Button {Excluir doação}")) {
 			if(confirmacao()) {
 				try {
 					fachadaDoacoes.excluirDoacao(listaExibidaNaTabela.get(viewDoacoes.getTable().getSelectionIndex()).getId());

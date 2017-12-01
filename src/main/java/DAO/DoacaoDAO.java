@@ -61,6 +61,7 @@ public class DoacaoDAO extends ExecutaSQL{
 			String sql = "UPDATE ABRACE.Doacao SET ativo=false WHERE idDoacao=?";
 			PreparedStatement stmt;
 			stmt = getConexao().prepareStatement(sql);
+			stmt.setInt(1, doacao.getId());
 			stmt.executeUpdate();
 		}catch(SQLException e) {
 			e.printStackTrace();
