@@ -162,7 +162,7 @@ public class GerenciarDoacoesControle {
 		}if(event.getSource().toString().equals("Button {Limpar Busca}")) {
 			limparInfo();
 		}
-		if (event.getSource().toString().equals("Button {Realizar Doação}")) {
+		if (event.getSource().toString().equals("Button {Realizar doação}")) {
 			viewDoacoes.getShlGerenciarDoacoes().dispose();
 			SelecionarDoadorView.main();
 			GerenciarDoacoesView.main();
