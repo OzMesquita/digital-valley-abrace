@@ -1,9 +1,21 @@
 package relatorio;
 
+import java.awt.Desktop;
+import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.browser.Browser;
+import org.eclipse.swt.layout.FillLayout;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.RowLayout;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Shell;
 
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
@@ -20,6 +32,7 @@ import model.PessoaFisica;
 import model.PessoaJuridica;
 
 public class RelatorioDoadoresFacade extends RelatorioFacade{
+	
 
 	public String relatorioDeDoadores(List<Pessoa> list, boolean exibirAtivos, boolean exibirInativos, boolean exibirPessoasFisicas, boolean exibirPessoasJuridicas) throws DocumentException, IOException{
 

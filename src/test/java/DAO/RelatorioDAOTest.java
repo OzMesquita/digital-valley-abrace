@@ -26,8 +26,8 @@ public class RelatorioDAOTest {
 		
 		//gerarRelatorioAssistido();
 		//gerarRelatorioDoadores();
-		//gerarRecibos();
-		gerarRelatorioMensal();
+		gerarRecibos();
+		//gerarRelatorioMensal();
 		//gerarRelatorioAnual();
 		//gerarRelatorioAnualPessoa();
 	}
