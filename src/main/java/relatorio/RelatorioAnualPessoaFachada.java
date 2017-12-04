@@ -43,28 +43,38 @@ public class RelatorioAnualPessoaFachada extends RelatorioFacade{
 		PdfPTable table = new PdfPTable(2);
 		PdfPCell nomeDoador = new PdfPCell(new Paragraph("NOME DO DOADOR: "+pessoa.getNome()));
 		PdfPCell nomeFantasia = new PdfPCell(new Paragraph("NOME FANTASIA: "+((pessoa instanceof PessoaJuridica ) ? (((PessoaJuridica) pessoa).getNomeFantasia()):"")));
+		PdfPCell endereco = new PdfPCell(new Paragraph("ENDEREÇO: "+pessoa.getEndereco()));
 		PdfPCell email = new PdfPCell(new Paragraph("E-MAIL: "+pessoa.getEmail()));
 
 		table.setSpacingBefore(20);
 		table.getDefaultCell().setBorderColor(BaseColor.WHITE);
 
+		
 		nomeDoador.setColspan(2);
 		nomeDoador.setBorderColor(BaseColor.WHITE);
-
-		nomeFantasia.setColspan(2);
-		nomeFantasia.setBorderColor(BaseColor.WHITE);
-
-		email.setColspan(2);
-		email.setBorderColor(BaseColor.WHITE);
-
 		table.addCell(nomeDoador);
-		table.addCell(nomeFantasia);
-		table.addCell("CPF/CNPJ: "+((pessoa instanceof PessoaJuridica ) ? (((PessoaJuridica) pessoa).getNomeFantasia()):(((PessoaFisica) pessoa).getCpf())));
-		table.addCell("RG: "+((pessoa instanceof PessoaFisica ) ? (((PessoaFisica) pessoa).getRg()):""));
-		table.addCell("ENDEREÇO: "+pessoa.getEndereco());
-		table.addCell("DATA DE NASCIMENTO: "+((pessoa instanceof PessoaFisica ) ? (((PessoaFisica) pessoa).getDataNasc()).format(formatadorData):""));
+		
+		if(!(pessoa instanceof PessoaFisica)) {
+			nomeFantasia.setColspan(2);
+			nomeFantasia.setBorderColor(BaseColor.WHITE);
+			table.addCell(nomeFantasia);
+		}
+		
+		table.addCell(((pessoa instanceof PessoaJuridica ) ? "CNPJ: " +(((PessoaJuridica) pessoa).getCnpj()): "CPF: "+(((PessoaFisica) pessoa).getCpf())));
+		table.addCell(((pessoa instanceof PessoaFisica ) ? "RG: "+(((PessoaFisica) pessoa).getRg()):""));
+		
+		table.addCell(((pessoa instanceof PessoaFisica ) ? "DATA DE NASCIMENTO: "+(((PessoaFisica) pessoa).getDataNasc()).format(formatadorData):""));
+		table.addCell("");
+		
+		endereco.setColspan(2);
+		endereco.setBorderColor(BaseColor.WHITE);
+		table.addCell(endereco);
+		
 		table.addCell("TELEFONE: "+pessoa.getTelefone());
 		table.addCell("TELEFONE 2: "+pessoa.getTelefone2());
+		
+		email.setColspan(2);
+		email.setBorderColor(BaseColor.WHITE);
 		table.addCell(email);
 		table.addCell("");
 
@@ -87,23 +97,19 @@ public class RelatorioAnualPessoaFachada extends RelatorioFacade{
 		//				Tabela de doações
 		//========================================================================================
 
-		PdfPTable table2 = new PdfPTable(3);
+		PdfPTable table2 = new PdfPTable(2);
 		
 		table2.setSpacingBefore(20);
 
-		PdfPCell cellId  = new PdfPCell(new Paragraph("ID")), 
-				cellData = new PdfPCell(new Paragraph("Data da doação")),
+		PdfPCell cellData = new PdfPCell(new Paragraph("Data da doação")),
 				cellValor= new PdfPCell(new Paragraph("Valor doado"));
 
-		cellId.setHorizontalAlignment(Element.ALIGN_CENTER);
 		cellData.setHorizontalAlignment(Element.ALIGN_CENTER);
 		cellValor.setHorizontalAlignment(Element.ALIGN_CENTER);
 
-		cellId.setBackgroundColor(BaseColor.LIGHT_GRAY);
 		cellData.setBackgroundColor(BaseColor.LIGHT_GRAY);
 		cellValor.setBackgroundColor(BaseColor.LIGHT_GRAY);
 
-		table2.addCell(cellId);
 		table2.addCell(cellData);
 		table2.addCell(cellValor);
 
@@ -112,19 +118,16 @@ public class RelatorioAnualPessoaFachada extends RelatorioFacade{
 		double valorContado = 0;
 		for(Doacao d : new DoacaoDAO(new ConnectionFactory().getConnection()).listarDoacoes(pessoa)) {
 			if(d.getData().getYear() == ano) {
-				PdfPCell cellIdDoacao 	   = new PdfPCell(new Paragraph()), 
-						cellDataDoacao     = new PdfPCell(new Paragraph()),
+				PdfPCell cellDataDoacao     = new PdfPCell(new Paragraph()),
 						cellValorDoacao    = new PdfPCell(new Paragraph());
 	
-				cellIdDoacao 	 	= new PdfPCell(new Paragraph(String.valueOf(d.getId())));
 				cellDataDoacao      = new PdfPCell(new Paragraph(d.getData().format(formatadorData)));
 				cellValorDoacao		= new PdfPCell(new Paragraph((NumberFormat.getCurrencyInstance().format(d.getValor()))));
 	
-				cellIdDoacao.setHorizontalAlignment(Element.ALIGN_CENTER);
 				cellDataDoacao.setHorizontalAlignment(Element.ALIGN_CENTER);
+				cellValorDoacao.setHorizontalAlignment(Element.ALIGN_CENTER);
 	
 				if (d.isAtivo()) {
-					table2.addCell(cellIdDoacao);
 					table2.addCell(cellDataDoacao);
 					table2.addCell(cellValorDoacao);
 					valorContado += d.getValor(); 
@@ -134,16 +137,15 @@ public class RelatorioAnualPessoaFachada extends RelatorioFacade{
 		PdfPCell cellValorTotal = new PdfPCell(new Paragraph("Valor total doado ",new Font(FontFamily.UNDEFINED,12,Font.BOLD)));
 		PdfPCell valorTotalDoado = new PdfPCell(new Paragraph(NumberFormat.getCurrencyInstance().format(valorContado)));
 
-		cellValorTotal.setColspan(2);
+		cellValorTotal.setColspan(1);
 		cellValorTotal.setHorizontalAlignment(Element.ALIGN_RIGHT);
 		cellValorTotal.setBackgroundColor(BaseColor.LIGHT_GRAY);
 
 		valorTotalDoado.setBackgroundColor(BaseColor.LIGHT_GRAY);
+		valorTotalDoado.setHorizontalAlignment(Element.ALIGN_CENTER);
 
 		table2.addCell(cellValorTotal);
 		table2.addCell(valorTotalDoado);
-		table2.addCell("");
-		table2.addCell("");
 
 		document.add(table2);
 		//========================================================================================

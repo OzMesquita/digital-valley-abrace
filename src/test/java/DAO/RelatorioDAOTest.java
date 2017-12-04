@@ -26,15 +26,17 @@ public class RelatorioDAOTest {
 		
 		//gerarRelatorioAssistido();
 		//gerarRelatorioDoadores();
-		//gerarRecibos();
-		gerarRelatorioMensal();
+		gerarRecibos();
+		//gerarRelatorioMensal();
 		//gerarRelatorioAnual();
 		//gerarRelatorioAnualPessoa();
 	}
 
 	public static void gerarRelatorioAssistido(){
 		try {
-			new RelatorioAssistidoFacade().relatorioDeAssistido(new AssistidoDAO(new ConnectionFactory().getConnection()).listaAssistido(),false,true);
+			RelatorioAssistidoFacade r = new RelatorioAssistidoFacade();
+			r.relatorioDeAssistido(new AssistidoDAO(new ConnectionFactory().getConnection()).listaAssistido(),true,true);
+			r.abrirPDF();
 		} catch (DocumentException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -48,7 +50,9 @@ public class RelatorioDAOTest {
 		//TESTES RELATORIO DE DOADORES
 		DoadorFachada doadores = new DoadorFachada();
 		try {
-			new RelatorioDoadoresFacade().relatorioDeDoadores(doadores.getTodosDoadores(), true, true, true, true);
+			RelatorioDoadoresFacade r = new RelatorioDoadoresFacade();
+			r.relatorioDeDoadores(doadores.getTodosDoadores(), true, true, true, true);
+			r.abrirPDF();
 		} catch (DocumentException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -70,17 +74,23 @@ public class RelatorioDAOTest {
 	
 	public static void gerarRelatorioMensal() throws DoacaoInvalidaException {
 		try {
-			new RelatorioDoacaoFachada().relatorioDoacaoMensal(new DoacaoDAO(new ConnectionFactory().getConnection()).listarDoacoes(),LocalDate.of(2017, 11, 1),LocalDate.of(2017, 11, 30));
+			RelatorioDoacaoFachada r = new RelatorioDoacaoFachada();
+			r.relatorioDoacaoMensal(new DoacaoDAO(new ConnectionFactory().getConnection()).listarDoacoes(),LocalDate.of(2017, 11, 1),LocalDate.of(2017, 11, 30));
+			r.abrirPDF();
 		} catch (DocumentException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 	
 	public static void gerarRelatorioAnual() throws DoacaoInvalidaException {
 		try {
-			new RelatorioDoacaoFachada().relatorioDoacaoAnual(new DoacaoDAO(new ConnectionFactory().getConnection()).listarDoacoes(), LocalDate.now().getYear());
+			RelatorioDoacaoFachada r = new RelatorioDoacaoFachada();
+			r.relatorioDoacaoAnual(new DoacaoDAO(new ConnectionFactory().getConnection()).listarDoacoes(), LocalDate.now().getYear());
+			r.abrirPDF();
 		} catch (DocumentException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -93,7 +103,7 @@ public class RelatorioDAOTest {
 	public static void gerarRelatorioAnualPessoa() throws DoacaoInvalidaException {
 		try {
 			RelatorioAnualPessoaFachada relatorioAnualPessoaFachada = new RelatorioAnualPessoaFachada();
-			relatorioAnualPessoaFachada.relatorioAnualPessoa(new PessoaFisicaDAO(new ConnectionFactory().getConnection()).getPessoaFisica(1), LocalDate.of(2017, 1, 1).getYear());
+			relatorioAnualPessoaFachada.relatorioAnualPessoa(new PessoaFisicaDAO(new ConnectionFactory().getConnection()).getPessoaFisica(101), LocalDate.of(2017, 1, 1).getYear());
 			relatorioAnualPessoaFachada.abrirPDF();
 			relatorioAnualPessoaFachada.salvarPDF();
 		} catch (DocumentException e) {

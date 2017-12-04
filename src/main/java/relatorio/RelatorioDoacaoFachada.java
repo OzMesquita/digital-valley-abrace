@@ -68,9 +68,13 @@ public class RelatorioDoacaoFachada extends RelatorioFacade{
 				 valor          = new PdfPCell(new Paragraph("Valor doado",new Font(FontFamily.UNDEFINED,12,Font.BOLD)));
 
 		doador.setHorizontalAlignment(Element.ALIGN_CENTER);
+		doador.setVerticalAlignment(Element.ALIGN_MIDDLE);
 		cpfOrCNPJ.setHorizontalAlignment(Element.ALIGN_CENTER);
+		cpfOrCNPJ.setVerticalAlignment(Element.ALIGN_MIDDLE);
 		dataDoacao.setHorizontalAlignment(Element.ALIGN_CENTER);
+		dataDoacao.setVerticalAlignment(Element.ALIGN_MIDDLE);
 		valor.setHorizontalAlignment(Element.ALIGN_CENTER);
+		valor.setVerticalAlignment(Element.ALIGN_MIDDLE);
 
 		doador.setBackgroundColor(BaseColor.LIGHT_GRAY);
 		cpfOrCNPJ.setBackgroundColor(BaseColor.LIGHT_GRAY);
@@ -151,9 +155,6 @@ public class RelatorioDoacaoFachada extends RelatorioFacade{
 
 		document.close();
 		
-		abrirPDF();
-		salvarPDF();
-		
 		return arquivoTMP;
 	}
 
@@ -190,7 +191,7 @@ public class RelatorioDoacaoFachada extends RelatorioFacade{
 		document.add(emissao);
 		// ==================================================================================================//
 		
-		PdfPTable table2 = new PdfPTable(new float[] { 0.44f, 0.28f, 0.19f, 0.25f });
+		PdfPTable table2 = new PdfPTable(new float[] { 0.35f, 0.25f, 0.15f, 0.17f });
 		table2.setSpacingBefore(20);
 
 		PdfPCell doador      	= new PdfPCell(new Paragraph("Doador",new Font(FontFamily.UNDEFINED,12,Font.BOLD))),
@@ -199,9 +200,13 @@ public class RelatorioDoacaoFachada extends RelatorioFacade{
 				 valor          = new PdfPCell(new Paragraph("Valor doado",new Font(FontFamily.UNDEFINED,12,Font.BOLD)));
 
 		doador.setHorizontalAlignment(Element.ALIGN_CENTER);
+		doador.setVerticalAlignment(Element.ALIGN_MIDDLE);
 		cpfOrCNPJ.setHorizontalAlignment(Element.ALIGN_CENTER);
+		cpfOrCNPJ.setVerticalAlignment(Element.ALIGN_MIDDLE);
 		dataDoacao.setHorizontalAlignment(Element.ALIGN_CENTER);
+		dataDoacao.setVerticalAlignment(Element.ALIGN_MIDDLE);
 		valor.setHorizontalAlignment(Element.ALIGN_CENTER);
+		valor.setVerticalAlignment(Element.ALIGN_MIDDLE);
 
 		doador.setBackgroundColor(BaseColor.LIGHT_GRAY);
 		cpfOrCNPJ.setBackgroundColor(BaseColor.LIGHT_GRAY);
@@ -233,6 +238,7 @@ public class RelatorioDoacaoFachada extends RelatorioFacade{
 					
 					cellCPForCNPJ.setHorizontalAlignment(Element.ALIGN_CENTER);
 					cellDataDoacao.setHorizontalAlignment(Element.ALIGN_CENTER);
+					cellValor.setHorizontalAlignment(Element.ALIGN_CENTER);
 	
 					if (d.isAtivo()) {
 						table2.addCell(cellDoador);
@@ -250,6 +256,7 @@ public class RelatorioDoacaoFachada extends RelatorioFacade{
 						
 						cellCPForCNPJ.setHorizontalAlignment(Element.ALIGN_CENTER);
 						cellDataDoacao.setHorizontalAlignment(Element.ALIGN_CENTER);
+						cellValor.setHorizontalAlignment(Element.ALIGN_CENTER);
 	
 						if (d.isAtivo()) {
 							table2.addCell(cellDoador);

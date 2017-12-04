@@ -72,7 +72,7 @@ public class DoacaoDAO extends ExecutaSQL{
 
 	public ArrayList<Doacao> listarDoacoes() throws DoacaoInvalidaException{
 		ArrayList<Doacao> doacoes = new ArrayList<Doacao>();
-		String sql = "SELECT ABRACE.DOACAO.idDoacao, ABRACE.DOACAO.valor, ABRACE.DOACAO.data, ABRACE.DOACAO.idPessoa FROM ABRACE.DOACAO WHERE ativo=?";
+		String sql = "SELECT ABRACE.DOACAO.idDoacao, ABRACE.DOACAO.valor, ABRACE.DOACAO.data, ABRACE.DOACAO.idPessoa FROM ABRACE.DOACAO WHERE ativo=? order by data";
 		PreparedStatement stmt = null;
 		try {
 			stmt = getConexao().prepareStatement(sql);
