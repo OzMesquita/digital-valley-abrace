@@ -59,7 +59,7 @@ public class EmitirRelatoriosView {
 		shlCadastroAssistido.setMinimumSize(new Point(136, 29));
 		shlCadastroAssistido.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/ABRACE.png").getAbsolutePath()));
 		shlCadastroAssistido.setSize(671, 575);
-		shlCadastroAssistido.setText("Cadastro Assistido - ABRACE");
+		shlCadastroAssistido.setText("Emitir relat\u00F3rios - ABRACE");
 		
 		Label lblEmitirRelatrios = new Label(shlCadastroAssistido, SWT.NONE);
 		lblEmitirRelatrios.setText("Emitir Relat\u00F3rios");
@@ -74,7 +74,7 @@ public class EmitirRelatoriosView {
 		btnNewButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
-				SelecionarDoadorRelatorioView.main();
+				EmitirRelatorioAnualPorDoadorView.main();
 			}
 		});
 		btnNewButton.addKeyListener(new KeyAdapter() {
@@ -88,13 +88,19 @@ public class EmitirRelatoriosView {
 		btnNewButton.setText("Relat\u00F3rio anual de doa\u00E7\u00F5es (por pessoa)");
 		
 		Button btnRelatrioMensalDe = new Button(shlCadastroAssistido, SWT.NONE);
+		btnRelatrioMensalDe.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent arg0) {
+				EmitirRelatorioDoacoesView.main();
+			}
+		});
 		btnRelatrioMensalDe.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent arg0) {
 				identificarESC(arg0);
 			}
 		});
-		btnRelatrioMensalDe.setText("Relat\u00F3rio mensal de doa\u00E7\u00F5es (ABRACE)");
+		btnRelatrioMensalDe.setText("Relat\u00F3rio de doa\u00E7\u00F5es (ABRACE)");
 		btnRelatrioMensalDe.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
 		btnRelatrioMensalDe.setBounds(131, 209, 392, 68);
 		

@@ -151,6 +151,9 @@ public class RelatorioDoacaoFachada extends RelatorioFacade{
 
 		document.close();
 		
+		abrirPDF();
+		salvarPDF();
+		
 		return arquivoTMP;
 	}
 

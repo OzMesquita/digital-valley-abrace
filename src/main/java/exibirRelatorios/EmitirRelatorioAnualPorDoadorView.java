@@ -22,7 +22,7 @@ import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.KeyAdapter;
 
-public class  SelecionarDoadorRelatorioView{
+public class  EmitirRelatorioAnualPorDoadorView{
 	protected Shell shlDoacao;
 	private PessoaFisica doadorFisico;
 	private PessoaJuridica doadorJuridico;
@@ -31,6 +31,7 @@ public class  SelecionarDoadorRelatorioView{
 	private Text tfPesquisar;
 	private Table table;
 	private SelecionarDoadorControle controle;
+	private Text tfAno;
 	
 	public PessoaFisica getDoadorFisico() {
 		return doadorFisico;
@@ -88,6 +89,14 @@ public class  SelecionarDoadorRelatorioView{
 		this.tfPesquisar = tfPesquisar;
 	}
 
+	public Text getTfAno() {
+		return tfAno;
+	}
+
+	public void setTfAno(String tfAno) {
+		this.tfAno.setText(tfAno);
+	}
+
 	public Table getTable() {
 		return table;
 	}
@@ -100,21 +109,21 @@ public class  SelecionarDoadorRelatorioView{
 		this.tfAtivo = tfAtivo;
 	}
 
-	public SelecionarDoadorRelatorioView(PessoaFisica doadorFisico) {
+	public EmitirRelatorioAnualPorDoadorView(PessoaFisica doadorFisico) {
 		if (doadorFisico == null) {
 			this.setDoadorFisico(doadorFisico);
 		}
 		this.setControle(new SelecionarDoadorControle(this));
 	}
 	
-	public SelecionarDoadorRelatorioView(PessoaJuridica doadorJuridico) {
+	public EmitirRelatorioAnualPorDoadorView(PessoaJuridica doadorJuridico) {
 		if (doadorJuridico == null) {
 			this.setDoadorJuridico(doadorJuridico);
 		}
 		this.setControle(new SelecionarDoadorControle(this));
 	}
 	
-	public SelecionarDoadorRelatorioView() {
+	public EmitirRelatorioAnualPorDoadorView() {
 		this.setControle(new SelecionarDoadorControle(this));
 	}
 
@@ -186,7 +195,7 @@ public class  SelecionarDoadorRelatorioView{
 		table.setLinesVisible(true);
 		table.setHeaderVisible(true);
 		table.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
-		table.setBounds(10, 194, 694, 321);
+		table.setBounds(10, 194, 694, 263);
 		
 		TableColumn tableColumn = new TableColumn(table, SWT.CENTER);
 		tableColumn.setWidth(47);
@@ -248,6 +257,21 @@ public class  SelecionarDoadorRelatorioView{
 		label.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/relatorio.png").getAbsolutePath()));
 		label.setBounds(607, 21, 80, 105);
 		
+		Label lblInformeUmAno = new Label(shlDoacao, SWT.NONE);
+		lblInformeUmAno.setText("Informe o ano para emiss\u00E3o do relat\u00F3rio:");
+		lblInformeUmAno.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
+		lblInformeUmAno.setBounds(125, 484, 343, 25);
+		
+		tfAno = new Text(shlDoacao, SWT.BORDER | SWT.CENTER);
+		tfAno.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
+		tfAno.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				controle.filtrarAno(arg0);
+			}
+		});
+		tfAno.setBounds(474, 478, 92, 36);
+		
 		controle.preencherTabelaDoadores(controle.obterTodosDoadores());
 		
 		shlDoacao.open();
@@ -269,12 +293,12 @@ public class  SelecionarDoadorRelatorioView{
 		});
 		shlDoacao.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/ABRACE.png").getAbsolutePath()));
 		shlDoacao.setSize(730, 643);
-		shlDoacao.setText("Realizar Doa\u00E7\u00E3o - Passo 1 de 2 - ABRACE");
+		shlDoacao.setText("Emitir relat\u00F3rio anual por doador");
 	}
 	
 	public static void main() {
 		try {
-			SelecionarDoadorRelatorioView window = new SelecionarDoadorRelatorioView();
+			EmitirRelatorioAnualPorDoadorView window = new EmitirRelatorioAnualPorDoadorView();
 			window.open();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -283,7 +307,7 @@ public class  SelecionarDoadorRelatorioView{
 	
 	public void mensagemErro(Exception e){
 		 MessageBox messageBox = new MessageBox(shlDoacao,SWT.ICON_ERROR | SWT.OK); 
-      messageBox.setText("Problemas ao realizar a doação");
+      messageBox.setText("Problemas ao emitir relatório");
       messageBox.setMessage(e.getMessage()+"\nTente novamente");
       messageBox.open();
 	}
@@ -291,7 +315,7 @@ public class  SelecionarDoadorRelatorioView{
 	public void mensagemSucesso(PessoaFisica pessoaFisica){
 		MessageBox messageBox = new MessageBox(shlDoacao,SWT.ICON_WORKING | SWT.OK); 
 		messageBox.setText("Operação realizada com sucesso!");
-		messageBox.setMessage("A doação foi realizada com sucesso!");
+		messageBox.setMessage("O relatório foi gerado com sucesso!");
 		messageBox.open();
 	}
 	

@@ -42,6 +42,7 @@ public class GerenciarDoacoesView {
 	private Text txAno;
 	private Label lblAno;
 	private Combo cmbMes;
+	private Label label_1;
 
 	public Combo getCmbMes() {
 		return cmbMes;
@@ -166,13 +167,13 @@ public class GerenciarDoacoesView {
 		
 		Label lblGerenciarDoacoes = new Label(shlGerenciarDoacoes, SWT.NONE);
 		lblGerenciarDoacoes.setFont(SWTResourceManager.getFont("Segoe UI", 30, SWT.NORMAL));
-		lblGerenciarDoacoes.setBounds(185, 24, 354, 54);
+		lblGerenciarDoacoes.setBounds(197, 16, 329, 54);
 		lblGerenciarDoacoes.setText("Gerenciar Doações");
 		
 		lblSelecioneUmDoador = new Label(shlGerenciarDoacoes, SWT.NONE);
 		lblSelecioneUmDoador.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
-		lblSelecioneUmDoador.setBounds(214, 94, 296, 25);
-		lblSelecioneUmDoador.setText("Selecione ou pesquise uma doa\u00E7\u00E3o");
+		lblSelecioneUmDoador.setBounds(207, 100, 309, 25);
+		lblSelecioneUmDoador.setText("Voc\u00EA pode utilizar os filtros de busca");
 		
 		tfPesquisa = new Text(shlGerenciarDoacoes, SWT.BORDER);
 		tfPesquisa.addKeyListener(new KeyAdapter() {
@@ -334,7 +335,7 @@ public class GerenciarDoacoesView {
 		lblPesquisarData = new Label(shlGerenciarDoacoes, SWT.NONE);
 		lblPesquisarData.setText("Filtrar:");
 		lblPesquisarData.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
-		lblPesquisarData.setBounds(117, 181, 60, 30);
+		lblPesquisarData.setBounds(117, 178, 57, 30);
 		
 		btnLimparBusca = new Button(shlGerenciarDoacoes, SWT.NONE);
 		btnLimparBusca.addKeyListener(new KeyAdapter() {
@@ -360,16 +361,21 @@ public class GerenciarDoacoesView {
 		
 		lblmsano = new Label(shlGerenciarDoacoes, SWT.NONE);
 		lblmsano.setText("(m\u00EAs/ano)");
-		lblmsano.setBounds(116, 205, 60, 15);
+		lblmsano.setBounds(118, 205, 55, 15);
 		
 		txAno = new Text(shlGerenciarDoacoes, SWT.BORDER);
 		txAno.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
-		txAno.setBounds(432, 178, 122, 36);
+		txAno.setBounds(426, 178, 128, 36);
 		
 		lblAno = new Label(shlGerenciarDoacoes, SWT.NONE);
-		lblAno.setText("Ano");
+		lblAno.setText("Ano:");
 		lblAno.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
-		lblAno.setBounds(377, 181, 38, 30);
+		lblAno.setBounds(377, 181, 43, 30);
+		
+		label_1 = new Label(shlGerenciarDoacoes, SWT.NONE);
+		label_1.setText("Selecione ou pesquise uma doa\u00E7\u00E3o");
+		label_1.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
+		label_1.setBounds(214, 72, 296, 25);
 		
 		controle.preencherTabelaDoacoes(controle.obterTodasDoacoes());
 		

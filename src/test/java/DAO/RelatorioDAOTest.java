@@ -26,8 +26,8 @@ public class RelatorioDAOTest {
 		
 		//gerarRelatorioAssistido();
 		//gerarRelatorioDoadores();
-		gerarRecibos();
-		//gerarRelatorioMensal();
+		//gerarRecibos();
+		gerarRelatorioMensal();
 		//gerarRelatorioAnual();
 		//gerarRelatorioAnualPessoa();
 	}
@@ -72,10 +72,8 @@ public class RelatorioDAOTest {
 		try {
 			new RelatorioDoacaoFachada().relatorioDoacaoMensal(new DoacaoDAO(new ConnectionFactory().getConnection()).listarDoacoes(),LocalDate.of(2017, 11, 1),LocalDate.of(2017, 11, 30));
 		} catch (DocumentException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

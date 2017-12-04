@@ -1,7 +1,6 @@
 package exibirRelatorios;
 
 import java.io.IOException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,40 +21,25 @@ import model.Pessoa;
 import model.PessoaFisica;
 import model.PessoaJuridica;
 import relatorio.RelatorioAnualPessoaFachada;
-import view.InserirValorView;
-import view.SelecionarTipoDoadorView;
 
 public class SelecionarDoadorControle {
-	private SelecionarDoadorRelatorioView viewDoador;
-	private InserirValorView viewValor;
+	private EmitirRelatorioAnualPorDoadorView viewDoador;
 	private DoacaoFachada fachadaDoacao = new DoacaoFachada();
 	private DoadorFachada fachadaDoador = new DoadorFachada();
 	private List<Pessoa> listaExibidaNaTabela;
 	private List<Pessoa> listaTodosDoadores;
 	private PessoaFachada pessoaFachada = new PessoaFachada();
 	
-	public SelecionarDoadorControle(SelecionarDoadorRelatorioView selecionarDoadorRelatorioView) {
+	public SelecionarDoadorControle(EmitirRelatorioAnualPorDoadorView selecionarDoadorRelatorioView) {
 		setViewDoador(selecionarDoadorRelatorioView); 
 	}
-	
-	public SelecionarDoadorControle(InserirValorView inserirValorView) {
-		setViewValor(inserirValorView);
-	}
 
-	public SelecionarDoadorRelatorioView getViewDoador() {
+	public EmitirRelatorioAnualPorDoadorView getViewDoador() {
 		return viewDoador;
 	}
 
-	public void setViewDoador(SelecionarDoadorRelatorioView viewDoador) {
+	public void setViewDoador(EmitirRelatorioAnualPorDoadorView viewDoador) {
 		this.viewDoador = viewDoador;
-	}
-
-	public InserirValorView getViewValor() {
-		return viewValor;
-	}
-
-	public void setViewValor(InserirValorView viewValor) {
-		this.viewValor = viewValor;
 	}
 
 	public DoacaoFachada getFachada() {
@@ -67,16 +51,11 @@ public class SelecionarDoadorControle {
 	}
 	
 	public void getEvent(SelectionEvent event) {
-		if (event.getSource().toString().equals("Button {Cadastrar doador}")) {
-			SelecionarTipoDoadorView.main();
-		}
 		if (event.getSource().toString().equals("Button {Continuar}")) {
 			try {
 				int idPessoa = listaExibidaNaTabela.get(viewDoador.getTable().getSelectionIndex()).getId();
-				EmitirRelatorioSingleton.setDoador(pessoaFachada.obterPessoa(idPessoa));
-				EmitirRelatorioSingleton.setCpfCNPJ(fachadaDoacao.obterCPFCNPJ(idPessoa));
+				gerarRelatorioAnualPessoa(pessoaFachada.obterPessoa(idPessoa), Integer.parseInt(viewDoador.getTfAno().getText()));
 				viewDoador.getShlDoacao().dispose();
-				gerarRelatorioAnualPessoa(pessoaFachada.obterPessoa(idPessoa), 2017);
 			} catch (ArrayIndexOutOfBoundsException e) {
 				viewDoador.mensagemErro(new Exception("Selecione um doador para continuar"));
 			} catch (DoacaoInvalidaException e) {
@@ -134,12 +113,6 @@ public class SelecionarDoadorControle {
 		viewDoador.getTable().removeAll();
 	}
 	
-	public void identificarTelasEspeciais(KeyEvent evento) {
-		if(evento.keyCode == 27) {
-			viewValor.getShlRealizarDoao().dispose();
-		}
-	}
-	
 	public static void gerarRelatorioAnualPessoa(Pessoa pessoa, int ano) throws DoacaoInvalidaException {
 		try {
 			RelatorioAnualPessoaFachada relatorioAnualPessoaFachada = new RelatorioAnualPessoaFachada();
@@ -151,5 +124,23 @@ public class SelecionarDoadorControle {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void filtrarAno(KeyEvent evt) {
+		String k = viewDoador.getTfAno().getText();
+		String j = new String();
+		for (int i = 0; i < k.length(); i++) {
+			char[] caractere = { k.charAt(i) };
+			if ("0123456789".contains(new String(caractere)))
+				j += k.charAt(i);
+		}
+		String temp = new String();
+		for (int i = 0; i < j.length(); i++) {
+			if (i < 4) {
+				temp += j.charAt(i);
+			}
+		}
+		viewDoador.setTfAno(temp);
+		viewDoador.getTfAno().setSelection(viewDoador.getTfAno().getText().length());
 	}
 }
