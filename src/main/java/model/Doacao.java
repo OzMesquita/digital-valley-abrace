@@ -75,7 +75,7 @@ public class Doacao implements Comparable<Doacao>{
 		return "Doacao [id=" + id + ", valor=" + valor + ", data=" + data + ", ativo="+ ativo +", doador=" + this.getDoador().getNome() + " idDoador=" +this.getDoador().getId()+ "]";
 	}
 	public int compareTo(Doacao o) {
-		return this.getData().compareTo(o.getData());
+		return o.getData().compareTo(this.getData());
 	}
 	
 	

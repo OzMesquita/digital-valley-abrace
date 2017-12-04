@@ -412,7 +412,7 @@ public class GerenciarDoacoesView {
 	public void mensagemErro(Exception e){
 		MessageBox messageBox = new MessageBox(shlGerenciarDoacoes,SWT.ICON_ERROR | SWT.OK); 
 		messageBox.setText("Problemas ao filtrar doações!");
-		messageBox.setMessage("Não foi possível consultar as doações com o ano informado.");
+		messageBox.setMessage(e.getMessage());
 		messageBox.open();
 	}
 }

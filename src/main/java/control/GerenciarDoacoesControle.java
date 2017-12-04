@@ -133,7 +133,7 @@ public class GerenciarDoacoesControle {
 			return lista;
 
 		}catch (NumberFormatException e) {
-			viewDoacoes.mensagemErro(new Exception("O ano informado não é válido!"));
+			viewDoacoes.mensagemErro(new Exception("Não foi possível consultar as doações com o ano informado!"));
 			limparInfo();
 			return listarTodasDoacoes;
 		}
@@ -148,11 +148,16 @@ public class GerenciarDoacoesControle {
 	
 	public void getEvent(SelectionEvent event) {
 		if (event.getSource().toString().equals("Button {Pesquisar}")) {
-			if((viewDoacoes.getCmbMes().getSelectionIndex() > -1) && !(viewDoacoes.getTxAno().getText() == "")) {
+			if((viewDoacoes.getCmbMes().getSelectionIndex() > -1)) {
 				preencherTabelaDoacoes(filtrarData(pesquisarDoacoes(viewDoacoes.getTfPesquisa().getText())));
 			}
-			else {
-				preencherTabelaDoacoes(pesquisarDoacoes(viewDoacoes.getTfPesquisa().getText()));
+			else { 
+				if(!(viewDoacoes.getTfPesquisa().getText() == "")){
+					preencherTabelaDoacoes(pesquisarDoacoes(viewDoacoes.getTfPesquisa().getText()));
+				}else {
+					viewDoacoes.mensagemErro(new Exception("Não foi informado nenhum campo de busca!"));
+					limparInfo();
+				}
 			}
 		}if(event.getSource().toString().equals("Button {Limpar Busca}")) {
 			limparInfo();
