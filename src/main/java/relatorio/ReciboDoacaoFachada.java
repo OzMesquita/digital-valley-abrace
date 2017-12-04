@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.net.MalformedURLException;
 import java.text.NumberFormat;
-import java.util.Locale;
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
@@ -47,7 +46,7 @@ public class ReciboDoacaoFachada extends RelatorioFacade{
 		String conteudo = "Declaramos para os devidos fins que recebemos de " + doacao.getDoador().getNome() + 
 				", Carteira de Identidade (RG) número: " + (((PessoaFisica) doacao.getDoador()).getRg()) +
 				", CPF número: " + (((PessoaFisica) doacao.getDoador()).getCpf()) +
-				", a quantia de " + NumberFormat.getCurrencyInstance(new Locale("pt", "BR")).format(new BigDecimal (doacao.getValor())) + " ("+new Extenso(doacao.getValor())+"), " +
+				", a quantia de " + NumberFormat.getCurrencyInstance().format(new BigDecimal (doacao.getValor())) + " ("+new Extenso(doacao.getValor())+"), " +
 				"referente a doação para a ONG (Organização Sem Fins Lucrativos) Russas Transformando Vidas - ABRACE.";
 		
 		Paragraph declaracao = new Paragraph(conteudo,new Font(FontFamily.UNDEFINED, 11));
