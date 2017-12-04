@@ -28,8 +28,8 @@ public class RelatorioAssistidoFacade extends RelatorioFacade {
 		String tipo = "";
 		if(exibirVivos)tipo+="Vivos";
 		if(exibirVivos&&exibirMortos)tipo+=" e ";
-		if(exibirMortos)tipo+="Mortos";
-		String subtitulo = "Lista de Assistidos "+tipo+" da ONG ABRACE Russas";
+		if(exibirMortos)tipo+="Falecidos";
+		String subtitulo = "Relatório de Assistidos "+tipo+" da ONG ABRACE Russas";
 		PdfWriter.getInstance(document, gravarDocumento(subtitulo));
 		document.open();
 		// ==================================================================================================//
@@ -57,18 +57,22 @@ public class RelatorioAssistidoFacade extends RelatorioFacade {
 		
 		
 		
-		PdfPTable table2 = new PdfPTable(new float[] { 0.4f, 0.18f, 0.14f, 0.09f });
+		PdfPTable table2 = new PdfPTable(new float[] { 0.38f, 0.2f, 0.16f, 0.11f });
 		table2.setSpacingBefore(20);
 		
 		PdfPCell nome      = new PdfPCell(new Paragraph("Nome",new Font(FontFamily.UNDEFINED,12,Font.BOLD))),
 				 cpf       = new PdfPCell(new Paragraph("CPF",new Font(FontFamily.UNDEFINED,12,Font.BOLD))),
-				 nascimento= new PdfPCell(new Paragraph("Nascimento",new Font(FontFamily.UNDEFINED,12,Font.BOLD))),
+				 nascimento= new PdfPCell(new Paragraph("Data de nascimento",new Font(FontFamily.UNDEFINED,12,Font.BOLD))),
 				 status    = new PdfPCell(new Paragraph("Status",new Font(FontFamily.UNDEFINED,12,Font.BOLD)));
 		
 		nome.setHorizontalAlignment(Element.ALIGN_CENTER);
+		nome.setVerticalAlignment(Element.ALIGN_MIDDLE);
 		cpf.setHorizontalAlignment(Element.ALIGN_CENTER);
+		cpf.setVerticalAlignment(Element.ALIGN_MIDDLE);
 		nascimento.setHorizontalAlignment(Element.ALIGN_CENTER);
+		nascimento.setVerticalAlignment(Element.ALIGN_MIDDLE);
 		status.setHorizontalAlignment(Element.ALIGN_CENTER);
+		status.setVerticalAlignment(Element.ALIGN_MIDDLE);
 		
 		nome.setBackgroundColor(BaseColor.LIGHT_GRAY);
 		cpf.setBackgroundColor(BaseColor.LIGHT_GRAY);
@@ -84,13 +88,15 @@ public class RelatorioAssistidoFacade extends RelatorioFacade {
 		DateTimeFormatter formatadorDataNascimento = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		
 		int Assistidoscontados = 0;
+		int assistidoVivo = 0;
+		int assistidoMorto = 0;
 		
 		for (Assistido assistido : assistidos) {
 			
 			PdfPCell cellNome       = new PdfPCell(new Paragraph(assistido.getNome())),
 					 cellCPF        = new PdfPCell(new Paragraph(assistido.getCpf())),
 					 cellNascimento = new PdfPCell(new Paragraph(assistido.getDataNasc().format(formatadorDataNascimento))),
-					 cellsituacao   = new PdfPCell(new Paragraph(assistido.getSituacao() ? "vivo" : "falecido"));
+					 cellsituacao   = new PdfPCell(new Paragraph(assistido.getSituacao() ? "Vivo" : "Falecido"));
 			
 			cellCPF.setHorizontalAlignment(Element.ALIGN_CENTER);
 			cellNascimento.setHorizontalAlignment(Element.ALIGN_CENTER);
@@ -102,6 +108,7 @@ public class RelatorioAssistidoFacade extends RelatorioFacade {
 				table2.addCell(cellNascimento);
 				table2.addCell(cellsituacao);
 				Assistidoscontados++;
+				assistidoVivo++;
 			}
 			
 			if (exibirMortos && !assistido.getSituacao()) {
@@ -110,24 +117,56 @@ public class RelatorioAssistidoFacade extends RelatorioFacade {
 				table2.addCell(cellNascimento);
 				table2.addCell(cellsituacao);
 				Assistidoscontados++;
+				assistidoMorto++;
 			}
 			
 		}
 		
+		PdfPCell totalAssistidosVivos = new PdfPCell(new Paragraph("Assistidos Vivos ",new Font(FontFamily.UNDEFINED,12,Font.BOLD)));
+		PdfPCell totalAssistidosMortos = new PdfPCell(new Paragraph("Assitidos Falecidos ",new Font(FontFamily.UNDEFINED,12,Font.BOLD)));
 		PdfPCell totalAssistidos = new PdfPCell(new Paragraph("Total de Assitidos ",new Font(FontFamily.UNDEFINED,12,Font.BOLD)));
+		
+		PdfPCell numeroTotalAssistidosVivos = new PdfPCell(new Paragraph(String.valueOf(assistidoVivo)));
+		PdfPCell numeroTotalAssistidosMortos = new PdfPCell(new Paragraph(String.valueOf(assistidoMorto)));
 		PdfPCell numeroTotalAssistidos = new PdfPCell(new Paragraph(String.valueOf(Assistidoscontados)));
 		
 		totalAssistidos.setColspan(3);
 		totalAssistidos.setHorizontalAlignment(Element.ALIGN_RIGHT);
 		totalAssistidos.setBackgroundColor(BaseColor.LIGHT_GRAY);
 		
+		totalAssistidosVivos.setColspan(3);
+		totalAssistidosVivos.setHorizontalAlignment(Element.ALIGN_RIGHT);
+		totalAssistidosVivos.setBackgroundColor(BaseColor.LIGHT_GRAY);
+		
+		totalAssistidosMortos.setColspan(3);
+		totalAssistidosMortos.setHorizontalAlignment(Element.ALIGN_RIGHT);
+		totalAssistidosMortos.setBackgroundColor(BaseColor.LIGHT_GRAY);
+		
+		numeroTotalAssistidosVivos.setHorizontalAlignment(Element.ALIGN_CENTER);
+		numeroTotalAssistidosVivos.setBackgroundColor(BaseColor.LIGHT_GRAY);
+		
+		numeroTotalAssistidosMortos.setHorizontalAlignment(Element.ALIGN_CENTER);
+		numeroTotalAssistidosMortos.setBackgroundColor(BaseColor.LIGHT_GRAY);
+		
 		numeroTotalAssistidos.setHorizontalAlignment(Element.ALIGN_CENTER);
 		numeroTotalAssistidos.setBackgroundColor(BaseColor.LIGHT_GRAY);
 		
-		table2.addCell(totalAssistidos);
-		table2.addCell(numeroTotalAssistidos);
-		table2.addCell("");
-		table2.addCell("");
+		if(exibirVivos) {
+			table2.addCell(totalAssistidosVivos);
+			table2.addCell(numeroTotalAssistidosVivos);
+		}
+		
+		if(exibirMortos) {
+			table2.addCell(totalAssistidosMortos);
+			table2.addCell(numeroTotalAssistidosMortos);
+		}
+		
+		if(exibirMortos && exibirVivos) {
+			table2.addCell(totalAssistidos);
+			table2.addCell(numeroTotalAssistidos);
+			table2.addCell("");
+			table2.addCell("");
+		}
 
 		document.add(table2);
 		

@@ -69,24 +69,27 @@ public class RelatorioDoadoresFacade extends RelatorioFacade{
 		document.add(emissao);
 		// ==================================================================================================//
 
-		PdfPTable table2 = new PdfPTable(new float[] { 0.4f, 0.18f, 0.09f });
+		PdfPTable table2 = new PdfPTable(new float[] { 0.4f, 0.23f, 0.18f });
 		table2.setSpacingBefore(20);
 
 		PdfPCell nomeOrNomeFantasia      = new PdfPCell(new Paragraph("Nome/Nome Fantasia",new Font(FontFamily.UNDEFINED,12,Font.BOLD))),
 				cpfOrCNPJ                = new PdfPCell(new Paragraph("CPF/CNPJ",new Font(FontFamily.UNDEFINED,12,Font.BOLD))),
-				status                   = new PdfPCell(new Paragraph("Status",new Font(FontFamily.UNDEFINED,12,Font.BOLD)));
+				telefone                   = new PdfPCell(new Paragraph("Telefone",new Font(FontFamily.UNDEFINED,12,Font.BOLD)));
 
 		nomeOrNomeFantasia.setHorizontalAlignment(Element.ALIGN_CENTER);
+		nomeOrNomeFantasia.setVerticalAlignment(Element.ALIGN_MIDDLE);
 		cpfOrCNPJ.setHorizontalAlignment(Element.ALIGN_CENTER);
-		status.setHorizontalAlignment(Element.ALIGN_CENTER);
+		cpfOrCNPJ.setVerticalAlignment(Element.ALIGN_MIDDLE);
+		telefone.setHorizontalAlignment(Element.ALIGN_CENTER);
+		telefone.setVerticalAlignment(Element.ALIGN_MIDDLE);
 
 		nomeOrNomeFantasia.setBackgroundColor(BaseColor.LIGHT_GRAY);
 		cpfOrCNPJ.setBackgroundColor(BaseColor.LIGHT_GRAY);
-		status.setBackgroundColor(BaseColor.LIGHT_GRAY);
+		telefone.setBackgroundColor(BaseColor.LIGHT_GRAY);
 
 		table2.addCell(nomeOrNomeFantasia);
 		table2.addCell(cpfOrCNPJ);
-		table2.addCell(status);
+		table2.addCell(telefone);
 
 		// --------------------------------------------------------------------------------------------------//
 
@@ -95,49 +98,49 @@ public class RelatorioDoadoresFacade extends RelatorioFacade{
 		for (Pessoa p : list) {
 			PdfPCell cellNomeOrNomeFantasia = new PdfPCell(new Paragraph()), 
 					 cellCPForCNPJ          = new PdfPCell(new Paragraph()), 
-					 cellsituacao           = new PdfPCell(new Paragraph());
+					 cellTelefone           = new PdfPCell(new Paragraph());
 
 			if(p instanceof PessoaFisica&&exibirPessoasFisicas){
 				cellNomeOrNomeFantasia = new PdfPCell(new Paragraph(p.getNome()));
 				cellCPForCNPJ          = new PdfPCell(new Paragraph(((PessoaFisica) p).getCpf()));
-				cellsituacao           = new PdfPCell(new Paragraph(p.isAtivo() ? "ativo" : "inativo"));
+				cellTelefone           = new PdfPCell(new Paragraph(p.getTelefone()));
 				
 				cellCPForCNPJ.setHorizontalAlignment(Element.ALIGN_CENTER);
-				cellsituacao.setHorizontalAlignment(Element.ALIGN_CENTER);
+				cellTelefone.setHorizontalAlignment(Element.ALIGN_CENTER);
 				
 				if (exibirAtivos && p.isAtivo()) {
 					table2.addCell(cellNomeOrNomeFantasia);
 					table2.addCell(cellCPForCNPJ);
-					table2.addCell(cellsituacao);
+					table2.addCell(cellTelefone);
 					doadoresContados++;
 				}
 
 				if (exibirInativos && !p.isAtivo()) {
 					table2.addCell(cellNomeOrNomeFantasia);
 					table2.addCell(cellCPForCNPJ);
-					table2.addCell(cellsituacao);
+					table2.addCell(cellTelefone);
 					doadoresContados++;
 				}
 			}else
 				if(p instanceof PessoaJuridica&&exibirPessoasJuridicas){
 					cellNomeOrNomeFantasia = new PdfPCell(new Paragraph(((PessoaJuridica) p).getNomeFantasia()));
 					cellCPForCNPJ          = new PdfPCell(new Paragraph(((PessoaJuridica) p).getCnpj()));
-					cellsituacao           = new PdfPCell(new Paragraph(p.isAtivo() ? "ativo" : "inativo"));
+					cellTelefone           = new PdfPCell(new Paragraph(p.getTelefone()));
 
 					cellCPForCNPJ.setHorizontalAlignment(Element.ALIGN_CENTER);
-					cellsituacao.setHorizontalAlignment(Element.ALIGN_CENTER);
+					cellTelefone.setHorizontalAlignment(Element.ALIGN_CENTER);
 					
 					if (exibirAtivos && p.isAtivo()) {
 						table2.addCell(cellNomeOrNomeFantasia);
 						table2.addCell(cellCPForCNPJ);
-						table2.addCell(cellsituacao);
+						table2.addCell(cellTelefone);
 						doadoresContados++;
 					}
 
 					if (exibirInativos && !p.isAtivo()) {
 						table2.addCell(cellNomeOrNomeFantasia);
 						table2.addCell(cellCPForCNPJ);
-						table2.addCell(cellsituacao);
+						table2.addCell(cellTelefone);
 						doadoresContados++;
 					}
 				}
