@@ -17,7 +17,6 @@ import view.GerenciarDoacoesView;
 import view.SelecionarDoadorView;
 
 public class GerenciarDoacoesControle {
-	
 	private GerenciarDoacoesView viewDoacoes;
 	private DoacaoFachada fachadaDoacoes;
 	private ArrayList<Doacao> listarTodasDoacoes;
@@ -26,9 +25,6 @@ public class GerenciarDoacoesControle {
 	public GerenciarDoacoesControle(GerenciarDoacoesView gerenciarDoacoesView) {
 		this.setViewDoacoes(gerenciarDoacoesView);
 		this.fachadaDoacoes = new DoacaoFachada();
-	}
-	
-	public GerenciarDoacoesControle() {
 		
 	}
 
@@ -120,9 +116,44 @@ public class GerenciarDoacoesControle {
 		}
 		return doacoes;
 	}
+	
+	public ArrayList<Doacao> filtrarData(ArrayList<Doacao> lista){
+		Integer ano = -1;
+		int mes = -1;
+		try{
+			ano = new Integer(viewDoacoes.getTxAno().getText());
+			mes = viewDoacoes.getCmbMes().getSelectionIndex()+1;
+			for(int i = lista.size()-1; i >= 0; --i) {
+				if(!(lista.get(i).getData().getYear() == ano) || !(lista.get(i).getData().getMonthValue() == mes)) {
+					lista.remove(i);
+				}
+			}
+			return lista;
+
+		}catch (NumberFormatException e) {
+			viewDoacoes.mensagemErro(new Exception("O ano informado não é válido!"));
+			limparInfo();
+			return listarTodasDoacoes;
+		}
+	}
+	
+	public void limparInfo() {
+		viewDoacoes.getCmbMes().deselectAll();
+		viewDoacoes.getTxAno().setText("");
+		viewDoacoes.getTfPesquisa().setText("");
+		preencherTabelaDoacoes(listarTodasDoacoes);
+	}
+	
 	public void getEvent(SelectionEvent event) {
 		if (event.getSource().toString().equals("Button {Pesquisar}")) {
-			preencherTabelaDoacoes(pesquisarDoacoes(viewDoacoes.getTfPesquisa().getText()));
+			if((viewDoacoes.getCmbMes().getSelectionIndex() > -1) && !(viewDoacoes.getTxAno().getText() == "")) {
+				preencherTabelaDoacoes(filtrarData(pesquisarDoacoes(viewDoacoes.getTfPesquisa().getText())));
+			}
+			else {
+				preencherTabelaDoacoes(pesquisarDoacoes(viewDoacoes.getTfPesquisa().getText()));
+			}
+		}if(event.getSource().toString().equals("Button {Limpar Busca}")) {
+			limparInfo();
 		}
 		if (event.getSource().toString().equals("Button {Realizar Doação}")) {
 			viewDoacoes.getShlGerenciarDoacoes().dispose();

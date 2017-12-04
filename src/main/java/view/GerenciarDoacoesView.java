@@ -6,6 +6,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.wb.swt.SWTResourceManager;
 import control.GerenciarDoacoesControle;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
@@ -15,6 +16,7 @@ import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.KeyAdapter;
 import org.eclipse.swt.events.KeyEvent;
+import org.eclipse.swt.widgets.Combo;
 
 public class GerenciarDoacoesView {
 	GerenciarDoacoesControle controle;
@@ -34,7 +36,21 @@ public class GerenciarDoacoesView {
 	private TableColumn tableColumn_2;
 	private TableColumn tableColumn_3;
 	private Label lblTotalDeDoaes;
-	
+	private Label lblPesquisarData;
+	private Button btnLimparBusca;
+	private Label lblmsano;
+	private Text txAno;
+	private Label lblAno;
+	private Combo cmbMes;
+
+	public Combo getCmbMes() {
+		return cmbMes;
+	}
+
+	public void setCmbMes(Combo cmbMes) {
+		this.cmbMes = cmbMes;
+	}
+
 	public void setLblTotalDeDoaes(String lblTotalDeDoaes) {
 		this.lblTotalDeDoaes.setText(lblTotalDeDoaes);
 	}
@@ -166,7 +182,7 @@ public class GerenciarDoacoesView {
 			}
 		});
 		tfPesquisa.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
-		tfPesquisa.setBounds(180, 139, 374, 36);
+		tfPesquisa.setBounds(180, 134, 374, 36);
 		
 		Button btnPesquisar = new Button(shlGerenciarDoacoes, SWT.NONE);
 		btnPesquisar.addKeyListener(new KeyAdapter() {
@@ -183,7 +199,7 @@ public class GerenciarDoacoesView {
 		});
 		btnPesquisar.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
 		btnPesquisar.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/pesquisar.png").getAbsolutePath()));
-		btnPesquisar.setBounds(560, 139, 144, 36);
+		btnPesquisar.setBounds(560, 134, 144, 36);
 		btnPesquisar.setText("Pesquisar");
 		
 		table = new Table(shlGerenciarDoacoes, SWT.BORDER | SWT.FULL_SELECTION | SWT.NO_SCROLL | SWT.V_SCROLL);
@@ -202,7 +218,7 @@ public class GerenciarDoacoesView {
 		table.setLinesVisible(true);
 		table.setToolTipText("");
 		table.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
-		table.setBounds(10, 222, 694, 267);
+		table.setBounds(10, 255, 694, 234);
 		
 		tblclmnNomeDoDoador = new TableColumn(table, SWT.LEFT);
 		tblclmnNomeDoDoador.setWidth(275);
@@ -221,7 +237,7 @@ public class GerenciarDoacoesView {
 		
 		lblPesquisarDoador = new Label(shlGerenciarDoacoes, SWT.NONE);
 		lblPesquisarDoador.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
-		lblPesquisarDoador.setBounds(10, 142, 167, 30);
+		lblPesquisarDoador.setBounds(10, 134, 167, 30);
 		lblPesquisarDoador.setText("Pesquisar Doador:");
 		
 		btnExcluir = new Button(shlGerenciarDoacoes, SWT.NONE);
@@ -289,7 +305,7 @@ public class GerenciarDoacoesView {
 		table_1.setLinesVisible(true);
 		table_1.setHeaderVisible(true);
 		table_1.setFont(SWTResourceManager.getFont("Segoe UI Semibold", 14, SWT.NORMAL));
-		table_1.setBounds(10, 191, 694, 36);
+		table_1.setBounds(10, 224, 694, 36);
 		
 		tableColumn_1 = new TableColumn(table_1, SWT.CENTER);
 		tableColumn_1.setWidth(276);
@@ -307,13 +323,53 @@ public class GerenciarDoacoesView {
 		tableColumn_3.setResizable(false);
 		
 		Label lblporNome = new Label(shlGerenciarDoacoes, SWT.NONE);
-		lblporNome.setBounds(58, 170, 60, 15);
+		lblporNome.setBounds(62, 160, 60, 15);
 		lblporNome.setText("(por nome)");
 		
 		lblTotalDeDoaes = new Label(shlGerenciarDoacoes, SWT.NONE);
 		lblTotalDeDoaes.setAlignment(SWT.CENTER);
 		lblTotalDeDoaes.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
 		lblTotalDeDoaes.setBounds(10, 502, 694, 25);
+		
+		lblPesquisarData = new Label(shlGerenciarDoacoes, SWT.NONE);
+		lblPesquisarData.setText("Filtrar:");
+		lblPesquisarData.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
+		lblPesquisarData.setBounds(117, 181, 60, 30);
+		
+		btnLimparBusca = new Button(shlGerenciarDoacoes, SWT.NONE);
+		btnLimparBusca.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				identificarESC(arg0);
+			}
+		});
+		btnLimparBusca.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent arg0) {
+				controle.getEvent(arg0);
+			}
+		});
+		btnLimparBusca.setText("Limpar Busca");
+		btnLimparBusca.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
+		btnLimparBusca.setBounds(560, 178, 144, 36);
+		
+		cmbMes = new Combo(shlGerenciarDoacoes, SWT.READ_ONLY);
+		cmbMes.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
+		cmbMes.setItems(new String[] {"Janeiro", "Fevereiro", "Mar\u00E7o", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"});
+		cmbMes.setBounds(180, 178, 183, 38);
+		
+		lblmsano = new Label(shlGerenciarDoacoes, SWT.NONE);
+		lblmsano.setText("(m\u00EAs/ano)");
+		lblmsano.setBounds(116, 205, 60, 15);
+		
+		txAno = new Text(shlGerenciarDoacoes, SWT.BORDER);
+		txAno.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
+		txAno.setBounds(432, 178, 122, 36);
+		
+		lblAno = new Label(shlGerenciarDoacoes, SWT.NONE);
+		lblAno.setText("Ano");
+		lblAno.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
+		lblAno.setBounds(377, 181, 38, 30);
 		
 		controle.preencherTabelaDoacoes(controle.obterTodasDoacoes());
 		
@@ -324,6 +380,14 @@ public class GerenciarDoacoesView {
 				display.sleep();
 			}
 		}
+	}
+
+	public Text getTxAno() {
+		return txAno;
+	}
+
+	public void setTxAno(Text txAno) {
+		this.txAno = txAno;
 	}
 
 	protected void createContents() {
@@ -343,5 +407,12 @@ public class GerenciarDoacoesView {
 		if(arg0.keyCode == 27) {
 			shlGerenciarDoacoes.dispose();
 		}
+	}
+	
+	public void mensagemErro(Exception e){
+		MessageBox messageBox = new MessageBox(shlGerenciarDoacoes,SWT.ICON_ERROR | SWT.OK); 
+		messageBox.setText("Problemas ao filtrar doações!");
+		messageBox.setMessage("Não foi possível consultar as doações com o ano informado.");
+		messageBox.open();
 	}
 }
