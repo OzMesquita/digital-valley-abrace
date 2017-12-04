@@ -1,5 +1,6 @@
 package control;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,17 +10,21 @@ import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.TableItem;
 
+import com.itextpdf.text.DocumentException;
+
+import exceptions.DoacaoInvalidaException;
+import exceptions.PessoaFisicaException;
+import exceptions.PessoaInvalidaException;
 import facade.DoacaoFachada;
 import facade.DoadorFachada;
 import facade.PessoaFachada;
+import model.Doacao;
 import model.Pessoa;
 import model.PessoaFisica;
 import model.PessoaJuridica;
 import relatorio.ReciboDoacaoFachada;
-import view.ApresentaPDFView;
 import view.InserirValorView;
 import view.SelecionarDoadorView;
-import view.SelecionarTipoDoadorView;
 
 
 public class DoacaoControle {
@@ -31,8 +36,8 @@ public class DoacaoControle {
 	private List<Pessoa> listaTodosDoadores;
 	private PessoaFachada pessoaFachada = new PessoaFachada();
 	
-	public DoacaoControle(SelecionarDoadorView viewDoador) {
-		setViewDoador(viewDoador); 
+	public DoacaoControle(SelecionarDoadorView selecionarDoadorView) {
+		setViewDoador(selecionarDoadorView); 
 	}
 	
 	public DoacaoControle(InserirValorView inserirValorView) {
@@ -43,8 +48,8 @@ public class DoacaoControle {
 		return viewDoador;
 	}
 
-	public void setViewDoador(SelecionarDoadorView viewDoador) {
-		this.viewDoador = viewDoador;
+	public void setViewDoador(SelecionarDoadorView selecionarDoadorView) {
+		this.viewDoador = selecionarDoadorView;
 	}
 
 	public InserirValorView getViewValor() {
@@ -64,9 +69,6 @@ public class DoacaoControle {
 	}
 	
 	public void getEvent(SelectionEvent event) {
-		if (event.getSource().toString().equals("Button {Cadastrar doador}")) {
-			SelecionarTipoDoadorView.main();
-		}
 		if (event.getSource().toString().equals("Button {Continuar}")) {
 			try {
 				int idPessoa = listaExibidaNaTabela.get(viewDoador.getTable().getSelectionIndex()).getId();
@@ -99,13 +101,13 @@ public class DoacaoControle {
 					viewValor.mensagemSucesso();
 					viewValor.getShlRealizarDoao().dispose();
 					DoacaoSingleton.setDoador(pj);
-					ApresentaPDFView.main(new ReciboDoacaoFachada().reciboDoadorJuridico(DoacaoSingleton.getDoacao()));
+					gerarReciboPJ(DoacaoSingleton.getDoacao());
 				}
 				else {
 					viewValor.mensagemSucesso();
 					viewValor.getShlRealizarDoao().dispose();
 					DoacaoSingleton.setDoador(pf);
-					ApresentaPDFView.main(new ReciboDoacaoFachada().reciboDoadorFisico(DoacaoSingleton.getDoacao()));
+					gerarReciboPF(DoacaoSingleton.getDoacao());
 				}
 				
 			}
@@ -165,5 +167,17 @@ public class DoacaoControle {
 		} if(evento.keyCode == 27) {
 			viewValor.getShlRealizarDoao().dispose();
 		}
+	}
+	
+	public static void gerarReciboPF(Doacao doacao) throws PessoaInvalidaException, PessoaFisicaException, DocumentException, IOException, DoacaoInvalidaException{
+		ReciboDoacaoFachada recibo = new ReciboDoacaoFachada();
+		recibo.reciboDoadorFisico(doacao);
+		recibo.abrirPDF();
+	}
+	
+	public static void gerarReciboPJ(Doacao doacao) throws PessoaInvalidaException, PessoaFisicaException, DocumentException, IOException, DoacaoInvalidaException{
+		ReciboDoacaoFachada recibo = new ReciboDoacaoFachada();
+		recibo.reciboDoadorJuridico(doacao);
+		recibo.abrirPDF();
 	}
 }

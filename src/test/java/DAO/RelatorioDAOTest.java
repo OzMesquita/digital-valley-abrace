@@ -26,10 +26,10 @@ public class RelatorioDAOTest {
 		
 		//gerarRelatorioAssistido();
 		//gerarRelatorioDoadores();
-		//gerarRecibos();
+		gerarRecibos();
 		//gerarRelatorioMensal();
 		//gerarRelatorioAnual();
-		gerarRelatorioAnualPessoa();
+		//gerarRelatorioAnualPessoa();
 	}
 
 	public static void gerarRelatorioAssistido(){
@@ -63,7 +63,8 @@ public class RelatorioDAOTest {
 		Doacao doa = new Doacao(1, 200.00, LocalDate.now(), true, isa);
 
 		ReciboDoacaoFachada recibo = new ReciboDoacaoFachada();
-		recibo.reciboDoadorFisico(isa, doa);
+		recibo.reciboDoadorFisico(doa);
+		recibo.abrirPDF();
 
 	}
 	
@@ -95,7 +96,7 @@ public class RelatorioDAOTest {
 		try {
 			RelatorioAnualPessoaFachada relatorioAnualPessoaFachada = new RelatorioAnualPessoaFachada();
 			relatorioAnualPessoaFachada.relatorioAnualPessoa(new PessoaFisicaDAO(new ConnectionFactory().getConnection()).getPessoaFisica(1), LocalDate.of(2017, 1, 1).getYear());
-			relatorioAnualPessoaFachada.AbrirPDF();
+			relatorioAnualPessoaFachada.abrirPDF();
 			relatorioAnualPessoaFachada.salvarPDF();
 		} catch (DocumentException e) {
 			// TODO Auto-generated catch block

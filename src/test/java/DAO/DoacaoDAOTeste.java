@@ -1,5 +1,6 @@
 package DAO;
 
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -19,7 +20,7 @@ public class DoacaoDAOTeste {
 		excluir();
 	}
 
-	public static void inserir() throws DoacaoInvalidaException {
+	public static void inserir() throws DoacaoInvalidaException, SQLException {
 		Doacao doacao = new Doacao();
 
 		//PessoaJuridica doador = new PessoaJuridicaDAO(new ConnectionFactory().getConnection()).getPessoaJuridica(1);
@@ -34,7 +35,7 @@ public class DoacaoDAOTeste {
 		new DoacaoDAO(new ConnectionFactory().getConnection()).cadastrarDoacao(doacao);
 	}
 
-	public static void inserirInvalido() throws DoacaoInvalidaException  {
+	public static void inserirInvalido() throws DoacaoInvalidaException, SQLException  {
 
 		Doacao doacao = new Doacao();
 

@@ -9,6 +9,8 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.wb.swt.SWTResourceManager;
 import control.LoginSingleton;
+import exibirRelatorios.EmitirRelatoriosView;
+
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.events.KeyAdapter;
 import org.eclipse.swt.events.KeyEvent;
@@ -87,6 +89,24 @@ public class AplicacaoView {
 		Label label = new Label(shlOngRussasTransformando, SWT.NONE);
 		label.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/abrace-logo.png").getAbsolutePath()));
 		label.setBounds(482, 28, 101, 101);
+		
+		Button btnRelatrios = new Button(shlOngRussasTransformando, SWT.NONE);
+		btnRelatrios.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				identificarESC(arg0);
+			}
+		});
+		btnRelatrios.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent arg0) {
+				EmitirRelatoriosView.main();
+			}
+		});
+		btnRelatrios.setText("Emitir Relat\u00F3rios");
+		btnRelatrios.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/relatorio-small.png").getAbsolutePath()));
+		btnRelatrios.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
+		btnRelatrios.setBounds(333, 421, 243, 68);
 		shlOngRussasTransformando.open();
 		shlOngRussasTransformando.layout();
 		while (!shlOngRussasTransformando.isDisposed()) {
@@ -105,7 +125,7 @@ public class AplicacaoView {
 			}
 		});
 		shlOngRussasTransformando.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/ABRACE.png").getAbsolutePath()));
-		shlOngRussasTransformando.setSize(657, 503);
+		shlOngRussasTransformando.setSize(657, 562);
 		shlOngRussasTransformando.setText("ONG Russas Transformando Vidas - ABRACE");
 		
 		Label lblBemVindo = new Label(shlOngRussasTransformando, SWT.NONE);
