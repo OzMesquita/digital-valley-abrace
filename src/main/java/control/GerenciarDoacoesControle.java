@@ -3,6 +3,7 @@ package control;
 import java.math.BigDecimal;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collections;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
@@ -103,6 +104,7 @@ public class GerenciarDoacoesControle {
 	public ArrayList<Doacao> obterTodasDoacoes() {
 		excluirLinhasDaTabela();
 		listarTodasDoacoes = fachadaDoacoes.listarDoacoes();
+		Collections.sort(listarTodasDoacoes);
 		return listarTodasDoacoes;
 	}
 	

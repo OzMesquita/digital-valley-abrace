@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 import exceptions.DoacaoInvalidaException;
 
-public class Doacao {
+public class Doacao implements Comparable<Doacao>{
 	private int id;
 	private Double valor;
 	private LocalDate data;
@@ -73,6 +73,9 @@ public class Doacao {
 	@Override
 	public String toString() {
 		return "Doacao [id=" + id + ", valor=" + valor + ", data=" + data + ", ativo="+ ativo +", doador=" + this.getDoador().getNome() + " idDoador=" +this.getDoador().getId()+ "]";
+	}
+	public int compareTo(Doacao o) {
+		return this.getData().compareTo(o.getData());
 	}
 	
 	
