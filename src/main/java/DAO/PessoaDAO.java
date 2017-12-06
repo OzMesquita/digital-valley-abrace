@@ -66,11 +66,10 @@ public class PessoaDAO extends ExecutaSQL {
 		return listaPessoas;
 	}
 
-	public boolean editarPessoa(Pessoa pessoa) {
-		String sql = "UPDATE ABRACE.Pessoa SET nome=?, endereco=?, telefone1=?, telefone2=?, email=? WHERE idPessoa=?";
-		PreparedStatement stmt;
-		try {
-			stmt = getConexao().prepareStatement(sql);
+	public boolean editarPessoa(Pessoa pessoa) throws SQLException {
+		try { 
+			String sql = "UPDATE ABRACE.Pessoa SET ABRACE.Pessoa.nome=?, ABRACE.Pessoa.endereco=?, ABRACE.Pessoa.telefone1=?, ABRACE.Pessoa.telefone2=?, ABRACE.Pessoa.email=? WHERE ABRACE.Pessoa.idPessoa=?";
+			PreparedStatement stmt = getConexao().prepareStatement(sql);
 			stmt.setString(1, pessoa.getNome());
 			stmt.setString(2, pessoa.getEndereco());
 			stmt.setString(3, pessoa.getTelefone());
@@ -78,10 +77,10 @@ public class PessoaDAO extends ExecutaSQL {
 			stmt.setString(5, pessoa.getEmail());
 			stmt.setInt(6, pessoa.getId());
 			stmt.executeUpdate();
+			stmt.close();
 			return true;
 		} catch (SQLException e) {
-			e.printStackTrace();
-			return false;
+			throw e;
 		}
 		
 	}
@@ -89,7 +88,7 @@ public class PessoaDAO extends ExecutaSQL {
 	public void excluirPessoa(Pessoa pessoa) throws SQLException {
 		String sql = "UPDATE ABRACE.Pessoa SET ativo=false WHERE idPessoa=?";
 		PreparedStatement stmt = getConexao().prepareStatement(sql);
-		stmt.setBoolean(1, pessoa.isAtivo());
+		stmt.setInt(1, pessoa.getId());
 		stmt.execute();
 		stmt.close();
 	}
