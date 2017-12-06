@@ -283,13 +283,6 @@ public class InserirValorView {
 		messageBox.open();
 	}
 	
-	public void mensagemSucesso(){
-		MessageBox messageBox = new MessageBox(shlRealizarDoao,SWT.ICON_WORKING | SWT.OK); 
-		messageBox.setText("Doação realizada com sucesso!");
-		messageBox.setMessage("A doação foi realizada com sucesso! :)");
-		messageBox.open();
-	}
-	
 	public void identificarESC(KeyEvent arg0) {
 		if(arg0.keyCode == 27) {
 			shlRealizarDoao.dispose();

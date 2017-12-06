@@ -8,6 +8,7 @@ import java.util.List;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.TableItem;
 
 import com.itextpdf.text.DocumentException;
@@ -68,6 +69,21 @@ public class DoacaoControle {
 		this.fachadaDoacao = fachada;
 	}
 	
+	public boolean confirmacao() {
+        MessageBox messageBox = new MessageBox(viewValor.getShlRealizarDoao(),SWT.ICON_WARNING | SWT.NO | SWT.YES);
+        messageBox.setText("Doação realizada com sucesso!");
+        messageBox.setMessage("A doação foi realizada com sucesso! :) \n Deseja abrir o recibo?");
+        int buttonID = messageBox.open();
+        switch(buttonID) {
+          case SWT.NO:
+        	  return false;
+          case SWT.YES:
+            return true;
+          default:
+        	  return false;
+        }
+    }
+	
 	public void getEvent(SelectionEvent event) {
 		if (event.getSource().toString().equals("Button {Continuar}")) {
 			try {
@@ -98,18 +114,19 @@ public class DoacaoControle {
 				PessoaFisica pf = fachadaDoador.obterDoadorFisico(DoacaoSingleton.getDoacao().getDoador().getId());
 				if(pf == null) {
 					PessoaJuridica pj = fachadaDoador.obterDoadorJuridico(DoacaoSingleton.getDoacao().getDoador().getId());
-					viewValor.mensagemSucesso();
+					if(confirmacao()) {
+						DoacaoSingleton.setDoador(pj);
+						gerarReciboPJ(DoacaoSingleton.getDoacao());
+					}
 					viewValor.getShlRealizarDoao().dispose();
-					DoacaoSingleton.setDoador(pj);
-					gerarReciboPJ(DoacaoSingleton.getDoacao());
 				}
 				else {
-					viewValor.mensagemSucesso();
+					if(confirmacao()) {
+						DoacaoSingleton.setDoador(pf);
+						gerarReciboPF(DoacaoSingleton.getDoacao());
+					}
 					viewValor.getShlRealizarDoao().dispose();
-					DoacaoSingleton.setDoador(pf);
-					gerarReciboPF(DoacaoSingleton.getDoacao());
 				}
-				
 			}
 		} catch(Exception e) {
 			System.out.println(e.getMessage());
