@@ -148,7 +148,6 @@ public class EmitirRelatoriosView {
 		btnRelatrioDeDoadores.setText("Relat\u00F3rio de doadores (ABRACE)");
 		btnRelatrioDeDoadores.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
 		btnRelatrioDeDoadores.setBounds(115, 431, 424, 68);
-
 	}
 	
 	public void identificarESC(KeyEvent arg0) {
