@@ -44,6 +44,18 @@ public class EmitirRelatoriosView {
 		shlCadastroAssistido.open();
 		shlCadastroAssistido.layout();
 		Centralize.centralize(shlCadastroAssistido);
+		
+		Button button = new Button(shlCadastroAssistido, SWT.NONE);
+		button.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent arg0) {
+				shlCadastroAssistido.dispose();
+			}
+		});
+		button.setText("Cancelar");
+		button.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/cancelar.png").getAbsolutePath()));
+		button.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
+		button.setBounds(223, 521, 208, 54);
 		while (!shlCadastroAssistido.isDisposed()) {
 			if (!display.readAndDispatch()) {
 				display.sleep();
@@ -58,7 +70,7 @@ public class EmitirRelatoriosView {
 		shlCadastroAssistido = new Shell();
 		shlCadastroAssistido.setMinimumSize(new Point(136, 29));
 		shlCadastroAssistido.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/ABRACE.png").getAbsolutePath()));
-		shlCadastroAssistido.setSize(671, 575);
+		shlCadastroAssistido.setSize(671, 636);
 		shlCadastroAssistido.setText("Emitir relat\u00F3rios - ABRACE");
 		
 		Label lblEmitirRelatrios = new Label(shlCadastroAssistido, SWT.NONE);
@@ -85,7 +97,7 @@ public class EmitirRelatoriosView {
 		});
 		btnNewButton.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
 		btnNewButton.setBounds(131, 135, 392, 68);
-		btnNewButton.setText("Relat\u00F3rio anual de doa\u00E7\u00F5es (por pessoa)");
+		btnNewButton.setText("Relat\u00F3rio anual de doa\u00E7\u00F5es (por doador)");
 		
 		Button btnRelatrioMensalDe = new Button(shlCadastroAssistido, SWT.NONE);
 		btnRelatrioMensalDe.addSelectionListener(new SelectionAdapter() {

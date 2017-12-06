@@ -8,11 +8,11 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.TableItem;
-
 import com.itextpdf.text.DocumentException;
 
 import DAO.ConnectionFactory;
 import DAO.PessoaFisicaDAO;
+import DAO.PessoaJuridicaDAO;
 import exceptions.DoacaoInvalidaException;
 import facade.DoacaoFachada;
 import facade.DoadorFachada;
@@ -22,7 +22,7 @@ import model.PessoaFisica;
 import model.PessoaJuridica;
 import relatorio.RelatorioAnualPessoaFachada;
 
-public class SelecionarDoadorControle {
+public class EmitirRelatorioAnualPorDoadorControle {
 	private EmitirRelatorioAnualPorDoadorView viewDoador;
 	private DoacaoFachada fachadaDoacao = new DoacaoFachada();
 	private DoadorFachada fachadaDoador = new DoadorFachada();
@@ -30,7 +30,7 @@ public class SelecionarDoadorControle {
 	private List<Pessoa> listaTodosDoadores;
 	private PessoaFachada pessoaFachada = new PessoaFachada();
 	
-	public SelecionarDoadorControle(EmitirRelatorioAnualPorDoadorView selecionarDoadorRelatorioView) {
+	public EmitirRelatorioAnualPorDoadorControle(EmitirRelatorioAnualPorDoadorView selecionarDoadorRelatorioView) {
 		setViewDoador(selecionarDoadorRelatorioView); 
 	}
 
@@ -116,9 +116,18 @@ public class SelecionarDoadorControle {
 	public static void gerarRelatorioAnualPessoa(Pessoa pessoa, int ano) throws DoacaoInvalidaException {
 		try {
 			RelatorioAnualPessoaFachada relatorioAnualPessoaFachada = new RelatorioAnualPessoaFachada();
-			relatorioAnualPessoaFachada.relatorioAnualPessoa(new PessoaFisicaDAO(new ConnectionFactory().getConnection()).getPessoaFisica(pessoa.getId()), ano);
+			
+			PessoaJuridica pj = new PessoaJuridicaDAO(new ConnectionFactory().getConnection()).getPessoaJuridica(pessoa.getId());
+			
+			if(pj == null){
+				relatorioAnualPessoaFachada.relatorioAnualPessoa(new PessoaFisicaDAO(new ConnectionFactory().getConnection()).getPessoaFisica(pessoa.getId()), ano);
+			} else {
+				relatorioAnualPessoaFachada.relatorioAnualPessoa(new PessoaJuridicaDAO(new ConnectionFactory().getConnection()).getPessoaJuridica(pessoa.getId()), ano);
+			}
+			
 			relatorioAnualPessoaFachada.abrirPDF();
 			relatorioAnualPessoaFachada.salvarPDF();
+			
 		} catch (DocumentException e) {
 			e.printStackTrace();
 		} catch (IOException e) {

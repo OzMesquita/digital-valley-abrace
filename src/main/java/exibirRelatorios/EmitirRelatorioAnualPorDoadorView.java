@@ -30,7 +30,7 @@ public class  EmitirRelatorioAnualPorDoadorView{
 	private Combo tfAtivo;
 	private Text tfPesquisar;
 	private Table table;
-	private SelecionarDoadorControle controle;
+	private EmitirRelatorioAnualPorDoadorControle controle;
 	private Text tfAno;
 	
 	public PessoaFisica getDoadorFisico() {
@@ -65,11 +65,11 @@ public class  EmitirRelatorioAnualPorDoadorView{
 		this.doacao = doacao;
 	}
 	
-	public SelecionarDoadorControle getControle() {
+	public EmitirRelatorioAnualPorDoadorControle getControle() {
 		return controle;
 	}
 	
-	public void setControle(SelecionarDoadorControle controle) {
+	public void setControle(EmitirRelatorioAnualPorDoadorControle controle) {
 		this.controle = controle;
 	}
 
@@ -113,18 +113,18 @@ public class  EmitirRelatorioAnualPorDoadorView{
 		if (doadorFisico == null) {
 			this.setDoadorFisico(doadorFisico);
 		}
-		this.setControle(new SelecionarDoadorControle(this));
+		this.setControle(new EmitirRelatorioAnualPorDoadorControle(this));
 	}
 	
 	public EmitirRelatorioAnualPorDoadorView(PessoaJuridica doadorJuridico) {
 		if (doadorJuridico == null) {
 			this.setDoadorJuridico(doadorJuridico);
 		}
-		this.setControle(new SelecionarDoadorControle(this));
+		this.setControle(new EmitirRelatorioAnualPorDoadorControle(this));
 	}
 	
 	public EmitirRelatorioAnualPorDoadorView() {
-		this.setControle(new SelecionarDoadorControle(this));
+		this.setControle(new EmitirRelatorioAnualPorDoadorControle(this));
 	}
 
 	/**

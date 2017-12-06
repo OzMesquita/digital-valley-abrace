@@ -26,13 +26,12 @@ import model.PessoaJuridica;
 public class RelatorioAnualPessoaFachada extends RelatorioFacade{
 	public String relatorioAnualPessoa(Pessoa pessoa, int ano) throws DocumentException, MalformedURLException, IOException, DoacaoInvalidaException {
 		Document document = new Document();
-		String subtitulo = "Relatório anual de doações do doador "+ pessoa.getNome() +" para a ONG ABRACE Russas";
+		String subtitulo = "Relatório anual de doações para a ONG ABRACE Russas";
 		PdfWriter.getInstance(document, gravarDocumento(subtitulo));
 
 		document.open();
 
 		Cabecalho(document);
-		
 
 		//========================================================================================
 		//		Cabeçalho de dados do doador
@@ -42,7 +41,11 @@ public class RelatorioAnualPessoaFachada extends RelatorioFacade{
 
 		PdfPTable table = new PdfPTable(2);
 		PdfPCell nomeDoador = new PdfPCell(new Paragraph("NOME DO DOADOR: "+pessoa.getNome()));
-		PdfPCell nomeFantasia = new PdfPCell(new Paragraph("NOME FANTASIA: "+((pessoa instanceof PessoaJuridica ) ? (((PessoaJuridica) pessoa).getNomeFantasia()):"")));
+		
+		PdfPCell nomeFantasia = null;	
+		if(!(pessoa instanceof PessoaFisica)) {
+			nomeFantasia = new PdfPCell(new Paragraph("NOME FANTASIA: "+((pessoa instanceof PessoaJuridica ) ? (((PessoaJuridica) pessoa).getNomeFantasia()):"")));
+		}
 		PdfPCell endereco = new PdfPCell(new Paragraph("ENDEREÇO: "+pessoa.getEndereco()));
 		PdfPCell email = new PdfPCell(new Paragraph("E-MAIL: "+pessoa.getEmail()));
 

@@ -224,7 +224,7 @@ public class GerenciarDoadoresView {
 		table.setLinesVisible(true);
 		table.setToolTipText("");
 		table.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
-		table.setBounds(15, 213, 694, 323);
+		table.setBounds(15, 213, 694, 293);
 		
 		tblclmnNomeDoDoadorFisico = new TableColumn(table, SWT.LEFT);
 		tblclmnNomeDoDoadorFisico.setWidth(232);
