@@ -122,7 +122,7 @@ public class EmitirRelatorioAnualPorDoadorControle {
 			if(pj == null){
 				relatorioAnualPessoaFachada.relatorioAnualPessoa(new PessoaFisicaDAO(new ConnectionFactory().getConnection()).getPessoaFisica(pessoa.getId()), ano);
 			} else {
-				relatorioAnualPessoaFachada.relatorioAnualPessoa(new PessoaJuridicaDAO(new ConnectionFactory().getConnection()).getPessoaJuridica(pessoa.getId()), ano);
+				relatorioAnualPessoaFachada.relatorioAnualPessoa(pj, ano);
 			}
 			
 			relatorioAnualPessoaFachada.abrirPDF();

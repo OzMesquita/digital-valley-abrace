@@ -96,10 +96,10 @@ public class EmitirRelatoriosView {
 			}
 		});
 		btnNewButton.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
-		btnNewButton.setBounds(131, 135, 392, 68);
+		btnNewButton.setBounds(115, 135, 424, 68);
 		btnNewButton.setText("Relat\u00F3rio anual de doa\u00E7\u00F5es (por doador)");
 		
-		Button btnRelatrioMensalDe = new Button(shlCadastroAssistido, SWT.NONE);
+		Button btnRelatrioMensalDe = new Button(shlCadastroAssistido, SWT.CENTER);
 		btnRelatrioMensalDe.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
@@ -114,7 +114,7 @@ public class EmitirRelatoriosView {
 		});
 		btnRelatrioMensalDe.setText("Relat\u00F3rio de doa\u00E7\u00F5es (ABRACE)");
 		btnRelatrioMensalDe.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
-		btnRelatrioMensalDe.setBounds(131, 209, 392, 68);
+		btnRelatrioMensalDe.setBounds(115, 209, 424, 68);
 		
 		Button btnRelatrioAnualDe = new Button(shlCadastroAssistido, SWT.NONE);
 		btnRelatrioAnualDe.addKeyListener(new KeyAdapter() {
@@ -125,7 +125,7 @@ public class EmitirRelatoriosView {
 		});
 		btnRelatrioAnualDe.setText("Relat\u00F3rio anual de doa\u00E7\u00F5es (ABRACE)");
 		btnRelatrioAnualDe.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
-		btnRelatrioAnualDe.setBounds(131, 283, 392, 68);
+		btnRelatrioAnualDe.setBounds(115, 283, 424, 68);
 		
 		Button btnRelatrioDeAssistidos = new Button(shlCadastroAssistido, SWT.NONE);
 		btnRelatrioDeAssistidos.addKeyListener(new KeyAdapter() {
@@ -136,7 +136,7 @@ public class EmitirRelatoriosView {
 		});
 		btnRelatrioDeAssistidos.setText("Relat\u00F3rio de assistidos (ABRACE)");
 		btnRelatrioDeAssistidos.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
-		btnRelatrioDeAssistidos.setBounds(131, 357, 392, 68);
+		btnRelatrioDeAssistidos.setBounds(115, 357, 424, 68);
 		
 		Button btnRelatrioDeDoadores = new Button(shlCadastroAssistido, SWT.NONE);
 		btnRelatrioDeDoadores.addKeyListener(new KeyAdapter() {
@@ -147,7 +147,7 @@ public class EmitirRelatoriosView {
 		});
 		btnRelatrioDeDoadores.setText("Relat\u00F3rio de doadores (ABRACE)");
 		btnRelatrioDeDoadores.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
-		btnRelatrioDeDoadores.setBounds(131, 431, 392, 68);
+		btnRelatrioDeDoadores.setBounds(115, 431, 424, 68);
 
 	}
 	

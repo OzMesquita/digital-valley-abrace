@@ -59,7 +59,7 @@ public class RelatorioDoacaoFachada extends RelatorioFacade{
 		document.add(emissao);
 		// ==================================================================================================//
 		
-		PdfPTable table2 = new PdfPTable(new float[] { 0.44f, 0.28f, 0.19f, 0.25f });
+		PdfPTable table2 = new PdfPTable(new float[] { 0.40f, 0.32f, 0.19f, 0.25f });
 		table2.setSpacingBefore(20);
 
 		PdfPCell doador      	= new PdfPCell(new Paragraph("Doador",new Font(FontFamily.UNDEFINED,12,Font.BOLD))),
@@ -108,7 +108,11 @@ public class RelatorioDoacaoFachada extends RelatorioFacade{
 					cellValor				= new PdfPCell(new Paragraph((NumberFormat.getCurrencyInstance().format(d.getValor()))));
 					
 					cellCPForCNPJ.setHorizontalAlignment(Element.ALIGN_CENTER);
+					cellCPForCNPJ.setVerticalAlignment(Element.ALIGN_MIDDLE);
 					cellDataDoacao.setHorizontalAlignment(Element.ALIGN_CENTER);
+					cellDataDoacao.setVerticalAlignment(Element.ALIGN_MIDDLE);
+					cellValor.setVerticalAlignment(Element.ALIGN_MIDDLE);
+					cellValor.setHorizontalAlignment(Element.ALIGN_CENTER);
 	
 					if (d.isAtivo()) {
 						table2.addCell(cellDoador);
@@ -125,7 +129,11 @@ public class RelatorioDoacaoFachada extends RelatorioFacade{
 						cellValor				= new PdfPCell(new Paragraph((NumberFormat.getCurrencyInstance().format(d.getValor()))));
 						
 						cellCPForCNPJ.setHorizontalAlignment(Element.ALIGN_CENTER);
+						cellCPForCNPJ.setVerticalAlignment(Element.ALIGN_MIDDLE);
 						cellDataDoacao.setHorizontalAlignment(Element.ALIGN_CENTER);
+						cellDataDoacao.setVerticalAlignment(Element.ALIGN_MIDDLE);
+						cellValor.setVerticalAlignment(Element.ALIGN_MIDDLE);
+						cellValor.setHorizontalAlignment(Element.ALIGN_CENTER);
 	
 						if (d.isAtivo()) {
 							table2.addCell(cellDoador);
@@ -145,6 +153,8 @@ public class RelatorioDoacaoFachada extends RelatorioFacade{
 		cellValorTotal.setBackgroundColor(BaseColor.LIGHT_GRAY);
 		
 		valorTotalDoado.setBackgroundColor(BaseColor.LIGHT_GRAY);
+		valorTotalDoado.setHorizontalAlignment(Element.ALIGN_CENTER);
+		valorTotalDoado.setVerticalAlignment(Element.ALIGN_MIDDLE);
 		
 		table2.addCell(cellValorTotal);
 		table2.addCell(valorTotalDoado);
@@ -153,6 +163,7 @@ public class RelatorioDoacaoFachada extends RelatorioFacade{
 
 		document.add(table2);
 
+		abrirPDF();
 		document.close();
 		
 		return arquivoTMP;
