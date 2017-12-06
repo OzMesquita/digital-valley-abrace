@@ -30,6 +30,14 @@ public class Usuario extends PessoaFisica{
         setSenha(senha);
     }
 	
+	public Usuario(String nome, String endereco,  LocalDate dataCadastro, String telefone, String telefone2, String email, boolean ativo, String cpf, String rg, LocalDate dataNasc, boolean isDoador, String usuario,
+			String senha) throws PessoaInvalidaException, UsuarioInvalidoException, PessoaFisicaException {
+        super(nome, endereco, dataCadastro, telefone, telefone2, email, ativo, cpf, rg, dataNasc);
+        setDoador(isDoador);
+        setUsuario(usuario);
+        setSenha(senha);
+    }
+	
 
 	public String getUsuario() {
 		return usuario;
