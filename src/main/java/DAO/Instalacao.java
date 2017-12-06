@@ -100,6 +100,15 @@ public class Instalacao {
 				   //-----------------------------------//
 				   "INSERT INTO ABRACE.USUARIO (IDPESSOA,                             LOGIN,    SENHA)" + 
 				   " VALUES                    ((SELECT IDPESSOA FROM ABRACE.PESSOA), 'abrace', 'abrace')"
+				   ,
+				   "INSERT INTO ABRACE.PESSOA ( NOME,  ENDERECO,          TELEFONE1,             TELEFONE2,  EMAIL,                     DATACADASTRO,  ATIVO, ISDOADOR)" + 
+				   "VALUES                    ('ABRACE', 'Vila Matoso, 82', '(88)99999-9999',      NULL,      'teste@n2s.com',  CURRENT_DATE, 'true', 'false'  )"
+				   //-----------------------------------//
+				   ,
+				   //-----------------------------------//
+				   "INSERT INTO ABRACE.PESSOA_JURIDICA (IDPESSOA,                             CNPJ,             FANTASIA)" + 
+				   "VALUES                           ((SELECT IDPESSOA FROM ABRACE.PESSOA WHERE ABRACE.PESSOA.NOME='ABRACE'), '06.488.443/0001-50', 'ABRACE' )"
+				   //-----------------------------------//
 				   };
 		try {
 			for (String sql : createTable) {

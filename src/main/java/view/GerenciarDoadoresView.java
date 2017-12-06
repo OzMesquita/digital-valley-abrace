@@ -367,7 +367,7 @@ public class GerenciarDoadoresView {
 			}
 		});
 		shlGerenciarDoadoresFisicos.setSize(730, 702);
-		shlGerenciarDoadoresFisicos.setText("Gerenciar Assistidos - ABRACE");
+		shlGerenciarDoadoresFisicos.setText("Gerenciar Doadores - ABRACE");
 		shlGerenciarDoadoresFisicos.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/ABRACE.png").getAbsolutePath()));
 	}
 	

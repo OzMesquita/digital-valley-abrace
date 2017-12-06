@@ -70,9 +70,9 @@ public class DoacaoControle {
 	}
 	
 	public boolean confirmacao() {
-        MessageBox messageBox = new MessageBox(viewValor.getShlRealizarDoao(),SWT.ICON_WARNING | SWT.NO | SWT.YES);
+        MessageBox messageBox = new MessageBox(viewValor.getShlRealizarDoao(),SWT.ICON_WORKING | SWT.NO | SWT.YES);
         messageBox.setText("Doação realizada com sucesso!");
-        messageBox.setMessage("A doação foi realizada com sucesso! :) \n Deseja abrir o recibo?");
+        messageBox.setMessage("A doação foi realizada com sucesso! :) \n Deseja emitir o recibo?");
         int buttonID = messageBox.open();
         switch(buttonID) {
           case SWT.NO:
