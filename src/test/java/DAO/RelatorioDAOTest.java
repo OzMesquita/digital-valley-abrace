@@ -51,7 +51,7 @@ public class RelatorioDAOTest {
 		DoadorFachada doadores = new DoadorFachada();
 		try {
 			RelatorioDoadoresFacade r = new RelatorioDoadoresFacade();
-			r.relatorioDeDoadores(doadores.getTodosDoadores(), true, true, true, true);
+			r.relatorioDeDoadores(doadores.getTodosDoadores(), true, true);
 			r.abrirPDF();
 		} catch (DocumentException e) {
 			// TODO Auto-generated catch block
