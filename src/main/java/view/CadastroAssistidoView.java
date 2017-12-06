@@ -111,6 +111,7 @@ public class CadastroAssistidoView{
 	public Text getTfEmail() {
 		return tfEmail;
 	}
+	
 
 	public void setTfEmail(Text tfEmail) {
 		this.tfEmail = tfEmail;
@@ -487,6 +488,7 @@ public class CadastroAssistidoView{
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
 				try {
+					controle.validarEmail(arg0);
 					controle.getEvent(arg0);
 				} catch (PessoaInvalidaException e1) {
 					mensagemErro(e1);

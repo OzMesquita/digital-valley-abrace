@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
 
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.FocusEvent;
 import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.SelectionEvent;
@@ -41,6 +42,27 @@ public class CadastroAssistidoControle {
 		this.fachadaAssistido = fachadaAssistido;
 	}
 
+	public void validarEmail(SelectionEvent arg0) {
+		String k = viewAssistido.getTfEmail().getText();
+		String j = new String();
+		for (int i = 0; i < k.length(); i++) {
+			char[] caractere = { k.charAt(i) };
+			if ("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ.@_-".contains(new String(caractere)))
+				j += k.charAt(i);
+		}
+		j=j.toLowerCase();
+		viewAssistido.getTfEmail().setText(j);
+		viewAssistido.getTfEmail().setSelection(viewAssistido.getTfEmail().getText().length());
+		if(!j.matches("^([0-9a-zA-Z]+([_.-]?[0-9a-zA-Z]+)*@[0-9a-zA-Z]+([.]?[0-9a-zA-Z]+)*)")) {
+			viewAssistido.getTfEmail().setForeground(viewAssistido.getTfEmail().getDisplay().getSystemColor(SWT.COLOR_WHITE));
+			viewAssistido.getTfEmail().setBackground(viewAssistido.getTfEmail().getDisplay().getSystemColor(SWT.COLOR_RED));
+		}
+		else {
+			viewAssistido.getTfEmail().setForeground(viewAssistido.getTfEmail().getDisplay().getSystemColor(SWT.COLOR_BLACK));
+			viewAssistido.getTfEmail().setBackground(viewAssistido.getTfEmail().getDisplay().getSystemColor(SWT.COLOR_WHITE));
+		}
+	}
+	
 	public void filtrarCpf(KeyEvent evt) {
 		String k = viewAssistido.getTfCPF().getText();
 		String j = new String();
