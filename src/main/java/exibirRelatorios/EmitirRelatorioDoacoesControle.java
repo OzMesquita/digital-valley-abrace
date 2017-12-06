@@ -3,6 +3,7 @@ package exibirRelatorios;
 import java.io.IOException;
 import java.time.LocalDate;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.widgets.DateTime;
 
 import com.itextpdf.text.DocumentException;
 
@@ -40,6 +41,17 @@ public class EmitirRelatorioDoacoesControle {
 			}
 		}
 	}
+	
+	public static boolean verificarData(DateTime dataInicio, DateTime dataFim) {
+		if(!(dataInicio.getYear() > dataFim.getYear())) {
+			if(!(dataInicio.getMonth() > dataFim.getMonth())) {
+				if(!(dataInicio.getDay() > dataFim.getDay())) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
 		
 	public static void gerarRelatorioMensal(LocalDate dataInicio, LocalDate dataFim) throws DoacaoInvalidaException {
 		try {
@@ -49,5 +61,17 @@ public class EmitirRelatorioDoacoesControle {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	public static void main(String[] args) {
+		DateTime inicio = new DateTime(null, 0);
+		inicio.setYear(2016);
+		inicio.setMonth(02);
+		inicio.setDay(1);
+		
+		DateTime fim = new DateTime(null, 0);
+		fim.setYear(2018);
+		fim.setMonth(3);
+		fim.setDay(7);
+		verificarData(inicio, fim);
 	}
 }
