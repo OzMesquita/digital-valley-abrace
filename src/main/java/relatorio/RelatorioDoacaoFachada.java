@@ -3,10 +3,8 @@ package relatorio;
 import java.io.IOException;
 import java.text.NumberFormat;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Locale;
 
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
@@ -296,8 +294,6 @@ public class RelatorioDoacaoFachada extends RelatorioFacade{
 		document.add(table2);
 
 		document.close();
-		abrirPDF();
-		
 		return arquivoTMP;
 	}
 }

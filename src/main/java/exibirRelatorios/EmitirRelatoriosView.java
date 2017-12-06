@@ -117,6 +117,12 @@ public class EmitirRelatoriosView {
 		btnRelatrioMensalDe.setBounds(115, 209, 424, 68);
 		
 		Button btnRelatrioAnualDe = new Button(shlCadastroAssistido, SWT.NONE);
+		btnRelatrioAnualDe.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent arg0) {
+				EmitirRelatorioAnualAbraceView.main();
+			}
+		});
 		btnRelatrioAnualDe.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent arg0) {

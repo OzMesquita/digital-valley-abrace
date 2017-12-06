@@ -137,18 +137,18 @@ public class  EmitirRelatorioAnualPorDoadorView{
 		
 		Label lblRealizarDoao = new Label(shlDoacao, SWT.NONE);
 		lblRealizarDoao.setFont(SWTResourceManager.getFont("Segoe UI", 28, SWT.NORMAL));
-		lblRealizarDoao.setBounds(103, 14, 453, 50);
+		lblRealizarDoao.setBounds(80, 14, 453, 50);
 		lblRealizarDoao.setText("Relat\u00F3rio Anual de Doa\u00E7\u00F5es");
 		
 		Label lblParaRegistrarUma = new Label(shlDoacao, SWT.NONE);
 		lblParaRegistrarUma.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
-		lblParaRegistrarUma.setBounds(87, 70, 485, 25);
-		lblParaRegistrarUma.setText("Para gerar um relat\u00F3rio, \u00E9 necess\u00E1rio informar um doador");
+		lblParaRegistrarUma.setBounds(25, 70, 563, 25);
+		lblParaRegistrarUma.setText("Este relat\u00F3rio lista todas as doa\u00E7\u00F5es feitas pelo doador selecionado");
 		
 		Label lblSelecioneOuPesquise = new Label(shlDoacao, SWT.NONE);
 		lblSelecioneOuPesquise.setText("Selecione ou pesquise um doador e clique em \"continuar\"");
 		lblSelecioneOuPesquise.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
-		lblSelecioneOuPesquise.setBounds(86, 101, 487, 25);
+		lblSelecioneOuPesquise.setBounds(63, 101, 487, 25);
 		
 		Label label_1 = new Label(shlDoacao, SWT.NONE);
 		label_1.setText("Pesquisar:");

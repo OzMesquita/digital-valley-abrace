@@ -5,6 +5,7 @@ import java.io.File;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.wb.swt.SWTResourceManager;
+
 import view.Centralize;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.SWT;
@@ -84,7 +85,7 @@ public class EmitirRelatorioDoacoesView {
 		
 		Label lblSelecioneOPerodo = new Label(shlEmitirRelatrioMensal, SWT.NONE);
 		lblSelecioneOPerodo.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
-		lblSelecioneOPerodo.setBounds(212, 116, 289, 25);
+		lblSelecioneOPerodo.setBounds(212, 160, 289, 25);
 		lblSelecioneOPerodo.setText("Informe o per\u00EDodo para o relat\u00F3rio");
 		
 		dataInicio = new DateTime(shlEmitirRelatrioMensal, SWT.BORDER);
@@ -95,17 +96,17 @@ public class EmitirRelatorioDoacoesView {
 			}
 		});
 		dataInicio.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
-		dataInicio.setBounds(203, 168, 116, 36);
+		dataInicio.setBounds(204, 207, 116, 36);
 		
 		Label lblDataInicio = new Label(shlEmitirRelatrioMensal, SWT.NONE);
 		lblDataInicio.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
-		lblDataInicio.setBounds(101, 174, 94, 25);
+		lblDataInicio.setBounds(102, 213, 94, 25);
 		lblDataInicio.setText("Data Inicio:");
 		
 		Label lblDataTrmino = new Label(shlEmitirRelatrioMensal, SWT.NONE);
 		lblDataTrmino.setText("Data T\u00E9rmino:");
 		lblDataTrmino.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
-		lblDataTrmino.setBounds(360, 174, 116, 25);
+		lblDataTrmino.setBounds(361, 213, 116, 25);
 		
 		dataTermino = new DateTime(shlEmitirRelatrioMensal, SWT.BORDER);
 		dataTermino.addKeyListener(new KeyAdapter() {
@@ -115,7 +116,7 @@ public class EmitirRelatorioDoacoesView {
 			}
 		});
 		dataTermino.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
-		dataTermino.setBounds(484, 168, 116, 36);
+		dataTermino.setBounds(485, 207, 116, 36);
 		
 		Button button = new Button(shlEmitirRelatrioMensal, SWT.NONE);
 		button.addSelectionListener(new SelectionAdapter() {
@@ -127,7 +128,7 @@ public class EmitirRelatorioDoacoesView {
 		button.setText("Cancelar");
 		button.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/cancelar.png").getAbsolutePath()));
 		button.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
-		button.setBounds(139, 227, 214, 54);
+		button.setBounds(138, 278, 214, 54);
 		
 		Button btnGerarRelatrio = new Button(shlEmitirRelatrioMensal, SWT.NONE);
 		btnGerarRelatrio.addSelectionListener(new SelectionAdapter() {
@@ -139,7 +140,12 @@ public class EmitirRelatorioDoacoesView {
 		btnGerarRelatrio.setText("Gerar relat\u00F3rio");
 		btnGerarRelatrio.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/ok.png").getAbsolutePath()));
 		btnGerarRelatrio.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
-		btnGerarRelatrio.setBounds(359, 227, 214, 54);
+		btnGerarRelatrio.setBounds(358, 278, 214, 54);
+		
+		Label lblEsteRelatrioLista = new Label(shlEmitirRelatrioMensal, SWT.NONE);
+		lblEsteRelatrioLista.setText("Este relat\u00F3rio lista todas as doa\u00E7\u00F5es recebidas no per\u00EDodo informado");
+		lblEsteRelatrioLista.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
+		lblEsteRelatrioLista.setBounds(69, 97, 576, 25);
 		while (!shlEmitirRelatrioMensal.isDisposed()) {
 			if (!display.readAndDispatch()) {
 				display.sleep();
@@ -158,7 +164,7 @@ public class EmitirRelatorioDoacoesView {
 				identificarESC(arg0);
 			}
 		});
-		shlEmitirRelatrioMensal.setSize(730, 348);
+		shlEmitirRelatrioMensal.setSize(730, 397);
 		shlEmitirRelatrioMensal.setText("Emitir relat\u00F3rio de doa\u00E7\u00F5es - ABRACE");
 		shlEmitirRelatrioMensal.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/ABRACE.png").getAbsolutePath()));
 		
