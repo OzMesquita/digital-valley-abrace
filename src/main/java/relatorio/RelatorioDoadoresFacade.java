@@ -21,7 +21,7 @@ import model.PessoaJuridica;
 
 public class RelatorioDoadoresFacade extends RelatorioFacade{
 
-	public String relatorioDeDoadores(List<Pessoa> list, boolean exibirAtivos, boolean exibirInativos, boolean exibirPessoasFisicas, boolean exibirPessoasJuridicas) throws DocumentException, IOException{
+	public void relatorioDeDoadores(List<Pessoa> list, boolean exibirPessoasFisicas, boolean exibirPessoasJuridicas) throws DocumentException, IOException{
 
 		// ==================================================================================================//
 		// Criando o documento
@@ -30,17 +30,14 @@ public class RelatorioDoadoresFacade extends RelatorioFacade{
 		String tipo = "";
 		String tipoPessoa = "";
 		
-		if(exibirPessoasFisicas) tipoPessoa+=" Fisicas ";
+		if(exibirPessoasFisicas) tipoPessoa+=" Físicas ";
 		if(exibirPessoasFisicas&&exibirPessoasJuridicas) tipoPessoa+="e";
-		if(exibirPessoasJuridicas) tipoPessoa+=" Juridicas ";
+		if(exibirPessoasJuridicas) tipoPessoa+=" Jurídicas ";
 		
-		if(exibirAtivos)tipo+=" Ativos ";
-		if(exibirAtivos&&exibirInativos)tipo+="e";
-		if(exibirInativos)tipo+=" Inativos ";
 		
-		String subtitulo = "Lista de Doadores"+tipo+"da ONG ABRACE Russas";
+		String subtitulo = "Lista de Doadores da ONG ABRACE Russas";
 		String subtitulo2 = "Pessoas "+tipoPessoa+"";
-		PdfWriter.getInstance(document, gravarDocumento("Lista de Doadores"+tipoPessoa+tipo+"da ONG ABRACE Russas"));
+		PdfWriter.getInstance(document, gravarDocumento("Lista de Doadores"+tipoPessoa+"da ONG ABRACE Russas"));
 
 		document.open();
 		// ==================================================================================================//
@@ -108,19 +105,11 @@ public class RelatorioDoadoresFacade extends RelatorioFacade{
 				cellCPForCNPJ.setHorizontalAlignment(Element.ALIGN_CENTER);
 				cellTelefone.setHorizontalAlignment(Element.ALIGN_CENTER);
 				
-				if (exibirAtivos && p.isAtivo()) {
 					table2.addCell(cellNomeOrNomeFantasia);
 					table2.addCell(cellCPForCNPJ);
 					table2.addCell(cellTelefone);
 					doadoresContados++;
-				}
 
-				if (exibirInativos && !p.isAtivo()) {
-					table2.addCell(cellNomeOrNomeFantasia);
-					table2.addCell(cellCPForCNPJ);
-					table2.addCell(cellTelefone);
-					doadoresContados++;
-				}
 			}else
 				if(p instanceof PessoaJuridica&&exibirPessoasJuridicas){
 					cellNomeOrNomeFantasia = new PdfPCell(new Paragraph(((PessoaJuridica) p).getNomeFantasia()));
@@ -130,19 +119,12 @@ public class RelatorioDoadoresFacade extends RelatorioFacade{
 					cellCPForCNPJ.setHorizontalAlignment(Element.ALIGN_CENTER);
 					cellTelefone.setHorizontalAlignment(Element.ALIGN_CENTER);
 					
-					if (exibirAtivos && p.isAtivo()) {
+					
 						table2.addCell(cellNomeOrNomeFantasia);
 						table2.addCell(cellCPForCNPJ);
 						table2.addCell(cellTelefone);
 						doadoresContados++;
-					}
-
-					if (exibirInativos && !p.isAtivo()) {
-						table2.addCell(cellNomeOrNomeFantasia);
-						table2.addCell(cellCPForCNPJ);
-						table2.addCell(cellTelefone);
-						doadoresContados++;
-					}
+					
 				}
 		}
 		PdfPCell totalDoadores = new PdfPCell(new Paragraph("Total de Doadores ",new Font(FontFamily.UNDEFINED,12,Font.BOLD)));
@@ -163,6 +145,5 @@ public class RelatorioDoadoresFacade extends RelatorioFacade{
 
 		document.close();
 		
-		return arquivoTMP;
 	}
 }
