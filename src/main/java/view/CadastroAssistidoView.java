@@ -385,6 +385,12 @@ public class CadastroAssistidoView{
 				identificarESC(arg0);
 			}
 		});
+		tfEmail.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent arg0) {
+				controle.validarEmail(arg0);
+			}
+		});
 		tfEmail.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfEmail.setBounds(254, 520, 369, 38);
 		tfEmail.setTextLimit(128);
@@ -488,7 +494,6 @@ public class CadastroAssistidoView{
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
 				try {
-					controle.validarEmail(arg0);
 					controle.getEvent(arg0);
 				} catch (PessoaInvalidaException e1) {
 					mensagemErro(e1);

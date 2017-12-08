@@ -42,7 +42,7 @@ public class CadastroAssistidoControle {
 		this.fachadaAssistido = fachadaAssistido;
 	}
 
-	public void validarEmail(SelectionEvent arg0) {
+	public void validarEmail(FocusEvent arg0) {
 		String k = viewAssistido.getTfEmail().getText();
 		String j = new String();
 		for (int i = 0; i < k.length(); i++) {
