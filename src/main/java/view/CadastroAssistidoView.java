@@ -388,7 +388,7 @@ public class CadastroAssistidoView{
 		tfEmail.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent arg0) {
-				controle.validarEmail(arg0);
+				controle.validarEmail();
 			}
 		});
 		tfEmail.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));

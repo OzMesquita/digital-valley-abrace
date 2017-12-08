@@ -8,6 +8,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.FocusEvent;
 import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.widgets.Event;
 
 import exceptions.AssistidoInvalidoException;
 import exceptions.PessoaFisicaException;
@@ -42,7 +43,7 @@ public class CadastroAssistidoControle {
 		this.fachadaAssistido = fachadaAssistido;
 	}
 
-	public void validarEmail(FocusEvent arg0) {
+	public boolean validarEmail() {
 		String k = viewAssistido.getTfEmail().getText();
 		String j = new String();
 		for (int i = 0; i < k.length(); i++) {
@@ -56,10 +57,12 @@ public class CadastroAssistidoControle {
 		if(!j.matches("^([0-9a-zA-Z]+([_.-]?[0-9a-zA-Z]+)*@[0-9a-zA-Z]+([.]?[0-9a-zA-Z]+)*)")) {
 			viewAssistido.getTfEmail().setForeground(viewAssistido.getTfEmail().getDisplay().getSystemColor(SWT.COLOR_WHITE));
 			viewAssistido.getTfEmail().setBackground(viewAssistido.getTfEmail().getDisplay().getSystemColor(SWT.COLOR_RED));
+			return false;
 		}
 		else {
 			viewAssistido.getTfEmail().setForeground(viewAssistido.getTfEmail().getDisplay().getSystemColor(SWT.COLOR_BLACK));
 			viewAssistido.getTfEmail().setBackground(viewAssistido.getTfEmail().getDisplay().getSystemColor(SWT.COLOR_WHITE));
+			return true;
 		}
 	}
 	
@@ -136,6 +139,7 @@ public class CadastroAssistidoControle {
 	public void getEvent(SelectionEvent event) throws PessoaInvalidaException, PessoaFisicaException, SQLException {
 		if (event.getSource().toString().equals("Button {Cadastrar}")) {
 			Assistido assistido = new Assistido();
+			
 			try {
 				assistido.setNome(viewAssistido.getTfNome().getText());
 				assistido.setApelido(viewAssistido.getTfApelido().getText());
