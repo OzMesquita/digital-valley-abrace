@@ -24,7 +24,7 @@ import org.eclipse.swt.events.FocusEvent;
 import org.eclipse.swt.events.KeyAdapter;
 import org.eclipse.swt.events.KeyEvent;
 
-public class CadastroAssistidoView{
+public class CadastroAssistidoView implements View{
 	CadastroAssistidoControle controle;
 	protected Shell shlCadastroAssistido;
 	private Text tfRG;
@@ -278,6 +278,7 @@ public class CadastroAssistidoView{
 			@Override
 			public void keyReleased(KeyEvent arg0) {
 				identificarESC(arg0);
+				controle.filtrarNome(arg0, controle.getViewAssistido());
 			}
 		});
 		tfNome.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
@@ -288,6 +289,7 @@ public class CadastroAssistidoView{
 		tfApelido.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent arg0) {
+				controle.filtrarApelido(arg0, controle.getViewAssistido());
 				identificarESC(arg0);
 			}
 		});
@@ -299,7 +301,7 @@ public class CadastroAssistidoView{
 		tfCPF.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent arg0) {
-				controle.filtrarCpf(arg0);
+				controle.filtrarCpf(arg0,controle.getViewAssistido());
 				identificarESC(arg0);
 			}
 		});
@@ -307,6 +309,7 @@ public class CadastroAssistidoView{
 			@Override
 			public void focusLost(FocusEvent arg0) {
 				controle.getFocus(arg0);
+				controle.validarCPF(controle.getViewAssistido());
 			}
 		});
 		tfCPF.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
@@ -317,6 +320,7 @@ public class CadastroAssistidoView{
 		tfRG.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent arg0) {
+				controle.filtrarRG(arg0, controle.getViewAssistido());
 				identificarESC(arg0);
 			}
 		});
@@ -358,7 +362,7 @@ public class CadastroAssistidoView{
 		tfTelefone1.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent arg0) {
-				controle.filtrarTelefone1(arg0);
+				controle.filtrarTelefone1(arg0,controle.getViewAssistido());
 				identificarESC(arg0);
 			}
 		});
@@ -370,7 +374,7 @@ public class CadastroAssistidoView{
 		tfTelefone2.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent arg0) {
-				controle.filtrarTelefone2(arg0);
+				controle.filtrarTelefone2(arg0,controle.getViewAssistido());
 				identificarESC(arg0);
 			}
 		});
@@ -383,12 +387,13 @@ public class CadastroAssistidoView{
 			@Override
 			public void keyReleased(KeyEvent arg0) {
 				identificarESC(arg0);
+				controle.filtrarEmail(controle.getViewAssistido());
 			}
 		});
 		tfEmail.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent arg0) {
-				controle.validarEmail();
+				controle.validarEmail(controle.getViewAssistido());
 			}
 		});
 		tfEmail.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));

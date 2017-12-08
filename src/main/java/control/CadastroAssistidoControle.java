@@ -18,7 +18,7 @@ import model.Assistido;
 import model.PessoaFisica;
 import view.CadastroAssistidoView;
 
-public class CadastroAssistidoControle {
+public class CadastroAssistidoControle extends Controle{
 	private CadastroAssistidoView viewAssistido;
 	private AssistidoFachada fachadaAssistido;
 
@@ -41,99 +41,6 @@ public class CadastroAssistidoControle {
 
 	public void setFachadaAssistido(AssistidoFachada fachadaAssistido) {
 		this.fachadaAssistido = fachadaAssistido;
-	}
-
-	public boolean validarEmail() {
-		String k = viewAssistido.getTfEmail().getText();
-		String j = new String();
-		for (int i = 0; i < k.length(); i++) {
-			char[] caractere = { k.charAt(i) };
-			if ("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ.@_-".contains(new String(caractere)))
-				j += k.charAt(i);
-		}
-		j=j.toLowerCase();
-		viewAssistido.getTfEmail().setText(j);
-		viewAssistido.getTfEmail().setSelection(viewAssistido.getTfEmail().getText().length());
-		if(!j.matches("^([0-9a-zA-Z]+([_.-]?[0-9a-zA-Z]+)*@[0-9a-zA-Z]+([.]?[0-9a-zA-Z]+)*)")) {
-			viewAssistido.getTfEmail().setForeground(viewAssistido.getTfEmail().getDisplay().getSystemColor(SWT.COLOR_WHITE));
-			viewAssistido.getTfEmail().setBackground(viewAssistido.getTfEmail().getDisplay().getSystemColor(SWT.COLOR_RED));
-			return false;
-		}
-		else {
-			viewAssistido.getTfEmail().setForeground(viewAssistido.getTfEmail().getDisplay().getSystemColor(SWT.COLOR_BLACK));
-			viewAssistido.getTfEmail().setBackground(viewAssistido.getTfEmail().getDisplay().getSystemColor(SWT.COLOR_WHITE));
-			return true;
-		}
-	}
-	
-	public void filtrarCpf(KeyEvent evt) {
-		String k = viewAssistido.getTfCPF().getText();
-		String j = new String();
-		for (int i = 0; i < k.length(); i++) {
-			char[] caractere = { k.charAt(i) };
-			if ("0123456789".contains(new String(caractere)))
-				j += k.charAt(i);
-		}
-		String temp = new String();
-		for (int i = 0; i < j.length(); i++) {
-			if (i == 3 || i == 6) {
-				temp += "." + j.charAt(i);
-			} else if (i == 9) {
-				temp += "-" + j.charAt(i);
-			} else {
-				temp += j.charAt(i);
-			}
-		}
-		viewAssistido.setTfCPF(temp);
-		viewAssistido.getTfCPF().setSelection(viewAssistido.getTfCPF().getText().length());
-	}
-
-	public void filtrarTelefone1(KeyEvent evt) {
-		String k = viewAssistido.getTfTelefone1().getText();
-		String j = new String();
-		for (int i = 0; i < k.length(); i++) {
-			char[] caractere = { k.charAt(i) };
-			if ("0123456789".contains(new String(caractere)))
-				j += k.charAt(i);
-		}
-		String temp = new String();
-		for (int i = 0; i < j.length(); i++) {
-			if (i == 0) {
-				temp += "(" + j.charAt(i);
-			} else if (i == 2) {
-				temp += ")" + j.charAt(i);
-			} else if (i == 6) {
-				temp += "-" + j.charAt(i);
-			} else if (i == 12 || i < 11) {
-				temp += j.charAt(i);
-			}
-		}
-		viewAssistido.setTfTelefone1(temp);
-		viewAssistido.getTfTelefone1().setSelection(viewAssistido.getTfTelefone1().getText().length());
-	}
-
-	public void filtrarTelefone2(KeyEvent evt) {
-		String k = viewAssistido.getTfTelefone2().getText();
-		String j = new String();
-		for (int i = 0; i < k.length(); i++) {
-			char[] caractere = { k.charAt(i) };
-			if ("0123456789".contains(new String(caractere)))
-				j += k.charAt(i);
-		}
-		String temp = new String();
-		for (int i = 0; i < j.length(); i++) {
-			if (i == 0) {
-				temp += "(" + j.charAt(i);
-			} else if (i == 2) {
-				temp += ")" + j.charAt(i);
-			} else if (i == 6) {
-				temp += "-" + j.charAt(i);
-			} else if (i == 12 || i < 11) {
-				temp += j.charAt(i);
-			}
-		}
-		viewAssistido.setTfTelefone2(temp);
-		viewAssistido.getTfTelefone2().setSelection(viewAssistido.getTfTelefone2().getText().length());
 	}
 
 	public void getEvent(SelectionEvent event) throws PessoaInvalidaException, PessoaFisicaException, SQLException {
