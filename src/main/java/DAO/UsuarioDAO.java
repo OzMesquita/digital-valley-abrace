@@ -18,21 +18,27 @@ public class UsuarioDAO extends ExecutaSQL{
 			super(connection);
 		}
 		
-		public Usuario getUsuario(String login, String senha) throws UsuarioInvalidoException, PessoaInvalidaException {
+		public Usuario getUsuario(String login, String senha) throws UsuarioInvalidoException, PessoaInvalidaException, SQLException {
+			PreparedStatement stmt = null;
+			ResultSet rs = null;
 			try {
 	        	String sql = "SELECT ABRACE.Usuario.idPessoa FROM ABRACE.Usuario, ABRACE.Pessoa WHERE ABRACE.Usuario.login=? AND ABRACE.Usuario.senha=? AND ABRACE.Pessoa.ativo=?";
-	        	PreparedStatement stmt = getConexao().prepareStatement(sql);
+	        	stmt = getConexao().prepareStatement(sql);
 	        	stmt.setString(1, login);
 	            stmt.setString(2, senha);
 	            stmt.setBoolean(3, true);
-	            ResultSet rs = stmt.executeQuery();
+	            rs = stmt.executeQuery();
 	            if(rs.next()){
 	                int id = rs.getInt(1);
-	               return new Usuario(id, login, senha);
+	                return new Usuario(id, login, senha);
 	            }
+	           
 	        }catch (SQLException ex) {
 	            System.err.println("Erro com a sintaxe SQL no metodo de consulta. GerenteDAO");    
-	        }
+	        }finally {
+	        	 rs.close();
+		         stmt.close();
+			}
 	        return null;
 	    }
 		
@@ -60,6 +66,7 @@ public class UsuarioDAO extends ExecutaSQL{
 				stmt.setString(2, usuario.getSenha());
 				stmt.setInt(3, usuario.getId());
 				stmt.execute();
+				stmt.close();
 		}
 		
 		public boolean editarUsuario(Usuario usuario) {
@@ -70,6 +77,7 @@ public class UsuarioDAO extends ExecutaSQL{
 				stmt.setString(1, usuario.getUsuario());
 				stmt.setString(2, usuario.getSenha());
 				stmt.executeUpdate();
+				stmt.close();
 			}catch(SQLException e) {
 				rollBack(e);
 				return false;
@@ -81,9 +89,10 @@ public class UsuarioDAO extends ExecutaSQL{
 			String sql = "UPDATE ABRACE.Pessoa SET ativo=false WHERE idPessoa=?";
 			PreparedStatement stmt = getConexao().prepareStatement(sql);
 			stmt.executeQuery();
+			stmt.close();
 		}
 		
-		public ArrayList<Usuario> listarUsuarios(){
+		public ArrayList<Usuario> listarUsuarios() throws SQLException{
 			ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
 			String informacaoPessoa = "ABRACE.Pessoa.idPessoa, ABRACE.Pessoa.nome, ABRACE.Pessoa.endereco, ABRACE.Pessoa.telefone1,"
 	                				+ "ABRACE.Pessoa.telefone2, ABRACE.Pessoa.email, ABRACE.Pessoa.dataCadastro,ABRACE.Pessoa.isDoador,";
@@ -92,9 +101,11 @@ public class UsuarioDAO extends ExecutaSQL{
 					+ "FROM ABRACE.Pessoa, ABRACE.Pessoa_Fisica, ABRACE.Usuario "
 					+ "WHERE ABRACE.Pessoa.ativo=True AND ABRACE.Pessoa.idPessoa=ABRACE.Pessoa_Fisica.idPessoa "
 					+ "AND ABRACE.Pessoa_Fisica.idPessoa=ABRACE.Usuario.idPessoa";
+			PreparedStatement stmt = null;
+			ResultSet rs = null;
 			try {
-				PreparedStatement stmt = getConexao().prepareStatement(sql);
-				ResultSet rs = stmt.executeQuery();
+				stmt = getConexao().prepareStatement(sql);
+				rs = stmt.executeQuery();
 				while(rs.next()) {
 					int id = rs.getInt(1);
 					String nome = rs.getString(2);
@@ -119,11 +130,14 @@ public class UsuarioDAO extends ExecutaSQL{
 				e.printStackTrace();
 			} catch (UsuarioInvalidoException e) {
 				e.printStackTrace();
+			}finally {
+				rs.close();
+				stmt.close();
 			}
 			return usuarios;
 		}
 		
-		public static void main(String[] args) {
+		public static void main(String[] args) throws SQLException {
 			UsuarioDAO u = new UsuarioDAO(new ConnectionFactory().getConnection());
 			ArrayList<Usuario> user = u.listarUsuarios();
 			for(int i = 0; i < user.size(); i++) {

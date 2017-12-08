@@ -9,8 +9,9 @@ import model.Pessoa;
 public class PessoaFachada {
 	public Pessoa obterPessoa(int idPessoa) {
 		PessoaDAO dao = new PessoaDAO(new ConnectionFactory().getConnection());
-		Pessoa pessoa = dao.getPessoa(idPessoa);
+		Pessoa pessoa = null;
 		try {
+			pessoa = dao.getPessoa(idPessoa);
 			dao.getConexao().close();
 		} catch (SQLException e) {
 			e.printStackTrace();

@@ -4,12 +4,6 @@ import java.sql.DatabaseMetaData;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
-
-import exceptions.PessoaFisicaException;
-import exceptions.PessoaInvalidaException;
-import exceptions.UsuarioInvalidoException;
-import model.Usuario;
 
 public class Instalacao {
 	public static void instalarBanco() {

@@ -118,13 +118,15 @@ public class PessoaDAO extends ExecutaSQL {
 			}
 		}
 
-	public Pessoa getPessoa(int id) {
+	public Pessoa getPessoa(int id) throws SQLException {
 		String sql = "SELECT ABRACE.Pessoa.ativo, ABRACE.Pessoa.nome, ABRACE.Pessoa.endereco, ABRACE.Pessoa.telefone1, ABRACE.Pessoa.telefone2,"
 				+ " ABRACE.Pessoa.email, ABRACE.Pessoa.dataCadastro, ABRACE.Pessoa.isDoador FROM ABRACE.Pessoa WHERE ABRACE.Pessoa.idPessoa=?";
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
 		try {
-			PreparedStatement stmt = getConexao().prepareStatement(sql);
+			stmt = getConexao().prepareStatement(sql);
 			stmt.setInt(1, id);
-			ResultSet rs = stmt.executeQuery();
+			rs = stmt.executeQuery();
 			if (rs.next()) {
 				boolean ativo = rs.getBoolean(1);
 				String nome = rs.getString(2);
@@ -136,10 +138,11 @@ public class PessoaDAO extends ExecutaSQL {
 				boolean isDoador = rs.getBoolean(8);
 				return new Pessoa(id, nome, endereco, telefone, telefone2, dataCadastro, email, ativo, isDoador);
 			}
-		} catch (SQLException e) {
-			throw new RuntimeException(e.getMessage());
 		} catch (PessoaInvalidaException e) {
 			e.printStackTrace();
+		}finally {
+			rs.close();
+			stmt.close();
 		}
 		return null;
 	}
