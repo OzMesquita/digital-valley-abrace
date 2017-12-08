@@ -42,8 +42,5 @@ public class EmitirRelatorioAssistidoeDoadores {
 		}
 	}
 	
-	public static void main(String[] args) {
-		gerarRelatorioAssistido();
-		//gerarRelatorioDoadores();
-	}
+	
 }

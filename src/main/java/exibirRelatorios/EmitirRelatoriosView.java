@@ -134,6 +134,12 @@ public class EmitirRelatoriosView {
 		btnRelatrioAnualDe.setBounds(115, 283, 424, 68);
 		
 		Button btnRelatrioDeAssistidos = new Button(shlCadastroAssistido, SWT.NONE);
+		btnRelatrioDeAssistidos.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent arg0) {
+				EmitirRelatorioAssistidoeDoadores.gerarRelatorioAssistido();
+			}
+		});
 		btnRelatrioDeAssistidos.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent arg0) {
@@ -145,6 +151,12 @@ public class EmitirRelatoriosView {
 		btnRelatrioDeAssistidos.setBounds(115, 357, 424, 68);
 		
 		Button btnRelatrioDeDoadores = new Button(shlCadastroAssistido, SWT.NONE);
+		btnRelatrioDeDoadores.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent arg0) {
+				EmitirRelatorioAssistidoeDoadores.gerarRelatorioDoadores();
+			}
+		});
 		btnRelatrioDeDoadores.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent arg0) {
