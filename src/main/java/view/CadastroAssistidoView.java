@@ -564,17 +564,17 @@ public class CadastroAssistidoView implements ViewAssistido{
 	}
 	
 	public void mensagemErro(Exception e){
-		 MessageBox messageBox = new MessageBox(shlCadastroAssistido,SWT.ICON_ERROR | SWT.OK); 
-       messageBox.setText("Problemas no cadastro do assistido!");
-       messageBox.setMessage(e.getMessage()+"\nNão foi possível cadastrar este assistido.");
-       messageBox.open();
+		MessageBox messageBox = new MessageBox(shlCadastroAssistido,SWT.ICON_ERROR | SWT.OK); 
+		messageBox.setText("Problemas no cadastro do assistido!");
+		messageBox.setMessage(e.getMessage()+"\nNão foi possível cadastrar este assistido.");
+		messageBox.open();
 	}
 	
 	public void mensagemCPFJaCadastrado(Exception e){
-        MessageBox messageBox = new MessageBox(shlCadastroAssistido,SWT.ICON_ERROR | SWT.OK);
-     messageBox.setText("Problemas no cadastro do assistido!");
-     messageBox.setMessage(e.getMessage());
-     messageBox.open();
+       MessageBox messageBox = new MessageBox(shlCadastroAssistido,SWT.ICON_ERROR | SWT.OK);
+       messageBox.setText("Problemas no cadastro do assistido!");
+       messageBox.setMessage(e.getMessage());
+       messageBox.open();
    }
 	
 	public void mensagemErroEmail(Exception e) {

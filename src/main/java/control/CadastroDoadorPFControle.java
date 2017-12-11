@@ -17,6 +17,14 @@ public class CadastroDoadorPFControle extends Controle {
 	private CadastroDoadorPFisicaView viewDoador;
 	private DoadorFachada fachadaDoador; 
 	
+	public CadastroDoadorPFisicaView getViewDoador() {
+		return viewDoador;
+	}
+
+	public void setViewDoador(CadastroDoadorPFisicaView viewDoador) {
+		this.viewDoador = viewDoador;
+	}
+
 	public void getEvent(SelectionEvent event) {
 		if (event.getSource().toString().equals("Button {Cadastrar}")){
 			try {
