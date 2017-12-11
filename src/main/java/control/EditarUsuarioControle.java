@@ -31,15 +31,19 @@ public class EditarUsuarioControle {
 				}else {
 					usuario.setSenha(viewUsuario.getUsuario().getSenha());
 				}
-				if (fachadaUsuario.editarUsuario(usuario)) {
-					viewUsuario.mensagemSucesso(usuario);
-					viewUsuario.getShlEditarDoadorPessoa().dispose();
-					LoginSingleton.setUsuario(usuario);
+				if(viewUsuario.getTxtSenhaAntiga().getText().equals(LoginSingleton.getUsuario().getSenha())) {
+					if (fachadaUsuario.editarUsuario(usuario)) {
+						viewUsuario.mensagemSucesso(usuario);
+						viewUsuario.getShlEditarDoadorPessoa().dispose();
+						LoginSingleton.setUsuario(usuario);
+					}
+				}else {
+					viewUsuario.mensagemErro(new Exception("Você digitou a senha atual inválida"));
 				}
 			} catch (PessoaInvalidaException e) {
-				viewUsuario.mensagemErro(e);
+				viewUsuario.mensagemErro(new Exception("Consulte o suporte"));
 			} catch (UsuarioInvalidoException e) {
-				viewUsuario.mensagemErro(e);;
+				viewUsuario.mensagemErro(new Exception("Consulte o suporte"));
 			}
 		}else {
 			this.viewUsuario.getShlEditarDoadorPessoa().dispose();
