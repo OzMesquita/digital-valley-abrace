@@ -1,5 +1,7 @@
 package control;
 
+import org.eclipse.swt.events.FocusEvent;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.KeyEvent;
 
@@ -162,12 +164,12 @@ public class Controle {
 		}
 		return temp;
 	}
-	public boolean validarTelefone1(KeyEvent evt,ViewPessoa view) {
+	public boolean validarTelefone1(FocusEvent evt, ViewPessoa view) {
 		if(!view.getTfTelefone1().getText().equals("")&&view.getTfTelefone1().getText().length()<14) return false;
 		else return true;
 		
 	}
-	public boolean validarTelefone2(KeyEvent evt,ViewPessoa view) {
+	public boolean validarTelefone2(FocusEvent evt,ViewPessoa view) {
 		if(!view.getTfTelefone2().getText().equals("")&&view.getTfTelefone2().getText().length()<14) return false;
 		else return true;
 		
