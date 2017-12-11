@@ -293,7 +293,7 @@ public class  EmitirRelatorioAnualPorDoadorView{
 		});
 		shlDoacao.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/ABRACE.png").getAbsolutePath()));
 		shlDoacao.setSize(730, 643);
-		shlDoacao.setText("Emitir relat\u00F3rio anual por doador");
+		shlDoacao.setText("Emitir relat\u00F3rio anual por doador - ABRACE");
 	}
 	
 	public static void main() {

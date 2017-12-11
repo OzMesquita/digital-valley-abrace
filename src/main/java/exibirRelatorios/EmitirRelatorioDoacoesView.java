@@ -152,7 +152,7 @@ public class EmitirRelatorioDoacoesView {
 		Label lblEsteRelatrioLista = new Label(shlEmitirRelatrioMensal, SWT.NONE);
 		lblEsteRelatrioLista.setText("Este relat\u00F3rio lista todas as doa\u00E7\u00F5es recebidas no per\u00EDodo informado");
 		lblEsteRelatrioLista.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
-		lblEsteRelatrioLista.setBounds(69, 97, 576, 25);
+		lblEsteRelatrioLista.setBounds(69, 118, 576, 25);
 		while (!shlEmitirRelatrioMensal.isDisposed()) {
 			if (!display.readAndDispatch()) {
 				display.sleep();
@@ -178,15 +178,15 @@ public class EmitirRelatorioDoacoesView {
 		Label lblRelatrioMensalDe = new Label(shlEmitirRelatrioMensal, SWT.NONE);
 		lblRelatrioMensalDe.setText("Relat\u00F3rio de Doa\u00E7\u00F5es");
 		lblRelatrioMensalDe.setFont(SWTResourceManager.getFont("Segoe UI", 28, SWT.NORMAL));
-		lblRelatrioMensalDe.setBounds(182, 10, 349, 50);
+		lblRelatrioMensalDe.setBounds(182, 19, 349, 50);
 		
 		Label label_1 = new Label(shlEmitirRelatrioMensal, SWT.NONE);
 		label_1.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/relatorio.png").getAbsolutePath()));
-		label_1.setBounds(584, 17, 80, 105);
+		label_1.setBounds(604, 10, 80, 105);
 		
 		Label lblOngAbrace = new Label(shlEmitirRelatrioMensal, SWT.NONE);
 		lblOngAbrace.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
-		lblOngAbrace.setBounds(300, 60, 114, 25);
+		lblOngAbrace.setBounds(300, 75, 114, 25);
 		lblOngAbrace.setText("ONG ABRACE");
 
 	}

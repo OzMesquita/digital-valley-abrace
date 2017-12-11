@@ -64,6 +64,7 @@ public class EmitirRelatorioAnualAbraceView {
 
 	/**
 	 * Create contents of the window.
+	 * @wbp.parser.entryPoint
 	 */
 	protected void createContents() {
 		shlEmitirRelatrioDe = new Shell();
