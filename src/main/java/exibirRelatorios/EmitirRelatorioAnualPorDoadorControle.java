@@ -57,11 +57,11 @@ public class EmitirRelatorioAnualPorDoadorControle {
 				gerarRelatorioAnualPessoa(pessoaFachada.obterPessoa(idPessoa), Integer.parseInt(viewDoador.getTfAno().getText()));
 				viewDoador.getShlDoacao().dispose();
 			} catch (ArrayIndexOutOfBoundsException e) {
-				viewDoador.mensagemErro(new Exception("Selecione um doador para continuar"));
+				viewDoador.mensagemErro(new Exception("Selecione um doador para continuar."));
 			} catch (DoacaoInvalidaException e) {
 				e.printStackTrace();
 			} catch (NumberFormatException e) {
-				viewDoador.mensagemErro(new Exception("Informe o ano para continuar"));
+				viewDoador.mensagemErro(new Exception("Informe o ano para continuar."));
 			}
 		}if(event.getSource().toString().equals("Button {Pesquisar}")) {
 			if(getViewDoador().getTfPesquisar().getText() == "") {
