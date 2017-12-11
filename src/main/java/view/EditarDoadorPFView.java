@@ -384,8 +384,8 @@ public class EditarDoadorPFView {
 	
 	public void mensagemErro(Exception e){
 		 MessageBox messageBox = new MessageBox(shlEditarDoadorPessoa,SWT.ICON_ERROR | SWT.OK); 
-	     messageBox.setText("Problemas ao editar dados do assistido!");
-	     messageBox.setMessage("Não foi possível editar este assistido. \nConsulte o suporte.");
+	     messageBox.setText("Problemas ao editar dados do doador!");
+	     messageBox.setMessage("Não foi possível editar este doador. \nConsulte o suporte.");
 	     messageBox.open();
 	}
 	

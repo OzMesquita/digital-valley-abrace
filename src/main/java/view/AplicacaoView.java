@@ -115,7 +115,7 @@ public class AplicacaoView {
 				EditarUsuarioView.main(LoginSingleton.getUsuario());
 			}
 		});
-		bntEditaUsuario.setText("Editar usuário");
+		bntEditaUsuario.setText("Editar Usu\u00E1rio");
 		bntEditaUsuario.setImage(SWTResourceManager.getImage("C:\\Users\\Gabriel Gon\u00E7alves\\Desktop\\src\\main\\java\\view\\img\\doacao-small.png"));
 		bntEditaUsuario.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
 		bntEditaUsuario.setBounds(72, 421, 243, 68);

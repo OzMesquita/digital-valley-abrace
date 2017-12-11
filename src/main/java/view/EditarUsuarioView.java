@@ -177,15 +177,15 @@ public class EditarUsuarioView {
 
 	public void mensagemErro(Exception e){
 		 MessageBox messageBox = new MessageBox(shlEditarUsuario,SWT.ICON_ERROR | SWT.OK); 
-	     messageBox.setText("Problemas ao editar dados do assistido!");
-	     messageBox.setMessage("Não foi possível editar este assistido. \nConsulte o suporte.");
+	     messageBox.setText("Problemas ao editar dados do usuário!");
+	     messageBox.setMessage("Não foi possível editar este usuário. \nConsulte o suporte.");
 	     messageBox.open();
 	}
 	
 	public void mensagemSucesso(PessoaFisica pessoaFisica){
 		MessageBox messageBox = new MessageBox(shlEditarUsuario,SWT.ICON_WORKING | SWT.OK); 
 		messageBox.setText("Operação realizada com sucesso!");
-		messageBox.setMessage("Os dados do doador foram alterados com sucesso!");
+		messageBox.setMessage("Os dados do usuário foram alterados com sucesso!");
 		messageBox.open();
 	}
 	
