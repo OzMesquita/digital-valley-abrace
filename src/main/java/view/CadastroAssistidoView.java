@@ -116,8 +116,8 @@ public class CadastroAssistidoView implements ViewAssistido{
 	}
 	
 
-	public void setTfEmail(Text tfEmail) {
-		this.tfEmail = tfEmail;
+	public void setTfEmail(String tfEmail) {
+		this.tfEmail.setText(tfEmail);;
 	}
 
 	public Text getTfApelido() {
@@ -402,7 +402,15 @@ public class CadastroAssistidoView implements ViewAssistido{
 		tfEmail.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent arg0) {
-				controle.validarEmail(controle.getViewAssistido());
+				try {
+					if(!controle.validarEmail(controle.getViewAssistido())) {
+						throw new PessoaInvalidaException("Email incorreto! Insira um e-mail válido!");
+					}
+					new Assistido().setEmail(getTfEmail().getText());
+				}catch(PessoaInvalidaException e1) {
+					setTfEmail("");
+					mensagemErroEmail(e1);
+				}
 			}
 		});
 		tfEmail.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
@@ -537,6 +545,13 @@ public class CadastroAssistidoView implements ViewAssistido{
      messageBox.setMessage(e.getMessage());
      messageBox.open();
    }
+	
+	public void mensagemErroEmail(Exception e) {
+		MessageBox messageBox = new MessageBox(shlCadastroAssistido, SWT.ICON_ERROR | SWT.OK);
+		messageBox.setText("E-mail incorreto!");
+		messageBox.setMessage(e.getMessage());
+		messageBox.open();
+	}
 	
 	public void mensagemSucesso(PessoaFisica pessoaFisica){
 		MessageBox messageBox = new MessageBox(shlCadastroAssistido,SWT.ICON_WORKING | SWT.OK); 
