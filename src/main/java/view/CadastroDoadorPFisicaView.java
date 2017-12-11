@@ -5,6 +5,8 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.wb.swt.SWTResourceManager;
 import control.CadastroDoadorPFControle;
 import model.PessoaFisica;
+import view.interfaces.ViewPessoaFisica;
+
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.MessageBox;
 import java.io.File;
@@ -19,7 +21,7 @@ import org.eclipse.swt.events.FocusEvent;
 import org.eclipse.swt.events.KeyAdapter;
 import org.eclipse.swt.events.KeyEvent;
 
-public class CadastroDoadorPFisicaView {
+public class CadastroDoadorPFisicaView implements ViewPessoaFisica{
 	CadastroDoadorPFControle controle;
 	protected Shell shlCadastroDoador;
 	private Text tfNome;

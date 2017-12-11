@@ -6,8 +6,6 @@ public interface ViewPessoa {
 	
 	public Text getTfNome();
 	
-	public Text getTfApelido();
-	
 	public Text getTfTelefone1();
 	
 	public Text getTfTelefone2();

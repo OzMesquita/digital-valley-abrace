@@ -15,12 +15,14 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.wb.swt.SWTResourceManager;
 import control.CadastroDoadorPJControle;
 import model.PessoaJuridica;
+import view.interfaces.ViewPessoaFisica;
+import view.interfaces.ViewPessoaJuridica;
 
 import org.eclipse.swt.events.FocusAdapter;
 import org.eclipse.swt.events.FocusEvent;
 import org.eclipse.swt.events.KeyAdapter;
 
-public class CadastroDoadorPJuridicoView {
+public class CadastroDoadorPJuridicoView implements ViewPessoaJuridica{
 	private CadastroDoadorPJControle controle;
 	protected Shell shlCadastroDoador;
 	private Text tfNome;
