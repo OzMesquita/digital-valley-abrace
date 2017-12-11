@@ -137,7 +137,7 @@ public class EmitirRelatoriosView {
 		btnRelatrioDeAssistidos.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
-				EmitirRelatorioAssistidoeDoadores.gerarRelatorioAssistido();
+				EmitirRelatorioAssistidosView.main();
 			}
 		});
 		btnRelatrioDeAssistidos.addKeyListener(new KeyAdapter() {
