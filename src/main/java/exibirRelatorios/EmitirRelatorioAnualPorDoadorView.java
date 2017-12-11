@@ -308,7 +308,7 @@ public class  EmitirRelatorioAnualPorDoadorView{
 	public void mensagemErro(Exception e){
 		 MessageBox messageBox = new MessageBox(shlDoacao,SWT.ICON_ERROR | SWT.OK); 
       messageBox.setText("Problemas ao emitir relatório");
-      messageBox.setMessage(e.getMessage()+"\nTente novamente");
+      messageBox.setMessage(e.getMessage()+"\nTente novamente!");
       messageBox.open();
 	}
 	

@@ -9,6 +9,7 @@ import org.eclipse.wb.swt.SWTResourceManager;
 import view.Centralize;
 
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.Button;
@@ -137,5 +138,12 @@ public class EmitirRelatorioAnualAbraceView {
 
 	public void setTfAno(Text tfAno) {
 		this.tfAno = tfAno;
+	}
+	
+	public void mensagemErro(Exception e){
+		 MessageBox messageBox = new MessageBox(shlEmitirRelatrioDe,SWT.ICON_ERROR | SWT.OK); 
+	     messageBox.setText("Problemas ao emitir relatório");
+	     messageBox.setMessage(e.getMessage()+"\nTente novamente!");
+	     messageBox.open();
 	}
 }

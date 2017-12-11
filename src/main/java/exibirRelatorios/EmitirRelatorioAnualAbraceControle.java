@@ -34,10 +34,11 @@ public class EmitirRelatorioAnualAbraceControle {
 			try {
 				gerarRelatorioAnual(Integer.parseInt(view.getTfAno().getText()));
 			} catch (NumberFormatException e) {
-				e.printStackTrace();
+				view.mensagemErro(new Exception("Informe o ano para continuar."));
 			} catch (DoacaoInvalidaException e) {
 				e.printStackTrace();
 			}
+			
 		}
 	}
 	
