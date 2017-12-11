@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import exceptions.UsuarioInvalidoException;
 import exceptions.PessoaFisicaException;
 import exceptions.PessoaInvalidaException;
+import model.PessoaFisica;
 import model.Usuario;
 
 public class UsuarioDAO extends ExecutaSQL{
@@ -70,12 +71,13 @@ public class UsuarioDAO extends ExecutaSQL{
 		}
 		
 		public boolean editarUsuario(Usuario usuario) {
-			String sql = "UPDATE ABRACE.Usuario SET login=?, senha=? WHERE idPessoa=?";
+			String sql = "UPDATE ABRACE.Usuario SET ABRACE.Usuario.login=?, ABRACE.Usuario.senha=? WHERE ABRACE.Usuario.idPessoa=?";
 			PreparedStatement stmt = null;
 			try {
 				stmt = getConexao().prepareStatement(sql);
 				stmt.setString(1, usuario.getUsuario());
 				stmt.setString(2, usuario.getSenha());
+				stmt.setInt(3, usuario.getId());
 				stmt.executeUpdate();
 				stmt.close();
 			}catch(SQLException e) {
@@ -135,6 +137,31 @@ public class UsuarioDAO extends ExecutaSQL{
 				stmt.close();
 			}
 			return usuarios;
+		}
+		
+		public Usuario getUsuario(int id) throws SQLException, UsuarioInvalidoException, PessoaFisicaException {
+			PessoaFisicaDAO dao = new PessoaFisicaDAO(getConexao());
+			PessoaFisica pessoa = dao.getPessoaFisica(id);
+			String sql = "SELECT ABRACE.Usuario.login, ABRACE.Usuario.senha FROM ABRACE.Usuario WHERE ABRACE.Usuario.idPessoa=?";
+			PreparedStatement stmt = null;
+			ResultSet rs = null;
+			try {
+				stmt = getConexao().prepareStatement(sql);
+				stmt.setInt(1, id);
+				rs = stmt.executeQuery();
+				if (rs.next()) {
+					String login = rs.getString(1);
+					String senha = rs.getString(2);
+					return new Usuario(id, pessoa.getNome(), pessoa.getEndereco(), pessoa.getDataCadastro(), pessoa.getTelefone(), pessoa.getTelefone2(),
+							pessoa.getEmail(), pessoa.isAtivo(), pessoa.isDoador(), pessoa.getCpf(), pessoa.getRg(), pessoa.getDataNasc(), login, senha);
+				}
+			} catch (PessoaInvalidaException e) {
+				e.printStackTrace();
+			}finally {
+				rs.close();
+				stmt.close();
+			}
+			return null;
 		}
 		
 		public static void main(String[] args) throws SQLException {

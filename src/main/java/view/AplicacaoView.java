@@ -107,6 +107,18 @@ public class AplicacaoView {
 		btnRelatrios.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/relatorio-small.png").getAbsolutePath()));
 		btnRelatrios.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
 		btnRelatrios.setBounds(333, 421, 243, 68);
+		
+		Button bntEditaUsuario = new Button(shlOngRussasTransformando, SWT.NONE);
+		bntEditaUsuario.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent arg0) {
+				EditarUsuarioView.main(LoginSingleton.getUsuario());
+			}
+		});
+		bntEditaUsuario.setText("Editar usuário");
+		bntEditaUsuario.setImage(SWTResourceManager.getImage("C:\\Users\\Gabriel Gon\u00E7alves\\Desktop\\src\\main\\java\\view\\img\\doacao-small.png"));
+		bntEditaUsuario.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
+		bntEditaUsuario.setBounds(72, 421, 243, 68);
 		shlOngRussasTransformando.open();
 		shlOngRussasTransformando.layout();
 		while (!shlOngRussasTransformando.isDisposed()) {

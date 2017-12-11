@@ -1,7 +1,6 @@
 package exibirRelatorios;
 
 import java.io.File;
-import java.time.LocalDate;
 
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;

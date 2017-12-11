@@ -39,6 +39,10 @@ public class Usuario extends PessoaFisica{
     }
 	
 
+	public Usuario() {
+		
+	}
+
 	public String getUsuario() {
 		return usuario;
 	}
