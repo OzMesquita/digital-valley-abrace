@@ -60,6 +60,8 @@ public class EmitirRelatorioAnualPorDoadorControle {
 				viewDoador.mensagemErro(new Exception("Selecione um doador para continuar"));
 			} catch (DoacaoInvalidaException e) {
 				e.printStackTrace();
+			} catch (NumberFormatException e) {
+				viewDoador.mensagemErro(new Exception("Informe o ano para continuar"));
 			}
 		}if(event.getSource().toString().equals("Button {Pesquisar}")) {
 			if(getViewDoador().getTfPesquisar().getText() == "") {
