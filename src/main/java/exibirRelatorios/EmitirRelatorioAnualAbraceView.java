@@ -13,10 +13,12 @@ import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.events.KeyAdapter;
+import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 
-public class EmitirRelatorioAnualAbraceView {
+public class EmitirRelatorioAnualAbraceView implements ViewRelatorio{
 
 	protected Shell shlEmitirRelatrioDe;
 	private Text tfAno;
@@ -90,6 +92,12 @@ public class EmitirRelatorioAnualAbraceView {
 		
 		tfAno = new Text(shlEmitirRelatrioDe, SWT.BORDER | SWT.CENTER);
 		tfAno.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
+		tfAno.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				controle.filtrarAno(arg0, controle.getViewDoador());
+			}
+		});
 		tfAno.setBounds(496, 187, 92, 36);
 		
 		Button button = new Button(shlEmitirRelatrioDe, SWT.NONE);

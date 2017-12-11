@@ -1,11 +1,11 @@
 package exibirRelatorios;
 
 import java.io.IOException;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.TableItem;
 import com.itextpdf.text.DocumentException;
@@ -22,7 +22,7 @@ import model.PessoaFisica;
 import model.PessoaJuridica;
 import relatorio.RelatorioAnualPessoaFachada;
 
-public class EmitirRelatorioAnualPorDoadorControle {
+public class EmitirRelatorioAnualPorDoadorControle extends ControleRelatorio{
 	private EmitirRelatorioAnualPorDoadorView viewDoador;
 	private DoacaoFachada fachadaDoacao = new DoacaoFachada();
 	private DoadorFachada fachadaDoador = new DoadorFachada();
@@ -137,21 +137,5 @@ public class EmitirRelatorioAnualPorDoadorControle {
 		}
 	}
 	
-	public void filtrarAno(KeyEvent evt) {
-		String k = viewDoador.getTfAno().getText();
-		String j = new String();
-		for (int i = 0; i < k.length(); i++) {
-			char[] caractere = { k.charAt(i) };
-			if ("0123456789".contains(new String(caractere)))
-				j += k.charAt(i);
-		}
-		String temp = new String();
-		for (int i = 0; i < j.length(); i++) {
-			if (i < 4) {
-				temp += j.charAt(i);
-			}
-		}
-		viewDoador.setTfAno(temp);
-		viewDoador.getTfAno().setSelection(viewDoador.getTfAno().getText().length());
-	}
+	
 }

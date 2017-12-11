@@ -22,7 +22,7 @@ import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.KeyAdapter;
 
-public class  EmitirRelatorioAnualPorDoadorView{
+public class  EmitirRelatorioAnualPorDoadorView implements ViewRelatorio{
 	protected Shell shlDoacao;
 	private PessoaFisica doadorFisico;
 	private PessoaJuridica doadorJuridico;
@@ -267,7 +267,7 @@ public class  EmitirRelatorioAnualPorDoadorView{
 		tfAno.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent arg0) {
-				controle.filtrarAno(arg0);
+				controle.filtrarAno(arg0, controle.getViewDoador());
 			}
 		});
 		tfAno.setBounds(474, 478, 92, 36);

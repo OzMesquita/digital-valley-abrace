@@ -11,7 +11,7 @@ import DAO.DoacaoDAO;
 import exceptions.DoacaoInvalidaException;
 import relatorio.RelatorioDoacaoFachada;
 
-public class EmitirRelatorioAnualAbraceControle {
+public class EmitirRelatorioAnualAbraceControle extends ControleRelatorio{
 	private EmitirRelatorioAnualAbraceView view;
 	
 	public EmitirRelatorioAnualAbraceControle(EmitirRelatorioAnualAbraceView view) {
