@@ -300,7 +300,6 @@ public class EditarAssistidoView implements ViewAssistido{
 			@Override
 			public void focusLost(FocusEvent arg0) {
 				controle.getFocus(arg0);
-				controle.validarCPF(controle.getViewAssistido());
 				try {
 					new Assistido().setCpf(getTfCPF().getText());
 				} catch(PessoaFisicaException e) {
@@ -312,7 +311,7 @@ public class EditarAssistidoView implements ViewAssistido{
 		tfCPF.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent arg0) {
-				controle.filtrarCpf(arg0);
+				controle.filtrarCpf(arg0,controle.getViewAssistido());
 				identificarESC(arg0);
 			}
 		});
@@ -373,7 +372,7 @@ public class EditarAssistidoView implements ViewAssistido{
 		tfTelefone1.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent arg0) {
-				controle.filtrarTelefone1(arg0);
+				controle.filtrarTelefone1(arg0,controle.getViewAssistido());
 				identificarESC(arg0);
 			}
 		});
@@ -389,7 +388,7 @@ public class EditarAssistidoView implements ViewAssistido{
 		tfTelefone2.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent arg0) {
-				controle.filtrarTelefone2(arg0);
+				controle.filtrarTelefone2(arg0,controle.getViewAssistido());
 				identificarESC(arg0);
 			}
 		});

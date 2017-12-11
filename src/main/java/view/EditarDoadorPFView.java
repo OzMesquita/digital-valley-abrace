@@ -214,7 +214,7 @@ public class EditarDoadorPFView implements ViewPessoaFisica{
 		tfCPF.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent arg0) {
-				controle.filtrarCpf(arg0);
+				controle.filtrarCpf(arg0, controle.getViewDoador());
 				identificarESC(arg0);
 			}
 		});
@@ -296,7 +296,7 @@ public class EditarDoadorPFView implements ViewPessoaFisica{
 		tfTelefone1.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent arg0) {
-				controle.filtrarTelefone1(arg0);
+				controle.filtrarTelefone1(arg0, controle.getViewDoador());
 				identificarESC(arg0);
 			}
 		});
@@ -313,7 +313,7 @@ public class EditarDoadorPFView implements ViewPessoaFisica{
 		tfTelefone2.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent arg0) {
-				controle.filtrarTelefone2(arg0);
+				controle.filtrarTelefone2(arg0,controle.getViewDoador());
 				identificarESC(arg0);
 			}
 		});

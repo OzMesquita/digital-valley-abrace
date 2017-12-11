@@ -221,7 +221,7 @@ public class EditarDoadorPJView implements ViewPessoaJuridica{
 		tfCNPJ.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent arg0) {
-				controle.filtrarCnpj(arg0);
+				controle.filtrarCnpj(arg0,controle.getViewDoador());
 				identificarESC(arg0);
 			}
 		});
