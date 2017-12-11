@@ -12,7 +12,7 @@ import model.PessoaFisica;
 import view.EditarDoadorPFView;
 import view.GerenciarDoadoresView;
 
-public class EditarDoadorPFControle {
+public class EditarDoadorPFControle extends Controle{
 	private EditarDoadorPFView viewDoador;
 	private DoadorFachada fachadaDoador;
 	

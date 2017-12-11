@@ -14,7 +14,10 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.wb.swt.SWTResourceManager;
 import control.CadastroDoadorPJControle;
+import exceptions.PessoaInvalidaException;
+import model.Assistido;
 import model.PessoaJuridica;
+import view.interfaces.ViewPessoa;
 import view.interfaces.ViewPessoaFisica;
 import view.interfaces.ViewPessoaJuridica;
 
@@ -22,7 +25,7 @@ import org.eclipse.swt.events.FocusAdapter;
 import org.eclipse.swt.events.FocusEvent;
 import org.eclipse.swt.events.KeyAdapter;
 
-public class CadastroDoadorPJuridicoView implements ViewPessoaJuridica{
+public class CadastroDoadorPJuridicoView implements ViewPessoaJuridica,ViewPessoa{
 	private CadastroDoadorPJControle controle;
 	protected Shell shlCadastroDoador;
 	private Text tfNome;
@@ -94,8 +97,8 @@ public class CadastroDoadorPJuridicoView implements ViewPessoaJuridica{
 		return tfEmail;
 	}
 
-	public void setTfEmail(Text tfEmail) {
-		this.tfEmail = tfEmail;
+	public void setTfEmail(String tfEmail) {
+		this.tfEmail.setText(tfEmail);
 	}
 
 	public CadastroDoadorPJuridicoView() {
@@ -263,6 +266,20 @@ public class CadastroDoadorPJuridicoView implements ViewPessoaJuridica{
 				identificarESC(arg0);
 			}
 		});
+		tfTelefone1.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent arg0) {
+				try {
+					if(!controle.validarTelefone1(arg0, controle.getViewDoadorJuridico())) {
+						throw new PessoaInvalidaException("Telefone incorreto! Insira um telefone válido!");
+					}
+					new PessoaJuridica().setTelefone(getTfTelefone1().getText());
+				}catch(PessoaInvalidaException e1) {
+					setTfTelefone1("");
+					mensagemErroTelefone(e1);
+				}
+			}
+		});
 		tfTelefone1.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfTelefone1.setBounds(235, 358, 369, 38);
 		tfTelefone1.setTextLimit(16);
@@ -280,6 +297,20 @@ public class CadastroDoadorPJuridicoView implements ViewPessoaJuridica{
 				identificarESC(arg0);
 			}
 		});
+		tfTelefone2.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent arg0) {
+				try {
+					if(!controle.validarTelefone2(arg0, controle.getViewDoadorJuridico())) {
+						throw new PessoaInvalidaException("Telefone incorreto! Insira um telefone válido!");
+					}
+					new PessoaJuridica().setTelefone2(getTfTelefone2().getText());
+				}catch(PessoaInvalidaException e1) {
+					setTfTelefone2("");
+					mensagemErroTelefone(e1);
+				}
+			}
+		});
 		tfTelefone2.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfTelefone2.setBounds(235, 402, 369, 38);
 		tfTelefone2.setTextLimit(16);
@@ -290,6 +321,20 @@ public class CadastroDoadorPJuridicoView implements ViewPessoaJuridica{
 		label_7.setBounds(165, 451, 55, 28);
 		
 		tfEmail = new Text(shlCadastroDoador, SWT.BORDER);
+		tfEmail.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent arg0) {
+				try {
+					if(!controle.validarEmail(controle.getViewDoadorJuridico())) {
+						throw new PessoaInvalidaException("Email incorreto! Insira um e-mail válido!");
+					}
+					new PessoaJuridica().setEmail(getTfEmail().getText());
+				}catch(PessoaInvalidaException e1) {
+					setTfEmail("");
+					mensagemErroEmail(e1);
+				}
+			}
+		});
 		tfEmail.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent arg0) {
@@ -368,6 +413,20 @@ public class CadastroDoadorPJuridicoView implements ViewPessoaJuridica{
 		}
 	}
 
+	public void mensagemErroEmail(Exception e) {
+		MessageBox messageBox = new MessageBox(shlCadastroDoador, SWT.ICON_ERROR | SWT.OK);
+		messageBox.setText("E-mail incorreto!");
+		messageBox.setMessage(e.getMessage());
+		messageBox.open();
+	}
+	
+	public void mensagemErroTelefone(Exception e) {
+		MessageBox messageBox = new MessageBox(shlCadastroDoador, SWT.ICON_ERROR | SWT.OK);
+		messageBox.setText("Telefone incorreto!");
+		messageBox.setMessage(e.getMessage());
+		messageBox.open();
+	}
+	
 	public boolean reativarDoador(PessoaJuridica pessoa) {
 		MessageBox messageBox = new MessageBox(shlCadastroDoador,SWT.ICON_WORKING | SWT.YES | SWT.NO); 
 		messageBox.setText("O CPF informado é dse uma pessoa inativa no sistema!");

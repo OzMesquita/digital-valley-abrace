@@ -13,7 +13,7 @@ import facade.DoadorFachada;
 import model.PessoaJuridica;
 import view.CadastroDoadorPJuridicoView;
 
-public class CadastroDoadorPJControle {
+public class CadastroDoadorPJControle extends Controle{
 	private CadastroDoadorPJuridicoView viewDoadorJuridico;
 	private DoadorFachada fachadaDoadorJuridico;
 	

@@ -16,7 +16,7 @@ import model.CNP;
 import model.PessoaFisica;
 import view.EditarAssistidoView;
 
-public class EditarAssistidoControle{
+public class EditarAssistidoControle extends Controle{
 	private EditarAssistidoView viewAssistido;
 	private AssistidoFachada fachadaAssistido;
 	

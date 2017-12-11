@@ -10,7 +10,7 @@ import model.PessoaJuridica;
 import view.EditarDoadorPJView;
 import view.GerenciarDoadoresView;
 
-public class EditarDoadorPJControle {
+public class EditarDoadorPJControle extends Controle{
 	private EditarDoadorPJView viewDoador;
 	private DoadorFachada fachadaDoador;
 	
