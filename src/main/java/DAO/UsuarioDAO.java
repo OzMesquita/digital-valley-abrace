@@ -161,7 +161,7 @@ public class UsuarioDAO extends ExecutaSQL{
 				rs.close();
 				stmt.close();
 			} catch (PessoaInvalidaException e) {
-				e.printStackTrace();
+				e.printStackTrace(); 
 			}finally {
 				rs.close();
 				stmt.close();
