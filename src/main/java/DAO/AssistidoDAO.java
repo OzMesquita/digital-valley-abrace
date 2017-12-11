@@ -45,6 +45,7 @@ public class AssistidoDAO extends ExecutaSQL {
 		stmt.setString(4, assistido.getTipoDeCancer());
 		// executa
 		stmt.execute();
+		stmt.close();
 	}
 	
 	public boolean editarAssistido(Assistido assistido) throws PessoaInvalidaException {
@@ -71,6 +72,7 @@ public class AssistidoDAO extends ExecutaSQL {
 			stmt.setBoolean(3, assistido.getSituacao());
 			stmt.setInt(4, assistido.getId());
 			stmt.executeUpdate();
+			stmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -83,6 +85,7 @@ public class AssistidoDAO extends ExecutaSQL {
 			stmt = getConexao().prepareStatement(sql);
 			stmt.setInt(1, assistido.getId());
 			stmt.executeUpdate();
+			stmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return false;
@@ -120,6 +123,8 @@ public class AssistidoDAO extends ExecutaSQL {
 				boolean situacao = rs.getBoolean(14);
 				return new Assistido(id, nome, endereco, dataCadastro, telefone, telefone2, email, ativo, isDoador, cpf, rg, dataNasc, apelido, tipoDeCancer, situacao);
 			}
+			rs.close();
+			stmt.close();
 		} catch (SQLException e) {
 			throw new RuntimeException(e.getMessage());
 		} catch (PessoaInvalidaException e) {
@@ -158,6 +163,8 @@ public class AssistidoDAO extends ExecutaSQL {
 				boolean situacao = rs.getBoolean("status");
 				assistidos.add(new Assistido(id, nome, endereco, dataCadastro, telefone, telefone2, email, true, isDoador, cpf, rg, dataNasc, apelido, tipoDeCancer, situacao));
 			}
+			rs.close();
+			stmt.close();
 		} catch (SQLException e) {
 			throw new RuntimeException(e.getMessage());
 		} catch (PessoaInvalidaException e) {

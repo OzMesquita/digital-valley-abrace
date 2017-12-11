@@ -44,6 +44,7 @@ public class PessoaJuridicaDAO extends ExecutaSQL{
         stmt.setString(2, pessoaJuridica.getNomeFantasia());
         stmt.setInt(3, pessoaJuridica.getId());
         stmt.execute();
+        stmt.close();
     }
 	
 	public boolean getPessoaPeloCNPJ(String cnpj) throws SQLException {
@@ -53,8 +54,10 @@ public class PessoaJuridicaDAO extends ExecutaSQL{
 		stmt.setString(1, cnpj);
 		ResultSet rs = stmt.executeQuery();
 		if(rs.next()) {
+			stmt.close();
 			return true;
 		}
+		stmt.close();
 		return false;
 	}
 	
@@ -79,6 +82,7 @@ public class PessoaJuridicaDAO extends ExecutaSQL{
 		stmt.setString(2, pessoaJuridica.getCnpj());
 		stmt.setInt(3, pessoaJuridica.getId());
 		stmt.executeUpdate();
+		stmt.close();
 	}
 	
 	public boolean excluirDoadorJuridico(PessoaJuridica pessoaJ) {
@@ -88,6 +92,7 @@ public class PessoaJuridicaDAO extends ExecutaSQL{
 			stmt = getConexao().prepareStatement(sql);
 			stmt.setInt(1, pessoaJ.getId());
 			stmt.executeUpdate();
+			stmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return false;
@@ -119,6 +124,7 @@ public class PessoaJuridicaDAO extends ExecutaSQL{
 				String nomeFantasia = rs.getString(10);
 				listaPessoasJuridicas.add(new PessoaJuridica(id, nome, endereco, telefone1, telefone2, dataCadastro, email, true, isDoador, cnpj, nomeFantasia));
 			}
+			rs.close();
 			stmt.close();
 		} catch (SQLException e) {
 			throw new RuntimeException(e.getMessage());
@@ -130,7 +136,6 @@ public class PessoaJuridicaDAO extends ExecutaSQL{
 		return listaPessoasJuridicas;
 	}
 
-	
 	public ArrayList<PessoaJuridica> listarTabelaDoadorJuridico() {
 		ArrayList<PessoaJuridica> listaPessoasJuridicas = new ArrayList<PessoaJuridica>();
 		String informacaoPessoa = "ABRACE.PESSOA.idPessoa, ABRACE.PESSOA.nome, ABRACE.PESSOA.endereco, ABRACE.PESSOA.telefone1,"
@@ -154,6 +159,7 @@ public class PessoaJuridicaDAO extends ExecutaSQL{
 				String nomeFantasia = rs.getString(11);
 				listaPessoasJuridicas.add(new PessoaJuridica(id, nome, endereco, telefone1, telefone2, dataCadastro, email, ativo, isDoador, cnpj, nomeFantasia));
 			}
+			rs.close();
 			stmt.close();
 		} catch (SQLException e) {
 			throw new RuntimeException(e.getMessage());
@@ -187,6 +193,8 @@ public class PessoaJuridicaDAO extends ExecutaSQL{
 				String fantasia = rs.getString(10);
 				return new PessoaJuridica(id, nome, endereco, telefone, telefone2, dataCadastro, email, ativo, isDoador, cnpj, fantasia);
 			}
+			rs.close();
+			stmt.close();
 		} catch (SQLException e) {
 			throw new RuntimeException(e.getMessage());
 		} catch (PessoaInvalidaException e) {

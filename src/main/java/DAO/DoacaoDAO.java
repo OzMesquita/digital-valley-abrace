@@ -31,6 +31,7 @@ public class DoacaoDAO extends ExecutaSQL{
 			stmt.setDate(3, Date.valueOf(doacao.getData()));
 			stmt.setBoolean(4, true);
 			stmt.execute();
+			s.close();
 		} catch (SQLException e) {
 			rollBack(e);
 			return false;
@@ -49,6 +50,7 @@ public class DoacaoDAO extends ExecutaSQL{
 			stmt.setInt(4, doacao.getDoador().getId());
 			stmt.setInt(5, doacao.getId());
 			stmt.executeUpdate();
+			stmt.close();
 		} catch (SQLException e) {
 			rollBack(e);
 			return false;
@@ -63,6 +65,7 @@ public class DoacaoDAO extends ExecutaSQL{
 			stmt = getConexao().prepareStatement(sql);
 			stmt.setInt(1, doacao.getId());
 			stmt.executeUpdate();
+			stmt.close();
 		}catch(SQLException e) {
 			e.printStackTrace();
 			return false;
@@ -90,6 +93,7 @@ public class DoacaoDAO extends ExecutaSQL{
 				}
 				doacoes.add(new Doacao(id, valor, data,true , doador));
 			}
+			rs.close();
 			stmt.close();
 		}catch(SQLException e) {
 			throw new RuntimeException(e.getMessage());
@@ -116,6 +120,8 @@ public class DoacaoDAO extends ExecutaSQL{
 				}
 				return new Doacao(idDoacao, valor, data, true, doador);
 			}
+			rs.close();
+			stmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -136,18 +142,12 @@ public class DoacaoDAO extends ExecutaSQL{
 				LocalDate data = rs.getDate("DATA").toLocalDate();
 				doacoes.add(new Doacao(id, valor, data,true , pessoa));
 			}
+			rs.close();
 			stmt.close();
 		}catch(SQLException e) {
 			throw new RuntimeException(e.getMessage());
 		}
 		return doacoes;
-	}
-	
-	public static void main(String[] args) throws DoacaoInvalidaException {
-		for(Doacao d : new DoacaoDAO(new ConnectionFactory().getConnection()).listarDoacoes(new PessoaFisicaDAO(new ConnectionFactory().getConnection()).getPessoaFisica(1))) {
-			System.out.println(d.getDoador().getNome()+" "+d.getId()+" "+d.getValor()+" "+d.getData());
-		}
-		
 	}
 	
 	public ArrayList<Doacao> listarDoacoes(Pessoa pessoa,LocalDate mes,LocalDate ano) throws DoacaoInvalidaException{
@@ -173,6 +173,7 @@ public class DoacaoDAO extends ExecutaSQL{
                 LocalDate datadoacao = rs.getDate("DATA").toLocalDate();
                 doacoes.add(new Doacao(id, valor, datadoacao,true , pessoa));
             }
+            rs.close();
             stmt.close();
         }catch(SQLException e) {
             throw new RuntimeException(e.getMessage());

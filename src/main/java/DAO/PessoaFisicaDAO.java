@@ -46,6 +46,7 @@ public class PessoaFisicaDAO extends ExecutaSQL {
 			stmt.setString(3, pessoaFisica.getCpf());
 			stmt.setInt(4, pessoaFisica.getId());
 			stmt.execute();
+			stmt.close();
 	}
 	
 	public boolean getPessoaPeloCPF(String cpf) throws SQLException {
@@ -55,8 +56,12 @@ public class PessoaFisicaDAO extends ExecutaSQL {
 		stmt.setString(1, cpf);
 		ResultSet rs = stmt.executeQuery();
 		if(rs.next()) {
+			rs.close();
+			stmt.close();
 			return true;
 		}
+		rs.close();
+		stmt.close();
 		return false;
 	}
 
@@ -70,6 +75,7 @@ public class PessoaFisicaDAO extends ExecutaSQL {
 			stmt.setString(3, pessoaFisica.getCpf());
 			stmt.setInt(4, pessoaFisica.getId());
 			stmt.executeUpdate();
+			stmt.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -143,6 +149,7 @@ public class PessoaFisicaDAO extends ExecutaSQL {
 				LocalDate dataNasc = rs.getDate(11).toLocalDate();
 				listaPessoasFisicas.add(new PessoaFisica(id, nome, endereco, dataCadastro, telefone1, telefone2, email, true, isDoador, cpf, rg, dataNasc));
 			}
+			rs.close();
 			stmt.close();
 		} catch (SQLException e) {
 			throw new RuntimeException(e.getMessage());
@@ -178,6 +185,7 @@ public class PessoaFisicaDAO extends ExecutaSQL {
 				LocalDate dataNasc = rs.getDate(12).toLocalDate();
 				listaPessoasFisicas.add(new PessoaFisica(id, nome, endereco, dataCadastro, telefone1, telefone2, email, ativo, isDoador, cpf, rg, dataNasc));
 			}
+			rs.close();
 			stmt.close();
 		} catch (SQLException e) {
 			throw new RuntimeException(e.getMessage());
@@ -214,6 +222,7 @@ public class PessoaFisicaDAO extends ExecutaSQL {
 				LocalDate dataNasc = rs.getDate(11).toLocalDate();
 				listaPessoasFisicas.add(new PessoaFisica(id, nome, endereco, dataCadastro, telefone1, telefone2, email, true, isDoador, cpf, rg, dataNasc));
 			}
+			rs.close();
 			stmt.close();
 		} catch (SQLException e) {
 			throw new RuntimeException(e.getMessage());
@@ -249,6 +258,8 @@ public class PessoaFisicaDAO extends ExecutaSQL {
 				LocalDate dataNasc = rs.getDate(11).toLocalDate();
 				return new PessoaFisica(id, nome, endereco, dataCadastro, telefone, telefone2, email, ativo, isDoador, cpf, rg, dataNasc);
 			}
+			rs.close();
+			stmt.close();
 		} catch (SQLException e) {
 			throw new RuntimeException(e.getMessage());
 		} catch (PessoaInvalidaException e) {

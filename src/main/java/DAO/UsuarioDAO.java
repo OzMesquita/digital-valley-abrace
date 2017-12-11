@@ -33,7 +33,8 @@ public class UsuarioDAO extends ExecutaSQL{
 	                int id = rs.getInt(1);
 	                return new Usuario(id, login, senha);
 	            }
-	           
+	            rs.close();
+				stmt.close();
 	        }catch (SQLException ex) {
 	            System.err.println("Erro com a sintaxe SQL no metodo de consulta. GerenteDAO");    
 	        }finally {
@@ -124,6 +125,8 @@ public class UsuarioDAO extends ExecutaSQL{
 					String senha = rs.getString(13);
 					usuarios.add(new Usuario(id, nome, endereco, dataCadastro, telefone, telefone2, email, true, isDoador, cpf, rg, dataNasc, login, senha));
 				}
+				rs.close();
+				stmt.close();
 			}catch(SQLException e) {
 				throw new RuntimeException(e.getMessage());
 			}catch (PessoaInvalidaException e) {
@@ -155,6 +158,8 @@ public class UsuarioDAO extends ExecutaSQL{
 					return new Usuario(id, pessoa.getNome(), pessoa.getEndereco(), pessoa.getDataCadastro(), pessoa.getTelefone(), pessoa.getTelefone2(),
 							pessoa.getEmail(), pessoa.isAtivo(), pessoa.isDoador(), pessoa.getCpf(), pessoa.getRg(), pessoa.getDataNasc(), login, senha);
 				}
+				rs.close();
+				stmt.close();
 			} catch (PessoaInvalidaException e) {
 				e.printStackTrace();
 			}finally {
@@ -162,13 +167,5 @@ public class UsuarioDAO extends ExecutaSQL{
 				stmt.close();
 			}
 			return null;
-		}
-		
-		public static void main(String[] args) throws SQLException {
-			UsuarioDAO u = new UsuarioDAO(new ConnectionFactory().getConnection());
-			ArrayList<Usuario> user = u.listarUsuarios();
-			for(int i = 0; i < user.size(); i++) {
-				user.get(i).getNome();
-			}
 		}
 }

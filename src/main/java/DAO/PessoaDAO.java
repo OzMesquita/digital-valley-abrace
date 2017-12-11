@@ -39,6 +39,8 @@ public class PessoaDAO extends ExecutaSQL {
 		if (rs.next()) {
 			pessoa.setId(rs.getInt(1));
 		}
+		rs.close();
+		stmt.close();
 	}
 
 	public ArrayList<Pessoa> listarPessoas(Boolean situacao) throws PessoaInvalidaException {
@@ -59,6 +61,7 @@ public class PessoaDAO extends ExecutaSQL {
 				boolean isDoador = rs.getBoolean(8);
 				 listaPessoas.add(new Pessoa(id, nome, endereco, telefone1, telefone2, dataCadastro, email, true, isDoador));
 			}
+			rs.close();
 			stmt.close();
 		} catch (SQLException ex) {
 			throw new RuntimeException(ex.getMessage());
@@ -78,11 +81,10 @@ public class PessoaDAO extends ExecutaSQL {
 			stmt.setInt(6, pessoa.getId());
 			stmt.executeUpdate();
 			stmt.close();
-			return true;
 		} catch (SQLException e) {
 			throw e;
 		}
-		
+		return true;
 	}
 
 	public void excluirPessoa(Pessoa pessoa) throws SQLException {
@@ -112,6 +114,8 @@ public class PessoaDAO extends ExecutaSQL {
 					resultado = rs.getString(1);
 				}
 			}
+			rs.close();
+			stmt.close();
 			return resultado;
 			} catch (SQLException e) {
 				throw new RuntimeException(e.getMessage());
@@ -138,6 +142,8 @@ public class PessoaDAO extends ExecutaSQL {
 				boolean isDoador = rs.getBoolean(8);
 				return new Pessoa(id, nome, endereco, telefone, telefone2, dataCadastro, email, ativo, isDoador);
 			}
+			rs.close();
+			stmt.close();
 		} catch (PessoaInvalidaException e) {
 			e.printStackTrace();
 		}finally {
