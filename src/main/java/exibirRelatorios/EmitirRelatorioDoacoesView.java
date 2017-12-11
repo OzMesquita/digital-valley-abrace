@@ -1,6 +1,7 @@
 package exibirRelatorios;
 
 import java.io.File;
+import java.time.LocalDate;
 
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
@@ -8,6 +9,7 @@ import org.eclipse.wb.swt.SWTResourceManager;
 
 import view.Centralize;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.DateTime;
 import org.eclipse.swt.widgets.Button;
@@ -95,6 +97,7 @@ public class EmitirRelatorioDoacoesView {
 				identificarESC(arg0);
 			}
 		});
+		
 		dataInicio.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
 		dataInicio.setBounds(204, 207, 116, 36);
 		
@@ -134,7 +137,11 @@ public class EmitirRelatorioDoacoesView {
 		btnGerarRelatrio.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
-				controle.getEvent(arg0);
+				if(! controle.verificarData()) {
+					mensagemErro();
+				}else {
+					controle.getEvent(arg0);
+				}
 			}
 		});
 		btnGerarRelatrio.setText("Gerar relat\u00F3rio");
@@ -182,6 +189,13 @@ public class EmitirRelatorioDoacoesView {
 		lblOngAbrace.setBounds(300, 60, 114, 25);
 		lblOngAbrace.setText("ONG ABRACE");
 
+	}
+	
+	public void mensagemErro(){
+		 MessageBox messageBox = new MessageBox(shlEmitirRelatrioMensal,SWT.ICON_ERROR | SWT.OK); 
+	     messageBox.setText("Erro nas datas informadas");
+	     messageBox.setMessage("Não foi possível gerar o relatório, pois a data de início informada ocorre após a de término\nInsira uma data inicial correta!");
+	     messageBox.open();
 	}
 	
 	public void identificarESC(KeyEvent arg0) {
