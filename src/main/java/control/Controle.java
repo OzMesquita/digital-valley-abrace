@@ -8,6 +8,8 @@ import org.eclipse.swt.events.KeyEvent;
 import model.CNP;
 import view.interfaces.ViewAssistido;
 import view.interfaces.ViewPessoa;
+import view.interfaces.ViewPessoaFisica;
+import view.interfaces.ViewPessoaJuridica;
 
 public class Controle {
 	
@@ -42,7 +44,7 @@ public class Controle {
 	//======================================================//
 	// 						CPF								//
 	//======================================================//
-	public void filtrarCpf(KeyEvent evt,ViewAssistido view) {
+	public void filtrarCpf(KeyEvent evt,ViewPessoaFisica view) {
 		String k = view.getTfCPF().getText();
 		String j = new String();
 		for (int i = 0; i < k.length(); i++) {
@@ -77,6 +79,35 @@ public class Controle {
 //	}
 	//------------------------------------------------------//
 
+	
+	//======================================================//
+	// 						CNPJ							//
+	//======================================================//
+	public void filtrarCnpj(KeyEvent evt,ViewPessoaJuridica view) {
+        String k = view.getTfCNPJ().getText();
+        String j = new String();
+        for(int i=0;i<k.length();i++) {
+            char[] caractere= {k.charAt(i)};
+            if("0123456789".contains(new String(caractere)))
+                j+=k.charAt(i);
+        }
+       String temp = new String();
+       for (int i = 0; i < j.length(); i++) {
+           if(i==2||i==5){
+               temp+="."+j.charAt(i);
+           }else if(i==8){
+               temp+="/"+j.charAt(i);
+           }else if(i==12){
+               temp+="-"+j.charAt(i);
+           }else if(i<14){
+               temp+=j.charAt(i);
+           }
+       }
+       view.getTfCNPJ().setText(temp);
+       view.getTfCNPJ().setSelection(view.getTfCNPJ().getText().length());
+   }
+	//------------------------------------------------------//	
+	
 	
 	//======================================================//
 	// 						RG								//

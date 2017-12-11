@@ -223,7 +223,7 @@ public class CadastroDoadorPJuridicoView implements ViewPessoaJuridica,ViewPesso
 		tfCNPJ.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent arg0) {
-				controle.filtrarCnpj(arg0);
+				controle.filtrarCnpj(arg0, controle.getViewDoadorJuridico());;
 				identificarESC(arg0);
 			}
 		});
@@ -262,7 +262,7 @@ public class CadastroDoadorPJuridicoView implements ViewPessoaJuridica,ViewPesso
 		tfTelefone1.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent arg0) {
-				controle.filtrarTelefone1(arg0);
+				controle.filtrarTelefone1(arg0,controle.getViewDoadorJuridico());
 				identificarESC(arg0);
 			}
 		});
@@ -293,7 +293,7 @@ public class CadastroDoadorPJuridicoView implements ViewPessoaJuridica,ViewPesso
 		tfTelefone2.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent arg0) {
-				controle.filtrarTelefone2(arg0);
+				controle.filtrarTelefone2(arg0,controle.getViewDoadorJuridico());
 				identificarESC(arg0);
 			}
 		});
