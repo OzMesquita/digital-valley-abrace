@@ -4,7 +4,8 @@ import java.sql.SQLException;
 import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.SelectionEvent;
 import DAO.ConnectionFactory;
-import DAO.PessoaDAO;
+import DAO.UsuarioDAO;
+import exceptions.PessoaFisicaException;
 import exceptions.PessoaInvalidaException;
 import exceptions.UsuarioInvalidoException;
 import exceptions.UsuarioNaoEncontradoException;
@@ -17,8 +18,6 @@ public class LoginControle {
 	
 	private LoginView viewLogin;
 	private LoginFachada fachadaLogin;
-	private PessoaDAO dao = new PessoaDAO(new ConnectionFactory().getConnection());
-	
 	public void identificarTelasEspeciais(KeyEvent evento) {
 		if(evento.keyCode == 13 || evento.keyCode == 16777296) {
 			validarLogin();
@@ -58,7 +57,9 @@ public class LoginControle {
 			if(usuario == null) {
 				throw new UsuarioNaoEncontradoException();
 			}else {
-				LoginSingleton.LoginSingleton(dao.getPessoa(usuario.getId()));
+				UsuarioDAO dao = new UsuarioDAO(new ConnectionFactory().getConnection());
+				LoginSingleton.LoginSingleton(dao.getUsuario(usuario.getId()));
+				dao.getConexao().close();
 				this.viewLogin.getShlOngRussasTransformando().dispose();
 				AplicacaoView.main();
 			}
@@ -69,6 +70,8 @@ public class LoginControle {
 		}catch(UsuarioNaoEncontradoException e) {
 			viewLogin.mensagemErro(e);
 		} catch (SQLException e) {
+			viewLogin.mensagemErro(e);
+		} catch (PessoaFisicaException e) {
 			viewLogin.mensagemErro(e);
 		}
 	}	
