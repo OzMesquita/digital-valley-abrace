@@ -9,6 +9,9 @@ import org.eclipse.swt.SWT;
 import org.eclipse.wb.swt.SWTResourceManager;
 import control.EditarDoadorPFControle;
 import model.PessoaFisica;
+import view.interfaces.ViewAssistido;
+import view.interfaces.ViewPessoaFisica;
+
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.DateTime;
 import org.eclipse.swt.widgets.Button;
@@ -17,7 +20,7 @@ import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.KeyAdapter;
 import org.eclipse.swt.events.KeyEvent;
 
-public class EditarDoadorPFView {
+public class EditarDoadorPFView implements ViewPessoaFisica{
 	protected Shell shlEditarDoadorPessoa;
 	private Text tfNome;
 	private Text tfCPF;

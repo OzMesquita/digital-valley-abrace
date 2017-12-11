@@ -14,9 +14,12 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.wb.swt.SWTResourceManager;
 import control.EditarDoadorPJControle;
 import model.PessoaJuridica;
+import view.interfaces.ViewAssistido;
+import view.interfaces.ViewPessoaJuridica;
+
 import org.eclipse.swt.events.KeyAdapter;
 
-public class EditarDoadorPJView {
+public class EditarDoadorPJView implements ViewPessoaJuridica{
 	private EditarDoadorPJControle controle;
 	private Shell shlEditarDoador_1;
 	private PessoaJuridica doador;
