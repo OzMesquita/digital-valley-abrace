@@ -196,14 +196,13 @@ public class Controle {
 		return temp;
 	}
 	public boolean validarTelefone1(FocusEvent evt, ViewPessoa view) {
-		if(!view.getTfTelefone1().getText().equals("")&&view.getTfTelefone1().getText().length()<14) return false;
-		else return true;
-		
+		return validarTelefone(view.getTfTelefone1().getText());	
 	}
 	public boolean validarTelefone2(FocusEvent evt,ViewPessoa view) {
-		if(!view.getTfTelefone2().getText().equals("")&&view.getTfTelefone2().getText().length()<14) return false;
-		else return true;
-		
+		return validarTelefone(view.getTfTelefone2().getText());
+	}
+	public boolean validarTelefone(String telefone) {
+		return !telefone.equals("")&&(telefone.length()==13||telefone.length()==14);
 	}
 	
 
