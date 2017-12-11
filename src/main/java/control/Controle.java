@@ -4,26 +4,25 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.KeyEvent;
 
 import model.CNP;
-import view.View;
+import view.interfaces.ViewAssistido;
+import view.interfaces.ViewPessoa;
 
 public class Controle {
 	
 	//======================================================//
 	// 						Email							//
 	//======================================================//
-	public boolean validarEmail(View view) {
+	public boolean validarEmail(ViewPessoa view) {
 		if(!view.getTfEmail().getText().matches("^([0-9a-zA-Z]+([_.-]?[0-9a-zA-Z]+)*@[0-9a-zA-Z]+([.]?[0-9a-zA-Z]+)*)")&&!view.getTfEmail().getText().equals("")) {
-			view.getTfEmail().setForeground(view.getTfEmail().getDisplay().getSystemColor(SWT.COLOR_WHITE));
-			view.getTfEmail().setBackground(view.getTfEmail().getDisplay().getSystemColor(SWT.COLOR_RED));
+			//view.getTfEmail().setForeground(view.getTfEmail().getDisplay().getSystemColor(SWT.COLOR_RED));
 			return false;
 		}
 		else {
-			view.getTfEmail().setForeground(view.getTfEmail().getDisplay().getSystemColor(SWT.COLOR_BLACK));
-			view.getTfEmail().setBackground(view.getTfEmail().getDisplay().getSystemColor(SWT.COLOR_WHITE));
+			//view.getTfEmail().setForeground(view.getTfEmail().getDisplay().getSystemColor(SWT.COLOR_BLACK));
 			return true;
 		}
 	}
-	public void filtrarEmail(View view) {
+	public void filtrarEmail(ViewPessoa view) {
 		String k = view.getTfEmail().getText();
 		String j = new String();
 		for (int i = 0; i < k.length(); i++) {
@@ -41,7 +40,7 @@ public class Controle {
 	//======================================================//
 	// 						CPF								//
 	//======================================================//
-	public void filtrarCpf(KeyEvent evt,View view) {
+	public void filtrarCpf(KeyEvent evt,ViewAssistido view) {
 		String k = view.getTfCPF().getText();
 		String j = new String();
 		for (int i = 0; i < k.length(); i++) {
@@ -62,25 +61,25 @@ public class Controle {
 		view.getTfCPF().setText(temp);
 		view.getTfCPF().setSelection(view.getTfCPF().getText().length());
 	}
-	public boolean validarCPF(View viewAssistido) {
-		if(!new CNP().isValidCPF(viewAssistido.getTfCPF().getText().replace(".", "").replace("-", ""))&&!viewAssistido.getTfCPF().getText().equals("")) {
-			//viewAssistido.getTfCPF().setForeground(viewAssistido.getTfCPF().getDisplay().getSystemColor(SWT.COLOR_RED));
-			//viewAssistido.getTfCPF().setBackground(viewAssistido.getTfCPF().getDisplay().getSystemColor(SWT.COLOR_RED));
-			return false;
-		}
-		else {
-			//viewAssistido.getTfCPF().setForeground(viewAssistido.getTfCPF().getDisplay().getSystemColor(SWT.COLOR_BLACK));
-			//viewAssistido.getTfCPF().setBackground(viewAssistido.getTfCPF().getDisplay().getSystemColor(SWT.COLOR_WHITE));
-			return true;
-		}
-	}
+//	public boolean validarCPF(ViewAssistido viewAssistido) {
+//		if(!new CNP().isValidCPF(viewAssistido.getTfCPF().getText().replace(".", "").replace("-", ""))&&!viewAssistido.getTfCPF().getText().equals("")) {
+//			viewAssistido.getTfCPF().setForeground(viewAssistido.getTfCPF().getDisplay().getSystemColor(SWT.COLOR_RED));
+//			viewAssistido.getTfCPF().setBackground(viewAssistido.getTfCPF().getDisplay().getSystemColor(SWT.COLOR_RED));
+//			return false;
+//		}
+//		else {
+//			viewAssistido.getTfCPF().setForeground(viewAssistido.getTfCPF().getDisplay().getSystemColor(SWT.COLOR_BLACK));
+//			viewAssistido.getTfCPF().setBackground(viewAssistido.getTfCPF().getDisplay().getSystemColor(SWT.COLOR_WHITE));
+//			return true;
+//		}
+//	}
 	//------------------------------------------------------//
 
 	
 	//======================================================//
 	// 						RG								//
 	//======================================================//
-	public void filtrarRG(KeyEvent evt,View view) {
+	public void filtrarRG(KeyEvent evt,ViewAssistido view) {
 		String k = view.getTfRG().getText();
 		String j = new String();
 		for (int i = 0; i < k.length(); i++) {
@@ -97,7 +96,7 @@ public class Controle {
 	//======================================================//
 	// 						Nome							//
 	//======================================================//
-	public void filtrarNome(KeyEvent evt,View view) {
+	public void filtrarNome(KeyEvent evt,ViewPessoa view) {
 		String k = view.getTfNome().getText();
 		String j = new String();
 		for (int i = 0; i < k.length(); i++) {
@@ -114,12 +113,12 @@ public class Controle {
 	//======================================================//
 	// 						Apelido							//
 	//======================================================//
-	public void filtrarApelido(KeyEvent evt,View view) {
+	public void filtrarApelido(KeyEvent evt,ViewAssistido view) {
 		String k = view.getTfApelido().getText();
 		String j = new String();
 		for (int i = 0; i < k.length(); i++) {
 			char[] caractere = { k.charAt(i) };
-			if ("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZçÇáÁàÀãÃâÂéÉêÊíÍîÎóÓõÕôÔúÚùÙûÛ ".contains(new String(caractere)))
+			if ("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZçÇáÁàÀãÃâÂéÉêÊíÍîÎóÓõÕôÔúÚùÙûÛ ".contains(new String(caractere)))
 				j += k.charAt(i);
 		}
 		view.getTfApelido().setText(j);
@@ -131,12 +130,13 @@ public class Controle {
 	//======================================================//
 	// 				telefone1/telefone2						//
 	//======================================================//
-	public void filtrarTelefone1(KeyEvent evt,View view) {
+	public void filtrarTelefone1(KeyEvent evt,ViewPessoa view) {
 		String temp = filtrarTelefone(view.getTfTelefone1().getText());
 		view.getTfTelefone1().setText(temp);
 		view.getTfTelefone1().setSelection(view.getTfTelefone1().getText().length());
+		
 	}
-	public void filtrarTelefone2(KeyEvent evt,View view) {
+	public void filtrarTelefone2(KeyEvent evt,ViewPessoa view) {
 		String temp = filtrarTelefone(view.getTfTelefone2().getText());
 		view.getTfTelefone2().setText(temp);
 		view.getTfTelefone2().setSelection(view.getTfTelefone2().getText().length());
@@ -162,5 +162,16 @@ public class Controle {
 		}
 		return temp;
 	}
+	public boolean validarTelefone1(KeyEvent evt,ViewPessoa view) {
+		if(!view.getTfTelefone1().getText().equals("")&&view.getTfTelefone1().getText().length()<14) return false;
+		else return true;
+		
+	}
+	public boolean validarTelefone2(KeyEvent evt,ViewPessoa view) {
+		if(!view.getTfTelefone2().getText().equals("")&&view.getTfTelefone2().getText().length()<14) return false;
+		else return true;
+		
+	}
+	
 
 }

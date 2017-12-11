@@ -13,6 +13,8 @@ import exceptions.PessoaFisicaException;
 import exceptions.PessoaInvalidaException;
 import model.Assistido;
 import model.PessoaFisica;
+import view.interfaces.ViewAssistido;
+
 import org.eclipse.swt.widgets.DateTime;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Label;
@@ -25,7 +27,7 @@ import org.eclipse.swt.events.FocusEvent;
 import org.eclipse.swt.events.KeyAdapter;
 import org.eclipse.swt.events.KeyEvent;
 
-public class CadastroAssistidoView implements View{
+public class CadastroAssistidoView implements ViewAssistido{
 	CadastroAssistidoControle controle;
 	protected Shell shlCadastroAssistido;
 	private Text tfRG;
@@ -311,7 +313,6 @@ public class CadastroAssistidoView implements View{
 			@Override
 			public void focusLost(FocusEvent arg0) {
 				controle.getFocus(arg0);
-				controle.validarCPF(controle.getViewAssistido());
 				try {
 					new Assistido().setCpf(getTfCPF().getText());
 				} catch(PessoaFisicaException e) {

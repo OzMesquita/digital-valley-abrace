@@ -1,14 +1,8 @@
-package view;
+package view.interfaces;
 
 import org.eclipse.swt.widgets.Text;
 
-public interface View {
-
-	public Text getTfEmail();
-	
-	public Text getTfCPF();
-	
-	public Text getTfRG();
+public interface ViewPessoa {
 	
 	public Text getTfNome();
 	
@@ -17,5 +11,6 @@ public interface View {
 	public Text getTfTelefone1();
 	
 	public Text getTfTelefone2();
-
+	
+	public Text getTfEmail();
 }
