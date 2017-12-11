@@ -116,7 +116,7 @@ public class AplicacaoView {
 			}
 		});
 		bntEditaUsuario.setText("Editar Usu\u00E1rio");
-		bntEditaUsuario.setImage(SWTResourceManager.getImage("C:\\Users\\Gabriel Gon\u00E7alves\\Desktop\\src\\main\\java\\view\\img\\doacao-small.png"));
+		bntEditaUsuario.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/perfil-small.png").getAbsolutePath()));
 		bntEditaUsuario.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
 		bntEditaUsuario.setBounds(72, 421, 243, 68);
 		shlOngRussasTransformando.open();

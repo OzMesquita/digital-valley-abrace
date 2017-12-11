@@ -91,6 +91,7 @@ public class EditarUsuarioView {
 		});
 		shlEditarUsuario.setSize(715, 381);
 		shlEditarUsuario.setText("Editar doador - ABRACE");
+		shlEditarUsuario.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/ABRACE.png").getAbsolutePath()));
 		Centralize.centralize(shlEditarUsuario);
 		
 		Label lblEditarUsurio = new Label(shlEditarUsuario, SWT.NONE);
@@ -99,8 +100,8 @@ public class EditarUsuarioView {
 		lblEditarUsurio.setBounds(226, 21, 245, 54);
 		
 		Label label_2 = new Label(shlEditarUsuario, SWT.NONE);
-		label_2.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/doadores.png").getAbsolutePath()));
-		label_2.setBounds(538, 21, 109, 114);
+		label_2.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/perfil.png").getAbsolutePath()));
+		label_2.setBounds(576, 10, 91, 119);
 		
 		Label label_1 = new Label(shlEditarUsuario, SWT.NONE);
 		label_1.setText("* Campos Obrigat\u00F3rios");
@@ -116,7 +117,7 @@ public class EditarUsuarioView {
 		tfLogin = new Text(shlEditarUsuario, SWT.BORDER);
 		tfLogin.setTextLimit(16);
 		tfLogin.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
-		tfLogin.setBounds(239, 127, 369, 38);
+		tfLogin.setBounds(239, 127, 286, 38);
 		
 		Label lblSenha = new Label(shlEditarUsuario, SWT.NONE);
 		lblSenha.setText("Senha:");
@@ -126,7 +127,7 @@ public class EditarUsuarioView {
 		TFSenha = new Text(shlEditarUsuario, SWT.BORDER | SWT.PASSWORD);
 		TFSenha.setTextLimit(128);
 		TFSenha.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
-		TFSenha.setBounds(239, 171, 369, 38);
+		TFSenha.setBounds(239, 171, 286, 38);
 		
 		Button button = new Button(shlEditarUsuario, SWT.NONE);
 		button.addKeyListener(new KeyAdapter() {
