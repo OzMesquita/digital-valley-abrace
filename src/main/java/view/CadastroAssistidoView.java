@@ -11,6 +11,7 @@ import org.eclipse.wb.swt.SWTResourceManager;
 import control.CadastroAssistidoControle;
 import exceptions.PessoaFisicaException;
 import exceptions.PessoaInvalidaException;
+import model.Assistido;
 import model.PessoaFisica;
 import org.eclipse.swt.widgets.DateTime;
 import org.eclipse.swt.widgets.Combo;
@@ -298,6 +299,7 @@ public class CadastroAssistidoView implements View{
 		tfApelido.setTextLimit(32);
 		
 		tfCPF = new Text(shlCadastroAssistido, SWT.BORDER);
+		tfCPF.setForeground(SWTResourceManager.getColor(SWT.COLOR_BLACK));
 		tfCPF.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent arg0) {
@@ -310,6 +312,12 @@ public class CadastroAssistidoView implements View{
 			public void focusLost(FocusEvent arg0) {
 				controle.getFocus(arg0);
 				controle.validarCPF(controle.getViewAssistido());
+				try {
+					new Assistido().setCpf(getTfCPF().getText());
+				} catch(PessoaFisicaException e) {
+					setTfCPF("");
+					mensagemErro(e);
+				}
 			}
 		});
 		tfCPF.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));

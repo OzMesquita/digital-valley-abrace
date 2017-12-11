@@ -8,6 +8,7 @@ import java.io.File;
 import org.eclipse.swt.SWT;
 import org.eclipse.wb.swt.SWTResourceManager;
 import control.EditarAssistidoControle;
+import exceptions.PessoaFisicaException;
 import model.Assistido;
 import model.PessoaFisica;
 import org.eclipse.swt.widgets.Text;
@@ -18,6 +19,8 @@ import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.KeyAdapter;
+import org.eclipse.swt.events.FocusAdapter;
+import org.eclipse.swt.events.FocusEvent;
 
 public class EditarAssistidoView {
 	protected Shell shlEditarAssistido;
@@ -291,6 +294,19 @@ public class EditarAssistidoView {
 		label_4.setBounds(207, 267, 40, 28);
 		
 		tfCPF = new Text(shlEditarAssistido, SWT.BORDER);
+		tfCPF.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent arg0) {
+				controle.getFocus(arg0);
+				controle.validarCPF(controle.getViewAssistido());
+				try {
+					new Assistido().setCpf(getTfCPF().getText());
+				} catch(PessoaFisicaException e) {
+					setTfCPF("");
+					mensagemErro(e);
+				}
+			}
+		});
 		tfCPF.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent arg0) {
@@ -509,4 +525,25 @@ public class EditarAssistidoView {
 			shlEditarAssistido.dispose();
 		}
 	}
+	
+	public boolean reativarDoador(PessoaFisica pessoa) {
+		MessageBox messageBox = new MessageBox(shlEditarAssistido,SWT.ICON_WORKING | SWT.NO | SWT.YES); 
+		messageBox.setText("O CPF informado é de uma pessoa inativa no sistema!");
+		messageBox.setMessage("Deseja reativar " + pessoa.getNome()+" CPF:"+ pessoa.getCpf()+"?");
+		int buttonID = messageBox.open();
+        switch(buttonID) {
+          case SWT.NO:
+        	  return false;
+          case SWT.YES:
+            return true;
+          default:
+        	  return false;
+        }
+	}
+	public void mensagemCPFJaCadastrado(Exception e){
+        MessageBox messageBox = new MessageBox(shlEditarAssistido,SWT.ICON_ERROR | SWT.OK);
+	     messageBox.setText("Problemas no cadastro do assistido!");
+	     messageBox.setMessage(e.getMessage());
+	     messageBox.open();
+   }
 }

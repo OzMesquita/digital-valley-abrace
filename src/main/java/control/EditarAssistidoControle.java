@@ -1,7 +1,10 @@
 package control;
 
+import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.List;
 
+import org.eclipse.swt.events.FocusEvent;
 import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.SelectionEvent;
 import exceptions.AssistidoInvalidoException;
@@ -9,9 +12,11 @@ import exceptions.PessoaFisicaException;
 import exceptions.PessoaInvalidaException;
 import facade.AssistidoFachada;
 import model.Assistido;
+import model.CNP;
+import model.PessoaFisica;
 import view.EditarAssistidoView;
 
-public class EditarAssistidoControle {
+public class EditarAssistidoControle{
 	private EditarAssistidoView viewAssistido;
 	private AssistidoFachada fachadaAssistido;
 	
@@ -62,6 +67,36 @@ public class EditarAssistidoControle {
 				viewAssistido.mensagemErro(e);
 			} catch (PessoaFisicaException e) {
 				viewAssistido.mensagemErro(e);
+			}
+		}
+	}
+	
+	public void getFocus(FocusEvent arg0) {
+		if (viewAssistido.getTfCPF().getText() == "") {
+			return;
+		} else {
+			try {
+				if (fachadaAssistido.verificaCPF(viewAssistido.getTfCPF().getText())) {
+					List<PessoaFisica> lista = fachadaAssistido.listarTabelaPessoasFisicas();
+					for (PessoaFisica pessoa : lista) {
+						if (pessoa.getCpf().equals(viewAssistido.getTfCPF().getText())) {
+							if (! (pessoa.isAtivo())) {
+								if(viewAssistido.reativarDoador(pessoa)) {
+									fachadaAssistido.ativaDoador(pessoa.getId());
+									viewAssistido.mensagemSucesso(fachadaAssistido.obterAssistido(pessoa.getId()));
+									viewAssistido.getShlEditarAssistido().dispose();
+								}
+							}else {
+								viewAssistido.mensagemCPFJaCadastrado(new Exception("CPF informado pertence a uma pessoa ativa do sistema \nVocê pode consulta-las em \"Gerenciar assistidos\"!"));							
+								viewAssistido.setTfCPF("");
+							}
+							break;
+						}
+					}
+				}
+			}
+			 catch (SQLException e) {
+				viewAssistido.mensagemErro(new Exception("Erro na operação! Contate o suporte!"));
 			}
 		}
 	}
@@ -134,5 +169,18 @@ public class EditarAssistidoControle {
 		}
 		viewAssistido.setTfTelefone2(temp);
 		viewAssistido.getTfTelefone2().setSelection(viewAssistido.getTfTelefone2().getText().length());
+	}
+	
+	public boolean validarCPF(EditarAssistidoView editarAssistidoView) {
+		if(!new CNP().isValidCPF(editarAssistidoView.getTfCPF().getText().replace(".", "").replace("-", ""))&&!editarAssistidoView.getTfCPF().getText().equals("")) {
+			//viewAssistido.getTfCPF().setForeground(viewAssistido.getTfCPF().getDisplay().getSystemColor(SWT.COLOR_RED));
+			//viewAssistido.getTfCPF().setBackground(viewAssistido.getTfCPF().getDisplay().getSystemColor(SWT.COLOR_RED));
+			return false;
+		}
+		else {
+			//viewAssistido.getTfCPF().setForeground(viewAssistido.getTfCPF().getDisplay().getSystemColor(SWT.COLOR_BLACK));
+			//viewAssistido.getTfCPF().setBackground(viewAssistido.getTfCPF().getDisplay().getSystemColor(SWT.COLOR_WHITE));
+			return true;
+		}
 	}
 }
