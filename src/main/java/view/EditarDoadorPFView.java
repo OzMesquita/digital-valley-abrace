@@ -1,6 +1,7 @@
 package view;
 
 import org.eclipse.swt.widgets.Display;
+
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.MessageBox;
@@ -8,8 +9,8 @@ import java.io.File;
 import org.eclipse.swt.SWT;
 import org.eclipse.wb.swt.SWTResourceManager;
 import control.EditarDoadorPFControle;
+import exceptions.PessoaFisicaException;
 import model.PessoaFisica;
-import view.interfaces.ViewAssistido;
 import view.interfaces.ViewPessoaFisica;
 
 import org.eclipse.swt.widgets.Text;
@@ -17,6 +18,8 @@ import org.eclipse.swt.widgets.DateTime;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.FocusAdapter;
+import org.eclipse.swt.events.FocusEvent;
 import org.eclipse.swt.events.KeyAdapter;
 import org.eclipse.swt.events.KeyEvent;
 
@@ -218,6 +221,20 @@ public class EditarDoadorPFView implements ViewPessoaFisica{
 				identificarESC(arg0);
 			}
 		});
+		tfCPF.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent arg0) {
+				if(!tfCPF.getText().equals("")) {
+					controle.getFocus(arg0);
+					try {
+						new PessoaFisica().setCpf(getTfCPF().getText());
+					} catch(PessoaFisicaException e) {
+						setTfCPF("");
+						mensagemErro(e);
+					}
+				}
+			}
+		});
 		tfCPF.setTextLimit(14);
 		tfCPF.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfCPF.setBounds(264, 214, 369, 38);
@@ -399,9 +416,31 @@ public class EditarDoadorPFView implements ViewPessoaFisica{
 		messageBox.open();
 	}
 	
+	public void mensagemCPFJaCadastrado(Exception e){
+	       MessageBox messageBox = new MessageBox(shlEditarDoadorPessoa,SWT.ICON_ERROR | SWT.OK);
+	       messageBox.setText("Problemas no cadastro do doador!");
+	       messageBox.setMessage(e.getMessage());
+	       messageBox.open();
+	}
+	
 	public void identificarESC(KeyEvent arg0) {
 		if(arg0.keyCode == 27) {
 			shlEditarDoadorPessoa.dispose();
 		}
+	}
+	
+	public boolean reativarDoador(PessoaFisica pessoa) {
+		MessageBox messageBox = new MessageBox(shlEditarDoadorPessoa,SWT.ICON_WORKING | SWT.NO | SWT.YES); 
+		messageBox.setText("O CPF informado é de uma pessoa inativa no sistema!");
+		messageBox.setMessage("Deseja reativar " + pessoa.getNome()+" CPF:"+ pessoa.getCpf()+"?");
+		int buttonID = messageBox.open();
+        switch(buttonID) {
+          case SWT.NO:
+        	  return false;
+          case SWT.YES:
+            return true;
+          default:
+        	  return false;
+        }
 	}
 }
