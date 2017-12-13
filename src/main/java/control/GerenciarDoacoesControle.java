@@ -1,5 +1,6 @@
 package control;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -10,10 +11,17 @@ import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.TableItem;
 
+import com.itextpdf.text.DocumentException;
+
 import exceptions.DoacaoInvalidaException;
+import exceptions.PessoaFisicaException;
+import exceptions.PessoaInvalidaException;
 import facade.DoacaoFachada;
 import model.Doacao;
+import model.PessoaFisica;
+import model.PessoaJuridica;
 import relatorio.Extenso;
+import relatorio.ReciboDoacaoFachada;
 import view.GerenciarDoacoesView;
 import view.SelecionarDoadorView;
 
@@ -178,5 +186,58 @@ public class GerenciarDoacoesControle {
 				}
 			}
 		}
+		if(event.getSource().toString().equals("Button {Emitir recibo}")) {
+			if(listaExibidaNaTabela.get(viewDoacoes.getTable().getSelectionIndex()).getDoador() instanceof PessoaFisica) {
+				Doacao d = new Doacao();
+				try {
+					d.setData(listaExibidaNaTabela.get(viewDoacoes.getTable().getSelectionIndex()).getData());
+					d.setDoador(listaExibidaNaTabela.get(viewDoacoes.getTable().getSelectionIndex()).getDoador());
+					d.setValor(listaExibidaNaTabela.get(viewDoacoes.getTable().getSelectionIndex()).getValor());
+					
+					gerarReciboPF(d);
+				} catch (DoacaoInvalidaException e) {
+					e.printStackTrace();
+				} catch (PessoaInvalidaException e) {
+					e.printStackTrace();
+				} catch (PessoaFisicaException e) {
+					e.printStackTrace();
+				} catch (DocumentException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			} else if(listaExibidaNaTabela.get(viewDoacoes.getTable().getSelectionIndex()).getDoador() instanceof PessoaJuridica) {
+				Doacao d = new Doacao();
+				try {
+					d.setData(listaExibidaNaTabela.get(viewDoacoes.getTable().getSelectionIndex()).getData());
+					d.setDoador(listaExibidaNaTabela.get(viewDoacoes.getTable().getSelectionIndex()).getDoador());
+					d.setValor(listaExibidaNaTabela.get(viewDoacoes.getTable().getSelectionIndex()).getValor());
+					
+					gerarReciboPJ(d);
+				} catch (DoacaoInvalidaException e) {
+					e.printStackTrace();
+				} catch (PessoaInvalidaException e) {
+					e.printStackTrace();
+				} catch (PessoaFisicaException e) {
+					e.printStackTrace();
+				} catch (DocumentException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+	
+	public static void gerarReciboPF(Doacao doacao) throws PessoaInvalidaException, PessoaFisicaException, DocumentException, IOException, DoacaoInvalidaException{
+		ReciboDoacaoFachada recibo = new ReciboDoacaoFachada();
+		recibo.reciboDoadorFisico(doacao);
+		recibo.abrirPDF();
+	}
+	
+	public static void gerarReciboPJ(Doacao doacao) throws PessoaInvalidaException, PessoaFisicaException, DocumentException, IOException, DoacaoInvalidaException{
+		ReciboDoacaoFachada recibo = new ReciboDoacaoFachada();
+		recibo.reciboDoadorJuridico(doacao);
+		recibo.abrirPDF();
 	}
 }

@@ -43,6 +43,7 @@ public class GerenciarDoacoesView {
 	private Label lblAno;
 	private Combo cmbMes;
 	private Label label_1;
+	private Button btnEmitirRecibo;
 
 	public Combo getCmbMes() {
 		return cmbMes;
@@ -214,6 +215,7 @@ public class GerenciarDoacoesView {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
 				btnExcluir.setEnabled(true);
+				btnEmitirRecibo.setEnabled(true);
 			}
 		});
 		table.setLinesVisible(true);
@@ -277,7 +279,7 @@ public class GerenciarDoacoesView {
 		});
 		btnCadastrar.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
 		btnCadastrar.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/doacao-small.png").getAbsolutePath()));
-		btnCadastrar.setBounds(369, 544, 208, 54);
+		btnCadastrar.setBounds(369, 604, 208, 54);
 		btnCadastrar.setText("Realizar doa\u00E7\u00E3o");
 		
 		btnCancelar = new Button(shlGerenciarDoacoes, SWT.NONE);
@@ -377,6 +379,25 @@ public class GerenciarDoacoesView {
 		label_1.setText("Selecione ou pesquise uma doa\u00E7\u00E3o");
 		label_1.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
 		label_1.setBounds(214, 72, 296, 25);
+		
+		btnEmitirRecibo = new Button(shlGerenciarDoacoes, SWT.NONE);
+		btnEmitirRecibo.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent arg0) {
+				controle.getEvent(arg0);
+			}
+		});
+		btnEmitirRecibo.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				identificarESC(arg0);
+			}
+		});
+		btnEmitirRecibo.setText("Emitir recibo");
+		btnEmitirRecibo.setImage(SWTResourceManager.getImage("C:\\Users\\Thiago Hellen\\Desktop\\src\\main\\java\\view\\img\\lixeira.png"));
+		btnEmitirRecibo.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
+		btnEmitirRecibo.setEnabled(false);
+		btnEmitirRecibo.setBounds(369, 544, 208, 54);
 		
 		controle.preencherTabelaDoacoes(controle.obterTodasDoacoes());
 		
