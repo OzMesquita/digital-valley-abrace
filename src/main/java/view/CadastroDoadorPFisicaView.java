@@ -205,6 +205,7 @@ public class CadastroDoadorPFisicaView implements ViewPessoaFisica, ViewPessoa{
 			@Override
 			public void keyReleased(KeyEvent arg0) {
 				identificarESC(arg0);
+				controle.filtrarNome(arg0, controle.getViewDoador());
 			}
 		});
 		tfNome.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
