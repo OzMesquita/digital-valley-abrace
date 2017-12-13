@@ -2,6 +2,8 @@ package facade;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import DAO.ConnectionFactory;
@@ -54,6 +56,7 @@ public class DoadorFachada {
         ArrayList<Pessoa> pessoas = new ArrayList<Pessoa>();
         pessoas.addAll(listarPessoaFisica());
         pessoas.addAll(listarPessoaJuridica());
+        Collections.sort(pessoas);
         return pessoas;
     }
 

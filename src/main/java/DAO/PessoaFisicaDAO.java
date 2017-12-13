@@ -130,7 +130,7 @@ public class PessoaFisicaDAO extends ExecutaSQL {
 		String informacaoPessoa = "ABRACE.PESSOA.idPessoa, ABRACE.PESSOA.nome, ABRACE.PESSOA.endereco, ABRACE.PESSOA.telefone1,"
 				+ "ABRACE.PESSOA.telefone2, ABRACE.PESSOA.email, ABRACE.PESSOA.dataCadastro, ABRACE.PESSOA.isDoador,";
 		String sql = "SELECT " + informacaoPessoa
-				+ "ABRACE.PESSOA_FISICA.cpf, ABRACE.PESSOA_FISICA.rg, ABRACE.PESSOA_FISICA.dataNascimento FROM ABRACE.PESSOA_FISICA, ABRACE.PESSOA WHERE ABRACE.PESSOA_FISICA.idPessoa=ABRACE.PESSOA.idPessoa AND ativo=?";
+				+ "ABRACE.PESSOA_FISICA.cpf, ABRACE.PESSOA_FISICA.rg, ABRACE.PESSOA_FISICA.dataNascimento FROM ABRACE.PESSOA_FISICA, ABRACE.PESSOA WHERE ABRACE.PESSOA_FISICA.idPessoa=ABRACE.PESSOA.idPessoa AND ativo=? order by nome";
 		try {
 			PreparedStatement stmt = getConexao().prepareStatement(sql);
 			stmt.setBoolean(1, true);
@@ -202,7 +202,7 @@ public class PessoaFisicaDAO extends ExecutaSQL {
 		String informacaoPessoa = "ABRACE.PESSOA.idPessoa, ABRACE.PESSOA.nome, ABRACE.PESSOA.endereco, ABRACE.PESSOA.telefone1,"
 				+ "ABRACE.PESSOA.telefone2, ABRACE.PESSOA.email, ABRACE.PESSOA.dataCadastro, ABRACE.PESSOA.isDoador,";
 		String sql = "SELECT " + informacaoPessoa
-				+ "ABRACE.PESSOA_FISICA.cpf, ABRACE.PESSOA_FISICA.rg, ABRACE.PESSOA_FISICA.dataNascimento FROM ABRACE.PESSOA_FISICA, ABRACE.PESSOA WHERE ABRACE.PESSOA_FISICA.idPessoa=ABRACE.PESSOA.idPessoa AND ativo=? AND isDoador=?";
+				+ "ABRACE.PESSOA_FISICA.cpf, ABRACE.PESSOA_FISICA.rg, ABRACE.PESSOA_FISICA.dataNascimento FROM ABRACE.PESSOA_FISICA, ABRACE.PESSOA WHERE ABRACE.PESSOA_FISICA.idPessoa=ABRACE.PESSOA.idPessoa AND ativo=? AND isDoador=? order by nome";
 		try {
 			PreparedStatement stmt = getConexao().prepareStatement(sql);
 			stmt.setBoolean(1, true);

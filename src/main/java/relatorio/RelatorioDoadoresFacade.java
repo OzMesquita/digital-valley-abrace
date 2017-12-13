@@ -15,6 +15,7 @@ import com.itextpdf.text.Font.FontFamily;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
+
 import model.Pessoa;
 import model.PessoaFisica;
 import model.PessoaJuridica;
@@ -27,7 +28,6 @@ public class RelatorioDoadoresFacade extends RelatorioFacade{
 		// Criando o documento
 		// ==================================================================================================//
 		Document document = new Document();
-		String tipo = "";
 		String tipoPessoa = "";
 		
 		if(exibirPessoasFisicas) tipoPessoa+=" Físicas ";
