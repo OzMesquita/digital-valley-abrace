@@ -193,6 +193,7 @@ public class EditarDoadorPFView implements ViewPessoaFisica{
 			@Override
 			public void keyReleased(KeyEvent arg0) {
 				identificarESC(arg0);
+				controle.filtrarNome(arg0, controle.getViewDoador());
 			}
 		});
 		tfNome.setTextLimit(128);
