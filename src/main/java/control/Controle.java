@@ -193,6 +193,10 @@ public class Controle {
 				temp += j.charAt(i);
 			}
 		}
+		if(temp.length() == 14) {
+			temp = temp.replaceAll("-", "");
+			temp = temp.substring(0, 9)+"-"+temp.substring(9);
+		}
 		return temp;
 	}
 	public boolean validarTelefone1(FocusEvent evt, ViewPessoa view) {
@@ -202,7 +206,7 @@ public class Controle {
 		return validarTelefone(view.getTfTelefone2().getText());
 	}
 	public boolean validarTelefone(String telefone) {
-		return !telefone.equals("")&&(telefone.length()==13||telefone.length()==14);
+		return telefone.equals("")||(telefone.length()==13||telefone.length()==14);
 	}
 	
 
