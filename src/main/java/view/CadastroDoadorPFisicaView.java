@@ -4,6 +4,7 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.wb.swt.SWTResourceManager;
 import control.CadastroDoadorPFControle;
+import exceptions.PessoaFisicaException;
 import exceptions.PessoaInvalidaException;
 import model.Assistido;
 import model.PessoaFisica;
@@ -228,7 +229,15 @@ public class CadastroDoadorPFisicaView implements ViewPessoaFisica, ViewPessoa{
 		tfCPF.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent arg0) {
-				controle.getFocus(arg0);
+				if(!tfCPF.getText().equals("")) {
+					controle.getFocus(arg0);
+					try {
+						new PessoaFisica().setCpf(getTfCPF().getText());
+					} catch(PessoaFisicaException e) {
+						setTfCPF("");
+						mensagemErro(e);
+					}
+				}
 			}
 		});
 		tfCPF.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
