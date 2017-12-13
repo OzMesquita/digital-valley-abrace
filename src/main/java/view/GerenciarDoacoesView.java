@@ -394,7 +394,7 @@ public class GerenciarDoacoesView {
 			}
 		});
 		btnEmitirRecibo.setText("Emitir recibo");
-		btnEmitirRecibo.setImage(SWTResourceManager.getImage("C:\\Users\\Thiago Hellen\\Desktop\\src\\main\\java\\view\\img\\lixeira.png"));
+		btnEmitirRecibo.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/recibo.png").getAbsolutePath()));
 		btnEmitirRecibo.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
 		btnEmitirRecibo.setEnabled(false);
 		btnEmitirRecibo.setBounds(369, 544, 208, 54);

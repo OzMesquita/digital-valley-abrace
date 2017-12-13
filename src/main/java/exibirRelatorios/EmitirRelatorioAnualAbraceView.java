@@ -148,6 +148,10 @@ public class EmitirRelatorioAnualAbraceView implements ViewRelatorio{
 		btnSalvarAlteraes.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/ok.png").getAbsolutePath()));
 		btnSalvarAlteraes.setBounds(360, 271, 214, 54);
 		btnSalvarAlteraes.setText("Gerar relat\u00F3rio");
+		
+		Label label_3 = new Label(shlEmitirRelatrioDe, SWT.NONE);
+		label_3.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/relatorio.png").getAbsolutePath()));
+		label_3.setBounds(607, 10, 80, 105);
 
 	}
 

@@ -60,6 +60,10 @@ public class EmitirRelatorioAssistidosView {
 		shlEmitirRelatrioDe.open();
 		shlEmitirRelatrioDe.layout();
 		Centralize.centralize(shlEmitirRelatrioDe);
+		
+		Label label = new Label(shlEmitirRelatrioDe, SWT.NONE);
+		label.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/relatorio.png").getAbsolutePath()));
+		label.setBounds(604, 20, 80, 105);
 		while (!shlEmitirRelatrioDe.isDisposed()) {
 			if (!display.readAndDispatch()) {
 				display.sleep();
