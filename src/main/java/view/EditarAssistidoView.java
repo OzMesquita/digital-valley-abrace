@@ -270,6 +270,7 @@ public class EditarAssistidoView implements ViewAssistido{
 			@Override
 			public void keyReleased(KeyEvent arg0) {
 				identificarESC(arg0);
+				controle.filtrarNome(arg0, controle.getViewAssistido());
 			}
 		});
 		tfNome.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
@@ -284,6 +285,7 @@ public class EditarAssistidoView implements ViewAssistido{
 		tfApelido.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent arg0) {
+				controle.filtrarApelido(arg0, controle.getViewAssistido());
 				identificarESC(arg0);
 			}
 		});
@@ -405,6 +407,7 @@ public class EditarAssistidoView implements ViewAssistido{
 			@Override
 			public void keyReleased(KeyEvent arg0) {
 				identificarESC(arg0);
+				controle.filtrarEmail(controle.getViewAssistido());
 			}
 		});
 		tfEmail.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
