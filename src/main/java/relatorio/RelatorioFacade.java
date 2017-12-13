@@ -2,15 +2,15 @@ package relatorio;
 
 import java.awt.Desktop;
 import java.io.File;
-import java.io.FileInputStream;
+
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.MalformedURLException;
-import java.nio.channels.FileChannel;
+
 import java.nio.file.Files;
-import java.nio.file.Path;
+
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -25,7 +25,7 @@ import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Font.FontFamily;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
-import com.itextpdf.text.pdf.PdfWriter;
+
 
 public abstract class RelatorioFacade {
 	
@@ -79,10 +79,4 @@ public abstract class RelatorioFacade {
           ex.printStackTrace();
         }
 	}
-	public void salvarPDF() throws DocumentException, IOException {
-        new File("Relatorios").mkdir();
-        Files.copy(Paths.get(arquivoTMP), Paths.get(arquivoTMP.replace(System.getProperty ("java.io.tmpdir")+"/", "")));       
-       
-	}
-
 }
