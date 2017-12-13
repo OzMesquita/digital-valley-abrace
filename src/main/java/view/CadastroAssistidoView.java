@@ -117,7 +117,7 @@ public class CadastroAssistidoView implements ViewAssistido{
 	
 
 	public void setTfEmail(String tfEmail) {
-		this.tfEmail.setText(tfEmail);;
+		this.tfEmail.setText(tfEmail);
 	}
 
 	public Text getTfApelido() {
