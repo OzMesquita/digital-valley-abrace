@@ -312,12 +312,14 @@ public class CadastroAssistidoView implements ViewAssistido{
 		tfCPF.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent arg0) {
-				controle.getFocus(arg0);
-				try {
-					new Assistido().setCpf(getTfCPF().getText());
-				} catch(PessoaFisicaException e) {
-					setTfCPF("");
-					mensagemErro(e);
+				if(tfCPF.getText().equals("")) {
+					controle.getFocus(arg0);
+					try {
+						new Assistido().setCpf(getTfCPF().getText());
+					} catch(PessoaFisicaException e) {
+						setTfCPF("");
+						mensagemErro(e);
+					}
 				}
 			}
 		});
