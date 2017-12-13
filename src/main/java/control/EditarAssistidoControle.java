@@ -86,7 +86,7 @@ public class EditarAssistidoControle extends Controle{
 									viewAssistido.mensagemSucesso(fachadaAssistido.obterAssistido(pessoa.getId()));
 									viewAssistido.getShlEditarAssistido().dispose();
 								}
-							}else {
+							}else if(! pessoa.getCpf().equals(viewAssistido.getTfCPF().getText())){
 								viewAssistido.mensagemCPFJaCadastrado(new Exception("CPF informado pertence a uma pessoa ativa do sistema \nVocê pode consulta-las em \"Gerenciar assistidos\"!"));							
 								viewAssistido.setTfCPF("");
 							}
