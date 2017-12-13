@@ -517,7 +517,7 @@ public class EditarAssistidoView implements ViewAssistido{
 	public void mensagemSucesso(PessoaFisica pessoaFisica){
 		MessageBox messageBox = new MessageBox(shlEditarAssistido,SWT.ICON_WORKING | SWT.OK); 
 		messageBox.setText("Operação realizada com sucesso!");
-		messageBox.setMessage("Os dados do assitido foram alterados com sucesso!");
+		messageBox.setMessage("Os dados do assistido foram alterados com sucesso!");
 		messageBox.open();
 	}
 	
