@@ -66,6 +66,12 @@ public abstract class RelatorioFacade {
 	protected OutputStream gravarDocumento(String subtitulo) throws FileNotFoundException {
 		DateTimeFormatter formatador = DateTimeFormatter.ofPattern("'DATA['dd'_'MM'_'yyyy'] HORA['HH.mm.ss']'");
 		String caminho = System.getProperty ("java.io.tmpdir")+"/Relatorios";
+		File index = new File(caminho);
+		String[]entries = index.list();
+		for(String s: entries){
+		    File currentFile = new File(index.getPath(),s);
+		    currentFile.delete();
+		}
 		new File(caminho).mkdir();
 		arquivoTMP = caminho+"/"+subtitulo+" " + LocalDateTime.now().format(formatador) + ".pdf";		
 		return new FileOutputStream(arquivoTMP);
