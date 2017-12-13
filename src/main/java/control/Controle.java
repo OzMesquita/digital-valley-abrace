@@ -2,10 +2,7 @@ package control;
 
 import org.eclipse.swt.events.FocusEvent;
 
-import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.KeyEvent;
-
-import model.CNP;
 import view.interfaces.ViewAssistido;
 import view.interfaces.ViewPessoa;
 import view.interfaces.ViewPessoaFisica;
@@ -130,15 +127,21 @@ public class Controle {
 	// 						Nome							//
 	//======================================================//
 	public void filtrarNome(KeyEvent evt,ViewPessoa view) {
-		String k = view.getTfNome().getText();
-		String j = new String();
-		for (int i = 0; i < k.length(); i++) {
-			char[] caractere = { k.charAt(i) };
-			if ("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZçÇáÁàÀãÃâÂéÉêÊíÍîÎóÓõÕôÔúÚùÙûÛ ".contains(new String(caractere)))
-				j += k.charAt(i);
+		try {
+			String k = view.getTfNome().getText();
+			
+			if(!k.equals("")) {
+				String j = new String();
+				for (int i = 0; i < k.length(); i++) {
+					char[] caractere = { k.charAt(i) };
+					if ("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZçÇáÁàÀãÃâÂéÉêÊíÍîÎóÓõÕôÔúÚùÙûÛ ".contains(new String(caractere)))
+						j += k.charAt(i);
+				}
+				view.getTfNome().setText(j);
+				view.getTfNome().setSelection(view.getTfNome().getText().length());
+			}
+		} catch(Exception e) {
 		}
-		view.getTfNome().setText(j);
-		view.getTfNome().setSelection(view.getTfNome().getText().length());
 	}
 	//------------------------------------------------------//
 
