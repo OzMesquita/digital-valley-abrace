@@ -193,7 +193,7 @@ public class EmitirRelatorioDoacoesView {
 	public void mensagemErro(){
 		 MessageBox messageBox = new MessageBox(shlEmitirRelatrioMensal,SWT.ICON_ERROR | SWT.OK); 
 	     messageBox.setText("Erro nas datas informadas");
-	     messageBox.setMessage("Não foi possível gerar o relatório, pois a data de início informada ocorre após a de término\nInsira uma data inicial correta!");
+	     messageBox.setMessage("Não foi possível gerar o relatório, pois a data de início informada é posterior a data de término.\nInsira uma data inicial anterior a data de término!");
 	     messageBox.open();
 	}
 	

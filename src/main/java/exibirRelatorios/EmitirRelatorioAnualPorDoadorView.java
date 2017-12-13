@@ -248,8 +248,8 @@ public class  EmitirRelatorioAnualPorDoadorView implements ViewRelatorio{
 				controle.getEvent(arg0);
 			}
 		});
-		btnPrximo.setText("Continuar");
-		btnPrximo.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/botao-proximo.png").getAbsolutePath()));
+		btnPrximo.setText("Emitir relatório");
+		btnPrximo.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/ok.png").getAbsolutePath()));
 		btnPrximo.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
 		btnPrximo.setBounds(363, 532, 214, 54);
 		
@@ -268,6 +268,9 @@ public class  EmitirRelatorioAnualPorDoadorView implements ViewRelatorio{
 			@Override
 			public void keyReleased(KeyEvent arg0) {
 				controle.filtrarAno(arg0, controle.getViewDoador());
+				if(arg0.keyCode == 13 || arg0.keyCode == 16777296) {
+					controle.gerarRelatorio();
+				}
 			}
 		});
 		tfAno.setBounds(474, 478, 92, 36);

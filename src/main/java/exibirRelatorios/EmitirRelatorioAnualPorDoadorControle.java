@@ -51,18 +51,8 @@ public class EmitirRelatorioAnualPorDoadorControle extends ControleRelatorio{
 	}
 	
 	public void getEvent(SelectionEvent event) {
-		if (event.getSource().toString().equals("Button {Continuar}")) {
-			try {
-				int idPessoa = listaExibidaNaTabela.get(viewDoador.getTable().getSelectionIndex()).getId();
-				gerarRelatorioAnualPessoa(pessoaFachada.obterPessoa(idPessoa), Integer.parseInt(viewDoador.getTfAno().getText()));
-				viewDoador.getShlDoacao().dispose();
-			} catch (ArrayIndexOutOfBoundsException e) {
-				viewDoador.mensagemErro(new Exception("Selecione um doador para continuar."));
-			} catch (DoacaoInvalidaException e) {
-				e.printStackTrace();
-			} catch (NumberFormatException e) {
-				viewDoador.mensagemErro(new Exception("Informe o ano para continuar."));
-			}
+		if (event.getSource().toString().equals("Button {Emitir relatório}")) {
+			gerarRelatorio(); 
 		}if(event.getSource().toString().equals("Button {Pesquisar}")) {
 			if(getViewDoador().getTfPesquisar().getText() == "") {
 				preencherTabelaDoadores(obterTodosDoadores());
@@ -128,12 +118,24 @@ public class EmitirRelatorioAnualPorDoadorControle extends ControleRelatorio{
 			}
 			
 			relatorioAnualPessoaFachada.abrirPDF();
-			relatorioAnualPessoaFachada.salvarPDF();
-			
 		} catch (DocumentException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
+		}
+	}
+	
+	public void gerarRelatorio() {
+		try {
+			int idPessoa = listaExibidaNaTabela.get(viewDoador.getTable().getSelectionIndex()).getId();
+			gerarRelatorioAnualPessoa(pessoaFachada.obterPessoa(idPessoa), Integer.parseInt(viewDoador.getTfAno().getText()));
+			viewDoador.getShlDoacao().dispose();
+		} catch (ArrayIndexOutOfBoundsException e) {
+			viewDoador.mensagemErro(new Exception("Selecione um doador para continuar."));
+		} catch (DoacaoInvalidaException e) {
+			e.printStackTrace();
+		} catch (NumberFormatException e) {
+			viewDoador.mensagemErro(new Exception("Informe o ano para continuar."));
 		}
 	}
 	
