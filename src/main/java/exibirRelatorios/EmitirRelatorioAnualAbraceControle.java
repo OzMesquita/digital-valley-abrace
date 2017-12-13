@@ -31,14 +31,17 @@ public class EmitirRelatorioAnualAbraceControle extends ControleRelatorio{
 			view.getShlEmitirRelatrioDe().dispose();
 		}
 		if (event.getSource().toString().equals("Button {Gerar relatório}")) {
-			try {
-				gerarRelatorioAnual(Integer.parseInt(view.getTfAno().getText()));
-			} catch (NumberFormatException e) {
-				view.mensagemErro(new Exception("Informe o ano para continuar."));
-			} catch (DoacaoInvalidaException e) {
-				e.printStackTrace();
-			}
-			
+			gerarRelatorio();	
+		}
+	}
+	
+	public void gerarRelatorio() {
+		try {
+			gerarRelatorioAnual(Integer.parseInt(view.getTfAno().getText()));
+		} catch (NumberFormatException e) {
+			view.mensagemErro(new Exception("Informe o ano para continuar."));
+		} catch (DoacaoInvalidaException e) {
+			e.printStackTrace();
 		}
 	}
 	

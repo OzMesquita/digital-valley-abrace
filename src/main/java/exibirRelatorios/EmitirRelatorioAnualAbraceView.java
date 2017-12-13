@@ -103,6 +103,9 @@ public class EmitirRelatorioAnualAbraceView implements ViewRelatorio{
 			public void keyReleased(KeyEvent arg0) {
 				controle.filtrarAno(arg0, controle.getViewDoador());
 				identificarESC(arg0);
+				if(arg0.keyCode == 13 || arg0.keyCode == 16777296) {
+					controle.gerarRelatorio();
+				}
 			}
 		});
 		tfAno.setBounds(496, 187, 92, 36);
