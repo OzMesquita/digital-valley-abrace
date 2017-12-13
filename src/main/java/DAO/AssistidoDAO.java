@@ -142,7 +142,7 @@ public class AssistidoDAO extends ExecutaSQL {
 		String sql = "SELECT * " + 
 				"FROM PESSOA " + 
 				"JOIN PESSOA_FISICA ON PESSOA.idpessoa=PESSOA_FISICA.idpessoa " + 
-				"join ASSISTIDO ON ASSISTIDO.idpessoa=PESSOA_FISICA.idpessoa WHERE PESSOA.ativo = True";
+				"join ASSISTIDO ON ASSISTIDO.idpessoa=PESSOA_FISICA.idpessoa WHERE PESSOA.ativo = True order by nome";
 		try {
 			PreparedStatement stmt = getConexao().prepareStatement(sql);
 			ResultSet rs = stmt.executeQuery();
