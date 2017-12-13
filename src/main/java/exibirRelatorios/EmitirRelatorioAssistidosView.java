@@ -19,10 +19,10 @@ import view.Centralize;
 
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Combo;
-import org.eclipse.swt.events.KeyAdapter;
-import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.KeyAdapter;
+import org.eclipse.swt.events.KeyEvent;
 
 public class EmitirRelatorioAssistidosView {
 
@@ -72,6 +72,12 @@ public class EmitirRelatorioAssistidosView {
 	 */
 	protected void createContents() {
 		shlEmitirRelatrioDe = new Shell();
+		shlEmitirRelatrioDe.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				identificarESC(arg0);
+			}
+		});
 		shlEmitirRelatrioDe.setSize(730, 407);
 		shlEmitirRelatrioDe.setText("Emitir relat\u00F3rio de assistidos - ABRACE");
 		shlEmitirRelatrioDe.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/ABRACE.png").getAbsolutePath()));
@@ -87,6 +93,12 @@ public class EmitirRelatorioAssistidosView {
 		label_1.setBounds(292, 74, 129, 30);
 		
 		final Combo combo = new Combo(shlEmitirRelatrioDe, SWT.READ_ONLY);
+		combo.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				identificarESC(arg0);
+			}
+		});
 		combo.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
 		combo.setItems(new String[] {"Todos", "Vivos", "Mortos"});
 		combo.setBounds(455, 209, 148, 31);
@@ -99,6 +111,12 @@ public class EmitirRelatorioAssistidosView {
 		lblEsteRelatrioLista.setBounds(156, 117, 402, 50);
 		
 		Button button = new Button(shlEmitirRelatrioDe, SWT.NONE);
+		button.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				identificarESC(arg0);
+			}
+		});
 		button.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
@@ -111,6 +129,12 @@ public class EmitirRelatorioAssistidosView {
 		button.setBounds(144, 285, 214, 54);
 		
 		Button button_1 = new Button(shlEmitirRelatrioDe, SWT.NONE);
+		button_1.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				identificarESC(arg0);
+			}
+		});
 		button_1.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
@@ -148,5 +172,9 @@ public class EmitirRelatorioAssistidosView {
 			e.printStackTrace();
 		}
 	}
-
+	public void identificarESC(KeyEvent arg0) {
+		if(arg0.keyCode == 27) {
+			shlEmitirRelatrioDe.dispose();
+		}
+	}
 }

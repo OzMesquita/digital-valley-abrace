@@ -124,6 +124,12 @@ public class EditarUsuarioView {
 		lblLogin.setBounds(168, 123, 55, 28);
 		
 		tfLogin = new Text(shlEditarUsuario, SWT.BORDER);
+		tfLogin.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				identificarESC(arg0);
+			}
+		});
 		tfLogin.setTextLimit(16);
 		tfLogin.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfLogin.setBounds(240, 119, 286, 38);
@@ -134,6 +140,12 @@ public class EditarUsuarioView {
 		lblSenhaAtual.setBounds(105, 169, 117, 28);
 		
 		txtSenhaAntiga = new Text(shlEditarUsuario, SWT.BORDER | SWT.PASSWORD);
+		txtSenhaAntiga.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				identificarESC(arg0);
+			}
+		});
 		txtSenhaAntiga.setTextLimit(128);
 		txtSenhaAntiga.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		txtSenhaAntiga.setBounds(239, 165, 286, 38);
@@ -144,6 +156,12 @@ public class EditarUsuarioView {
 		lblSenha.setBounds(105, 218, 117, 28);
 		
 		TFSenha = new Text(shlEditarUsuario, SWT.BORDER | SWT.PASSWORD);
+		TFSenha.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				identificarESC(arg0);
+			}
+		});
 		TFSenha.setTextLimit(128);
 		TFSenha.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		TFSenha.setBounds(239, 214, 287, 38);

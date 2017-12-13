@@ -71,6 +71,12 @@ public class EmitirRelatorioAnualAbraceView implements ViewRelatorio{
 	 */
 	protected void createContents() {
 		shlEmitirRelatrioDe = new Shell();
+		shlEmitirRelatrioDe.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				identificarESC(arg0);
+			}
+		});
 		shlEmitirRelatrioDe.setSize(730, 407);
 		shlEmitirRelatrioDe.setText("Emitir relat\u00F3rio anual de doa\u00E7\u00F5es - ABRACE");
 		shlEmitirRelatrioDe.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/ABRACE.png").getAbsolutePath()));
@@ -96,11 +102,18 @@ public class EmitirRelatorioAnualAbraceView implements ViewRelatorio{
 			@Override
 			public void keyReleased(KeyEvent arg0) {
 				controle.filtrarAno(arg0, controle.getViewDoador());
+				identificarESC(arg0);
 			}
 		});
 		tfAno.setBounds(496, 187, 92, 36);
 		
 		Button button = new Button(shlEmitirRelatrioDe, SWT.NONE);
+		button.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				identificarESC(arg0);
+			}
+		});
 		button.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
@@ -119,6 +132,12 @@ public class EmitirRelatorioAnualAbraceView implements ViewRelatorio{
 		lblEsteRelatrioMostra.setText("Este relat\u00F3rio lista todas as doa\u00E7\u00F5es que a ONG\r\nrecebeu durante o ano informado");
 		
 		Button btnSalvarAlteraes = new Button(shlEmitirRelatrioDe, SWT.NONE);
+		btnSalvarAlteraes.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				identificarESC(arg0);
+			}
+		});
 		btnSalvarAlteraes.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
@@ -153,5 +172,11 @@ public class EmitirRelatorioAnualAbraceView implements ViewRelatorio{
 	     messageBox.setText("Problemas ao emitir relatório");
 	     messageBox.setMessage(e.getMessage()+"\nTente novamente!");
 	     messageBox.open();
+	}
+	
+	public void identificarESC(KeyEvent arg0) {
+		if(arg0.keyCode == 27) {
+			shlEmitirRelatrioDe.dispose();
+		}
 	}
 }
