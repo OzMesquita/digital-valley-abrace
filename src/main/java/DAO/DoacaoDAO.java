@@ -130,7 +130,7 @@ public class DoacaoDAO extends ExecutaSQL{
 	
 	public ArrayList<Doacao> listarDoacoes(Pessoa pessoa) throws DoacaoInvalidaException{
 		ArrayList<Doacao> doacoes = new ArrayList<Doacao>();
-		String sql = "SELECT * FROM ABRACE.DOACAO WHERE IDPESSOA=?";
+		String sql = "SELECT * FROM ABRACE.DOACAO WHERE IDPESSOA=? order by data";
 		PreparedStatement stmt = null;
 		try {
 			stmt = getConexao().prepareStatement(sql);
