@@ -253,7 +253,7 @@ public class GerenciarAssistidosView {
 		});
 		btnEditar.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/editar.png").getAbsolutePath()));
 		btnEditar.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
-		btnEditar.setBounds(152, 551, 208, 54);
+		btnEditar.setBounds(372, 551, 208, 54);
 		btnEditar.setText("Editar Assistido");
 		
 		btnExcluir = new Button(shlGerenciarAssistidos, SWT.NONE);
@@ -272,7 +272,7 @@ public class GerenciarAssistidosView {
 		btnExcluir.setEnabled(false);
 		btnExcluir.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
 		btnExcluir.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/lixeira.png").getAbsolutePath()));
-		btnExcluir.setBounds(372, 551, 208, 54);
+		btnExcluir.setBounds(152, 551, 208, 54);
 		btnExcluir.setText("Excluir Assistido");
 		
 		btnCadastrar = new Button(shlGerenciarAssistidos, SWT.NONE);
