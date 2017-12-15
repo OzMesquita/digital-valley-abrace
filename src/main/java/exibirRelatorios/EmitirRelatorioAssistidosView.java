@@ -104,7 +104,7 @@ public class EmitirRelatorioAssistidosView {
 			}
 		});
 		combo.setFont(SWTResourceManager.getFont("Segoe UI", 14, SWT.NORMAL));
-		combo.setItems(new String[] {"Todos", "Vivos", "Mortos"});
+		combo.setItems(new String[] {"Todos", "Vivos", "Falecidos"});
 		combo.setBounds(455, 209, 148, 31);
 		combo.select(0);
 		
