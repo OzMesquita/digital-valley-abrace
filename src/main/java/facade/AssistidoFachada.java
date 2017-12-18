@@ -13,6 +13,9 @@ import model.PessoaFisica;
 
 public class AssistidoFachada {
 	public boolean cadastrarAssistido(Assistido assistido) throws PessoaInvalidaException, SQLException{
+		if(assistido.getSituacao()==false) {
+			assistido.setDoador(false);
+		}
 		AssistidoDAO dao = new AssistidoDAO(new ConnectionFactory().getConnection());
 		boolean resultado = dao.inserirAssistido(assistido);
 		dao.getConexao().close();
