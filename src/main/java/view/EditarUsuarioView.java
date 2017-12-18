@@ -23,8 +23,9 @@ public class EditarUsuarioView {
 	private Usuario usuario;
 	private EditarUsuarioControle controle = new EditarUsuarioControle(this);
 	private Text tfLogin;
-	private Text TFSenha;
+	private Text tfNova;
 	private Text txtSenhaAntiga;
+	private Text tfNovoLogin;
 
 	public Text getTfLogin() {
 		return tfLogin;
@@ -98,7 +99,7 @@ public class EditarUsuarioView {
 				identificarESC(arg0);
 			}
 		});
-		shlEditarUsuario.setSize(715, 381);
+		shlEditarUsuario.setSize(715, 456);
 		shlEditarUsuario.setText("Editar doador - ABRACE");
 		shlEditarUsuario.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/ABRACE.png").getAbsolutePath()));
 		Centralize.centralize(shlEditarUsuario);
@@ -119,9 +120,9 @@ public class EditarUsuarioView {
 		label_1.setBounds(263, 82, 160, 21);
 		
 		Label lblLogin = new Label(shlEditarUsuario, SWT.NONE);
-		lblLogin.setText("Login:");
+		lblLogin.setText("Login Atual:");
 		lblLogin.setFont(SWTResourceManager.getFont("Segoe UI Emoji", 16, SWT.NORMAL));
-		lblLogin.setBounds(168, 123, 55, 28);
+		lblLogin.setBounds(120, 124, 111, 28);
 		
 		tfLogin = new Text(shlEditarUsuario, SWT.BORDER);
 		tfLogin.addKeyListener(new KeyAdapter() {
@@ -137,7 +138,7 @@ public class EditarUsuarioView {
 		Label lblSenhaAtual = new Label(shlEditarUsuario, SWT.NONE);
 		lblSenhaAtual.setText("Senha Atual:");
 		lblSenhaAtual.setFont(SWTResourceManager.getFont("Segoe UI Emoji", 16, SWT.NORMAL));
-		lblSenhaAtual.setBounds(105, 169, 117, 28);
+		lblSenhaAtual.setBounds(114, 168, 117, 28);
 		
 		txtSenhaAntiga = new Text(shlEditarUsuario, SWT.BORDER | SWT.PASSWORD);
 		txtSenhaAntiga.addKeyListener(new KeyAdapter() {
@@ -148,23 +149,28 @@ public class EditarUsuarioView {
 		});
 		txtSenhaAntiga.setTextLimit(128);
 		txtSenhaAntiga.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
-		txtSenhaAntiga.setBounds(239, 165, 286, 38);
+		txtSenhaAntiga.setBounds(240, 163, 286, 38);
 		
 		Label lblSenha = new Label(shlEditarUsuario, SWT.NONE);
 		lblSenha.setText("Nova Senha:");
 		lblSenha.setFont(SWTResourceManager.getFont("Segoe UI Emoji", 16, SWT.NORMAL));
-		lblSenha.setBounds(105, 218, 117, 28);
+		lblSenha.setBounds(114, 273, 117, 28);
 		
-		TFSenha = new Text(shlEditarUsuario, SWT.BORDER | SWT.PASSWORD);
-		TFSenha.addKeyListener(new KeyAdapter() {
+		tfNovoLogin = new Text(shlEditarUsuario, SWT.BORDER);
+		tfNovoLogin.setTextLimit(128);
+		tfNovoLogin.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
+		tfNovoLogin.setBounds(240, 224, 286, 38);
+		
+		tfNova = new Text(shlEditarUsuario, SWT.BORDER | SWT.PASSWORD);
+		tfNova.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent arg0) {
 				identificarESC(arg0);
 			}
 		});
-		TFSenha.setTextLimit(128);
-		TFSenha.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
-		TFSenha.setBounds(239, 214, 287, 38);
+		tfNova.setTextLimit(128);
+		tfNova.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
+		tfNova.setBounds(240, 268, 287, 38);
 		
 		Button button = new Button(shlEditarUsuario, SWT.NONE);
 		button.addKeyListener(new KeyAdapter() {
@@ -182,7 +188,7 @@ public class EditarUsuarioView {
 		button.setText("Cancelar");
 		button.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/cancelar.png").getAbsolutePath()));
 		button.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
-		button.setBounds(159, 272, 184, 60);
+		button.setBounds(160, 347, 184, 60);
 		
 		Button btnSalvarAlteraes = new Button(shlEditarUsuario, SWT.NONE);
 		btnSalvarAlteraes.addKeyListener(new KeyAdapter() {
@@ -200,17 +206,29 @@ public class EditarUsuarioView {
 		btnSalvarAlteraes.setText("Salvar altera\u00E7\u00F5es");
 		btnSalvarAlteraes.setImage(SWTResourceManager.getImage(new File("src/main/java/view/img/ok.png").getAbsolutePath()));
 		btnSalvarAlteraes.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
-		btnSalvarAlteraes.setBounds(360, 272, 224, 60);
-		tfLogin.setText(usuario.getUsuario());
+		btnSalvarAlteraes.setBounds(361, 347, 224, 60);
+		
+		Label lblNovoLogin = new Label(shlEditarUsuario, SWT.NONE);
+		lblNovoLogin.setText("Novo Login:");
+		lblNovoLogin.setFont(SWTResourceManager.getFont("Segoe UI Emoji", 16, SWT.NORMAL));
+		lblNovoLogin.setBounds(119, 229, 112, 28);
 		
 	}
 	
+	public Text getTfNovoLogin() {
+		return tfNovoLogin;
+	}
+
+	public void setTfNovoLogin(Text tfNovoLogin) {
+		this.tfNovoLogin = tfNovoLogin;
+	}
+
 	public Text getTFSenha() {
-		return TFSenha;
+		return tfNova;
 	}
 
 	public void setTFSenha(Text tFSenha) {
-		TFSenha = tFSenha;
+		tfNova = tFSenha;
 	}
 
 	public void mensagemErro(Exception e){
