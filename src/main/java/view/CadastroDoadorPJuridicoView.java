@@ -275,7 +275,6 @@ public class CadastroDoadorPJuridicoView implements ViewPessoaJuridica,ViewPesso
 					}
 					new PessoaJuridica().setTelefone(getTfTelefone1().getText());
 				}catch(PessoaInvalidaException e1) {
-					setTfTelefone1("");
 					mensagemErroTelefone(e1);
 				}
 			}
@@ -306,7 +305,6 @@ public class CadastroDoadorPJuridicoView implements ViewPessoaJuridica,ViewPesso
 					}
 					new PessoaJuridica().setTelefone2(getTfTelefone2().getText());
 				}catch(PessoaInvalidaException e1) {
-					setTfTelefone2("");
 					mensagemErroTelefone(e1);
 				}
 			}
@@ -330,7 +328,6 @@ public class CadastroDoadorPJuridicoView implements ViewPessoaJuridica,ViewPesso
 					}
 					new PessoaJuridica().setEmail(getTfEmail().getText());
 				}catch(PessoaInvalidaException e1) {
-					setTfEmail("");
 					mensagemErroEmail(e1);
 				}
 			}

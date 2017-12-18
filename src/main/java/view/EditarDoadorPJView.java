@@ -284,7 +284,6 @@ public class EditarDoadorPJView implements ViewPessoaJuridica,ViewPessoa{
 					}
 					new PessoaJuridica().setTelefone(getTfTelefone1().getText());
 				}catch(PessoaInvalidaException e1) {
-					setTfTelefone1("");
 					mensagemErroTelefone(e1);
 				}
 			}
@@ -315,7 +314,6 @@ public class EditarDoadorPJView implements ViewPessoaJuridica,ViewPessoa{
 					}
 					new PessoaJuridica().setTelefone2(getTfTelefone2().getText());
 				}catch(PessoaInvalidaException e1) {
-					setTfTelefone2("");
 					mensagemErroTelefone(e1);
 				}
 			}
@@ -339,7 +337,6 @@ public class EditarDoadorPJView implements ViewPessoaJuridica,ViewPessoa{
 					}
 					new PessoaJuridica().setEmail(getTfEmail().getText());
 				}catch(PessoaInvalidaException e1) {
-					setTfEmail("");
 					mensagemErroEmail(e1);
 				}
 			}
@@ -406,7 +403,7 @@ public class EditarDoadorPJView implements ViewPessoaJuridica,ViewPessoa{
 	public void mensagemErro(Exception e){
 		 MessageBox messageBox = new MessageBox(shlEditarDoador_1,SWT.ICON_ERROR | SWT.OK); 
 		 messageBox.setText("Problemas ao editar dados do doador jurídico!");
-		 messageBox.setMessage(/*e.getMessage()+*/"Não foi possível editar este doador pessoa jurídica. \nConsulte o suporte.");
+		 messageBox.setMessage("Não foi possível editar este doador pessoa jurídica. \nConsulte o suporte.");
 		 messageBox.open();
 	}
 	

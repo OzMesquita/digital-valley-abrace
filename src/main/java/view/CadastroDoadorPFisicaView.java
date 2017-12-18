@@ -234,7 +234,6 @@ public class CadastroDoadorPFisicaView implements ViewPessoaFisica, ViewPessoa{
 					try {
 						new PessoaFisica().setCpf(getTfCPF().getText());
 					} catch(PessoaFisicaException e) {
-						setTfCPF("");
 						mensagemErro(e);
 					}
 				}
@@ -307,7 +306,6 @@ public class CadastroDoadorPFisicaView implements ViewPessoaFisica, ViewPessoa{
 					}
 					new PessoaFisica().setTelefone(getTfTelefone1().getText());
 				}catch(PessoaInvalidaException e1) {
-					setTfTelefone1("");
 					mensagemErroTelefone(e1);
 				}
 			}
@@ -339,7 +337,6 @@ public class CadastroDoadorPFisicaView implements ViewPessoaFisica, ViewPessoa{
 					}
 					new PessoaFisica().setTelefone2(getTfTelefone2().getText());
 				}catch(PessoaInvalidaException e1) {
-					setTfTelefone2("");
 					mensagemErroTelefone(e1);
 				}
 			}
@@ -371,7 +368,6 @@ public class CadastroDoadorPFisicaView implements ViewPessoaFisica, ViewPessoa{
 					}
 					new PessoaFisica().setEmail(getTfEmail().getText());
 				}catch(PessoaInvalidaException e1) {
-					setTfEmail("");
 					mensagemErroEmail(e1);
 				}
 			}

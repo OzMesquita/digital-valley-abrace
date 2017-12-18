@@ -306,7 +306,6 @@ public class EditarAssistidoView implements ViewAssistido{
 				try {
 					new Assistido().setCpf(getTfCPF().getText());
 				} catch(PessoaFisicaException e) {
-					setTfCPF("");
 					mensagemErro(e);
 				}
 			}
@@ -382,7 +381,6 @@ public class EditarAssistidoView implements ViewAssistido{
 					}
 					new Assistido().setTelefone(getTfTelefone1().getText());
 				}catch(PessoaInvalidaException e1) {
-					setTfTelefone1("");
 					mensagemErroTelefone(e1);
 				}
 			}
@@ -414,7 +412,6 @@ public class EditarAssistidoView implements ViewAssistido{
 					}
 					new Assistido().setTelefone2(getTfTelefone2().getText());
 				}catch(PessoaInvalidaException e1) {
-					setTfTelefone2("");
 					mensagemErroTelefone(e1);
 				}
 			}
@@ -446,7 +443,6 @@ public class EditarAssistidoView implements ViewAssistido{
 					}
 					new Assistido().setEmail(getTfEmail().getText());
 				}catch(PessoaInvalidaException e1) {
-					setTfEmail("");
 					mensagemErroEmail(e1);
 				}
 			}
