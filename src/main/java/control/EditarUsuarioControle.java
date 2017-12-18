@@ -33,22 +33,23 @@ public class EditarUsuarioControle {
 					Usuario usuario = new Usuario();
 					usuario.setId(viewUsuario.getUsuario().getId());
 					usuario.setUsuario(viewUsuario.getUsuario().getUsuario());
-					usuario.setUsuario(viewUsuario.getUsuario().getSenha());
-					
-					if(!viewUsuario.getTfNovoLogin().equals("")) {
+					usuario.setSenha(viewUsuario.getUsuario().getSenha());
+					System.out.println("Login:"+usuario.getUsuario());
+					System.out.println("Senha:"+usuario.getSenha());
+					if(!viewUsuario.getTfNovoLogin().getText().equals("")) {
 						usuario.setUsuario(viewUsuario.getTfNovoLogin().getText());
 					}
-					
-					if(!viewUsuario.getTFSenha().equals("")) {
+					if(!viewUsuario.getTFSenha().getText().equals("")) {
 						usuario.setSenha(viewUsuario.getTFSenha().getText());
 					}
-					
 					if (fachadaUsuario.editarUsuario(usuario)) {
 						viewUsuario.mensagemSucesso(usuario);
 						viewUsuario.getShlEditarDoadorPessoa().dispose();
 						LoginSingleton.setUsuario(usuario);
 					}
 					
+				}else {
+					viewUsuario.mensagemErro(new Exception("Usuário ou senha antigos inválidos"));
 				}
 			} catch (UsuarioInvalidoException e1) {
 				viewUsuario.mensagemErro(new Exception("Consulte o suporte"));
