@@ -51,18 +51,21 @@ public class AssistidoDAO extends ExecutaSQL {
 	public boolean editarAssistido(Assistido assistido) throws PessoaInvalidaException {
 		try {
 			getConexao().setAutoCommit(false);
+			if(assistido.getSituacao() == false) {
+				excluirAssistido(assistido);
+			}
 			PessoaFisicaDAO pessoaFisica = new PessoaFisicaDAO(getConexao());
 			pessoaFisica.editarDoadorFisico(assistido);
 			editar(assistido);
 			getConexao().commit();
+			return true;
 		} catch (SQLException e) {
 			rollBack(e);
 			return false;
 		}
-		return true;
 	}
 
-	public void editar(Assistido assistido) {
+	private void editar(Assistido assistido) {
 		String sql = "UPDATE ABRACE.Assistido SET tipoCancer=?, apelido=?, status=? WHERE idPessoa=?";
 		PreparedStatement stmt;
 		try {
@@ -80,7 +83,7 @@ public class AssistidoDAO extends ExecutaSQL {
 	}
 	public boolean excluirAssistido(Assistido assistido) {
 		try {
-			String sql = "UPDATE ABRACE.Pessoa SET ativo=false and isDoador=false WHERE idPessoa=?";
+			String sql = "UPDATE ABRACE.Pessoa SET ativo=False and isDoador=False WHERE ABRACE.Pessoa.idPessoa=?";
 			PreparedStatement stmt;
 			stmt = getConexao().prepareStatement(sql);
 			stmt.setInt(1, assistido.getId());
@@ -141,10 +144,11 @@ public class AssistidoDAO extends ExecutaSQL {
 		ArrayList<Assistido> assistidos = new ArrayList<Assistido>();
 		String sql = "SELECT * " + 
 				"FROM PESSOA " + 
-				"JOIN PESSOA_FISICA ON PESSOA.idpessoa=PESSOA_FISICA.idpessoa " + 
-				"join ASSISTIDO ON ASSISTIDO.idpessoa=PESSOA_FISICA.idpessoa WHERE PESSOA.ativo = True order by nome";
+				"JOIN PESSOA_FISICA ON PESSOA.idPessoa=PESSOA_FISICA.idPessoa " + 
+				"join ASSISTIDO ON ASSISTIDO.idPessoa=PESSOA_FISICA.idPessoa WHERE PESSOA.ativo = ? order by nome";
 		try {
 			PreparedStatement stmt = getConexao().prepareStatement(sql);
+			stmt.setBoolean(1, true);
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
 				int id = rs.getInt("idpessoa");

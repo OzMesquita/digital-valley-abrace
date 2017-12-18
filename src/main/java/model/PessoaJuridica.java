@@ -8,21 +8,11 @@ import exceptions.PessoaJuridicaInvalidaException;
 public class PessoaJuridica extends Pessoa{
 	private String cnpj;
 	private String nomeFantasia;
-	private boolean isPJ;
-	
-	public boolean isPJ() {
-		return isPJ;
-	}
-
-	public void setPJ(boolean isPJ) {
-		this.isPJ = isPJ;
-	}
 
 	public PessoaJuridica(int id, String  cnpj, String nomeFantasia) throws PessoaJuridicaInvalidaException, PessoaInvalidaException {
 		setId(id);
 		setCnpj(cnpj);
 		setNomeFantasia(nomeFantasia);
-		setPJ(true);
 		
 	}
 	
@@ -30,19 +20,17 @@ public class PessoaJuridica extends Pessoa{
 		super(nome, endereco, telefone, telefone2, dataCadastro, email, ativo);
 		setCnpj(cnpj);
 		setNomeFantasia(nomeFantasia);
-		setPJ(true);
 	}
 	 
 	public PessoaJuridica(int id,String nome, String endereco, String telefone, String telefone2, LocalDate dataCadastro,String email, boolean ativo, boolean isDoador, String cnpj, String nomeFantasia) throws PessoaInvalidaException, PessoaJuridicaInvalidaException{
 		super(id, nome, endereco, telefone, telefone2, dataCadastro, email, ativo, isDoador);
 		setCnpj(cnpj);
 		setNomeFantasia(nomeFantasia);
-		setPJ(true);
+		
 	}
 	 
 	public PessoaJuridica() {
 		super();
-		setPJ(true);
 	}
 
 	public String getCnpj() {
