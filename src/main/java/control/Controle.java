@@ -15,11 +15,9 @@ public class Controle {
 	//======================================================//
 	public boolean validarEmail(ViewPessoa view) {
 		if(!view.getTfEmail().getText().matches("^([0-9a-zA-Z]+([_.-]?[0-9a-zA-Z]+)*@[0-9a-zA-Z]+([.]?[0-9a-zA-Z]+)*)")&&!view.getTfEmail().getText().equals("")) {
-			//view.getTfEmail().setForeground(view.getTfEmail().getDisplay().getSystemColor(SWT.COLOR_RED));
 			return false;
 		}
 		else {
-			//view.getTfEmail().setForeground(view.getTfEmail().getDisplay().getSystemColor(SWT.COLOR_BLACK));
 			return true;
 		}
 	}
@@ -62,18 +60,7 @@ public class Controle {
 		view.getTfCPF().setText(temp);
 		view.getTfCPF().setSelection(view.getTfCPF().getText().length());
 	}
-//	public boolean validarCPF(ViewAssistido viewAssistido) {
-//		if(!new CNP().isValidCPF(viewAssistido.getTfCPF().getText().replace(".", "").replace("-", ""))&&!viewAssistido.getTfCPF().getText().equals("")) {
-//			viewAssistido.getTfCPF().setForeground(viewAssistido.getTfCPF().getDisplay().getSystemColor(SWT.COLOR_RED));
-//			viewAssistido.getTfCPF().setBackground(viewAssistido.getTfCPF().getDisplay().getSystemColor(SWT.COLOR_RED));
-//			return false;
-//		}
-//		else {
-//			viewAssistido.getTfCPF().setForeground(viewAssistido.getTfCPF().getDisplay().getSystemColor(SWT.COLOR_BLACK));
-//			viewAssistido.getTfCPF().setBackground(viewAssistido.getTfCPF().getDisplay().getSystemColor(SWT.COLOR_WHITE));
-//			return true;
-//		}
-//	}
+	
 	//------------------------------------------------------//
 
 	

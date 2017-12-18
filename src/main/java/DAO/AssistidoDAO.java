@@ -80,7 +80,7 @@ public class AssistidoDAO extends ExecutaSQL {
 	}
 	public boolean excluirAssistido(Assistido assistido) {
 		try {
-			String sql = "UPDATE ABRACE.Pessoa SET ativo=false WHERE idPessoa=?";
+			String sql = "UPDATE ABRACE.Pessoa SET ativo=false and isDoador=false WHERE idPessoa=?";
 			PreparedStatement stmt;
 			stmt = getConexao().prepareStatement(sql);
 			stmt.setInt(1, assistido.getId());
