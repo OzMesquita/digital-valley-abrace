@@ -65,6 +65,7 @@ public abstract class RelatorioFacade {
 		String caminho = System.getProperty ("java.io.tmpdir")+"/Relatorios";
 		File index = new File(caminho);
 		String[]entries = index.list();
+		if(entries!=null)
 		for(String s: entries){
 		    File currentFile = new File(index.getPath(),s);
 		    currentFile.delete();
