@@ -154,7 +154,8 @@ public class Extenso {
         // somente o tipo primitivo double.
         // System.out.println("Numero : " + (new
         // DecimalFormat().format(Double.valueOf(args[0]))));
-        Formatter formatter = new Formatter();
+        @SuppressWarnings("resource")
+		Formatter formatter = new Formatter();
         DecimalFormatSymbols sym = new DecimalFormatSymbols();
         Object[] objs = new Object[1];
         objs[0] = valorMonetario;
@@ -176,8 +177,6 @@ public class Extenso {
     @Override
     public String toString() {
         StringBuffer buf = new StringBuffer();
-
-        int numero = nro.get(0).intValue();
         int ct;
 
         for (ct = nro.size() - 1; ct > 0; ct--) {
@@ -247,51 +246,6 @@ public class Extenso {
 
         // Altera número.
         num = newNum[0];
-    }
-
-    /**
-     * <p>
-     * Identifica se o número possui mais grupos.
-     * </p>
-     * <p>
-     * Obs.: Grupos são também conhecidos por casas, assim como, casas decimais,
-     * casas de milhar, milhão, bilhão, trilhão, etc.
-     * </p>
-     *
-     * @param ps
-     *            posição do dígito no número.
-     * @return boolean <code><b>true</b></code> se a posição do dígito no
-     *         número conter um valor maior que 1. <code><b>false</b></code>
-     *         se a posição do dígito no número conter um valor igual a zero.
-     * @since JDK 1.5
-     */
-    private boolean temMaisGrupos(int ps) {
-        for (; ps > 0; ps--) {
-            if (nro.get(ps).intValue() != 0)
-                return true;
-        }
-        return false;
-    }
-
-    /**
-     * <p>
-     * Identifica se o grupo corrente é o último a ser convertido por extenso.
-     * </p>
-     * <p>
-     * Obs.: Grupos são também conhecidos por casas, assim como, casas decimais,
-     * casas de milhar, milhão, bilhão, trilhão, etc.
-     * </p>
-     *
-     * @param ps
-     *            posição do dígito no número.
-     * @return boolean <code><b>true</b></code> se a posição do dígito no
-     *         número conter um valor maior que 1. <code><b>false</b></code>
-     *         se a posição do dígito no número conter um valor igual a zero.
-     * @since JDK 1.5
-     */
-    private boolean ehUltimoGrupo(int ps) {
-        return (ps > 0) && nro.get(ps).intValue() != 0
-                && !temMaisGrupos(ps - 1);
     }
 
     /**
@@ -403,16 +357,5 @@ public class Extenso {
         }
 
         return buf.toString();
-    }
-
-    public static void main(String[] args) throws NumberFormatException {
-        // Converte do tipo BigDecimal para a String por extenso.
-        Extenso teste = new Extenso(new BigDecimal(55000.69));
-
-        // Mostra o número informado no formato de valor monetário.
-        System.out.println("Numero  : " + teste.DecimalFormat());
-
-        // Mostra o número informado no formato de valor por extenso.
-        System.out.println("Extenso : " + teste.toString());
     }
 }

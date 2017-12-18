@@ -105,7 +105,7 @@ public class RelatorioDAOTest {
 			RelatorioAnualPessoaFachada relatorioAnualPessoaFachada = new RelatorioAnualPessoaFachada();
 			relatorioAnualPessoaFachada.relatorioAnualPessoa(new PessoaFisicaDAO(new ConnectionFactory().getConnection()).getPessoaFisica(101), LocalDate.of(2017, 1, 1).getYear());
 			relatorioAnualPessoaFachada.abrirPDF();
-			relatorioAnualPessoaFachada.salvarPDF();
+			//relatorioAnualPessoaFachada.salvarPDF();
 		} catch (DocumentException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

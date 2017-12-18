@@ -16,7 +16,6 @@ import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import DAO.ConnectionFactory;
 import DAO.DoacaoDAO;
-import DAO.PessoaFisicaDAO;
 import exceptions.DoacaoInvalidaException;
 import model.Doacao;
 import model.Pessoa;

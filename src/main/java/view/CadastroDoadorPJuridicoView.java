@@ -15,10 +15,8 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.wb.swt.SWTResourceManager;
 import control.CadastroDoadorPJControle;
 import exceptions.PessoaInvalidaException;
-import model.Assistido;
 import model.PessoaJuridica;
 import view.interfaces.ViewPessoa;
-import view.interfaces.ViewPessoaFisica;
 import view.interfaces.ViewPessoaJuridica;
 
 import org.eclipse.swt.events.FocusAdapter;

@@ -4,7 +4,6 @@ import java.sql.SQLException;
 import java.util.List;
 
 import org.eclipse.swt.events.FocusEvent;
-import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.SelectionEvent;
 
 import exceptions.PessoaInvalidaException;

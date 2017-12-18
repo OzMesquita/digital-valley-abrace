@@ -5,14 +5,12 @@ import java.time.LocalDate;
 import java.util.List;
 
 import org.eclipse.swt.events.FocusEvent;
-import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.SelectionEvent;
 import exceptions.AssistidoInvalidoException;
 import exceptions.PessoaFisicaException;
 import exceptions.PessoaInvalidaException;
 import facade.AssistidoFachada;
 import model.Assistido;
-import model.CNP;
 import model.PessoaFisica;
 import view.EditarAssistidoView;
 

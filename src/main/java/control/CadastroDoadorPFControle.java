@@ -5,7 +5,6 @@ import java.time.LocalDate;
 import java.util.List;
 
 import org.eclipse.swt.events.FocusEvent;
-import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.SelectionEvent;
 import exceptions.PessoaFisicaException;
 import exceptions.PessoaInvalidaException;

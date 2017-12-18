@@ -6,7 +6,6 @@ import org.eclipse.wb.swt.SWTResourceManager;
 import control.CadastroDoadorPFControle;
 import exceptions.PessoaFisicaException;
 import exceptions.PessoaInvalidaException;
-import model.Assistido;
 import model.PessoaFisica;
 import view.interfaces.ViewPessoa;
 import view.interfaces.ViewPessoaFisica;

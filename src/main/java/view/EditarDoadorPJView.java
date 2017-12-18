@@ -15,7 +15,6 @@ import org.eclipse.wb.swt.SWTResourceManager;
 import control.EditarDoadorPJControle;
 import exceptions.PessoaInvalidaException;
 import model.PessoaJuridica;
-import view.interfaces.ViewAssistido;
 import view.interfaces.ViewPessoa;
 import view.interfaces.ViewPessoaJuridica;
 
