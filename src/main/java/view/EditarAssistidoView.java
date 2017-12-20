@@ -9,7 +9,6 @@ import org.eclipse.swt.SWT;
 import org.eclipse.wb.swt.SWTResourceManager;
 import control.EditarAssistidoControle;
 import exceptions.PessoaFisicaException;
-import exceptions.PessoaInvalidaException;
 import model.Assistido;
 import model.PessoaFisica;
 import view.interfaces.ViewAssistido;
@@ -371,21 +370,6 @@ public class EditarAssistidoView implements ViewAssistido{
 		label_8.setBounds(145, 443, 102, 28);
 		
 		tfTelefone1 = new Text(shlEditarAssistido, SWT.BORDER);
-		
-		tfTelefone1.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusLost(FocusEvent arg0) {
-				try {
-					if(!controle.validarTelefone1(arg0, controle.getViewAssistido())) {
-						throw new PessoaInvalidaException("Telefone incorreto! Insira um telefone válido!");
-					}
-					new Assistido().setTelefone(getTfTelefone1().getText());
-				}catch(PessoaInvalidaException e1) {
-					mensagemErroTelefone(e1);
-				}
-			}
-		});
-		
 		tfTelefone1.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent arg0) {
@@ -402,22 +386,7 @@ public class EditarAssistidoView implements ViewAssistido{
 		label_9.setFont(SWTResourceManager.getFont("Segoe UI Emoji", 16, SWT.NORMAL));
 		label_9.setBounds(145, 487, 102, 28);
 		
-		tfTelefone2 = new Text(shlEditarAssistido, SWT.BORDER);
-		
-		tfTelefone2.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusLost(FocusEvent arg0) {
-				try {
-					if(!controle.validarTelefone2(arg0, controle.getViewAssistido())) {
-						throw new PessoaInvalidaException("Telefone incorreto! Insira um telefone válido!");
-					}
-					new Assistido().setTelefone2(getTfTelefone2().getText());
-				}catch(PessoaInvalidaException e1) {
-					mensagemErroTelefone(e1);
-				}
-			}
-		});
-		
+		tfTelefone2 = new Text(shlEditarAssistido, SWT.BORDER);	
 		tfTelefone2.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent arg0) {
@@ -434,22 +403,7 @@ public class EditarAssistidoView implements ViewAssistido{
 		label_10.setFont(SWTResourceManager.getFont("Segoe UI Emoji", 16, SWT.NORMAL));
 		label_10.setBounds(192, 531, 55, 28);
 		
-		tfEmail = new Text(shlEditarAssistido, SWT.BORDER);
-		
-		tfEmail.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusLost(FocusEvent arg0) {
-				try {
-					if(!controle.validarEmail(controle.getViewAssistido())) {
-						throw new PessoaInvalidaException("Email incorreto! Insira um e-mail válido!");
-					}
-					new Assistido().setEmail(getTfEmail().getText());
-				}catch(PessoaInvalidaException e1) {
-					mensagemErroEmail(e1);
-				}
-			}
-		});
-		
+		tfEmail = new Text(shlEditarAssistido, SWT.BORDER);	
 		tfEmail.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent arg0) {
@@ -597,17 +551,4 @@ public class EditarAssistidoView implements ViewAssistido{
 	     messageBox.setMessage(e.getMessage());
 	     messageBox.open();
    }
-	public void mensagemErroEmail(Exception e) {
-		MessageBox messageBox = new MessageBox(shlEditarAssistido, SWT.ICON_ERROR | SWT.OK);
-		messageBox.setText("E-mail incorreto!");
-		messageBox.setMessage(e.getMessage());
-		messageBox.open();
-	}
-	
-	public void mensagemErroTelefone(Exception e) {
-		MessageBox messageBox = new MessageBox(shlEditarAssistido, SWT.ICON_ERROR | SWT.OK);
-		messageBox.setText("Telefone incorreto!");
-		messageBox.setMessage(e.getMessage());
-		messageBox.open();
-	}
 }

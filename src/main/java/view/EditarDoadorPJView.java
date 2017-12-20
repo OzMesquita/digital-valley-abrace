@@ -13,13 +13,9 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.wb.swt.SWTResourceManager;
 import control.EditarDoadorPJControle;
-import exceptions.PessoaInvalidaException;
 import model.PessoaJuridica;
 import view.interfaces.ViewPessoa;
 import view.interfaces.ViewPessoaJuridica;
-
-import org.eclipse.swt.events.FocusAdapter;
-import org.eclipse.swt.events.FocusEvent;
 import org.eclipse.swt.events.KeyAdapter;
 
 public class EditarDoadorPJView implements ViewPessoaJuridica,ViewPessoa{
@@ -274,19 +270,6 @@ public class EditarDoadorPJView implements ViewPessoaJuridica,ViewPessoa{
 				identificarESC(arg0);
 			}
 		});
-		tfTelefone1.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusLost(FocusEvent arg0) {
-				try {
-					if(!controle.validarTelefone1(arg0, controle.getViewDoador())) {
-						throw new PessoaInvalidaException("Telefone incorreto! Insira um telefone válido!");
-					}
-					new PessoaJuridica().setTelefone(getTfTelefone1().getText());
-				}catch(PessoaInvalidaException e1) {
-					mensagemErroTelefone(e1);
-				}
-			}
-		});
 		tfTelefone1.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfTelefone1.setBounds(244, 344, 369, 38);
 		tfTelefone1.setTextLimit(14);
@@ -304,19 +287,6 @@ public class EditarDoadorPJView implements ViewPessoaJuridica,ViewPessoa{
 				identificarESC(arg0);
 			}
 		});
-		tfTelefone2.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusLost(FocusEvent arg0) {
-				try {
-					if(!controle.validarTelefone2(arg0, controle.getViewDoador())) {
-						throw new PessoaInvalidaException("Telefone incorreto! Insira um telefone válido!");
-					}
-					new PessoaJuridica().setTelefone2(getTfTelefone2().getText());
-				}catch(PessoaInvalidaException e1) {
-					mensagemErroTelefone(e1);
-				}
-			}
-		});
 		tfTelefone2.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfTelefone2.setBounds(244, 388, 369, 38);
 		tfTelefone2.setTextLimit(14);
@@ -327,19 +297,6 @@ public class EditarDoadorPJView implements ViewPessoaJuridica,ViewPessoa{
 		label_7.setBounds(172, 437, 55, 28);
 		
 		tfEmail = new Text(shlEditarDoador_1, SWT.BORDER);
-		tfEmail.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusLost(FocusEvent arg0) {
-				try {
-					if(!controle.validarEmail(controle.getViewDoador())) {
-						throw new PessoaInvalidaException("Email incorreto! Insira um e-mail válido!");
-					}
-					new PessoaJuridica().setEmail(getTfEmail().getText());
-				}catch(PessoaInvalidaException e1) {
-					mensagemErroEmail(e1);
-				}
-			}
-		});
 		tfEmail.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent arg0) {
@@ -412,19 +369,7 @@ public class EditarDoadorPJView implements ViewPessoaJuridica,ViewPessoa{
 		messageBox.setMessage("As informações do doador foram alteradas com sucesso");
 		messageBox.open();
 	}
-	public void mensagemErroEmail(Exception e) {
-		MessageBox messageBox = new MessageBox(shlEditarDoador_1, SWT.ICON_ERROR | SWT.OK);
-		messageBox.setText("E-mail incorreto!");
-		messageBox.setMessage(e.getMessage());
-		messageBox.open();
-	}
 	
-	public void mensagemErroTelefone(Exception e) {
-		MessageBox messageBox = new MessageBox(shlEditarDoador_1, SWT.ICON_ERROR | SWT.OK);
-		messageBox.setText("Telefone incorreto!");
-		messageBox.setMessage(e.getMessage());
-		messageBox.open();
-	}
 	public void identificarESC(KeyEvent arg0) {
 		if(arg0.keyCode == 27) {
 			shlEditarDoador_1.dispose();

@@ -370,20 +370,6 @@ public class CadastroAssistidoView implements ViewAssistido{
 		lblDataDeCadastro.setBounds(73, 395, 175, 28);
 		
 		tfTelefone1 = new Text(shlCadastroAssistido, SWT.BORDER);
-		
-		tfTelefone1.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusLost(FocusEvent arg0) {
-				try {
-					if(!controle.validarTelefone1(arg0, controle.getViewAssistido())) {
-						throw new PessoaInvalidaException("Telefone incorreto! Insira um telefone válido!");
-					}
-					new Assistido().setTelefone(getTfTelefone1().getText());
-				}catch(PessoaInvalidaException e1) {
-					mensagemErroTelefone(e1);
-				}
-			}
-		});
 		tfTelefone1.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent arg0) {
@@ -395,22 +381,7 @@ public class CadastroAssistidoView implements ViewAssistido{
 		tfTelefone1.setBounds(254, 432, 369, 38);
 		tfTelefone1.setTextLimit(14);
 		
-		tfTelefone2 = new Text(shlCadastroAssistido, SWT.BORDER);
-		
-		tfTelefone2.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusLost(FocusEvent arg0) {
-				try {
-					if(!controle.validarTelefone2(arg0, controle.getViewAssistido())) {
-						throw new PessoaInvalidaException("Telefone incorreto! Insira um telefone válido!");
-					}
-					new Assistido().setTelefone2(getTfTelefone2().getText());
-				}catch(PessoaInvalidaException e1) {
-					mensagemErroTelefone(e1);
-				}
-			}
-		});
-		
+		tfTelefone2 = new Text(shlCadastroAssistido, SWT.BORDER);		
 		tfTelefone2.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent arg0) {
@@ -428,20 +399,6 @@ public class CadastroAssistidoView implements ViewAssistido{
 			public void keyReleased(KeyEvent arg0) {
 				identificarESC(arg0);
 				controle.filtrarEmail(controle.getViewAssistido());
-			}
-		});
-		tfEmail.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusLost(FocusEvent arg0) {
-				try {
-					if(!controle.validarEmail(controle.getViewAssistido())) {
-						throw new PessoaInvalidaException("Email incorreto! Insira um e-mail válido!");
-					}
-					new Assistido().setEmail(getTfEmail().getText());
-				}catch(PessoaInvalidaException e1) {
-					setTfEmail("");
-					mensagemErroEmail(e1);
-				}
 			}
 		});
 		tfEmail.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
@@ -576,20 +533,6 @@ public class CadastroAssistidoView implements ViewAssistido{
        messageBox.setMessage(e.getMessage());
        messageBox.open();
    }
-	
-	public void mensagemErroEmail(Exception e) {
-		MessageBox messageBox = new MessageBox(shlCadastroAssistido, SWT.ICON_ERROR | SWT.OK);
-		messageBox.setText("E-mail incorreto!");
-		messageBox.setMessage(e.getMessage());
-		messageBox.open();
-	}
-	
-	public void mensagemErroTelefone(Exception e) {
-		MessageBox messageBox = new MessageBox(shlCadastroAssistido, SWT.ICON_ERROR | SWT.OK);
-		messageBox.setText("Telefone incorreto!");
-		messageBox.setMessage(e.getMessage());
-		messageBox.open();
-	}
 	
 	public void mensagemSucesso(PessoaFisica pessoaFisica){
 		MessageBox messageBox = new MessageBox(shlCadastroAssistido,SWT.ICON_WORKING | SWT.OK); 

@@ -5,7 +5,6 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.wb.swt.SWTResourceManager;
 import control.CadastroDoadorPFControle;
 import exceptions.PessoaFisicaException;
-import exceptions.PessoaInvalidaException;
 import model.PessoaFisica;
 import view.interfaces.ViewPessoa;
 import view.interfaces.ViewPessoaFisica;
@@ -295,20 +294,6 @@ public class CadastroDoadorPFisicaView implements ViewPessoaFisica, ViewPessoa{
 		lblTelefone_1.setBounds(143, 404, 102, 28);
 		
 		tfTelefone1 = new Text(shlCadastroDoador, SWT.BORDER);
-		
-		tfTelefone1.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusLost(FocusEvent arg0) {
-				try {
-					if(!controle.validarTelefone1(arg0, controle.getViewDoador())) {
-						throw new PessoaInvalidaException("Telefone incorreto! Insira um telefone válido!");
-					}
-					new PessoaFisica().setTelefone(getTfTelefone1().getText());
-				}catch(PessoaInvalidaException e1) {
-					mensagemErroTelefone(e1);
-				}
-			}
-		});
 		tfTelefone1.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent arg0) {
@@ -326,20 +311,6 @@ public class CadastroDoadorPFisicaView implements ViewPessoaFisica, ViewPessoa{
 		lblTelefone.setBounds(143, 448, 102, 28);
 		
 		tfTelefone2 = new Text(shlCadastroDoador, SWT.BORDER);
-		
-		tfTelefone2.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusLost(FocusEvent arg0) {
-				try {
-					if(!controle.validarTelefone2(arg0, controle.getViewDoador())) {
-						throw new PessoaInvalidaException("Telefone incorreto! Insira um telefone válido!");
-					}
-					new PessoaFisica().setTelefone2(getTfTelefone2().getText());
-				}catch(PessoaInvalidaException e1) {
-					mensagemErroTelefone(e1);
-				}
-			}
-		});
 		tfTelefone2.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent arg0) {
@@ -357,21 +328,6 @@ public class CadastroDoadorPFisicaView implements ViewPessoaFisica, ViewPessoa{
 		label_7.setBounds(190, 492, 55, 28);
 		
 		tfEmail = new Text(shlCadastroDoador, SWT.BORDER);
-		
-		tfEmail.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusLost(FocusEvent arg0) {
-				try {
-					if(!controle.validarEmail(controle.getViewDoador())) {
-						throw new PessoaInvalidaException("Email incorreto! Insira um e-mail válido!");
-					}
-					new PessoaFisica().setEmail(getTfEmail().getText());
-				}catch(PessoaInvalidaException e1) {
-					mensagemErroEmail(e1);
-				}
-			}
-		});
-		
 		tfEmail.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent arg0) {
@@ -443,20 +399,6 @@ public class CadastroDoadorPFisicaView implements ViewPessoaFisica, ViewPessoa{
      messageBox.setMessage(e.getMessage());
      messageBox.open();
    }
-	
-	public void mensagemErroEmail(Exception e) {
-		MessageBox messageBox = new MessageBox(shlCadastroDoador, SWT.ICON_ERROR | SWT.OK);
-		messageBox.setText("E-mail incorreto!");
-		messageBox.setMessage(e.getMessage());
-		messageBox.open();
-	}
-	
-	public void mensagemErroTelefone(Exception e) {
-		MessageBox messageBox = new MessageBox(shlCadastroDoador, SWT.ICON_ERROR | SWT.OK);
-		messageBox.setText("Telefone incorreto!");
-		messageBox.setMessage(e.getMessage());
-		messageBox.open();
-	}
 	
 	public void mensagemSucessoReativacao(PessoaFisica pessoaFisica){
 		MessageBox messageBox = new MessageBox(shlCadastroDoador,SWT.ICON_WORKING | SWT.OK); 
