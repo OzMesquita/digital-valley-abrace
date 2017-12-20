@@ -48,7 +48,7 @@ public abstract class RelatorioFacade {
 		email.setColspan(2);
 		email.setBorderColor(BaseColor.WHITE);
 
-		table.addCell("CNPJ:");
+		table.addCell("CNPJ: 19.775.763/0001-98");
 		table.addCell("ENDEREÇO: Vila Matoso, 82");
 		table.addCell("CEP: 62900-000");
 		table.addCell("CIDADE: Russas");
