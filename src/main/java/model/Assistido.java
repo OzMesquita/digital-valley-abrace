@@ -67,7 +67,4 @@ public class Assistido extends PessoaFisica {
 				+ getDataCadastro() + ", getTelefone()=" + getTelefone() + ", getTelefone2()=" + getTelefone2()
 				+ ", getEmail()=" + getEmail() + ", isAtivo()=" + isAtivo() + ", toString()=" + super.toString() + "]";
 	}
-    
-    
-
 }

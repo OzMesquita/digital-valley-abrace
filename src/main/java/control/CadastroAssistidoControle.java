@@ -88,6 +88,7 @@ public class CadastroAssistidoControle extends Controle{
 		}
 	}
 
+	
 	public boolean getFocus(FocusEvent arg0) {
 		if (viewAssistido.getTfCPF().getText() == "") {
 			return false;
