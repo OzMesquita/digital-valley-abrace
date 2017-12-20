@@ -50,18 +50,24 @@ public class CadastroAssistidoControle extends Controle{
 				assistido.setCpf(viewAssistido.getTfCPF().getText());
 				assistido.setRg(viewAssistido.getTfRG().getText());
 				assistido.setEndereco(viewAssistido.getTfEndereco().getText());
-				assistido.setDataNasc(LocalDate.of(viewAssistido.getTfDataNascimento().getYear(),
+				LocalDate dataCadastro = LocalDate.of(viewAssistido.getTfDataCadastro().getYear(),
+						viewAssistido.getTfDataCadastro().getMonth() + 1,
+						viewAssistido.getTfDataCadastro().getDay());
+				LocalDate dataNascimento = LocalDate.of(viewAssistido.getTfDataNascimento().getYear(),
 						viewAssistido.getTfDataNascimento().getMonth() + 1,
-						viewAssistido.getTfDataNascimento().getDay()));
+						viewAssistido.getTfDataNascimento().getDay());
+				if(dataCadastro.isBefore(dataNascimento)){
+					throw new PessoaFisicaException("A data de cadastro informada é anterior a data de nascimento");
+				}
+				assistido.setDataNasc(dataNascimento);
+				assistido.setDataCadastro(dataCadastro);
 				assistido.setTelefone(viewAssistido.getTfTelefone1().getText());
 				assistido.setTelefone2(viewAssistido.getTfTelefone2().getText());
 				assistido.setEmail(viewAssistido.getTfEmail().getText());
 				assistido.setTipoDeCancer(viewAssistido.getTfTipoCancer().getText());
 				assistido.setSituacao(viewAssistido.getTfSituacao());
 				assistido.setDoador(true);
-				assistido.setDataCadastro(LocalDate.of(viewAssistido.getTfDataCadastro().getYear(),
-						viewAssistido.getTfDataCadastro().getMonth() + 1,
-						viewAssistido.getTfDataCadastro().getDay()));
+				
 				if (fachadaAssistido.cadastrarAssistido(assistido)) {
 					viewAssistido.mensagemSucesso(assistido);
 					viewAssistido.getShlCadastroAssistido().dispose();
@@ -82,9 +88,9 @@ public class CadastroAssistidoControle extends Controle{
 		}
 	}
 
-	public void getFocus(FocusEvent arg0) {
+	public boolean getFocus(FocusEvent arg0) {
 		if (viewAssistido.getTfCPF().getText() == "") {
-			return;
+			return false;
 		} else {
 			try {
 				if (fachadaAssistido.verificaCPF(viewAssistido.getTfCPF().getText())) {
@@ -99,15 +105,17 @@ public class CadastroAssistidoControle extends Controle{
 								}
 							}else {
 								viewAssistido.mensagemCPFJaCadastrado(new Exception("CPF informado pertence a uma pessoa ativa do sistema \nVocê pode consulta-las em \"Gerenciar assistidos\"!"));							
-								viewAssistido.setTfCPF("");
 							}
 							break;
 						}
 					}
+					return true;
 				}
+				return false;
 			}
 			 catch (SQLException e) {
 				viewAssistido.mensagemErro(new Exception("Erro na operação! Contate o suporte!"));
+				return false;
 			}
 		}
 	}

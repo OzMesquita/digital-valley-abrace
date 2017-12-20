@@ -26,7 +26,7 @@ public class Assistido extends PessoaFisica {
     }
 
     public Assistido() {
-		// TODO Auto-generated constructor stub
+    	
 	}
 
 	public String getApelido() {
