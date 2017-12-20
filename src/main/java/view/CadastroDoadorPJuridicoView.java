@@ -279,7 +279,7 @@ public class CadastroDoadorPJuridicoView implements ViewPessoaJuridica,ViewPesso
 		});
 		tfTelefone1.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfTelefone1.setBounds(235, 358, 369, 38);
-		tfTelefone1.setTextLimit(16);
+		tfTelefone1.setTextLimit(14);
 		
 		Label lblTelefone = new Label(shlCadastroDoador, SWT.NONE);
 		lblTelefone.setText("Telefone 2:");
@@ -309,7 +309,7 @@ public class CadastroDoadorPJuridicoView implements ViewPessoaJuridica,ViewPesso
 		});
 		tfTelefone2.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfTelefone2.setBounds(235, 402, 369, 38);
-		tfTelefone2.setTextLimit(16);
+		tfTelefone2.setTextLimit(14);
 		
 		Label label_7 = new Label(shlCadastroDoador, SWT.NONE);
 		label_7.setText("Email:");

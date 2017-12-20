@@ -309,6 +309,7 @@ public class CadastroAssistidoView implements ViewAssistido{
 				identificarESC(arg0);
 			}
 		});
+		
 		tfCPF.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent arg0) {
@@ -318,6 +319,7 @@ public class CadastroAssistidoView implements ViewAssistido{
 						new Assistido().setCpf(getTfCPF().getText());
 					} catch(PessoaFisicaException e) {
 						mensagemErro(e);
+						
 					}
 				}
 			}
@@ -392,7 +394,7 @@ public class CadastroAssistidoView implements ViewAssistido{
 		});
 		tfTelefone1.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfTelefone1.setBounds(254, 432, 369, 38);
-		tfTelefone1.setTextLimit(16);
+		tfTelefone1.setTextLimit(14);
 		
 		tfTelefone2 = new Text(shlCadastroAssistido, SWT.BORDER);
 		
@@ -419,7 +421,7 @@ public class CadastroAssistidoView implements ViewAssistido{
 		});
 		tfTelefone2.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfTelefone2.setBounds(254, 476, 369, 38);
-		tfTelefone2.setTextLimit(16);
+		tfTelefone2.setTextLimit(14);
 		
 		tfEmail = new Text(shlCadastroAssistido, SWT.BORDER);
 		tfEmail.addKeyListener(new KeyAdapter() {
