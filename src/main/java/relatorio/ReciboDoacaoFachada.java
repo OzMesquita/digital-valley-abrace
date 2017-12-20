@@ -48,7 +48,7 @@ public class ReciboDoacaoFachada extends RelatorioFacade{
 				", Carteira de Identidade (RG) número: " + (((PessoaFisica) doacao.getDoador()).getRg()) +
 				", CPF número: " + (((PessoaFisica) doacao.getDoador()).getCpf()) +
 				", a quantia de " + NumberFormat.getCurrencyInstance(new Locale("pt", "BR")).format(new BigDecimal (doacao.getValor())) + " ("+new Extenso(doacao.getValor())+"), " +
-				"referente a doação para a ONG (Organização Sem Fins Lucrativos) Russas Transformando Vidas - ABRACE.";
+				"referente a doação para a ONG (Organização Não Governamental) Russas Transformando Vidas - ABRACE.";
 		
 		Paragraph declaracao = new Paragraph(conteudo,new Font(FontFamily.UNDEFINED, 11));
 		declaracao.setAlignment(Element.ALIGN_JUSTIFIED);
@@ -105,7 +105,7 @@ public class ReciboDoacaoFachada extends RelatorioFacade{
 						", CNPJ número: " + (((PessoaJuridica) doacao.getDoador()).getCnpj()) +
 						", com sede em " + doacao.getDoador().getEndereco() +
 						", a quantia de " + NumberFormat.getCurrencyInstance(new Locale("pt", "BR")).format(new BigDecimal (doacao.getValor())) + " ("+new Extenso(doacao.getValor())+"), " +
-						"referente a doação para a ONG (Organização Sem Fins Lucrativos) Russas Transformando Vidas - ABRACE.";
+						"referente a doação para a ONG (Organização Não Governamental) Russas Transformando Vidas - ABRACE.";
 				
 				Paragraph declaracao = new Paragraph(conteudo,new Font(FontFamily.UNDEFINED, 11));
 				declaracao.setAlignment(Element.ALIGN_JUSTIFIED);
