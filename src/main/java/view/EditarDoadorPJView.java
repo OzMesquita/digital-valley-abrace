@@ -289,7 +289,7 @@ public class EditarDoadorPJView implements ViewPessoaJuridica,ViewPessoa{
 		});
 		tfTelefone1.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfTelefone1.setBounds(244, 344, 369, 38);
-		tfTelefone1.setTextLimit(16);
+		tfTelefone1.setTextLimit(14);
 		
 		Label lblTelefone = new Label(shlEditarDoador_1, SWT.NONE);
 		lblTelefone.setText("Telefone 2:");
@@ -319,7 +319,7 @@ public class EditarDoadorPJView implements ViewPessoaJuridica,ViewPessoa{
 		});
 		tfTelefone2.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfTelefone2.setBounds(244, 388, 369, 38);
-		tfTelefone2.setTextLimit(16);
+		tfTelefone2.setTextLimit(14);
 		
 		Label label_7 = new Label(shlEditarDoador_1, SWT.NONE);
 		label_7.setText("Email:");

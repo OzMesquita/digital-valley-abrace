@@ -395,6 +395,7 @@ public class EditarAssistidoView implements ViewAssistido{
 		});
 		tfTelefone1.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfTelefone1.setBounds(261, 438, 369, 38);
+		tfTelefone1.setTextLimit(14);
 		
 		Label label_9 = new Label(shlEditarAssistido, SWT.NONE);
 		label_9.setText("Telefone 2:");
@@ -426,6 +427,7 @@ public class EditarAssistidoView implements ViewAssistido{
 		});
 		tfTelefone2.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfTelefone2.setBounds(261, 482, 369, 38);
+		tfTelefone2.setTextLimit(14);
 		
 		Label label_10 = new Label(shlEditarAssistido, SWT.NONE);
 		label_10.setText("Email:");

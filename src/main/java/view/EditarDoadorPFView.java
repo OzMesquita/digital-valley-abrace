@@ -336,6 +336,7 @@ public class EditarDoadorPFView implements ViewPessoaFisica{
 		tfTelefone1.setTextLimit(16);
 		tfTelefone1.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfTelefone1.setBounds(264, 390, 369, 38);
+		tfTelefone1.setTextLimit(14);
 		
 		Label label_14 = new Label(shlEditarDoadorPessoa, SWT.NONE);
 		label_14.setText("Telefone 2:");
@@ -368,6 +369,7 @@ public class EditarDoadorPFView implements ViewPessoaFisica{
 		tfTelefone2.setTextLimit(16);
 		tfTelefone2.setFont(SWTResourceManager.getFont("Segoe UI", 16, SWT.NORMAL));
 		tfTelefone2.setBounds(264, 434, 369, 38);
+		tfTelefone2.setTextLimit(14);
 		
 		Label label_15 = new Label(shlEditarDoadorPessoa, SWT.NONE);
 		label_15.setText("Email:");

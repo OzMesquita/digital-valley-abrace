@@ -319,7 +319,6 @@ public class CadastroAssistidoView implements ViewAssistido{
 						new Assistido().setCpf(getTfCPF().getText());
 					} catch(PessoaFisicaException e) {
 						mensagemErro(e);
-						
 					}
 				}
 			}
